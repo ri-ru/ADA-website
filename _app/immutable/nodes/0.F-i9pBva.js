@@ -1,37 +1,4 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	
-		<link href="../_app/immutable/assets/0.DOdNVmc6.css" rel="stylesheet">
-		<link href="../_app/immutable/assets/3.CIT-TZ7i.css" rel="stylesheet">
-		<link rel="modulepreload" href="../_app/immutable/entry/start.DrrsLzOa.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/Bod7_HC_.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/BgvchO_7.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/Ci1dNWRw.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/CQVbFtjQ.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/bLXrM5Df.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/BOnnb238.js">
-		<link rel="modulepreload" href="../_app/immutable/entry/app.DlBCgjcH.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/Bzak7iHL.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/15iY4gJN.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/CkG-oIwO.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/Dq0hJhAD.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/BQqloYIi.js">
-		<link rel="modulepreload" href="../_app/immutable/nodes/0.F-i9pBva.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/wxXV-ay5.js">
-		<link rel="modulepreload" href="../_app/immutable/nodes/3.CEO_Yqme.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/BAaXgddo.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/DpoC0QzE.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/DlOzM7pa.js">
-</head>
-
-<body>
-	<a href="#content" class="skip-to-main">Skip to main content</a>
-	<div><!--[--><!--[--><!----><header class="svelte-oiwvqb"><div class="wordmark svelte-oiwvqb"><a href="https://github.com/epfl-ada/ada-2025-project-shenanigans/tree/main" aria-label="From Indie to Industry" target="_blank" rel="noopener" class="svelte-oiwvqb"><!----><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+import"../chunks/Bzak7iHL.js";import{aa as s,ab as r,ad as t,ae as n,ai as h,aj as c,a6 as p}from"../chunks/Ci1dNWRw.js";import{s as m}from"../chunks/bLXrM5Df.js";import{h as g}from"../chunks/wxXV-ay5.js";const w=!0,f="always",M=Object.freeze(Object.defineProperty({__proto__:null,prerender:w,trailingSlash:f},Symbol.toStringTag,{value:"Module"})),q=`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
@@ -104,54 +71,4 @@
     </g>
   </g>
 </svg>
-<!----></a></div></header><!----> <main id="content"><!----><div id="demo" class="svelte-15aotx7"><h1>Demo</h1> <h2>Svelte5</h2> <h3>Reactive variables 3 ways:</h3> <button class="svelte-q3gttf">count++</button> <p class="svelte-q3gttf">0 doubled is 0 (derived)</p> <p class="svelte-q3gttf">0 doubled is 0 (derived by)</p> <p class="svelte-q3gttf">0 doubled is 0 ($effect)</p> <h3>Children (previously slots):</h3> <div class="children"><!----></div> <h3>Dispatch Event</h3> <button class="svelte-q3gttf">Random</button>  <h3>Snippets</h3> <div class="people svelte-q3gttf"><!--[--><div class="person svelte-q3gttf"><p class="svelte-q3gttf">John</p> <p class="svelte-q3gttf">30</p></div><div class="person svelte-q3gttf"><p class="svelte-q3gttf">Jill</p> <p class="svelte-q3gttf">45</p></div><!--]--></div><!----> <section id="demo-link"><h2>Link</h2> <p><a href="elements">Default element styles demo</a></p> <p><a href="fonts">Pudding-hosted font previews</a></p></section><!----> <section id="demo-image"><h2>Image</h2> <p>img tag</p> <img src="../assets/demo/test.jpg" alt="cat" class="svelte-b56t42"/> <p>background image</p> <div class="svelte-b56t42"></div></section><!----> <section id="demo-element"><h2>Dynamic Svelte Element</h2> <!--[--><!----><h3>I am a h3 tag.<!----></h3><!----><!----><p>I am p tag.<!----></p><!----><!--]--></section><!----> <section id="demo-component"><h2>Dynamic Svelte Component</h2> <!--[--><!----><p>I am component A and my favorite number is 42.</p><!----><!----><p>I am component B and my name is Russell.</p><!----><!--]--></section><!----> <section id="cms"><h2>MicroCMS</h2> <code><pre>{
- "meta": { "title": "Title TK", "description": "Description tk." },
- "body": [
-  {
-   "section": "intro",
-   "content": [
-    { "type": "h4", "value": "An h4 element with no attributes" },
-    {
-     "type": "text",
-     "value": "Some random text here, followed by an img tag."
-    },
-    {
-     "type": "img",
-     "value": { "src": "../assets/demo/test.jpg", "alt": "A cat" }
-    },
-    {
-     "type": "Test",
-     "value": { "label": "I’m a custom component!", "value": "50" }
-    }
-   ]
-  }
- ]
-}
-</pre></code> <!--[--><section id="intro"><!--[!--><!--[--><!--[!--><!--[!--><!--[--><!----><h4><!---->An h4 element with no attributes<!----><!----></h4><!----><!--]--><!--]--><!--]--><!--[!--><!--[--><p><!---->Some random text here, followed by an img tag.<!----></p><!--]--><!--]--><!--[!--><!--[!--><!--[!--><!----><img src="../assets/demo/test.jpg" alt="A cat"><!----><!--]--><!--]--><!--]--><!--[--><!----><p>I’m a custom component!</p> <progress value="50" max="100"></progress><!----><!--]--><!--]--><!--]--></section><!--]--><!----></section><!----> <div class="c"><h2>Load Data</h2> <div class="response"><!--[--><p>loading data...</p><!--]--></div></div><!----> <section id="scrolly"><h2 class="svelte-1sxgmm9">Scrolly <span>-</span></h2> <div class="spacer svelte-1sxgmm9"></div> <div><!--[--><div class="step svelte-1sxgmm9"><p class="svelte-1sxgmm9">0</p></div><div class="step svelte-1sxgmm9"><p class="svelte-1sxgmm9">1</p></div><div class="step svelte-1sxgmm9"><p class="svelte-1sxgmm9">2</p></div><div class="step svelte-1sxgmm9"><p class="svelte-1sxgmm9">3</p></div><div class="step svelte-1sxgmm9"><p class="svelte-1sxgmm9">4</p></div><!--]--><!----></div><!----> <div class="spacer svelte-1sxgmm9"></div></section><!----></div><!----><!----></main><!----><!--]--> <!--[!--><!--]--><!--]-->
-			
-			<script>
-				{
-					__sveltekit_57e0z4 = {
-						base: new URL("..", location).pathname.slice(0, -1),
-						assets: "/ADA-website"
-					};
-
-					const element = document.currentScript.parentElement;
-
-					Promise.all([
-						import("../_app/immutable/entry/start.DrrsLzOa.js"),
-						import("../_app/immutable/entry/app.DlBCgjcH.js")
-					]).then(([kit, app]) => {
-						kit.start(app, element, {
-							node_ids: [0, 3],
-							data: [null,null],
-							form: null,
-							error: null
-						});
-					});
-				}
-			</script>
-		</div>
-</body>
-
-</html>
+`;var v=s('<header class="svelte-oiwvqb"><div class="wordmark svelte-oiwvqb"><a href="https://github.com/epfl-ada/ada-2025-project-shenanigans/tree/main" aria-label="From Indie to Industry" target="_blank" rel="noopener" class="svelte-oiwvqb"><!></a></div></header>');function k(l){var e=v(),a=t(e),o=t(a),i=t(o);g(i,()=>q),n(o),n(a),n(e),r(l,e)}var x=s('<!> <main id="content"><!></main>',1);function _(l,e){var a=x(),o=h(a);k(o);var i=c(o,2),d=t(i);m(d,()=>e.children??p),n(i),r(l,a)}export{_ as component,M as universal};
