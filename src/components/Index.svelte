@@ -1,54 +1,144 @@
 <script>
 	import { onMount } from 'svelte';
 	
-	// Starfield
-	let stars = [];
-	let mounted = false;
+	// ============================================
+	// STARFIELD
+	// ============================================
+	let stars = $state([]);
+	let mounted = $state(false);
 	
 	onMount(() => {
 		mounted = true;
+		let newStars = [];
 		for (let i = 0; i < 200; i++) {
-			stars.push({
+			newStars.push({
 				x: Math.random() * 100,
 				y: Math.random() * 100,
 				size: Math.random() * 2 + 1,
 				opacity: Math.random() * 0.5 + 0.5
 			});
 		}
-		stars = stars;
+		stars = newStars;
 	});
 	
-	// Transcript toggle
-	let showTranscript = false;
+	// ============================================
+	// TRANSCRIPT - Using $state for Svelte 5 reactivity
+	// ============================================
+	let showTranscript = $state(false);
 	
-	// Chat messages data
-	let messages = [
+	// ============================================
+	// SPEAKER CONFIG
+	// ============================================
+	const speakers = {
+		jimmy: { avatar: "assets/pixel_art/jan.gif", name: "Jimmy" },
+		eddie: { avatar: "assets/pixel_art/ender.gif", name: "Eddie" },
+		kaleb: { avatar: "assets/pixel_art/kalan.gif", name: "Kaleb" },
+		daniel: { avatar: "assets/pixel_art/danael.gif", name: "Daniel" },
+		vivian: { avatar: "assets/pixel_art/veronika.gif", name: "Vivian" },
+	};
+	
+	function getSpeaker(id) {
+		return speakers[id.toLowerCase()] || { avatar: "assets/pixel_art/default.gif", name: id };
+	}
+	
+	// ============================================
+	// DIALOGUE DATA
+	// "jimmy" = right side (narrator/user perspective)
+	// experts = left side
+	// ============================================
+	
+	const introChat = [
+		{ speaker: "Eddie", text: "Oh.. a customer?", side: "left" },
+		{ speaker: "jimmy", text: "I just spent 999$ on your course with my mom's credit card...", side: "right" },
+		{ speaker: "Kaleb", text: "...", side: "left" }, 
+		{ speaker: "jimmy", text: "Can you help me make a lot of money on YouTube?", side: "right" },
+		{ speaker: "Daniel", text: "Maybe.", side: "left" },
+		{ speaker: "jimmy", text: "....I'm getting a refund.", side: "right" },
+		{ speaker: "Vivian", text: "Wait! What we CAN do is show you just how Youtube went from an hobby to an industry that makes many people tons of money. We are really good at what we do! We are super trustworthy and we have the best dataset! Check this out... ", side: "left" },
+
+
+	];
+	
+	const datasetChat = [
+		{ speaker: "jimmy", text: "Okay, fine. You know what you are doing. So how do I make money? ", side: "right" },
+		{ speaker: "Kaleb", text: "To know that we know what we know, and that we do not know what we do not know, that is true knowledge..", side: "left" }, 
+		{ speaker: "jimmy", text: "... ", side: "right" },
+		{ speaker: "Eddie", text: "Ignore that.", side: "left" },
+		{ speaker: "Daniel", text: "He's trying to say that in order to master something, you need to first understand it. We have researched several questions, just for you, about what the data tells us.", side: "left" }
+	];
+	
+	// ============================================
+	// TEAM DATA
+	// ============================================
+	const team = [
+		{ name: "Eddie", role: "(...) Specialist", avatar: "assets/pixel_art/ender.gif", desc: "expert on question #1" },
+		{ name: "Kaleb", role: "(...) Specialist", avatar: "assets/pixel_art/kalan.gif", desc: "expert on question #2" },
+		{ name: "Daniel", role: "(...) Specialist", avatar: "assets/pixel_art/danael.gif", desc: "expert on question #3" },
+		{ name: "Vivian", role: "website wizard", avatar: "assets/pixel_art/veronika.gif", desc: "likes to snack" },
+	];
+	
+	// ============================================
+	// RESEARCH QUESTIONS
+	// ============================================
+	
+	const questions = [
 		{
-			speaker: "jimmy",
-			text: "I want to be a successful YouTuber...",
-			side: "left",
-			avatar: "assets/pixel_art/jan.gif" // You'll add this
+			id: "section-monetization",
+			title: "How have channels evolved from indie to professional?",
+			desc: `What is the adoption curve of sponsorships between different categories?\nWhen and why do we have a rise of sponsorships?\nHave advertisement strategies changed over time?\nDo different channel sizes employ different strategies (e.g. multiple sponsors, recurring sponsors, brand partnerships)?`
 		},
 		{
-			speaker: "albert",
-			text: "Not that you're not a lovely person. And I would love to spend time with you. But you know what I'm saying? What does it say about us that we'll talk with a complete stranger for $15.",
-			side: "right",
-			avatar: "assets/pixel_art/veronika.gif"
+			id: "section-sponsors",
+			title: "What enabled indie channels to become professional-minded?",
+			desc: `At what subscriber thresholds do creators start showing "industry-like" patterns (sponsors, steady uploads, longer videos, higher engagement ratios)?\nAre there early behavioral indicators (upload rhythm, engagement) that predict professionalisation?\nAre channel/video categories and sponsors correlated?\nAre there cohorts of channels with the same/similar sponsors?\nWhat are the differences between categories for "professional" channels (e.g. > 100k subscribers in sports vs education)? How are they different?\nDo "overnight successes" professionalise faster than slow, organic growers?\nCan we detect signs of professionalism by analysing which videos were later removed, using the YouTube API?`
 		},
 		{
-			speaker: "jimmy",
-			text: "damn... how do i do that?",
-			side: "left",
-			avatar: "assets/pixel_art/ender.gif"
-		},
-		{
-			speaker: "consultant1",
-			text: "We are true experts in our craft...",
-			side: "right",
-			avatar: "assets/pixel_art/kalan.gif"
+			id: "section-categories",
+			title: "How does a focus on professionalism affect engagement?",
+			desc: `Does the number of views, subscriber growth, like/dislike ratio change after channels get sponsors? How? Any other metrics (tags / length of title)?\nIs it different between categories? Is it different between the years?\nDo those metrics change over time (track monetised vs non monetised channels)?`
 		}
 	];
+	
+	function jumpTo(id) {
+		document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+	}
 </script>
+
+<!-- ============================================ -->
+<!-- DIALOGUE SNIPPET -->
+<!-- Jimmy = right (narrator), Experts = left -->
+<!-- ============================================ -->
+{#snippet dialogue(messages)}
+	<div class="dialogue">
+		{#each messages as msg, i}
+			<div class="msg {msg.side}" style="--delay: {i * 0.1}s">
+				{#if msg.side === "left"}
+					<!-- Expert on LEFT -->
+					<div class="avatar-col">
+						<img class="avatar-img" src={getSpeaker(msg.speaker).avatar} alt={msg.speaker} />
+						<span class="speaker-name">{getSpeaker(msg.speaker).name}</span>
+					</div>
+					<div class="bubble bubble-left">
+						<p>{msg.text}</p>
+					</div>
+				{:else}
+					<!-- Jimmy on RIGHT -->
+					<div class="bubble bubble-right">
+						<p>{msg.text}</p>
+					</div>
+					<div class="avatar-col">
+						<img class="avatar-img" src={getSpeaker(msg.speaker).avatar} alt={msg.speaker} />
+						<span class="speaker-name">{getSpeaker(msg.speaker).name}</span>
+					</div>
+				{/if}
+			</div>
+		{/each}
+	</div>
+{/snippet}
+
+<!-- ============================================ -->
+<!-- PAGE CONTENT -->
+<!-- ============================================ -->
 
 <div class="container">
 	<!-- Starfield Background -->
@@ -63,23 +153,18 @@
 		</div>
 	{/if}
 
-	<!-- Hero Section -->
+	<!-- ========== HERO ========== -->
 	<section class="hero">
 		<h1 class="title">From Indie to Industry</h1>
-		<p class="subtitle">how youtube went from a hobbyist paradise</p>
-		<p class="subtitle">to a whole industry</p>
-		<p class="byline">by: us</p>
+		<p class="subtitle">how youtube went from a hobbyist paradise to a whole industry</p>
+		<p class="byline">Daniel, Eddie, Jan, Kaleb & Vero</p>
 		<div class="scroll-indicator">↓</div>
 	</section>
 
-	<!-- Intro Text -->
-
-	<!-- Jimmy's YouTube Video -->
+	<!-- ========== VIDEO + TRANSCRIPT ========== -->
 	<section class="video-section">
 		<div class="video-container">
 			<iframe
-				width="100%"
-				height="400"
 				src="https://www.youtube.com/embed/39ORolk1P0I"
 				title="Jimmy's video"
 				frameborder="0"
@@ -88,114 +173,131 @@
 			></iframe>
 		</div>
 		
-		<!-- Transcript Toggle -->
-		<button class="transcript-toggle" onclick={() => showTranscript = !showTranscript}>
-			{showTranscript ? 'Hide' : 'Show'} Transcript
-		</button>
-		
-		{#if showTranscript}
-			<div class="transcript">
-				<p>Transcript goes here...</p>
-				<p>Jimmy: "I want to be a YouTuber..."</p>
-				<p>etc.</p>
-			</div>
-		{/if}
+		<!-- Collapsible Transcript Section -->
+		<div class="collapsible">
+			<h3>
+				<button 
+					class="collapsible-btn"
+					aria-expanded={showTranscript}
+					onclick={() => showTranscript = !showTranscript}
+				>
+					<span class="collapsible-icon">{showTranscript ? '−' : '+'}</span>
+					{showTranscript ? 'Hide Transcript' : 'Show Transcript'}
+				</button>
+			</h3>
+			
+			{#if showTranscript}
+				<div class="collapsible-content">
+					<p><strong>Jimmy:</strong> Hey guys, Jimmy here, welcome to my first YouTube video. I'm going to be very famous and get a lot of money from this, but I don't know how to yet. But hey, check this out, I found this really cool site, where apparently, they offer a course, on how to make a living off YouTube. It's quite expensive but at least you do save the one dollar. So um I definitely want to do this, let's check it out... Let's see what happens</p>
+					<!-- Add full transcript here -->
+				</div>
+			{/if}
+		</div>
 	</section>
 
-	<!-- Chat-style Conversation -->
-	<section class="conversation">
-		{#each messages as message}
-			<div class="message-wrapper {message.side}">
-				{#if message.side === "left"}
-					<!-- Jimmy's messages (left side) -->
-					<div class="avatar">
-						<img src={message.avatar} alt={message.speaker} />
-					</div>
-					<div class="bubble bubble-left">
-						<p>{message.text}</p>
-					</div>
-				{:else}
-					<!-- Consultants (right side) -->
-					<div class="bubble bubble-right">
-						<p>{message.text}</p>
-					</div>
-					<div class="avatar">
-						<img src={message.avatar} alt={message.speaker} />
-					</div>
-				{/if}
+	<!-- ========== DIALOGUE 1: Meeting the Experts ========== -->
+	{@render dialogue(introChat)}
+
+	<!-- ========== DATASET SECTION ========== -->
+	<section class="dataset-section">
+		<div class="text-image-block">
+			<div class="text-side">
+				<h2>The YouNiverse Dataset</h2>
+				<p>
+					Info here about the YouNiverse dataset. 
+				</p>
+				<p>					
+					YouNiverse is a large collection of channel and video metadata from English-language YouTube. YouNiverse comprises metadata from over 136k channels and 72.9M videos published between May 2005 and October 2019, as well as channel-level time-series data with weekly subscriber and view counts. Leveraging channel ranks from this http URL, an online service that provides information about YouTube, we are able to assess and enhance the representativeness of the sample of channels. Additionally, the dataset also contains a table specifying which videos a set of 449M anonymous users commented on. YouNiverse, publicly available at this https URL, will empower the community to do research with and about YouTube.
+				</p>
+				<p>
+					We can even make a new paragraph here. Very fancy. Very based. 
+					More info here abotu it. 
+				</p>
 			</div>
-		{/each}
+			<div class="image-side">
+				<img src="assets/1.png" alt="Dataset preview" />
+			</div>
+		</div>
 	</section>
 
-	<!-- Fiverr Ad -->
+
+	<!-- ========== FIVERR AD ========== 
 	<section class="fiverr-section">
 		<div class="fake-ad">
 			<img src="assets/1.png" alt="Fiverr ad" />
 			<p class="ad-caption">💰 CASH COW YOUTUBE VIDEOS 💰</p>
 		</div>
 	</section>
+	-->
 
-	<!-- Consultants Introduction -->
-	<section class="consultants-intro">
-		<div class="consultant-grid">
-			{#each Array(5) as _, i}
-				<div class="consultant-card">
-					<div class="ascii-avatar">
-						<pre>
-╔═══════╗
-║ ◉───◉ ║
-║   ─   ║
-╚═══════╝
-						</pre>
-					</div>
+	<!-- ========== MEET THE TEAM ========== -->
+	<section class="team-section">
+		<h2>Optional Section</h2>
+		<p class="section-sub">We can present ourselves if we want </p>
+		
+		<div class="team-grid">
+			{#each team as member}
+				<div class="expert-card">
+					<img class="expert-avatar" src={member.avatar} alt={member.name} />
+					<h3>{member.name}</h3>
+					<span class="role">{member.role}</span>
+					<p class="desc">{member.desc}</p>
 				</div>
 			{/each}
 		</div>
+	</section>
+
+
+
+	<!-- ========== DIALOGUE 2 ========== -->
+	{@render dialogue(datasetChat)}
+
+	<!-- ========== RESEARCH QUESTIONS ========== -->
+	<section class="questions-section">
+		<h2>What You'll Learn</h2>
+		<p class="section-sub">Click any question to jump to that section **I KNOW THIS BIT IS A BIT UGLY**</p>
 		
-		<div class="dialog-box center">
-			<p>We are true experts in our craft...</p>
+		<!-- In your questions-section -->
+		<div class="questions-list">
+			{#each questions as q, i}
+				<button class="question-btn" onclick={() => jumpTo(q.id)}>
+					<span class="q-num">{i + 1}</span>
+					<div class="q-text">
+						<h3>{q.title}</h3>
+						<p>{@html q.desc.replace(/\n/g, '<br>')}</p>
+					</div>
+					<span class="q-arrow">→</span>
+				</button>
+			{/each}
 		</div>
 	</section>
 
-	<!-- Dataset Section -->
-	<section class="dataset-section">
-		<div class="text-box-dark">
-			<h2>Our dataset</h2>
-			<p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit..."</p>
-		</div>
-		
-		<div class="dataset-preview">
-			<img src="assets/2.png" alt="Dataset preview" />
-		</div>
+	<!-- ========== CONTENT SECTIONS ========== -->
+	<section id="section-monetization" class="content-section">
+		<h2>How have channels evolved from indie to professional?</h2>
+		<div class="placeholder">[ placeholder ]</div>
 	</section>
 
-	<!-- Interactive Category Selection -->
-	<section class="interactive-section">
-		<div class="message-wrapper left">
-			<div class="avatar">
-				<img src="assets/jimmy.gif" alt="Jimmy" />
-			</div>
-			<div class="bubble bubble-left">
-				<p>Jimmy, which category do you want to see now?</p>
-			</div>
-		</div>
-		
-		<div class="button-group">
-			<button class="category-btn">Gaming 🎮</button>
-			<button class="category-btn">Education 📚</button>
-			<button class="category-btn">Music 🎵</button>
-		</div>
+	<section id="section-sponsors" class="content-section">
+		<h2>What enabled indie channels to become professional-minded?</h2>
+		<div class="placeholder">[ placeholder ]</div>
 	</section>
+
+	<section id="section-categories" class="content-section">
+		<h2>How does a focus on professionalism affect engagement?</h2>
+		<div class="placeholder">[ placeholder ]</div>
+	</section>
+
 </div>
 
 <style>
+	/* ============================================ */
+	/* BASE */
+	/* ============================================ */
+
 	:global(body) {
-		margin: 0;
-		padding: 0;
-		background: #0f0f23;
+		background: #0f0f23 !important;
 		color: #e0e0e0;
-		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-		overflow-x: hidden;
 	}
 
 	.container {
@@ -204,7 +306,9 @@
 		min-height: 100vh;
 	}
 
-	/* Starfield Effect */
+	/* ============================================ */
+	/* STARFIELD */
+	/* ============================================ */
 	.starfield {
 		position: fixed;
 		top: 0;
@@ -227,7 +331,9 @@
 		50% { opacity: 1; }
 	}
 
-	/* Hero Section */
+	/* ============================================ */
+	/* HERO */
+	/* ============================================ */
 	.hero {
 		position: relative;
 		z-index: 1;
@@ -274,39 +380,32 @@
 		50% { transform: translateY(-10px); }
 	}
 
-	/* Sections */
+	/* ============================================ */
+	/* SECTIONS */
+	/* ============================================ */
 	section {
 		position: relative;
 		z-index: 1;
 		padding: 4rem 2rem;
 	}
 
-	/* Text Boxes */
-	.text-box {
-		max-width: 600px;
-		background: rgba(80, 70, 100, 0.8);
-		padding: 2rem;
-		border-radius: 8px;
-		margin: 2rem auto;
-		backdrop-filter: blur(10px);
+	h2 {
+		color: white;
+		font-size: 1.6rem;
+		margin: 0 0 0.5rem;
 		text-align: center;
 	}
 
-	.text-box-dark {
-		max-width: 800px;
-		background: rgba(0, 0, 0, 0.8);
-		padding: 3rem;
-		border-radius: 8px;
-		margin: 2rem auto;
+	.section-sub {
+		color: rgba(255, 255, 255, 0.5);
+		font-size: 0.95rem;
+		margin: 0 0 2rem;
+		text-align: center;
 	}
 
-	.intro-copy {
-		font-size: 1.1rem;
-		color: white;
-		margin: 0;
-	}
-
-	/* Video Section */
+	/* ============================================ */
+	/* VIDEO */
+	/* ============================================ */
 	.video-section {
 		max-width: 800px;
 		margin: 0 auto;
@@ -314,11 +413,10 @@
 
 	.video-container {
 		position: relative;
-		padding-bottom: 56.25%; /* 16:9 aspect ratio */
+		padding-bottom: 56.25%;
 		height: 0;
 		overflow: hidden;
 		border-radius: 12px;
-		margin-bottom: 1rem;
 	}
 
 	.video-container iframe {
@@ -329,90 +427,153 @@
 		height: 100%;
 	}
 
-	.transcript-toggle {
-		display: block;
-		margin: 1rem auto;
-		padding: 0.75rem 1.5rem;
-		background: rgba(255, 255, 255, 0.1);
-		border: 2px solid rgba(255, 255, 255, 0.3);
-		color: white;
+	/* ============================================ */
+	/* COLLAPSIBLE (Pudding-style) */
+	/* ============================================ */
+	.collapsible {
+		margin-top: 1.5rem;
+	}
+
+	.collapsible h3 {
+		margin: 0;
+	}
+
+	.collapsible-btn {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		width: 100%;
+		padding: 0.75rem 1rem;
+		background: rgba(255, 255, 255, 0.08);
+		border: 2px solid rgba(255, 255, 255, 0.2);
 		border-radius: 8px;
+		color: white;
+		font-size: 0.95rem;
+		font-weight: 500;
 		cursor: pointer;
-		transition: all 0.3s;
+		transition: all 0.2s ease;
 	}
 
-	.transcript-toggle:hover {
-		background: rgba(255, 255, 255, 0.2);
+	.collapsible-btn:hover {
+		background: rgba(255, 255, 255, 0.12);
+		border-color: #ff69b4;
 	}
 
-	.transcript {
+	.collapsible-btn:focus {
+		outline: 2px solid #ff69b4;
+		outline-offset: 2px;
+	}
+
+	.collapsible-icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 24px;
+		height: 24px;
+		background: #ff69b4;
+		color: #0f0f23;
+		border-radius: 4px;
+		font-weight: bold;
+		font-size: 1.1rem;
+	}
+
+	.collapsible-content {
+		margin-top: 0.75rem;
+		padding: 1.25rem;
+		background: rgba(0, 0, 0, 0.4);
+		border-radius: 8px;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		line-height: 1.7;
+		animation: slideDown 0.2s ease;
+	}
+
+	@keyframes slideDown {
+		from {
+			opacity: 0;
+			transform: translateY(-8px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.collapsible-content p {
+		margin: 0.5rem 0;
+	}
+
+	/* ============================================ */
+	/* DIALOGUE */
+	/* No border, no resize on avatars */
+	/* Jimmy = right, Experts = left */
+	/* ============================================ */
+	.dialogue {
 		max-width: 800px;
 		margin: 2rem auto;
-		padding: 2rem;
-		background: rgba(0, 0, 0, 0.6);
-		border-radius: 8px;
-		border: 1px solid rgba(255, 255, 255, 0.2);
+		padding: 0 1rem;
 	}
 
-	.transcript p {
-		margin: 0.5rem 0;
-		line-height: 1.6;
-	}
-
-	/* Chat-style Conversation */
-	.conversation {
-		max-width: 800px;
-		margin: 0 auto;
-		padding: 2rem 0;
-	}
-
-	.message-wrapper {
+	.msg {
 		display: flex;
-		gap: 1rem;
-		margin: 2rem 0;
+		gap: 0.75rem;
+		margin: 1.25rem 0;
 		align-items: flex-start;
+		animation: fadeIn 0.4s ease forwards;
+		animation-delay: var(--delay);
+		opacity: 0;
 	}
 
-	.message-wrapper.left {
-		justify-content: flex-start;
+	@keyframes fadeIn {
+		from { opacity: 0; transform: translateY(8px); }
+		to { opacity: 1; transform: translateY(0); }
 	}
 
-	.message-wrapper.right {
-		justify-content: flex-end;
+	.msg.left { justify-content: flex-start; }
+	.msg.right { justify-content: flex-end; }
+
+	.msg.right .avatar-img {
+		transform: scaleX(-1);
 	}
 
-	.avatar {
-		width: 80px;
+	.avatar-col {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.25rem;
+	}
+
+	.speaker-name {
+		font-size: 0.7rem;
+		color: rgba(255, 255, 255, 0.5);
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+	}
+
+	/* Avatar image - NO border, NO resize, keeps pixel art crisp */
+	.avatar-img {
+		width: 76px;
 		height: 80px;
-		border-radius: 8px;
-		overflow: hidden;
-		flex-shrink: 0;
-		background: rgba(255, 105, 180, 0.2);
-		border: 2px solid #ff69b4;
-	}
-
-	.avatar img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
+		image-rEddieing: pixelated;
+		image-rEddieing: crisp-edges;
+		-webkit-image-rEddieing: pixelated;  /* ADD */
+		transform: translateZ(0); 
 	}
 
 	.bubble {
-		max-width: 500px;
-		padding: 1.5rem;
+		max-width: 400px;
+		padding: 0.9rem 1.1rem;
 		border-radius: 16px;
-		position: relative;
 	}
 
 	.bubble-left {
-		background: rgba(255, 182, 193, 0.9);
-		color: #000;
+		background: rgba(200, 180, 255, 0.92);
+		color: #1a1a2e;
 		border-bottom-left-radius: 4px;
 	}
 
 	.bubble-right {
-		background: rgba(200, 180, 255, 0.9);
-		color: #000;
+		background: rgba(255, 182, 193, 0.92);
+		color: #1a1a2e;
 		border-bottom-right-radius: 4px;
 	}
 
@@ -421,47 +582,14 @@
 		line-height: 1.5;
 	}
 
-	/* Consultants Grid */
-	.consultant-grid {
-		display: flex;
-		gap: 1rem;
-		justify-content: center;
-		flex-wrap: wrap;
-		margin: 2rem 0;
-	}
+	/* ============================================ */
+	/* FIVERR AD */
+	/* ============================================ */
+	.fiverr-section { text-align: center; }
 
-	.consultant-card {
-		background: rgba(50, 40, 70, 0.6);
-		padding: 1.5rem;
-		border-radius: 8px;
-		border: 2px solid #ff69b4;
-	}
-
-	.ascii-avatar pre {
-		font-family: 'Courier New', monospace;
-		color: #ff69b4;
-		font-size: 1.2rem;
-		margin: 0;
-	}
-
-	.dialog-box {
-		background: rgba(255, 182, 193, 0.9);
-		color: #000;
-		padding: 1.5rem;
-		border-radius: 8px;
-		max-width: 400px;
-		margin: 1rem auto;
-	}
-
-	.dialog-box.center {
-		text-align: center;
-	}
-
-	/* Fake Ad */
 	.fake-ad {
-		max-width: 600px;
-		margin: 2rem auto;
-		text-align: center;
+		max-width: 500px;
+		margin: 0 auto;
 	}
 
 	.fake-ad img {
@@ -472,66 +600,195 @@
 
 	.ad-caption {
 		color: #ff69b4;
-		margin-top: 1rem;
+		margin: 1rem 0 0;
 		font-weight: bold;
-		font-size: 1.3rem;
+		font-size: 1.2rem;
 	}
 
-	/* Dataset Preview */
-	.dataset-preview {
-		max-width: 600px;
-		margin: 2rem auto;
-	}
-
-	.dataset-preview img {
-		width: 100%;
-		border-radius: 8px;
-		border: 1px solid rgba(255, 255, 255, 0.2);
-	}
-
-	/* Buttons */
-	.button-group {
+	/* ============================================ */
+	/* TEAM */
+	/* ============================================ */
+	.team-grid {
 		display: flex;
-		gap: 1rem;
+		gap: 1.25rem;
 		justify-content: center;
 		flex-wrap: wrap;
-		margin: 2rem 0;
+		margin-top: 2rem;
 	}
 
-	.category-btn {
-		padding: 1rem 2rem;
-		background: rgba(255, 255, 255, 0.1);
-		border: 2px solid rgba(255, 255, 255, 0.3);
-		color: white;
-		font-size: 1rem;
-		border-radius: 8px;
-		cursor: pointer;
+	.expert-card {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 1.25rem;
+		background: rgba(40, 30, 60, 0.7);
+		border-radius: 12px;
+		border: 2px solid rgba(255, 105, 180, 0.4);
+		width: 150px;
 		transition: all 0.3s;
 	}
 
-	.category-btn:hover {
-		background: rgba(255, 255, 255, 0.2);
+	.expert-card:hover {
 		border-color: #ff69b4;
-		transform: translateY(-2px);
+		transform: translateY(-4px);
 	}
 
-	/* Mobile Responsive */
+	.expert-avatar {
+		width: 114px;
+		height: 120px;
+		margin-bottom: 0.75rem;
+		image-rEddieing: pixelated;
+		image-rEddieing: crisp-edges;
+		-webkit-image-rEddieing: pixelated;  /* ADD */
+		transform: translateZ(0); 
+	}
+
+	.expert-card h3 {
+		margin: 0;
+		font-size: 1rem;
+		color: white;
+	}
+
+	.expert-card .role {
+		font-size: 0.7rem;
+		color: #ff69b4;
+		text-transform: uppercase;
+	}
+
+	.expert-card .desc {
+		margin: 0.5rem 0 0;
+		font-size: 0.8rem;
+		color: rgba(255, 255, 255, 0.6);
+		text-align: center;
+	}
+
+	/* ============================================ */
+	/* TEXT + IMAGE BLOCK */
+	/* ============================================ */
+	.dataset-section {
+		max-width: 900px;
+		margin: 0 auto;
+	}
+
+	.text-image-block {
+		display: flex;
+		gap: 2.5rem;
+		align-items: center;
+	}
+
+	.text-side {
+		flex: 1;
+	}
+
+	.text-side h2 {
+		text-align: left;
+		margin-bottom: 1rem;
+	}
+
+	.text-side p {
+		color: rgba(255, 255, 255, 0.8);
+		line-height: 1.7;
+		margin: 0 0 1rem;
+	}
+
+	.image-side {
+		flex: 0 0 38%;
+		max-width: 320px;
+	}
+
+	.image-side img {
+		width: 100%;
+		border-radius: 10px;
+		border: 2px solid rgba(255, 105, 180, 0.3);
+	}
+
+	/* ============================================ */
+	/* RESEARCH QUESTIONS */
+	/* ============================================ */
+	.questions-section {
+		max-width: 700px;
+		margin: 0 auto;
+	}
+
+	.questions-list {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.question-btn {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		padding: 1rem 1.25rem;
+		background: rgba(50, 40, 70, 0.6);
+		border: 2px solid rgba(255, 105, 180, 0.3);
+		border-radius: 10px;
+		cursor: pointer;
+		text-align: left;
+		color: white;
+		transition: all 0.2s;
+	}
+
+	.question-btn:hover {
+		border-color: #ff69b4;
+		background: rgba(60, 50, 80, 0.8);
+		transform: translateX(4px);
+	}
+
+	.q-num {
+		width: 32px;
+		height: 32px;
+		background: #ff69b4;
+		color: #1a1a2e;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-weight: bold;
+		flex-shrink: 0;
+	}
+
+	.q-text { flex: 1; }
+	.q-text h3 { margin: 0; font-size: 1rem; font-weight: 500; }
+	.q-text p { margin: 0.25rem 0 0; font-size: 0.8rem; color: rgba(255, 255, 255, 0.6); }
+
+	.q-arrow {
+		color: #ff69b4;
+		font-size: 1.2rem;
+		opacity: 0;
+		transition: opacity 0.2s;
+	}
+
+	.question-btn:hover .q-arrow { opacity: 1; }
+
+	/* ============================================ */
+	/* CONTENT SECTIONS */
+	/* ============================================ */
+	.content-section {
+		max-width: 900px;
+		margin: 0 auto;
+		padding-top: 6rem;
+	}
+
+	.placeholder {
+		text-align: center;
+		padding: 4rem;
+		background: rgba(50, 40, 70, 0.4);
+		border-radius: 12px;
+		border: 2px dashed rgba(255, 105, 180, 0.3);
+		color: rgba(255, 255, 255, 0.4);
+		margin-top: 1rem;
+	}
+
+	/* ============================================ */
+	/* RESPONSIVE */
+	/* ============================================ */
 	@media (max-width: 768px) {
-		.title {
-			font-size: 2.5rem;
-		}
-		
-		.message-wrapper {
-			flex-direction: column;
-		}
-		
-		.bubble {
-			max-width: 100%;
-		}
-		
-		.consultant-grid {
-			flex-direction: column;
-			align-items: center;
-		}
+		.title { font-size: 2.5rem; }
+		.team-grid { flex-direction: column; align-items: center; }
+		.text-image-block { flex-direction: column; }
+		.image-side { max-width: 100%; }
+		.bubble { max-width: 260px; }
 	}
 </style>

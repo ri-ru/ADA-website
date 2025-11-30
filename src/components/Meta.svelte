@@ -1,6 +1,6 @@
 <script>
 	let {
-		title = "Title TK",
+		title = "sheNANigans: From Indie to Industry",
 		description = "Description TK",
 		url = "https://pudding.cool",
 		keywords = "",

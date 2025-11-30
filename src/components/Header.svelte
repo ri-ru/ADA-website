@@ -1,7 +1,10 @@
-<!--
-  Header with wordmark logo
--->
 <script>
+	// Change this import to match your actual SVG file location
+	// Options in the Pudding starter:
+	// - wordmark-shadow.svg
+	// - wordmark-plain.svg  
+	// - wordmark-line.svg
+	// - wordmark-bubble.svg
 	import wordmark from "$svg/wordmark-shadow.svg?raw";
 </script>
 
