@@ -1,17 +1,29 @@
+<!--
+  Header with wordmark logo
+-->
 <script>
-	// shadow, plain, line, bubble
-	import wordmark from "$svg/wordmark-shadow.svg";
+	import wordmark from "$svg/wordmark-shadow.svg?raw";
 </script>
 
 <header>
 	<div class="wordmark">
-		<a href="https://pudding.cool" aria-label="The Pudding" target="_self"
-			>{@html wordmark}</a
+		<a 
+			href="https://github.com/epfl-ada/ada-2025-project-shenanigans/tree/main" 
+			aria-label="From Indie to Industry"
+			target="_blank"
+			rel="noopener"
 		>
+			{@html wordmark}
+		</a>
 	</div>
 </header>
 
 <style>
+	header {
+		position: relative;
+		z-index: 100;
+	}
+
 	.wordmark {
 		max-width: 14em;
 		margin: 0 auto;
@@ -22,10 +34,15 @@
 	.wordmark a {
 		border: none;
 		display: block;
-		color: var(--color-fg);
+		color: var(--color-fg, white);
 	}
 
 	.wordmark a:hover {
 		background-color: transparent;
+	}
+
+	.wordmark :global(svg) {
+		width: 100%;
+		height: auto;
 	}
 </style>
