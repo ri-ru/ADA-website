@@ -16,7 +16,13 @@ const config = {
 	},
 	preprocess,
 	kit: {
-		adapter: adapterStatic({ strict: false }),
+		adapter: adapterStatic({
+			pages: 'build',
+			assets: 'build',
+			fallback: 'index.html',
+			precompress: false,
+			strict: false
+		}),
 		paths: {
 			base: dev ? '' : '/ADA-website'
 		}
