@@ -1,5 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
+	import { base } from '$app/paths';
 	
 	// ============================================
 	// STARFIELD
@@ -101,6 +102,34 @@
 	
 	function jumpTo(id) {
 		document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+	}
+
+	// ============================================
+	// QUESTION 1: Interactive Category Selection
+	// ============================================
+	let selectedCategory = $state(null);
+	let vizIframe = $state(null);
+	
+	const ytCategories = [
+		{ id: "gaming", name: "Gaming" },
+		{ id: "entertainment", name: "Entertainment" },
+		{ id: "music", name: "Music" },
+		{ id: "news", name: "News & Politics" },
+		{ id: "people", name: "People & Blogs" },
+		{ id: "sports", name: "Sports" },
+		{ id: "howto", name: "Howto & Style" },
+		{ id: "education", name: "Education" },
+	];
+	
+	function selectCategory(cat) {
+		selectedCategory = cat;
+		// Send message to iframe to update visualization
+		if (vizIframe && vizIframe.contentWindow) {
+			vizIframe.contentWindow.postMessage({
+				type: "selectCategory",
+				category: cat ? cat.name : null
+			}, "*");
+		}
 	}
 </script>
 
@@ -275,7 +304,102 @@
 	<!-- ========== CONTENT SECTIONS ========== -->
 	<section id="section-monetization" class="content-section">
 		<h2>How have channels evolved from indie to professional?</h2>
-		<div class="placeholder">[ placeholder ]</div>
+		
+		<!-- Introduction -->
+		<div class="section-intro">
+			<p>
+				YouTube grew from 338k uploads in 2008 to over 15.2 million in 2018. This rapid rise changed which categories became more or less common, and how creators approached their content.
+			</p>
+		</div>
+
+		<!-- Interactive Dialogue -->
+		<div class="interactive-dialogue">
+			<!-- Eddie asks -->
+			<div class="msg left">
+				<div class="avatar-col">
+					<img class="avatar-img" src="{base}/assets/pixel_art/ender.gif" alt="Eddie" />
+					<span class="speaker-name">Eddie</span>
+				</div>
+				<div class="bubble bubble-left">
+					<p>Jimmy, what category do you want to explore?</p>
+				</div>
+			</div>
+
+			<!-- Category buttons -->
+			<div class="category-selector">
+				{#each ytCategories as cat}
+					<button 
+						class="cat-btn {selectedCategory?.id === cat.id ? 'active' : ''}"
+						onclick={() => selectCategory(cat)}
+					>
+						<span class="cat-name">{cat.name}</span>
+					</button>
+				{/each}
+			</div>
+
+			<!-- Jimmy's dynamic response -->
+			{#if selectedCategory}
+				<div class="msg right" style="--delay: 0s">
+					<div class="bubble bubble-right">
+						<p>Hmmm... Show me <strong>{selectedCategory.name}</strong></p>
+					</div>
+					<div class="avatar-col">
+						<img class="avatar-img" src="{base}/assets/pixel_art/jan.gif" alt="Jimmy" style="transform: scaleX(-1);" />
+						<span class="speaker-name">Jimmy</span>
+					</div>
+				</div>
+
+				<!-- Eddie's response with visualization -->
+				<div class="msg left" style="--delay: 0.1s">
+					<div class="avatar-col">
+						<img class="avatar-img" src="{base}/assets/pixel_art/ender.gif" alt="Eddie" />
+						<span class="speaker-name">Eddie</span>
+					</div>
+					<div class="bubble bubble-left">
+						<p>Great choice! Here's how <strong>{selectedCategory.name}</strong> evolved over time. Check out the full visualization below!</p>
+					</div>
+				</div>
+			{:else}
+				<div class="msg right" style="--delay: 0s">
+					<div class="bubble bubble-right bubble-hint">
+						<p>Let me pick a category...</p>
+					</div>
+					<div class="avatar-col">
+						<img class="avatar-img" src="{base}/assets/pixel_art/jan.gif" alt="Jimmy" style="transform: scaleX(-1);" />
+						<span class="speaker-name">Jimmy</span>
+					</div>
+				</div>
+			{/if}
+		</div>
+
+		<!-- Visualization iframe -->
+		<div class="viz-container">
+			<h3 class="viz-title">
+				{#if selectedCategory}
+					{selectedCategory.name} - Upload Volume (2008-2018)
+				{:else}
+					YouTube Category Analysis (2008-2018)
+				{/if}
+			</h3>
+			<iframe 
+				bind:this={vizIframe}
+				src="{base}/data/ender_1.html" 
+				title="YouTube Category Visualization"
+				class="viz-iframe"
+				frameborder="0"
+				onload={() => {
+					// Send current category to iframe after it loads
+					if (selectedCategory && vizIframe && vizIframe.contentWindow) {
+						setTimeout(() => {
+							vizIframe.contentWindow.postMessage({
+								type: "selectCategory",
+								category: selectedCategory.name
+							}, "*");
+						}, 500);
+					}
+				}}
+			></iframe>
+		</div>
 	</section>
 
 	<section id="section-sponsors" class="content-section">
@@ -781,6 +905,116 @@
 		border: 2px dashed rgba(255, 105, 180, 0.3);
 		color: rgba(255, 255, 255, 0.4);
 		margin-top: 1rem;
+	}
+
+	/* ============================================ */
+	/* SECTION INTRO */
+	/* ============================================ */
+	.section-intro {
+		max-width: 700px;
+		margin: 1rem auto 2rem;
+		text-align: center;
+	}
+
+	.section-intro p {
+		color: rgba(255, 255, 255, 0.7);
+		line-height: 1.7;
+		font-size: 1rem;
+	}
+
+	/* ============================================ */
+	/* INTERACTIVE DIALOGUE */
+	/* ============================================ */
+	.interactive-dialogue {
+		max-width: 800px;
+		margin: 2rem auto;
+		padding: 0 1rem;
+	}
+
+	/* ============================================ */
+	/* CATEGORY SELECTOR */
+	/* ============================================ */
+	.category-selector {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		justify-content: center;
+		margin: 1.5rem 0;
+		padding: 1rem;
+		background: rgba(30, 20, 50, 0.5);
+		border-radius: 12px;
+	}
+
+	.cat-btn {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.6rem 1rem;
+		background: rgba(50, 40, 70, 0.7);
+		border: 2px solid rgba(255, 105, 180, 0.3);
+		border-radius: 20px;
+		color: white;
+		font-size: 0.85rem;
+		cursor: pointer;
+		transition: all 0.2s ease;
+	}
+
+	.cat-btn:hover {
+		border-color: #ff69b4;
+		background: rgba(60, 50, 80, 0.9);
+		transform: translateY(-2px);
+	}
+
+	.cat-btn.active {
+		background: linear-gradient(135deg, #ff69b4, #da70d6);
+		border-color: #ff69b4;
+		color: #1a1a2e;
+		font-weight: 600;
+		box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
+	}
+
+	.cat-emoji {
+		font-size: 1.1rem;
+	}
+
+	.cat-name {
+		font-size: 0.85rem;
+	}
+
+	.bubble-hint {
+		opacity: 0.7;
+		font-style: italic;
+	}
+
+	/* ============================================ */
+	/* VISUALIZATION CONTAINER */
+	/* ============================================ */
+	.viz-container {
+		margin: 2rem auto;
+		max-width: 100%;
+		background: rgba(2, 6, 23, 0.9);
+		border-radius: 16px;
+		border: 2px solid rgba(255, 105, 180, 0.3);
+		overflow: hidden;
+		animation: fadeIn 0.4s ease;
+	}
+
+	.viz-title {
+		text-align: center;
+		padding: 1rem;
+		margin: 0;
+		background: rgba(255, 105, 180, 0.1);
+		color: #ff69b4;
+		font-size: 1.1rem;
+		font-weight: 600;
+		border-bottom: 1px solid rgba(255, 105, 180, 0.2);
+	}
+
+	.viz-iframe {
+		width: 100%;
+		height: 800px;
+		border: none;
+		background: #020617;
 	}
 
 	/* ============================================ */
