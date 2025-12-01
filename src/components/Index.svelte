@@ -110,6 +110,11 @@
 	let selectedCategory = $state(null);
 	let vizIframe = $state(null);
 	
+	// Compare categories
+	let compareCatA = $state(null);
+	let compareCatB = $state(null);
+	let compareIframe = $state(null);
+	
 	const ytCategories = [
 		{ id: "gaming", name: "Gaming" },
 		{ id: "entertainment", name: "Entertainment" },
@@ -128,6 +133,26 @@
 			vizIframe.contentWindow.postMessage({
 				type: "selectCategory",
 				category: cat ? cat.name : null
+			}, "*");
+		}
+	}
+	
+	function selectCompareA(cat) {
+		compareCatA = cat;
+		sendCompareMessage();
+	}
+	
+	function selectCompareB(cat) {
+		compareCatB = cat;
+		sendCompareMessage();
+	}
+	
+	function sendCompareMessage() {
+		if (compareIframe && compareIframe.contentWindow) {
+			const cats = [compareCatA?.name, compareCatB?.name].filter(Boolean);
+			compareIframe.contentWindow.postMessage({
+				type: "compareCategories",
+				categories: cats
 			}, "*");
 		}
 	}
@@ -372,18 +397,11 @@
 			{/if}
 		</div>
 
-		<!-- Visualization iframe -->
-		<div class="viz-container">
-			<h3 class="viz-title">
-				{#if selectedCategory}
-					{selectedCategory.name} - Upload Volume (2008-2018)
-				{:else}
-					YouTube Category Analysis (2008-2018)
-				{/if}
-			</h3>
+		<!-- Visualization iframe (main chart only) -->
+		<div class="viz-container-plain">
 			<iframe 
 				bind:this={vizIframe}
-				src="{base}/data/ender_1.html" 
+				src="{base}/data/ender_1.html?view=main" 
 				title="YouTube Category Visualization"
 				class="viz-iframe"
 				frameborder="0"
@@ -400,6 +418,94 @@
 				}}
 			></iframe>
 		</div>
+
+		<!-- Compare Categories Dialogue -->
+		<div class="interactive-dialogue">
+			<!-- Eddie asks about comparing -->
+			<div class="msg left">
+				<div class="avatar-col">
+					<img class="avatar-img" src="{base}/assets/pixel_art/ender.gif" alt="Eddie" />
+					<span class="speaker-name">Eddie</span>
+				</div>
+				<div class="bubble bubble-left">
+					<p>Want to compare two categories side by side? Pick Category A and Category B below!</p>
+				</div>
+			</div>
+
+			<!-- Category A selection -->
+			<div class="compare-selection">
+				<h4 class="compare-label">Category A:</h4>
+				<div class="category-selector">
+					{#each ytCategories as cat}
+						<button 
+							class="cat-btn {compareCatA?.id === cat.id ? 'active' : ''}"
+							onclick={() => selectCompareA(cat)}
+						>
+							<span class="cat-name">{cat.name}</span>
+						</button>
+					{/each}
+				</div>
+			</div>
+
+			<!-- Category B selection -->
+			<div class="compare-selection">
+				<h4 class="compare-label">Category B:</h4>
+				<div class="category-selector">
+					{#each ytCategories as cat}
+						<button 
+							class="cat-btn {compareCatB?.id === cat.id ? 'active' : ''}"
+							onclick={() => selectCompareB(cat)}
+						>
+							<span class="cat-name">{cat.name}</span>
+						</button>
+					{/each}
+				</div>
+			</div>
+
+			<!-- Jimmy's response for compare -->
+			{#if compareCatA && compareCatB}
+				<div class="msg right" style="--delay: 0s">
+					<div class="bubble bubble-right">
+						<p>Let's compare <strong>{compareCatA.name}</strong> vs <strong>{compareCatB.name}</strong>!</p>
+					</div>
+					<div class="avatar-col">
+						<img class="avatar-img" src="{base}/assets/pixel_art/jan.gif" alt="Jimmy" style="transform: scaleX(-1);" />
+						<span class="speaker-name">Jimmy</span>
+					</div>
+				</div>
+			{:else if compareCatA || compareCatB}
+				<div class="msg right" style="--delay: 0s">
+					<div class="bubble bubble-right bubble-hint">
+						<p>Now pick {compareCatA ? 'Category B' : 'Category A'}...</p>
+					</div>
+					<div class="avatar-col">
+						<img class="avatar-img" src="{base}/assets/pixel_art/jan.gif" alt="Jimmy" style="transform: scaleX(-1);" />
+						<span class="speaker-name">Jimmy</span>
+					</div>
+				</div>
+			{/if}
+		</div>
+
+		<!-- Compare visualization iframe (comparison section only) -->
+		{#if compareCatA || compareCatB}
+			<div class="viz-container-plain">
+				<iframe 
+					bind:this={compareIframe}
+					src="{base}/data/ender_1.html?view=compare" 
+					title="YouTube Category Comparison"
+					class="viz-iframe viz-iframe-compare"
+					frameborder="0"
+					onload={() => {
+						// Send compare categories after iframe loads
+						if (compareIframe && compareIframe.contentWindow) {
+							setTimeout(() => {
+								sendCompareMessage();
+							}, 500);
+						}
+					}}
+				></iframe>
+			</div>
+		{/if}
 	</section>
 
 	<section id="section-sponsors" class="content-section">
@@ -1012,9 +1118,38 @@
 
 	.viz-iframe {
 		width: 100%;
-		height: 800px;
+		height: 750px;
 		border: none;
-		background: #020617;
+		background: transparent;
+	}
+
+	.viz-iframe-compare {
+		height: 550px;
+	}
+
+	.viz-container-plain {
+		margin: 2rem auto;
+		max-width: 100%;
+	}
+
+	/* ============================================ */
+	/* COMPARE SELECTION */
+	/* ============================================ */
+	.compare-selection {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		margin: 0.5rem 0;
+	}
+
+	.compare-label {
+		text-align: center;
+		color: #ff69b4;
+		font-weight: 600;
+		font-size: 1rem;
+		margin-bottom: 0.25rem;
+		text-transform: uppercase;
+		letter-spacing: 1px;
 	}
 
 	/* ============================================ */

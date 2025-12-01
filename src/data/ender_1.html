@@ -7,11 +7,12 @@
   <style>
     body {
       margin: 0;
-      padding: 24px;
-      background: #020617;
+      padding: 12px 24px;
+      background: transparent;
       color: #e5e7eb;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      overflow-x: hidden;
+      overflow-x: visible;
+      overflow-y: auto;
     }
     h1 {
       margin: 0 0 6px;
@@ -30,9 +31,9 @@
     }
     .chart-container {
       position: relative;
-      width: min(1500px, calc(100vw - 32px));
-      height: clamp(520px, 58vh, 700px);
-      background: #020617;
+      width: min(1400px, calc(100vw - 96px));
+      height: clamp(350px, 40vh, 450px);
+      background: transparent;
       margin: 10px 0 0;
       border-radius: 10px;
     }
@@ -140,6 +141,7 @@
       transform: translate(-50%, -100%);
     }
     .url-section {
+      display: none; /* Hidden - middle section */
       margin-top: 30px;
       width: min(1500px, calc(100vw - 32px));
     }
@@ -208,25 +210,25 @@
       display: none;
     }
     .focus-section {
-      width: min(1500px, calc(100vw - 32px));
-      margin-top: 28px;
+      width: min(1400px, calc(100vw - 96px));
+      margin-top: 16px;
       display: none;
     }
     .focus-card {
       background: rgba(2, 6, 23, 0.82);
       border: 1px solid rgba(56, 189, 248, 0.3);
-      border-radius: 16px;
-      padding: 16px 18px 12px;
+      border-radius: 12px;
+      padding: 12px 14px 10px;
     }
     .focus-head {
       font-weight: 700;
       color: #e2e8f0;
-      margin-bottom: 10px;
-      font-size: 14px;
+      margin-bottom: 6px;
+      font-size: 13px;
     }
     .focus-card canvas {
       width: 100% !important;
-      height: 320px !important;
+      height: 200px !important;
     }
     .compare-section {
       width: min(1500px, calc(100vw - 32px));
@@ -285,8 +287,8 @@
   </div>
   <div class="compare-section" id="compareSection">
     <h2>Compare two categories</h2>
-    <p class="note">Pick any two categories to view them side by side.</p>
-    <div style="display:flex;gap:10px;margin-bottom:10px;flex-wrap:wrap;">
+    <p class="note">Selected categories will appear below.</p>
+    <div style="display:none;">
       <label style="color:#cbd5f5;font-size:12px;">Category A:
         <select id="compareSelectA" style="background:#0b1222;color:#e5e7eb;border:1px solid #334155;border-radius:8px;padding:6px 10px;">
           <option value="">Choose…</option>
@@ -620,6 +622,12 @@
           renderPolarOverlays();
           updateUrlMiniStyles();
         }
+      }
+      // Handle compare categories from Svelte
+      if (event.data && event.data.type === "compareCategories") {
+        const cats = event.data.categories || [];
+        compareCats = cats.filter(c => categories.includes(c)).slice(0, 2);
+        renderCompareCharts();
       }
     });
 
@@ -1385,6 +1393,34 @@
       setTimeout(() => {
         setActiveCategory(initialCategory);
       }, 800); // Wait for chart to render first
+    }
+
+    // Handle view mode - hide/show sections based on URL param
+    const viewMode = getUrlParam("view") || "all";
+    
+    // Elements to control
+    const mainChartContainer = document.querySelector('.chart-container');
+    const mainTitle = document.querySelector('h1');
+    const mainNote = document.querySelector('body > p.note');
+    const categoryLegend = document.getElementById('categoryLegend');
+    const urlSection = document.querySelector('.url-section');
+    const focusSection = document.getElementById('focusSection');
+    const compareSection = document.getElementById('compareSection');
+
+    if (viewMode === "main") {
+      // Show main chart and focus section (for when category is selected)
+      if (urlSection) urlSection.style.display = 'none';
+      // focusSection stays visible - will show when category selected
+      if (compareSection) compareSection.style.display = 'none';
+    } else if (viewMode === "compare") {
+      // Show only the comparison section
+      if (mainChartContainer) mainChartContainer.style.display = 'none';
+      if (mainTitle) mainTitle.style.display = 'none';
+      if (mainNote) mainNote.style.display = 'none';
+      if (categoryLegend) categoryLegend.style.display = 'none';
+      if (urlSection) urlSection.style.display = 'none';
+      if (focusSection) focusSection.style.display = 'none';
+      // compareSection stays visible
     }
   </script>
 </body>
