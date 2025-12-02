@@ -5,17 +5,20 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts-gl@2.0.9/dist/echarts-gl.min.js"></script>
 	
 		<link href="../_app/immutable/assets/0.DOdNVmc6.css" rel="stylesheet">
 		<link href="../_app/immutable/assets/3.CIT-TZ7i.css" rel="stylesheet">
-		<link rel="modulepreload" href="../_app/immutable/entry/start.DEfGCfVk.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/Cxhq_NVn.js">
+		<link rel="modulepreload" href="../_app/immutable/entry/start.DdAuZwGz.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/CSmY996f.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/Cxm130Eb.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/FMC7fSgD.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/B_29znHY.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/h1dlS3Kb.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/Cg8hpeYB.js">
-		<link rel="modulepreload" href="../_app/immutable/entry/app.ijFZ19GD.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/0UHa0O8t.js">
+		<link rel="modulepreload" href="../_app/immutable/entry/app.i597pMAp.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/Bzak7iHL.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/C1A6r1aP.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/TihLJ-z-.js">
@@ -23,9 +26,9 @@
 		<link rel="modulepreload" href="../_app/immutable/chunks/BBZnzVLl.js">
 		<link rel="modulepreload" href="../_app/immutable/nodes/0.CLQp4Uzm.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/D92chYmB.js">
-		<link rel="modulepreload" href="../_app/immutable/nodes/3.QmFvA9pm.js">
+		<link rel="modulepreload" href="../_app/immutable/nodes/3.DDK4R8Gn.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/CohAv51Z.js">
-		<link rel="modulepreload" href="../_app/immutable/chunks/DpoC0QzE.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/D-ejOjuA.js">
 		<link rel="modulepreload" href="../_app/immutable/chunks/DlOzM7pa.js">
 </head>
 
@@ -105,33 +108,89 @@
   </g>
 </svg>
 <!----></a></div></header><!----> <main id="content"><!----><div id="demo" class="svelte-15aotx7"><h1>Demo</h1> <h2>Svelte5</h2> <h3>Reactive variables 3 ways:</h3> <button class="svelte-q3gttf">count++</button> <p class="svelte-q3gttf">0 doubled is 0 (derived)</p> <p class="svelte-q3gttf">0 doubled is 0 (derived by)</p> <p class="svelte-q3gttf">0 doubled is 0 ($effect)</p> <h3>Children (previously slots):</h3> <div class="children"><!----></div> <h3>Dispatch Event</h3> <button class="svelte-q3gttf">Random</button>  <h3>Snippets</h3> <div class="people svelte-q3gttf"><!--[--><div class="person svelte-q3gttf"><p class="svelte-q3gttf">John</p> <p class="svelte-q3gttf">30</p></div><div class="person svelte-q3gttf"><p class="svelte-q3gttf">Jill</p> <p class="svelte-q3gttf">45</p></div><!--]--></div><!----> <section id="demo-link"><h2>Link</h2> <p><a href="elements">Default element styles demo</a></p> <p><a href="fonts">Pudding-hosted font previews</a></p></section><!----> <section id="demo-image"><h2>Image</h2> <p>img tag</p> <img src="../assets/demo/test.jpg" alt="cat" class="svelte-b56t42"/> <p>background image</p> <div class="svelte-b56t42"></div></section><!----> <section id="demo-element"><h2>Dynamic Svelte Element</h2> <!--[--><!----><h3>I am a h3 tag.<!----></h3><!----><!----><p>I am p tag.<!----></p><!----><!--]--></section><!----> <section id="demo-component"><h2>Dynamic Svelte Component</h2> <!--[--><!----><p>I am component A and my favorite number is 42.</p><!----><!----><p>I am component B and my name is Russell.</p><!----><!--]--></section><!----> <section id="cms"><h2>MicroCMS</h2> <code><pre>{
- "meta": { "title": "Title TK", "description": "Description tk." },
- "body": [
-  {
-   "section": "intro",
-   "content": [
-    { "type": "h4", "value": "An h4 element with no attributes" },
-    {
-     "type": "text",
-     "value": "Some random text here, followed by an img tag."
-    },
-    {
-     "type": "img",
-     "value": { "src": "../assets/demo/test.jpg", "alt": "A cat" }
-    },
-    {
-     "type": "Test",
-     "value": { "label": "I’m a custom component!", "value": "50" }
-    }
-   ]
-  }
- ]
-}
-</pre></code> <!--[--><section id="intro"><!--[!--><!--[--><!--[!--><!--[!--><!--[--><!----><h4><!---->An h4 element with no attributes<!----><!----></h4><!----><!--]--><!--]--><!--]--><!--[!--><!--[--><p><!---->Some random text here, followed by an img tag.<!----></p><!--]--><!--]--><!--[!--><!--[!--><!--[!--><!----><img src="../assets/demo/test.jpg" alt="A cat"><!----><!--]--><!--]--><!--]--><!--[--><!----><p>I’m a custom component!</p> <progress value="50" max="100"></progress><!----><!--]--><!--]--><!--]--></section><!--]--><!----></section><!----> <div class="c"><h2>Load Data</h2> <div class="response"><!--[--><p>loading data...</p><!--]--></div></div><!----> <section id="scrolly"><h2 class="svelte-1sxgmm9">Scrolly <span>-</span></h2> <div class="spacer svelte-1sxgmm9"></div> <div><!--[--><div class="step svelte-1sxgmm9"><p class="svelte-1sxgmm9">0</p></div><div class="step svelte-1sxgmm9"><p class="svelte-1sxgmm9">1</p></div><div class="step svelte-1sxgmm9"><p class="svelte-1sxgmm9">2</p></div><div class="step svelte-1sxgmm9"><p class="svelte-1sxgmm9">3</p></div><div class="step svelte-1sxgmm9"><p class="svelte-1sxgmm9">4</p></div><!--]--><!----></div><!----> <div class="spacer svelte-1sxgmm9"></div></section><!----></div><!----><!----></main><!----><!--]--> <!--[!--><!--]--><!--]-->
+  "": "--- Team Member 6 ---",
+  "hero_title": "From Indie to Industry",
+  "hero_subtitle": "how YouTube went from a hobbyist paradise to a whole industry",
+  "hero_byline": "Daniel, Eddie, Jan, Kaleb &amp; Vero",
+  "youtube_url": "https://www.youtube.com/embed/39ORolk1P0I",
+  "transcript_btn_show": "Show Transcript",
+  "transcript_btn_hide": "Hide Transcript",
+  "transcript_content": "Hey guys, Jimmy here, welcome to my first YouTube video. I'm going to be very famous and get a lot of money from this, but I don't know how to yet. But hey, check this out, I found this really cool site, where apparently, they offer a course, on how to make a living off YouTube. It's quite expensive but at least you do save the one dollar. So um I definitely want to do this, let's check it out... Let's see what happens",
+  "intro_chat_1": "[eddie] Oh.. a customer?",
+  "intro_chat_2": "[jimmy] I just spent 999$ on your course with my mom's credit card...",
+  "intro_chat_3": "[kaleb] ...",
+  "intro_chat_4": "[jimmy] Can you help me make a lot of money on YouTube?",
+  "intro_chat_5": "[daniel] Maybe.",
+  "intro_chat_6": "[jimmy] ....I'm getting a refund.",
+  "intro_chat_7": "[vivian] Wait! What we CAN do is show you just how Youtube went from an hobby to an industry that makes many people tons of money. We are really good at what we do! We are super trustworthy and we have the best dataset! Check this out...",
+  "dataset_title": "The YouNiverse Dataset",
+  "dataset_p1": "Info here about the YouNiverse dataset.",
+  "dataset_p2": "YouNiverse is a large collection of channel and video metadata from English-language YouTube. YouNiverse comprises metadata from over 136k channels and 72.9M videos published between May 2005 and October 2019, as well as channel-level time-series data with weekly subscriber and view counts. Leveraging channel ranks from this http URL, an online service that provides information about YouTube, we are able to assess and enhance the representativeness of the sample of channels. Additionally, the dataset also contains a table specifying which videos a set of 449M anonymous users commented on. YouNiverse, publicly available at this https URL, will empower the community to do research with and about YouTube.",
+  "dataset_p3": "We can even make a new paragraph here. Very fancy. Very based. More info here abotu it.",
+  "dataset_img_alt": "Dataset preview",
+  "dataset_chat_1": "[jimmy] Okay, fine. You know what you are doing. So how do I make money? ",
+  "dataset_chat_2": "[kaleb] To know that we know what we know, and that we do not know what we do not know, that is true knowledge..",
+  "dataset_chat_3": "[jimmy] ...",
+  "dataset_chat_4": "[eddie] Ignore that.",
+  "dataset_chat_5": "[daniel] He's trying to say that in order to master something, you need to first understand it. We have researched several questions, just for you, about what the data tells us.",
+  "learn_title": "What You'll Learn",
+  "learn_subtitle": "Click any question to jump to that section **I KNOW THIS BIT IS A BIT UGLY**",
+  "q1_title": "How have channels evolved from indie to professional?",
+  "q1_desc": "What is the adoption curve of sponsorships between different categories?",
+  "q2_title": "What enabled indie channels to become professional-minded?",
+  "q2_desc": "At what subscriber thresholds do creators start showing \"industry-like\" patterns?",
+  "q3_title": "How does a focus on professionalism affect engagement?",
+  "q3_desc": "Does the number of views change after channels get sponsors?",
+  "section1_title": "How have channels evolved from indie to professional?",
+  "section1_intro": "YouTube grew from 338k uploads in 2008 to over 15.2 million in 2018. This rapid rise changed which categories became more or less common, and how creators approached their content.",
+  "dialogue_eddie_ask": "Jimmy, what category do you want to explore?",
+  "dialogue_jimmy_show": "Hmmm... Show me",
+  "dialogue_eddie_response_1": "Great choice! Here's how",
+  "dialogue_eddie_response_2": "evolved over time. Check out the full visualization below!",
+  "dialogue_jimmy_hint": "Let me pick a category...",
+  "dialogue_compare_ask": "Want to compare two categories side by side? Pick Category A and Category B below!",
+  "compare_label_a": "Category A:",
+  "compare_label_b": "Category B:",
+  "dialogue_compare_response": "Let's compare",
+  "dialogue_compare_vs": "vs",
+  "dialogue_compare_end": "!",
+  "dialogue_pick_other_a": "Now pick Category A...",
+  "dialogue_pick_other_b": "Now pick Category B...",
+  "section2_title": "What enabled indie channels to become professional-minded?",
+  "section2_placeholder": "[ placeholder ]",
+  "section3_title": "How does a focus on professionalism affect engagement?",
+  "section3_placeholder": "[ placeholder ]",
+  "team_title": "Meet the Team",
+  "team_subtitle": "The people behind this project",
+  "team_1_name": "Eddie",
+  "team_1_role": "(...) Specialist",
+  "team_1_avatar": "ender.gif",
+  "team_1_desc": "expert on question #1",
+  "team_2_name": "Kaleb",
+  "team_2_role": "(...) Specialist",
+  "team_2_avatar": "kalan.gif",
+  "team_2_desc": "expert on question #2",
+  "team_3_name": "Daniel",
+  "team_3_role": "(...) Specialist",
+  "team_3_avatar": "danael.gif",
+  "team_3_desc": "expert on question #3",
+  "team_4_name": "Vivian",
+  "team_4_role": "website wizard",
+  "team_4_avatar": "veronika.gif",
+  "team_4_desc": "likes to snack",
+  "team_5_name": "Jimmy",
+  "team_5_role": "top 10 world youtuber",
+  "team_5_avatar": "jan.gif",
+  "team_5_desc": "our loyal customer",
+  "team_6_name": "MYSTERY",
+  "team_6_role": "(...)",
+  "team_6_avatar": "hmm.png",
+  "team_6_desc": "(...)"
+}</pre></code> <!--[--><!--]--><!----></section><!----> <div class="c"><h2>Load Data</h2> <div class="response"><!--[--><p>loading data...</p><!--]--></div></div><!----> <section id="scrolly"><h2 class="svelte-1sxgmm9">Scrolly <span>-</span></h2> <div class="spacer svelte-1sxgmm9"></div> <div><!--[--><div class="step svelte-1sxgmm9"><p class="svelte-1sxgmm9">0</p></div><div class="step svelte-1sxgmm9"><p class="svelte-1sxgmm9">1</p></div><div class="step svelte-1sxgmm9"><p class="svelte-1sxgmm9">2</p></div><div class="step svelte-1sxgmm9"><p class="svelte-1sxgmm9">3</p></div><div class="step svelte-1sxgmm9"><p class="svelte-1sxgmm9">4</p></div><!--]--><!----></div><!----> <div class="spacer svelte-1sxgmm9"></div></section><!----></div><!----><!----></main><!----><!--]--> <!--[!--><!--]--><!--]-->
 			
 			<script>
 				{
-					__sveltekit_115msyl = {
+					__sveltekit_vjex6c = {
 						base: new URL("..", location).pathname.slice(0, -1),
 						assets: "/ADA-website"
 					};
@@ -139,8 +198,8 @@
 					const element = document.currentScript.parentElement;
 
 					Promise.all([
-						import("../_app/immutable/entry/start.DEfGCfVk.js"),
-						import("../_app/immutable/entry/app.ijFZ19GD.js")
+						import("../_app/immutable/entry/start.DdAuZwGz.js"),
+						import("../_app/immutable/entry/app.i597pMAp.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 3],
