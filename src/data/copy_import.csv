@@ -1,0 +1,146 @@
+key,value
+,
+,═══════════════════════════════════════════════════════════
+,  🏠 HERO SECTION
+,═══════════════════════════════════════════════════════════
+,
+hero_title,From Indie to Industry
+hero_subtitle,how YouTube went from a hobbyist paradise to a whole industry
+hero_byline,"Daniel, Eddie, Jan, Kaleb & Vero"
+,
+,═══════════════════════════════════════════════════════════
+,  🎬 VIDEO & TRANSCRIPT
+,═══════════════════════════════════════════════════════════
+,
+youtube_url,https://www.youtube.com/embed/39ORolk1P0I
+transcript_btn_show,Show Transcript
+transcript_btn_hide,Hide Transcript
+transcript_content,"Hey guys, Jimmy here, welcome to my first YouTube video. I'm going to be very famous and get a lot of money from this, but I don't know how to yet. But hey, check this out, I found this really cool site, where apparently, they offer a course, on how to make a living off YouTube. It's quite expensive but at least you do save the one dollar. So um I definitely want to do this, let's check it out... Let's see what happens"
+,
+,═══════════════════════════════════════════════════════════
+,  💬 INTRO DIALOGUE (Meeting the Experts)
+,  Format: [speaker] message text
+,═══════════════════════════════════════════════════════════
+,
+intro_chat_1,[eddie] Oh.. a customer?
+intro_chat_2,[jimmy] I just spent 999$ on your course with my mom's credit card...
+intro_chat_3,[kaleb] ...
+intro_chat_4,[jimmy] Can you help me make a lot of money on YouTube?
+intro_chat_5,[daniel] Maybe.
+intro_chat_6,[jimmy] ....I'm getting a refund.
+intro_chat_7,"[vivian] Wait! What we CAN do is show you just how Youtube went from an hobby to an industry that makes many people tons of money. We are really good at what we do! We are super trustworthy and we have the best dataset! Check this out... "
+,
+,═══════════════════════════════════════════════════════════
+,  📊 DATASET SECTION
+,═══════════════════════════════════════════════════════════
+,
+dataset_title,The YouNiverse Dataset
+dataset_p1,Info here about the YouNiverse dataset. 
+dataset_p2,"YouNiverse is a large collection of channel and video metadata from English-language YouTube. YouNiverse comprises metadata from over 136k channels and 72.9M videos published between May 2005 and October 2019, as well as channel-level time-series data with weekly subscriber and view counts. Leveraging channel ranks from this http URL, an online service that provides information about YouTube, we are able to assess and enhance the representativeness of the sample of channels. Additionally, the dataset also contains a table specifying which videos a set of 449M anonymous users commented on. YouNiverse, publicly available at this https URL, will empower the community to do research with and about YouTube."
+dataset_p3,"We can even make a new paragraph here. Very fancy. Very based. More info here abotu it. "
+dataset_img_alt,Dataset preview
+,
+,═══════════════════════════════════════════════════════════
+,  💬 DATASET DIALOGUE
+,  Format: [speaker] message text
+,═══════════════════════════════════════════════════════════
+,
+dataset_chat_1,"[jimmy] Okay, fine. You know what you are doing. So how do I make money? "
+dataset_chat_2,"[kaleb] To know that we know what we know, and that we do not know what we do not know, that is true knowledge.."
+dataset_chat_3,[jimmy] ... 
+dataset_chat_4,[eddie] Ignore that.
+dataset_chat_5,"[daniel] He's trying to say that in order to master something, you need to first understand it. We have researched several questions, just for you, about what the data tells us."
+,
+,═══════════════════════════════════════════════════════════
+,  ❓ RESEARCH QUESTIONS OVERVIEW
+,═══════════════════════════════════════════════════════════
+,
+learn_title,What You'll Learn
+learn_subtitle,Click any question to jump to that section **I KNOW THIS BIT IS A BIT UGLY**
+q1_title,How have channels evolved from indie to professional?
+q1_desc,What is the adoption curve of sponsorships between different categories?
+q2_title,What enabled indie channels to become professional-minded?
+q2_desc,"At what subscriber thresholds do creators start showing ""industry-like"" patterns?"
+q3_title,How does a focus on professionalism affect engagement?
+q3_desc,Does the number of views change after channels get sponsors?
+,
+,═══════════════════════════════════════════════════════════
+,  📈 SECTION 1: Channel Evolution
+,═══════════════════════════════════════════════════════════
+,
+section1_title,How have channels evolved from indie to professional?
+section1_intro,"YouTube grew from 338k uploads in 2008 to over 15.2 million in 2018. This rapid rise changed which categories became more or less common, and how creators approached their content."
+dialogue_eddie_ask,"Jimmy, what category do you want to explore?"
+dialogue_jimmy_show,Hmmm... Show me 
+dialogue_eddie_response_1,Great choice! Here's how 
+dialogue_eddie_response_2, evolved over time. Check out the full visualization below!
+dialogue_jimmy_hint,Let me pick a category...
+,
+,--- Compare Categories Dialogue ---
+,
+dialogue_compare_ask,Want to compare two categories side by side? Pick Category A and Category B below!
+compare_label_a,Category A:
+compare_label_b,Category B:
+dialogue_compare_response,Let's compare 
+dialogue_compare_vs, vs 
+dialogue_compare_end,!
+dialogue_pick_other_a,Now pick Category A...
+dialogue_pick_other_b,Now pick Category B...
+,
+,═══════════════════════════════════════════════════════════
+,  💼 SECTION 2: Professional Growth
+,═══════════════════════════════════════════════════════════
+,
+section2_title,What enabled indie channels to become professional-minded?
+section2_placeholder,[ placeholder ]
+,
+,═══════════════════════════════════════════════════════════
+,  📊 SECTION 3: Engagement Impact
+,═══════════════════════════════════════════════════════════
+,
+section3_title,How does a focus on professionalism affect engagement?
+section3_placeholder,[ placeholder ]
+,
+,═══════════════════════════════════════════════════════════
+,  👥 TEAM MEMBERS
+,  Each member has: name / role / avatar / desc
+,═══════════════════════════════════════════════════════════
+,
+team_title,Meet the Team
+team_subtitle,The people behind this project
+,
+,--- Team Member 1 ---
+team_1_name,Eddie
+team_1_role,(...) Specialist
+team_1_avatar,ender.gif
+team_1_desc,expert on question #1
+,
+,--- Team Member 2 ---
+team_2_name,Kaleb
+team_2_role,(...) Specialist
+team_2_avatar,kalan.gif
+team_2_desc,expert on question #2
+,
+,--- Team Member 3 ---
+team_3_name,Daniel
+team_3_role,(...) Specialist
+team_3_avatar,danael.gif
+team_3_desc,expert on question #3
+,
+,--- Team Member 4 ---
+team_4_name,Vivian
+team_4_role,website wizard
+team_4_avatar,veronika.gif
+team_4_desc,likes to snack
+,
+,--- Team Member 5 ---
+team_5_name,Jimmy
+team_5_role,narrator
+team_5_avatar,jan.gif
+team_5_desc,our eager student
+,
+,--- Team Member 6 ---
+team_6_name,Siba
+team_6_role,(...)
+team_6_avatar,siba.gif
+team_6_desc,(...)

@@ -1,11 +1,7 @@
 export default [
 	{
-		"id": "1352iFuTSDDFPNAXBbOaEXkF8mCdjPu6B43hpUF2P3C4",
-		"filepath": "src/data/copy.json"
-	},
-	{
-		"id": "1te65h_nywgXVAzvV-9E5fmHGblcKvctf_cNZgeam9Tk",
+		"id": "1jjAwfvOez5jtrYoIyC8Ydat7djhwaQgSm_PuEJVN20k",
 		"gid": "0",
-		"filepath": "src/data/test.csv"
+		"filepath": "src/data/copy.csv"
 	}
 ]

@@ -4,6 +4,39 @@ import docs from "../google.config.js";
 
 const CWD = process.cwd();
 
+// Convert CSV with key,value columns to JSON object
+const csvToJson = (csv) => {
+	const lines = csv.split('\n');
+	const result = {};
+	
+	// Skip header row (key,value)
+	for (let i = 1; i < lines.length; i++) {
+		const line = lines[i].trim();
+		if (!line) continue;
+		
+		// Find the first comma to split key from value
+		const firstComma = line.indexOf(',');
+		if (firstComma === -1) continue;
+		
+		const key = line.substring(0, firstComma).trim();
+		let value = line.substring(firstComma + 1).trim();
+		
+		// Remove surrounding quotes if present
+		if (value.startsWith('"') && value.endsWith('"')) {
+			value = value.slice(1, -1).replace(/""/g, '"');
+		}
+		
+		// Remove trailing comma if present (common CSV issue)
+		if (value.endsWith(',')) {
+			value = value.slice(0, -1);
+		}
+		
+		result[key] = value;
+	}
+	
+	return result;
+};
+
 const fetchGoogle = async ({ id, gid }) => {
 	console.log(`fetching...${id}`);
 
@@ -17,11 +50,11 @@ const fetchGoogle = async ({ id, gid }) => {
 		const response = await fetch(url);
 		const text = await response.text();
 
-		if (gid) return text;
+		if (gid) return { csv: text, isSheet: true };
 
 		const parsed = archieml.load(text);
 		const str = JSON.stringify(parsed);
-		return str;
+		return { content: str, isSheet: false };
 	} catch (err) {
 		throw new Error(err);
 	}
@@ -30,9 +63,23 @@ const fetchGoogle = async ({ id, gid }) => {
 (async () => {
 	for (let d of docs) {
 		try {
-			const str = await fetchGoogle(d);
+			const result = await fetchGoogle(d);
 			const file = `${CWD}/${d.filepath}`;
-			fs.writeFileSync(file, str);
+			
+			if (result.isSheet) {
+				// Save CSV
+				fs.writeFileSync(file, result.csv);
+				
+				// Also save as JSON if filepath ends with .csv
+				if (d.filepath.endsWith('.csv')) {
+					const jsonPath = file.replace('.csv', '.json');
+					const jsonData = csvToJson(result.csv);
+					fs.writeFileSync(jsonPath, JSON.stringify(jsonData, null, 2));
+					console.log(`Created JSON: ${jsonPath}`);
+				}
+			} else {
+				fs.writeFileSync(file, result.content);
+			}
 		} catch (err) {
 			console.log(err);
 		}
