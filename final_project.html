@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My YouTube Analysis Project!!!</title>
+    <style>
+        body {
+            background-color: #FF00FF;
+            background-image: url('https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif');
+            font-family: 'Comic Sans MS', cursive;
+            color: yellow;
+            text-align: center;
+            cursor: url('https://cur.cursors-4u.net/cursors/cur-2/cur116.cur'), auto;
+        }
+        
+        h1 {
+            color: lime;
+            font-size: 48px;
+            text-shadow: 3px 3px red, -3px -3px blue;
+            animation: blink 0.5s infinite;
+        }
+        
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        
+        @keyframes rainbow {
+            0% { color: red; }
+            14% { color: orange; }
+            28% { color: yellow; }
+            42% { color: green; }
+            57% { color: blue; }
+            71% { color: indigo; }
+            85% { color: violet; }
+            100% { color: red; }
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .rainbow-text {
+            animation: rainbow 2s infinite;
+            font-weight: bold;
+        }
+        
+        .spinning {
+            animation: spin 3s linear infinite;
+            display: inline-block;
+        }
+        
+        marquee {
+            background: linear-gradient(to right, red, orange, yellow, green, blue, purple);
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            padding: 10px;
+        }
+        
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            border: 5px dashed lime;
+            margin: 20px;
+            padding: 20px;
+        }
+        
+        .guestbook {
+            background: yellow;
+            color: purple;
+            border: 10px ridge gold;
+            padding: 15px;
+            margin: 20px auto;
+            width: 60%;
+        }
+        
+        .counter {
+            background: black;
+            color: lime;
+            font-family: 'Courier New', monospace;
+            padding: 10px;
+            border: 3px inset gray;
+            display: inline-block;
+        }
+        
+        table {
+            border: 5px double red;
+            background: navy;
+            color: white;
+            margin: 20px auto;
+            border-collapse: separate;
+            border-spacing: 5px;
+        }
+        
+        td, th {
+            border: 2px solid cyan;
+            padding: 10px;
+            background: purple;
+        }
+        
+        th {
+            background: orange;
+            color: black;
+        }
+        
+        .under-construction {
+            margin: 30px;
+        }
+        
+        .cool-button {
+            background: linear-gradient(to bottom, #ff0000, #990000);
+            color: yellow;
+            font-family: 'Impact', sans-serif;
+            font-size: 20px;
+            padding: 15px 30px;
+            border: 4px outset gold;
+            cursor: pointer;
+            text-shadow: 2px 2px black;
+        }
+        
+        .cool-button:hover {
+            background: linear-gradient(to bottom, #00ff00, #009900);
+        }
+        
+        hr {
+            border: none;
+            height: 20px;
+            background: repeating-linear-gradient(
+                45deg,
+                red,
+                red 10px,
+                yellow 10px,
+                yellow 20px
+            );
+        }
+        
+        .fire-text {
+            font-size: 36px;
+            background: linear-gradient(to bottom, #ff0000, #ff6600, #ffff00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+        
+        img {
+            border: 5px ridge silver;
+        }
+        
+        .about-me {
+            background: teal;
+            color: white;
+            border: 8px groove purple;
+            padding: 20px;
+            margin: 20px auto;
+            width: 70%;
+            text-align: left;
+        }
+        
+        .my-pic {
+            float: left;
+            margin-right: 20px;
+            border: 5px solid gold;
+        }
+        
+        ul {
+            text-align: left;
+            list-style-type: none;
+        }
+        
+        ul li::before {
+            content: "★ ";
+            color: gold;
+        }
+        
+        .email-link {
+            color: cyan;
+            font-size: 20px;
+        }
+        
+        .awards {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 20px;
+        }
+        
+        .midi-player {
+            background: silver;
+            border: 3px inset gray;
+            padding: 10px;
+            margin: 20px auto;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <marquee behavior="alternate" scrollamount="15">
+        🔥🔥🔥 WELCOME TO MY AWESOME YOUTUBE ANALYSIS PROJECT!!! 🔥🔥🔥 BEST VIEWED IN INTERNET EXPLORER 6.0 🔥🔥🔥
+    </marquee>
+    
+    <h1>📺 MY YOUTUBE DATA SCIENCE PROJECT 📺</h1>
+    
+    <p class="rainbow-text" style="font-size: 28px;">
+        <span class="spinning">🌟</span> by Daniel, Eddie, Jan, Kaleb & Vero <span class="spinning">🌟</span>
+    </p>
+    
+    <div class="counter">
+        <blink>VISITOR #: </blink>
+        <img src="https://counter.digits.net/wc/-d/4/t_TIME" alt="counter" style="border:none;">
+        00001337
+    </div>
+    
+    <hr>
+    
+    <div class="under-construction">
+        <img src="https://web.archive.org/web/20090830082849im_/http://geocities.com/SoHo/7373/construction.gif" alt="under construction" width="400">
+        <p style="color: lime; font-size: 24px;">⚠️ THIS PAGE IS UNDER CONSTRUCTION ⚠️</p>
+    </div>
+    
+    <div class="container">
+        <h2 style="color: orange; text-decoration: underline overline;">
+            <span class="spinning">💡</span> OUR AMAZING FINDINGS <span class="spinning">💡</span>
+        </h2>
+        
+        <p style="font-size: 20px; color: white;">
+            We analyzed <b><i><u>OVER 9000</u></i></b> YouTube videos!!!
+        </p>
+        
+        <table width="80%">
+            <tr>
+                <th>YEAR</th>
+                <th>TOTAL VIDEOS</th>
+                <th>WOW FACTOR</th>
+            </tr>
+            <tr>
+                <td>2008</td>
+                <td>338,033</td>
+                <td>😐</td>
+            </tr>
+            <tr>
+                <td>2012</td>
+                <td>2,926,279</td>
+                <td>😮</td>
+            </tr>
+            <tr>
+                <td>2018</td>
+                <td>15,275,759</td>
+                <td>🤯🤯🤯</td>
+            </tr>
+        </table>
+        
+        <p class="fire-text">GAMING IS THE BIGGEST CATEGORY!!!</p>
+        
+        <br><br>
+        
+        <button class="cool-button" onclick="alert('WOW! You clicked the button! Gaming has 2.6M videos in 2018!')">
+            🎮 CLICK HERE FOR COOL FACT 🎮
+        </button>
+    </div>
+    
+    <hr>
+    
+    <div class="about-me">
+        <img class="my-pic" src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" width="150" alt="cool gif">
+        <h2>👋 ABOUT OUR TEAM 👋</h2>
+        <p>
+            We are students at <b>EPFL</b> (thats a fancy school in Switzerland btw 🇨🇭)
+        </p>
+        <p>
+            We like:
+        </p>
+        <ul>
+            <li>Data Science 📊</li>
+            <li>YouTube 📺</li>
+            <li>Pizza 🍕</li>
+            <li>Making cool websites like this one!!!</li>
+        </ul>
+        <br clear="all">
+    </div>
+    
+    <hr>
+    
+    <div class="container">
+        <h2 style="color: hotpink;">📈 OUR SUPER SCIENTIFIC CHART 📈</h2>
+        
+        <p style="color: white;">
+            (chart made in MS Paint, very professional)
+        </p>
+        
+        <div style="background: white; padding: 20px; display: inline-block; border: 5px solid black;">
+            <pre style="color: black; font-size: 12px; text-align: left;">
+    Videos
+    ^
+    |                                    *
+    |                                *
+    |                            *
+    |                        *
+    |                    *
+    |                *
+    |            *
+    |        *
+    |    *
+    |*
+    +---------------------------------> Year
+      08  10  12  14  16  18
+    
+         (it goes up lol)
+            </pre>
+        </div>
+        
+        <p style="color: cyan; font-size: 18px;">
+            <i>As you can see, the line goes UP which means MORE VIDEOS. Science!</i>
+        </p>
+    </div>
+    
+    <hr>
+    
+    <div class="guestbook">
+        <h2>📝 SIGN MY GUESTBOOK!!! 📝</h2>
+        <form>
+            <label>Your Name: </label>
+            <input type="text" style="font-family: 'Comic Sans MS'; font-size: 16px;"><br><br>
+            <label>Your Message: </label><br>
+            <textarea rows="4" cols="40" style="font-family: 'Comic Sans MS';"></textarea><br><br>
+            <input type="submit" value="SUBMIT!!!" class="cool-button">
+        </form>
+        <br>
+        <p><b>Recent Messages:</b></p>
+        <p><i>"cool site bro" - xX_DataKing_Xx, 2024</i></p>
+        <p><i>"first!!!" - Anonymous, 2024</i></p>
+        <p><i>"can you add more gifs plz" - CoolDude99, 2024</i></p>
+    </div>
+    
+    <hr>
+    
+    <div class="awards">
+        <img src="https://web.archive.org/web/20091027065844im_/http://hk.geocities.com/mwwd98/awardnew.gif" alt="award" width="88" height="31">
+        <img src="https://web.archive.org/web/20091027065844im_/http://www.geocities.com/SouthBeach/Pier/5618/5star.gif" alt="5 star" width="88" height="31">
+        <img src="https://web.archive.org/web/20090830054932im_/http://geocities.com/ResearchTriangle/Forum/6498/netscnow.gif" alt="netscape now" width="88" height="31">
+    </div>
+    
+    <div class="midi-player">
+        <p style="color: black; margin: 0;">🎵 NOW PLAYING: epic_data_science.midi 🎵</p>
+        <p style="color: gray; font-size: 12px;">(imagine music playing here)</p>
+    </div>
+    
+    <hr>
+    
+    <p style="font-size: 14px; color: white;">
+        Last updated: December 1, 2025 at 3:47 AM (i was very tired lol)
+    </p>
+    
+    <p class="email-link">
+        📧 Email us: <a href="mailto:totallyrealemail@hotmail.com" style="color: lime;">totallyrealemail@hotmail.com</a>
+    </p>
+    
+    <p style="color: silver; font-size: 12px;">
+        © 2025 Our Awesome Team. All rights reserved. No rights reserved. Whatever.
+    </p>
+    
+    <p style="color: gray; font-size: 10px;">
+        Best viewed at 800x600 resolution. Please disable your ad blocker. Made with ❤️ and too much caffeine.
+    </p>
+    
+    <marquee direction="up" height="60" scrollamount="2" style="background: black;">
+        <p style="color: lime;">Thanks for visiting!!! Come back soon!!! 👋👋👋</p>
+    </marquee>
+    
+    <script>
+        // Super advanced JavaScript technology
+        console.log("wow you opened the console, you're a real hacker!");
+        
+        // Make things more annoying
+        setInterval(function() {
+            document.body.style.cursor = Math.random() > 0.5 ? 'crosshair' : 'pointer';
+        }, 5000);
+    </script>
+</body>
+</html>

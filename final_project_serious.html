@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>YouTube Analysis - Final Project</title>
+    <style>
+        /* "I tried" energy */
+        body {
+            font-family: Times New Roman, serif;
+            background: linear-gradient(to bottom, #1a1a2e, #2d2d44);
+            color: #ccc;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Hero - tried to center but gave up */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            /* forgot to add min-height */
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            color: #ff69b4;
+            margin: 0;
+            /* tried to do letter-spacing but it looks off */
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            /* shadow is a bit much */
+            text-shadow: 2px 2px 0px #000, 4px 4px 0px #333;
+        }
+
+        .hero .subtitle {
+            font-size: 18px;
+            color: gray;
+            margin-top: 10px;
+            /* inconsistent capitalization */
+            font-style: italic;
+        }
+
+        .hero .byline {
+            margin-top: 40px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Scroll indicator - doesn't actually do anything */
+        .scroll-indicator {
+            font-size: 30px;
+            margin-top: 50px;
+            animation: bounce 1s infinite;
+            color: #ff69b4;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* Section headers - inconsistent styling */
+        h2 {
+            color: #ff69b4;
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 10px;
+            /* forgot to remove default margin-top */
+        }
+
+        .section-sub {
+            text-align: center;
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        /* Video section - aspect ratio is wrong */
+        .video-section {
+            max-width: 700px;
+            margin: 40px auto;
+        }
+
+        .video-container {
+            /* oops, hardcoded height that doesn't scale */
+            height: 350px;
+            background: #000;
+            border: 3px solid #ff69b4;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Transcript - ugly collapsible */
+        .transcript-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 15px;
+            background: #333;
+            border: 1px solid #555;
+            color: #ccc;
+            font-size: 14px;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .transcript-btn:hover {
+            background: #444;
+        }
+
+        .transcript-content {
+            background: #222;
+            padding: 15px;
+            margin-top: 5px;
+            border: 1px solid #444;
+            font-size: 13px;
+            line-height: 1.6;
+            display: none;
+        }
+
+        .transcript-content.show {
+            display: block;
+        }
+
+        /* Dialogue - tried to make it look nice */
+        .dialogue {
+            max-width: 700px;
+            margin: 40px auto;
+        }
+
+        .msg {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+            align-items: flex-start;
+        }
+
+        .msg.left {
+            justify-content: flex-start;
+        }
+
+        .msg.right {
+            justify-content: flex-end;
+        }
+
+        .avatar-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Avatar - stretched and blurry */
+        .avatar-img {
+            width: 60px;
+            height: 60px;
+            /* forgot image-rendering: pixelated so it's blurry */
+            border: 2px solid #ff69b4;
+            border-radius: 5px;
+        }
+
+        .speaker-name {
+            font-size: 10px;
+            color: #888;
+            margin-top: 3px;
+            text-transform: uppercase;
+        }
+
+        .bubble {
+            max-width: 350px;
+            padding: 12px 15px;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+
+        .bubble-left {
+            background: #3a3a5a;
+            color: #ddd;
+            /* border radius inconsistent */
+            border-bottom-left-radius: 0;
+        }
+
+        .bubble-right {
+            background: #5a3a5a;
+            color: #ddd;
+            border-bottom-right-radius: 0;
+        }
+
+        /* Dataset section - alignment issues */
+        .dataset-section {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .text-image-block {
+            display: flex;
+            gap: 30px;
+            /* forgot to add align-items, looks off */
+        }
+
+        .text-side {
+            flex: 1;
+        }
+
+        .text-side h2 {
+            text-align: left;
+            font-size: 24px;
+        }
+
+        .text-side p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #aaa;
+            /* paragraphs have no margin */
+        }
+
+        .image-side {
+            flex: 0 0 250px;
+        }
+
+        .image-side img {
+            width: 100%;
+            border: 2px solid #ff69b4;
+            /* no border-radius, looks blocky */
+        }
+
+        /* Team section - cards are uneven */
+        .team-section {
+            padding: 60px 20px;
+        }
+
+        .team-grid {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .expert-card {
+            background: #2a2a3a;
+            border: 1px solid #444;
+            padding: 20px;
+            width: 140px;
+            text-align: center;
+            /* no border-radius */
+        }
+
+        .expert-card:hover {
+            border-color: #ff69b4;
+            /* forgot to add transition */
+        }
+
+        .expert-avatar {
+            width: 80px;
+            height: 80px;
+            /* blurry because no image-rendering */
+        }
+
+        .expert-card h3 {
+            margin: 10px 0 5px;
+            font-size: 16px;
+            color: #fff;
+        }
+
+        .expert-card .role {
+            font-size: 11px;
+            color: #ff69b4;
+            text-transform: uppercase;
+        }
+
+        .expert-card .desc {
+            font-size: 12px;
+            color: #888;
+            margin-top: 8px;
+        }
+
+        /* Questions section */
+        .questions-section {
+            max-width: 650px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .questions-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .question-btn {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: #2a2a3a;
+            border: 1px solid #444;
+            color: #ccc;
+            cursor: pointer;
+            text-align: left;
+            /* no border-radius */
+        }
+
+        .question-btn:hover {
+            border-color: #ff69b4;
+            background: #333;
+        }
+
+        .q-num {
+            width: 30px;
+            height: 30px;
+            background: #ff69b4;
+            color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            /* forgot border-radius: 50% */
+        }
+
+        .q-text h3 {
+            margin: 0;
+            font-size: 15px;
+            color: #fff;
+        }
+
+        .q-text p {
+            margin: 5px 0 0;
+            font-size: 12px;
+            color: #888;
+        }
+
+        /* Content sections */
+        .content-section {
+            max-width: 800px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        /* Category buttons - not quite right */
+        .category-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: #222;
+            border: 1px solid #444;
+        }
+
+        .cat-btn {
+            padding: 8px 15px;
+            background: #333;
+            border: 1px solid #555;
+            color: #ccc;
+            cursor: pointer;
+            font-size: 13px;
+            /* no border-radius */
+        }
+
+        .cat-btn:hover {
+            border-color: #ff69b4;
+        }
+
+        .cat-btn.active {
+            background: #ff69b4;
+            color: #000;
+            border-color: #ff69b4;
+        }
+
+        /* Visualization placeholder */
+        .viz-placeholder {
+            background: #1a1a2a;
+            border: 2px dashed #444;
+            padding: 60px 20px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .viz-placeholder p {
+            color: #666;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* Chart - "I made this in 5 minutes" */
+        .bad-chart {
+            background: #fff;
+            padding: 20px;
+            margin: 30px auto;
+            max-width: 600px;
+            border: 1px solid #ccc;
+        }
+
+        .bad-chart h4 {
+            margin: 0 0 15px;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .chart-bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 20px;
+            height: 150px;
+            border-left: 2px solid #333;
+            border-bottom: 2px solid #333;
+            padding: 10px 10px 0 10px;
+        }
+
+        .bar {
+            flex: 1;
+            background: #ff69b4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .bar span {
+            font-size: 10px;
+            color: #333;
+            margin-top: 5px;
+        }
+
+        .bar-label {
+            font-size: 9px;
+            color: #666;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            margin-bottom: 5px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid #333;
+            margin-top: 60px;
+        }
+
+        .footer p {
+            color: #666;
+            font-size: 12px;
+            margin: 5px 0;
+        }
+
+        /* "Responsive" - barely works */
+        @media (max-width: 768px) {
+            .text-image-block {
+                flex-direction: column;
+            }
+            .hero h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero -->
+        <section class="hero">
+            <h1>From Indie to Industry</h1>
+            <p class="subtitle">how youtube went from a hobbyist paradise to a Whole industry</p>
+            <p class="byline">Daniel, Eddie, Jan, Kaleb & Vero</p>
+            <div class="scroll-indicator">↓</div>
+        </section>
+
+        <!-- Video -->
+        <section class="video-section">
+            <div class="video-container">
+                <iframe
+                    src="https://www.youtube.com/embed/39ORolk1P0I"
+                    title="Jimmy's video"
+                    frameborder="0"
+                    allowfullscreen
+                ></iframe>
+            </div>
+            <button class="transcript-btn" onclick="document.getElementById('transcript').classList.toggle('show')">
+                + Show Transcript
+            </button>
+            <div id="transcript" class="transcript-content">
+                <p><strong>Jimmy:</strong> Hey guys, Jimmy here, welcome to my first YouTube video. I'm going to be very famous and get a lot of money from this, but I don't know how to yet. But hey, check this out, I found this really cool site, where apparently, they offer a course, on how to make a living off YouTube. It's quite expensive but at least you do save the one dollar. So um I definitely want to do this, let's check it out... Let's see what happens</p>
+            </div>
+        </section>
+
+        <!-- Dialogue 1 -->
+        <div class="dialogue">
+            <div class="msg left">
+                <div class="avatar-col">
+                    <img class="avatar-img" src="static/assets/pixel_art/ender.gif" alt="Eddie">
+                    <span class="speaker-name">Eddie</span>
+                </div>
+                <div class="bubble bubble-left">
+                    <p>Oh.. a customer?</p>
+                </div>
+            </div>
+            <div class="msg right">
+                <div class="bubble bubble-right">
+                    <p>I just spent 999$ on your course with my mom's credit card...</p>
+                </div>
+                <div class="avatar-col">
+                    <img class="avatar-img" src="static/assets/pixel_art/jan.gif" alt="Jimmy">
+                    <span class="speaker-name">Jimmy</span>
+                </div>
+            </div>
+            <div class="msg left">
+                <div class="avatar-col">
+                    <img class="avatar-img" src="static/assets/pixel_art/kalan.gif" alt="Kaleb">
+                    <span class="speaker-name">Kaleb</span>
+                </div>
+                <div class="bubble bubble-left">
+                    <p>...</p>
+                </div>
+            </div>
+            <div class="msg right">
+                <div class="bubble bubble-right">
+                    <p>Can you help me make a lot of money on YouTube?</p>
+                </div>
+                <div class="avatar-col">
+                    <img class="avatar-img" src="static/assets/pixel_art/jan.gif" alt="Jimmy">
+                    <span class="speaker-name">Jimmy</span>
+                </div>
+            </div>
+            <div class="msg left">
+                <div class="avatar-col">
+                    <img class="avatar-img" src="static/assets/pixel_art/danael.gif" alt="Daniel">
+                    <span class="speaker-name">Daniel</span>
+                </div>
+                <div class="bubble bubble-left">
+                    <p>Maybe.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dataset Section -->
+        <section class="dataset-section">
+            <div class="text-image-block">
+                <div class="text-side">
+                    <h2>The YouNiverse Dataset</h2>
+                    <p>Info here about the YouNiverse dataset.</p>
+                    <p>YouNiverse is a large collection of channel and video metadata from English-language YouTube. YouNiverse comprises metadata from over 136k channels and 72.9M videos published between May 2005 and October 2019.</p>
+                    <p>We can even make a new paragraph here. Very fancy.</p>
+                </div>
+                <div class="image-side">
+                    <img src="static/assets/1.png" alt="Dataset preview">
+                </div>
+            </div>
+        </section>
+
+        <!-- Team -->
+        <section class="team-section">
+            <h2>Meet the Team</h2>
+            <p class="section-sub">Optional section or whatever</p>
+            <div class="team-grid">
+                <div class="expert-card">
+                    <img class="expert-avatar" src="static/assets/pixel_art/ender.gif" alt="Eddie">
+                    <h3>Eddie</h3>
+                    <span class="role">Specialist</span>
+                    <p class="desc">expert on question #1</p>
+                </div>
+                <div class="expert-card">
+                    <img class="expert-avatar" src="static/assets/pixel_art/kalan.gif" alt="Kaleb">
+                    <h3>Kaleb</h3>
+                    <span class="role">Specialist</span>
+                    <p class="desc">expert on question #2</p>
+                </div>
+                <div class="expert-card">
+                    <img class="expert-avatar" src="static/assets/pixel_art/danael.gif" alt="Daniel">
+                    <h3>Daniel</h3>
+                    <span class="role">Specialist</span>
+                    <p class="desc">expert on question #3</p>
+                </div>
+                <div class="expert-card">
+                    <img class="expert-avatar" src="static/assets/pixel_art/veronika.gif" alt="Vivian">
+                    <h3>Vivian</h3>
+                    <span class="role">Website</span>
+                    <p class="desc">likes to snack</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Questions -->
+        <section class="questions-section">
+            <h2>What You'll Learn</h2>
+            <p class="section-sub">Click any question to jump to that section</p>
+            <div class="questions-list">
+                <button class="question-btn" onclick="document.getElementById('q1').scrollIntoView()">
+                    <span class="q-num">1</span>
+                    <div class="q-text">
+                        <h3>How have channels evolved from indie to professional?</h3>
+                        <p>What is the adoption curve of sponsorships between different categories?</p>
+                    </div>
+                </button>
+                <button class="question-btn" onclick="document.getElementById('q2').scrollIntoView()">
+                    <span class="q-num">2</span>
+                    <div class="q-text">
+                        <h3>What enabled indie channels to become professional-minded?</h3>
+                        <p>At what subscriber thresholds do creators start showing "industry-like" patterns?</p>
+                    </div>
+                </button>
+                <button class="question-btn" onclick="document.getElementById('q3').scrollIntoView()">
+                    <span class="q-num">3</span>
+                    <div class="q-text">
+                        <h3>How does a focus on professionalism affect engagement?</h3>
+                        <p>Does the number of views change after channels get sponsors?</p>
+                    </div>
+                </button>
+            </div>
+        </section>
+
+        <!-- Content Section 1 -->
+        <section id="q1" class="content-section">
+            <h2>How have channels evolved from indie to professional?</h2>
+            <p class="section-sub">YouTube grew from 338k uploads in 2008 to over 15.2 million in 2018.</p>
+
+            <div class="dialogue">
+                <div class="msg left">
+                    <div class="avatar-col">
+                        <img class="avatar-img" src="static/assets/pixel_art/ender.gif" alt="Eddie">
+                        <span class="speaker-name">Eddie</span>
+                    </div>
+                    <div class="bubble bubble-left">
+                        <p>Jimmy, what category do you want to explore?</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-selector">
+                <button class="cat-btn" onclick="this.classList.toggle('active')">Gaming</button>
+                <button class="cat-btn" onclick="this.classList.toggle('active')">Entertainment</button>
+                <button class="cat-btn" onclick="this.classList.toggle('active')">Music</button>
+                <button class="cat-btn" onclick="this.classList.toggle('active')">News & Politics</button>
+                <button class="cat-btn" onclick="this.classList.toggle('active')">People & Blogs</button>
+                <button class="cat-btn" onclick="this.classList.toggle('active')">Sports</button>
+                <button class="cat-btn" onclick="this.classList.toggle('active')">Howto & Style</button>
+                <button class="cat-btn" onclick="this.classList.toggle('active')">Education</button>
+            </div>
+
+            <!-- Bad chart -->
+            <div class="bad-chart">
+                <h4>Video Uploads Over Time (in millions)</h4>
+                <div class="chart-bars">
+                    <div class="bar" style="height: 20px;">
+                        <span class="bar-label">2008</span>
+                        <span>0.3M</span>
+                    </div>
+                    <div class="bar" style="height: 40px;">
+                        <span class="bar-label">2010</span>
+                        <span>1.2M</span>
+                    </div>
+                    <div class="bar" style="height: 60px;">
+                        <span class="bar-label">2012</span>
+                        <span>2.9M</span>
+                    </div>
+                    <div class="bar" style="height: 80px;">
+                        <span class="bar-label">2014</span>
+                        <span>5.1M</span>
+                    </div>
+                    <div class="bar" style="height: 100px;">
+                        <span class="bar-label">2016</span>
+                        <span>9.8M</span>
+                    </div>
+                    <div class="bar" style="height: 130px;">
+                        <span class="bar-label">2018</span>
+                        <span>15.2M</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="viz-placeholder">
+                <p>[ visualization will go here eventually ]</p>
+            </div>
+        </section>
+
+        <!-- Content Section 2 -->
+        <section id="q2" class="content-section">
+            <h2>What enabled indie channels to become professional-minded?</h2>
+            <div class="viz-placeholder">
+                <p>[ placeholder - working on it ]</p>
+            </div>
+        </section>
+
+        <!-- Content Section 3 -->
+        <section id="q3" class="content-section">
+            <h2>How does a focus on professionalism affect engagement?</h2>
+            <div class="viz-placeholder">
+                <p>[ placeholder - will add charts soon ]</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2025 ADA Project Team</p>
+            <p>Last updated: December 1, 2025</p>
+            <p style="color: #444; font-size: 10px;">website made at 3am please don't judge</p>
+        </div>
+    </div>
+
+    <script>
+        // "I'll add interactivity later"
+        console.log("TODO: make the category buttons actually do something");
+    </script>
+</body>
+</html>
