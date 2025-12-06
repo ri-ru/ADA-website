@@ -2,7 +2,7 @@
 	// Change this import to match your actual SVG file location
 	// Options in the Pudding starter:
 	// - wordmark-shadow.svg
-	// - wordmark-plain.svg  
+	// - wordmark-plain.svg
 	// - wordmark-line.svg
 	// - wordmark-bubble.svg
 	import wordmark from "$svg/wordmark-shadow.svg?raw";
@@ -10,8 +10,8 @@
 
 <header>
 	<div class="wordmark">
-		<a 
-			href="https://github.com/epfl-ada/ada-2025-project-shenanigans/tree/main" 
+		<a
+			href="https://github.com/epfl-ada/ada-2025-project-shenanigans/tree/main"
 			aria-label="From Indie to Industry"
 			target="_blank"
 			rel="noopener"

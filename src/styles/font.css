@@ -42,3 +42,12 @@
 	font-stretch: normal;
 	font-display: swap;
 }
+
+@font-face {
+	font-family: "BlexMono";
+	src: url("../fonts/BlexMonoNerdFontMono-Regular.ttf") format("truetype");
+	font-weight: 500;
+	font-style: normal;
+	font-stretch: normal;
+	font-display: swap;
+}
