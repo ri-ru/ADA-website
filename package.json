@@ -18,7 +18,6 @@
 
 		"deploy": "npm run build && npx gh-pages -d build",
 
-
 		"lint": "prettier --check --plugin-search-dir=. .",
 
 		"format": "prettier --write --plugin-search-dir=. ."
@@ -89,7 +88,9 @@
 
 	"dependencies": {
 
-		"chart.js": "^4.5.1"
+		"chart.js": "^4.5.1",
+
+		"echarts": "^6.0.0"
 
 	}
 
