@@ -380,7 +380,7 @@ export default {
 	grid: {
 		left: "0%",
 		right: "0%",
-		top: 60,
+		top: 80,
 		bottom: 100
 	}
 };

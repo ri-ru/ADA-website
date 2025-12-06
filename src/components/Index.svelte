@@ -3,7 +3,9 @@
 	import { base } from '$app/paths';
 	import '../styles/index.css';
 	import copy from '../data/copy.json';
+  import { selectedCat, ytCategories } from "../lib/CategorySelection"
   import KalanChart0 from "./KalanChart0.svelte"
+  import KalanChart1 from "./KalanChart1.svelte"
 
 
 	// ============================================
@@ -133,17 +135,6 @@
 	let compareCatA = $state(null);
 	let compareCatB = $state(null);
 	let compareIframe = $state(null);
-
-	const ytCategories = [
-		{ id: "gaming", name: "Gaming" },
-		{ id: "entertainment", name: "Entertainment" },
-		{ id: "music", name: "Music" },
-		{ id: "news", name: "News & Politics" },
-		{ id: "people", name: "People & Blogs" },
-		{ id: "sports", name: "Sports" },
-		{ id: "howto", name: "Howto & Style" },
-		{ id: "education", name: "Education" },
-	];
 
 	function selectCategory(cat) {
 		selectedCategory = cat;
@@ -347,7 +338,8 @@
 						class="cat-btn {selectedCategory?.id === cat.id ? 'active' : ''}"
 						onclick={() => selectCategory(cat)}
 					>
-						<span class="cat-name">{cat.name}</span>
+            <span class="icon">{cat.icon}</span>
+						<span class="cat-name"> {cat.name} </span>
 					</button>
 				{/each}
 			</div>
@@ -432,7 +424,8 @@
 								class="cat-btn {compareCatA?.id === cat.id ? 'active' : ''}"
 								onclick={() => selectCompareA(cat)}
 							>
-								<span class="cat-name">{cat.name}</span>
+                <span class="icon">{cat.icon}</span>
+					      <span class="cat-name"> {cat.name} </span>
 							</button>
 						{/each}
 					</div>
@@ -446,7 +439,8 @@
 								class="cat-btn {compareCatB?.id === cat.id ? 'active' : ''}"
 								onclick={() => selectCompareB(cat)}
 							>
-								<span class="cat-name">{cat.name}</span>
+                <span class="icon">{cat.icon}</span>
+					      <span class="cat-name"> {cat.name} </span>
 							</button>
 						{/each}
 					</div>
@@ -503,8 +497,21 @@
 		<h2>{copy.section2_title}</h2>
 		<div class="placeholder">{copy.section2_placeholder}</div>
 
+		<div class="category-selector">
+			{#each ytCategories as cat}
+				<button
+					class="cat-btn"
+          class:active={$selectedCat === cat.name}
+					onclick={() => selectedCat.set(cat.name)}
+				>
+          <span class="icon">{cat.icon}</span>
+					<span class="cat-name"> {cat.name} </span>
+				</button>
+			{/each}
+		</div>
 
-        <KalanChart0/>
+    <KalanChart0/>
+    <KalanChart1/>
 
 		<!--
 		<div class="container">
