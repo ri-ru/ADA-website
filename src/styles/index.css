@@ -7,6 +7,10 @@ body {
     color: #e0e0e0;
 }
 
+p {
+    text-align: justify;
+}
+
 .container {
     position: relative;
     width: 100%;
@@ -104,7 +108,7 @@ h2 {
 }
 
 .section-sub {
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.5) !important;
     font-size: 0.95rem;
     margin: 0 0 2rem;
     text-align: center;
@@ -395,7 +399,10 @@ h2 {
 
 .text-side h2 {
     text-align: left;
-    margin-bottom: 1rem;
+}
+
+.text-side .section-sub {
+    text-align: left;
 }
 
 .text-side p {

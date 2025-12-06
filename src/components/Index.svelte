@@ -266,22 +266,29 @@
 		<div class="text-image-block">
 			<div class="text-side">
 				<h2>{copy.dataset_title}</h2>
-				<p>
-					{copy.dataset_p1}
-				</p>
-				<p>
-					{copy.dataset_p2}
-				</p>
-				<p>
-					{copy.dataset_p3}
-				</p>
+        <p class="section-sub">{copy.dataset_subtitle}</p>
+				<p> {copy.dataset_p1} </p>
 			</div>
 			<div class="image-side">
-				<img src="assets/1.png" alt={copy.dataset_img_alt} />
+        <a href="https://github.com/epfl-dlab/YouNiverse" target="_blank">
+          <img src="assets/youniverse.png" alt={copy.dataset_img_alt} />
+        </a>
+			</div>
+		</div>
+
+		<div class="text-image-block">
+			<div class="image-side">
+        <a href="https://github.com/ajayyy/SponsorBlock" target="_blank">
+          <img src="assets/sponsorblock.png" alt={copy.sb_img_alt} />
+        </a>
+			</div>
+			<div class="text-side">
+				<h2>{copy.sb_title}</h2>
+        <p class="section-sub">{copy.sb_subtitle}</p>
+				<p> {copy.sb_p1} </p>
 			</div>
 		</div>
 	</section>
-
 
 
 	<!-- ========== DIALOGUE 2 ========== -->
@@ -348,7 +355,7 @@
 			{#if selectedCategory}
 				<div class="msg right" style="--delay: 0s">
 					<div class="bubble bubble-right">
-						<p>{copy.dialogue_jimmy_show}<strong>{selectedCategory.name}</strong></p>
+						<p>{copy.dialogue_jimmy_show} <strong>{selectedCategory.name}</strong></p>
 					</div>
 					<div class="avatar-col">
 						<img class="avatar-img" src="{base}/assets/pixel_art/jan.gif" alt="Jimmy" style="transform: scaleX(-1);" />
@@ -363,7 +370,7 @@
 						<span class="speaker-name">Eddie</span>
 					</div>
 					<div class="bubble bubble-left">
-						<p>{copy.dialogue_eddie_response_1}<strong>{selectedCategory.name}</strong>{copy.dialogue_eddie_response_2}</p>
+						<p>{copy.dialogue_eddie_response_1} <strong>{selectedCategory.name}</strong> {copy.dialogue_eddie_response_2}</p>
 					</div>
 				</div>
 			{:else}
@@ -505,7 +512,7 @@
 					onclick={() => selectedCat.set(cat.name)}
 				>
           <span class="icon">{cat.icon}</span>
-					<span class="cat-name"> {cat.name} </span>
+					<span class="cat-name">{cat.name}</span>
 				</button>
 			{/each}
 		</div>
