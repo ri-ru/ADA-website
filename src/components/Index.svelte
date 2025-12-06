@@ -458,7 +458,7 @@
 			{#if compareCatA && compareCatB}
 				<div class="msg right" style="--delay: 0s">
 					<div class="bubble bubble-right">
-						<p>{copy.dialogue_compare_response}<strong>{compareCatA.name}</strong>{copy.dialogue_compare_vs}<strong>{compareCatB.name}</strong>{copy.dialogue_compare_end}</p>
+						<p>{copy.dialogue_compare_response} <strong>{compareCatA.name}</strong> {copy.dialogue_compare_vs} <strong>{compareCatB.name}</strong>{copy.dialogue_compare_end}</p>
 					</div>
 					<div class="avatar-col">
 						<img class="avatar-img" src="{base}/assets/pixel_art/jan.gif" alt="Jimmy" style="transform: scaleX(-1);" />
