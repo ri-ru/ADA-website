@@ -6,6 +6,7 @@
   import { selectedCat, ytCategories } from "../lib/CategorySelection"
   import KalanChart0 from "./KalanChart0.svelte"
   import KalanChart1 from "./KalanChart1.svelte"
+  import KalanChart2 from "./KalanChart2.svelte"
 
 
 	// ============================================
@@ -519,6 +520,7 @@
 
     <KalanChart0/>
     <KalanChart1/>
+    <KalanChart2/>
 
 		<!--
 		<div class="container">
