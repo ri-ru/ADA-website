@@ -1,4 +1,4 @@
-import"../chunks/Bzak7iHL.js";import{a4 as s,a5 as r,a7 as t,a8 as n,ai as h,aj as c,a0 as p}from"../chunks/FMC7fSgD.js";import{s as m}from"../chunks/h1dlS3Kb.js";import{h as g}from"../chunks/D92chYmB.js";const w=!0,f="always",M=Object.freeze(Object.defineProperty({__proto__:null,prerender:w,trailingSlash:f},Symbol.toStringTag,{value:"Module"})),q=`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+import"../chunks/Bzak7iHL.js";import{Q as t,R as n,ab as h,ac as c,n as p}from"../chunks/CutXmRRr.js";import{f as s,b as r}from"../chunks/ChTguk9A.js";import{s as m}from"../chunks/BkAnYlPF.js";import{h as g}from"../chunks/CvQhNVJE.js";const f=!0,w="always",_=Object.freeze(Object.defineProperty({__proto__:null,prerender:f,trailingSlash:w},Symbol.toStringTag,{value:"Module"})),q=`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
@@ -71,4 +71,4 @@ import"../chunks/Bzak7iHL.js";import{a4 as s,a5 as r,a7 as t,a8 as n,ai as h,aj 
     </g>
   </g>
 </svg>
-`;var v=s('<header class="svelte-oiwvqb"><div class="wordmark svelte-oiwvqb"><a href="https://github.com/epfl-ada/ada-2025-project-shenanigans/tree/main" aria-label="From Indie to Industry" target="_blank" rel="noopener" class="svelte-oiwvqb"><!></a></div></header>');function k(l){var e=v(),a=t(e),o=t(a),i=t(o);g(i,()=>q),n(o),n(a),n(e),r(l,e)}var x=s('<!> <main id="content"><!></main>',1);function _(l,e){var a=x(),o=h(a);k(o);var i=c(o,2),d=t(i);m(d,()=>e.children??p),n(i),r(l,a)}export{_ as component,M as universal};
+`;var v=s('<header class="svelte-oiwvqb"><div class="wordmark svelte-oiwvqb"><a href="https://github.com/epfl-ada/ada-2025-project-shenanigans/tree/main" aria-label="From Indie to Industry" target="_blank" rel="noopener" class="svelte-oiwvqb"><!></a></div></header>');function k(l){var e=v(),o=t(e),i=t(o),a=t(i);g(a,()=>q),n(i),n(o),n(e),r(l,e)}var x=s('<!> <main id="content"><!></main>',1);function B(l,e){var o=x(),i=h(o);k(i);var a=c(i,2),d=t(a);m(d,()=>e.children??p),n(a),r(l,o)}export{B as component,_ as universal};
