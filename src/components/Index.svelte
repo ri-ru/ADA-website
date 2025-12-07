@@ -6,6 +6,10 @@
   import { selectedCat, ytCategories } from "../lib/CategorySelection"
   import KalanChart0 from "./KalanChart0.svelte"
   import KalanChart1 from "./KalanChart1.svelte"
+  import KalanChart2 from "./KalanChart2.svelte"
+  import KalanChart3 from "./KalanChart3.svelte"
+  import KalanChart4 from "./KalanChart4.svelte"
+  import { rq2 } from "../lib/research_question_2"
 
 
 	// ============================================
@@ -28,7 +32,6 @@
 		}
 		stars = newStars;
 	});
-
 
 
 	// ============================================
@@ -85,6 +88,24 @@
 		parseChatMessage(copy.dataset_chat_3),
 		parseChatMessage(copy.dataset_chat_4),
 		parseChatMessage(copy.dataset_chat_5),
+	].filter(m => m && m.text);
+
+  const q2Chat0 = [
+		parseChatMessage(copy.section2_chat_1),
+		parseChatMessage(copy.section2_chat_2),
+		parseChatMessage(copy.section2_chat_3),
+		parseChatMessage(copy.section2_chat_4),
+	].filter(m => m && m.text);
+
+  const q2Chat1 = [
+		parseChatMessage(copy.section2_chat_5),
+		parseChatMessage(copy.section2_chat_6),
+		parseChatMessage(copy.section2_chat_7),
+	].filter(m => m && m.text);
+
+  const q2Chat2 = [
+		parseChatMessage(copy.section2_chat_10),
+		parseChatMessage(copy.section2_chat_11),
 	].filter(m => m && m.text);
 
 	// ============================================
@@ -183,12 +204,12 @@
 						<span class="speaker-name">{getSpeaker(msg.speaker).name}</span>
 					</div>
 					<div class="bubble bubble-left">
-						<p>{msg.text}</p>
+						<p>{@html msg.text}</p>
 					</div>
 				{:else}
 					<!-- Jimmy on RIGHT -->
 					<div class="bubble bubble-right">
-						<p>{msg.text}</p>
+						<p>{@html msg.text}</p>
 					</div>
 					<div class="avatar-col">
 						<img class="avatar-img" src={getSpeaker(msg.speaker).avatar} alt={msg.speaker} />
@@ -502,7 +523,12 @@
 
 	<section id="section-sponsors" class="content-section">
 		<h2>{copy.section2_title}</h2>
-		<div class="placeholder">{copy.section2_placeholder}</div>
+
+	  {@render dialogue(q2Chat0)}
+
+    <KalanChart3/>
+
+	  {@render dialogue(q2Chat1)}
 
 		<div class="category-selector">
 			{#each ytCategories as cat}
@@ -517,8 +543,41 @@
 			{/each}
 		</div>
 
-    <KalanChart0/>
+		{#if $selectedCat}
+        {@render dialogue([
+            parseChatMessage(
+                copy.section2_chat_8.replace("<cat>", $selectedCat)
+            ),
+            parseChatMessage(
+                copy.section2_chat_9
+                    .replace("<joke>", rq2.repliques[$selectedCat])
+                    .replace("<views>", rq2.views[$selectedCat].toLocaleString())
+                    .replace("<subs>", rq2.subscribers[$selectedCat].toLocaleString())
+                    .replace("<vids>", rq2.videos[$selectedCat].toLocaleString())
+                    .replace("<gen_views>", rq2.views["All"].toLocaleString())
+                    .replace("<gen_subs>", rq2.subscribers["All"].toLocaleString())
+                    .replace("<gen_vids>", rq2.videos["All"].toLocaleString())
+            )
+        ])}
+		{:else}
+        {@render dialogue([
+            parseChatMessage(
+                "[jimmy] <span class='bubble-hint'>"
+                    + copy.dialogue_jimmy_hint
+                    + "</span>"
+            )
+        ])}
+		{/if}
+
     <KalanChart1/>
+
+	  {@render dialogue(q2Chat2)}
+
+    <KalanChart2/>
+
+    <KalanChart0/>
+
+    <KalanChart4/>
 
 		<!--
 		<div class="container">

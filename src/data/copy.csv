@@ -96,7 +96,18 @@ dialogue_pick_other_b,Now pick Category B...
 ,═══════════════════════════════════════════════════════════
 ,
 section2_title,What enabled indie channels to become professional-minded?
-section2_placeholder,[ placeholder ]
+section2_chat_1,[jimmy] Okay but how long is this going to take?! My mom is already wondering why her card is being declined.
+section2_chat_2,[kaleb] <i>All human wisdom is contained in these two words &mdash; wait and hope.</i>
+section2_chat_3, [jimmy] ...
+section2_chat_4,"[kaleb] It's Dumas... Anyway, I hate to break it to you, but you might be waiting a while."
+section2_chat_5,"[kaleb] The median time between posting your first video and obtaining your first sponsor is <b>1108 days</b> or around <b>3 years</b>! It also takes a median of <b>148 videos</b>! </br> <span class=""bubble-hint"">Note the logarithmic x axes. The right plot seems to follow a log-normal distribtion, whereas the left plot obtained $\lambda = 0.429\pm 0.017$ with a <a href=""https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.boxcox.html"" target=""_blank"">Box-Cox transformation</a>, suggesting it is gamma-like.</span>"
+section2_chat_6,[jimmy] Three years!!! I want to throw up. But what kind of stats do I need to get my first sponsor? Maybe if I buy enough bot accounts...
+section2_chat_7,[kaleb] Every heard of the sunk cost fallacy? A story for another day. Metrics your channel will likely need to reach before your first sponsor depend on the category of videos you want to make. How about you pick one?
+section2_chat_8,[jimmy] Maybe <b><cat></b>?
+section2_chat_9,"[kaleb] <joke> On median, you would need a total of around <b><views> views</b> and <b><subs> subscribers</b>. Yould would also need to have published <b><vids> videos</b> on median. In comparison, the medians of the global distributions over all categories are <b><gen_views> views</b>, <b><gen_subs> subscribers</b>, and <b><gen_vids> videos</b> </br> <span class=""bubble-hint""> Note the logarithmic x axes, and the logarithmic y axis for activity. All distributions seem to be log-normal, apart from activity, which seems to follow a power law. This might suggest that the activity has little-to-no effect on getting sponsored.</span>"
+section2_chat_10,"[jimmy] There are definitely some differences between categories, but I still don't know what to pick... And the longer I take to decide, the closer I get to having to explain a 1k transfer to <i>""sheNaNigans incoporated""</i>. Aargh! Do I really have to choose or can I just pick whatever and switch once I get sponsored?"
+section2_chat_11,"[kaleb] Interesting strategy... It does happen but only quite rarely. If we look at the <b>6 months before</b> the first sponsor and the <b>6 months after</b>, and we compare the most common video categories in both periods, we get a sense of what kind of transitions people make. </br> <span class=""bubble-hint"">Note the connections shown below are logarithmic.<span>"
+section2_chat_12,[kaleb]
 ,
 ,═══════════════════════════════════════════════════════════
 , SECTION 3: Engagement Impact
