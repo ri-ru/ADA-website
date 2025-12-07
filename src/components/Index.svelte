@@ -3,13 +3,15 @@
 	import { base } from '$app/paths';
 	import '../styles/index.css';
 	import copy from '../data/copy.json';
-  import { selectedCat, ytCategories } from "../lib/CategorySelection"
+  import { selectedCat, selectedActiveInactive, ytCategories } from "../lib/CategorySelection"
   import KalanChart0 from "./KalanChart0.svelte"
   import KalanChart1 from "./KalanChart1.svelte"
   import KalanChart2 from "./KalanChart2.svelte"
   import KalanChart3 from "./KalanChart3.svelte"
   import KalanChart4 from "./KalanChart4.svelte"
   import { rq2 } from "../lib/research_question_2"
+  import "katex/dist/katex.min.css"
+  import renderMathInElement from "katex/contrib/auto-render"
 
 
 	// ============================================
@@ -108,6 +110,16 @@
 		parseChatMessage(copy.section2_chat_11),
 	].filter(m => m && m.text);
 
+  const q2Chat3 = [
+		parseChatMessage(copy.section2_chat_12),
+		parseChatMessage(copy.section2_chat_13),
+		parseChatMessage(copy.section2_chat_14),
+	].filter(m => m && m.text);
+
+  const q2Chat4 = [
+		parseChatMessage(copy.section2_chat_15),
+	].filter(m => m && m.text);
+
 	// ============================================
 	// TEAM DATA (from Google Sheet)
 	// ============================================
@@ -187,6 +199,21 @@
 			}, "*");
 		}
 	}
+
+	// ===========
+	// Render Math
+	// ===========
+  function render_math(el) {
+    renderMathInElement(el, {
+        delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false },
+            { left: "\\(", right: "\\)", display: false },
+            { left: "\\[", right: "\\]", display: true }
+        ],
+        throwOnError: false
+    });
+  }
 </script>
 
 <!-- ============================================ -->
@@ -225,7 +252,7 @@
 <!-- PAGE CONTENT -->
 <!-- ============================================ -->
 
-<div class="container">
+<div class="container" use:render_math>
 	<!-- Starfield Background -->
 	{#if mounted}
 		<div class="starfield">
@@ -575,9 +602,35 @@
 
     <KalanChart2/>
 
-    <KalanChart0/>
+	  {@render dialogue(q2Chat3)}
+
+		<div class="category-selector">
+			<button
+				class="cat-btn"
+        class:active={$selectedActiveInactive === 0}
+				onclick={() => selectedActiveInactive.set(0)}
+			>
+        <span class="icon">󰽢</span>
+				<span class="cat-name">All</span>
+			</button>
+			<button
+				class="cat-btn"
+        class:active={$selectedActiveInactive === 1}
+				onclick={() => selectedActiveInactive.set(1)}
+			>
+        <span class="icon">󱓮</span>
+				<span class="cat-name">Sponsored</span>
+				<span class="cat-name">/</span>
+        <span class="icon">󱉢</span>
+				<span class="cat-name">Not Sponsored</span>
+			</button>
+		</div>
 
     <KalanChart4/>
+
+	  {@render dialogue(q2Chat4)}
+
+    <KalanChart0/>
 
 		<!--
 		<div class="container">
