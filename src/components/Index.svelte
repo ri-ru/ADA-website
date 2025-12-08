@@ -1,17 +1,20 @@
 <script>
 	import { onMount } from 'svelte';
 	import { base } from '$app/paths';
+  import { writable } from "svelte/store"
 	import '../styles/index.css';
 	import copy from '../data/copy.json';
-  import { selectedCat, selectedActiveInactive, ytCategories } from "../lib/CategorySelection"
+  import { selectedCat, selectedActiveInactive, selectedGraph, ytCategories } from "../lib/CategorySelection"
   import KalanChart0 from "./KalanChart0.svelte"
   import KalanChart1 from "./KalanChart1.svelte"
   import KalanChart2 from "./KalanChart2.svelte"
   import KalanChart3 from "./KalanChart3.svelte"
   import KalanChart4 from "./KalanChart4.svelte"
+  import ChanGraph from './ChanGraph.svelte';
   import { rq2 } from "../lib/research_question_2"
   import "katex/dist/katex.min.css"
   import renderMathInElement from "katex/contrib/auto-render"
+  import init, * as bindings from '../wasm/site-2e23acd3e57e71bc.js';
 
 
 	// ============================================
@@ -19,6 +22,7 @@
 	// ============================================
 	let stars = $state([]);
 	let mounted = $state(false);
+  const wasmModule = writable(null);
 
 	onMount(() => {
 		mounted = true;
@@ -213,6 +217,25 @@
         ],
         throwOnError: false
     });
+  }
+
+
+  // ====
+  // WASM
+  // ====
+  async function load_graph() {
+    await unload_graph();
+    const wasm = await init({ module_or_path: '/wasm/site-2e23acd3e57e71bc_bg.wasm?' + Date.now() });
+    wasmModule.set(wasm);
+    window.wasmBindings = bindings;
+  }
+  async function unload_graph() {
+    const wasm = $wasmModule;
+    if (wasm !== null) {
+      wasm.stop();
+      wasmModule.set(null);
+    }
+    window.wasmBindings = null;
   }
 </script>
 
@@ -631,6 +654,30 @@
 	  {@render dialogue(q2Chat4)}
 
     <KalanChart0/>
+
+		<div class="category-selector">
+			<button
+				class="cat-btn"
+        class:active={$selectedGraph === 0}
+				onclick={() => {
+          if ($selectedGraph === null) {
+            selectedGraph.set(0);
+            load_graph();
+          }
+          // else {
+          //   selectedGraph.set(null);
+          //   unload_graph();
+          // }
+        }}
+			>
+        <span class="icon">󱁉</span>
+				<span class="cat-name">Show Channel Graph</span>
+			</button>
+		</div>
+
+    {#if $selectedGraph !== null}
+        <canvas id="the_canvas_id" onload={load_graph()} style="width: 100%; height: 800px;"></canvas>
+    {/if}
 
 		<!--
 		<div class="container">

@@ -18,3 +18,4 @@ export const ytCategories = [
   { id: "travel",        name: "Travel & Events",      icon: "" },
 ];
 export const selectedActiveInactive = writable<number>(0);
+export const selectedGraph = writable<number | null>(null);
