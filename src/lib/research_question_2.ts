@@ -13,7 +13,7 @@ export namespace rq2 {
 		"People & Blogs": "Ooh fancy avocado and toast!",
 		"Pets & Animals":
 			"Cats or dogs? Keep in mind there is a correct answer...",
-		"Science & Technology": "Who can be mad at that choice?!",
+		"Science & Technology": "Yeah Science!",
 		Sports: "I also like sportsball!",
 		"Travel & Events": "Oh where do you want to go?"
 	};
