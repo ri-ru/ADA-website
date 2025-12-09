@@ -1,12 +1,14 @@
 <script lang="ts">
   import echarts from '../lib/echarts';
   import { onMount } from 'svelte';
+  import { selectedActiveInactive } from "../lib/CategorySelection"
 
   let chartDiv: HTMLDivElement;
 
   onMount(() => {
     var chart = echarts.init(chartDiv, "sheNaNigans", {renderer: "svg"});
-    var option = {
+
+    const optiona = {
   "title": [
     {
       "text": "Channels Active in 2025",
@@ -14,8 +16,7 @@
       "left": "50%"
     }
   ],
-  "animationDuration": 1500.0,
-  "animationEasing": "cubicInOut",
+  "animationDuration": 500.0,
   "tooltip": {
     "trigger": "item"
   },
@@ -85,6 +86,9 @@
     "#d20f39",
     "#e64553"
   ],
+	grid: {
+		bottom: 50
+	},
   "series": [
     {
       "type": "bar",
@@ -97,7 +101,7 @@
       },
       "stack": "bars",
       "tooltip": {
-        "formatter": function(param) { 
+        "formatter": function(param) {
             return Math.round(param.data * 100) / 100 + "%";
              }
       },
@@ -130,7 +134,7 @@
       },
       "stack": "bars",
       "tooltip": {
-        "formatter": function(param) { 
+        "formatter": function(param) {
             return Math.round(param.data * 100) / 100 + "%";
              }
       },
@@ -163,7 +167,7 @@
       },
       "stack": "bars",
       "tooltip": {
-        "formatter": function(param) { 
+        "formatter": function(param) {
             return Math.round(param.data * 100) / 100 + "%";
              }
       },
@@ -196,7 +200,7 @@
       },
       "stack": "bars",
       "tooltip": {
-        "formatter": function(param) { 
+        "formatter": function(param) {
             return Math.round(param.data * 100) / 100 + "%";
              }
       },
@@ -220,10 +224,237 @@
     }
   ]
 };
-    chart.setOption(option);
+
+    const optionb = {
+  "title": [
+    {
+      "text": "Channels Active in 2025",
+      "textAlign": "center",
+      "left": "50%"
+    }
+  ],
+  "animationDuration": 500.0,
+  "animationEasing": "cubicInOut",
+  "tooltip": {
+    "trigger": "item"
+  },
+  "legend": {
+    "data": [
+      {
+        "name": "active sponsored"
+      },
+      {
+        "name": "active"
+      },
+      {
+        "name": "inactive sponsored"
+      },
+      {
+        "name": "inactive"
+      }
+    ]
+  },
+  "toolbox": {
+    "feature": {
+      "magicType": {
+        "type": [
+          "stack"
+        ]
+      }
+    }
+  },
+  "grid": [
+    {
+      "bottom": 50
+    }
+  ],
+  "xAxis": {
+    "type": "value",
+    "name": "% channels",
+    "max": "dataMax",
+    "axisLabel": {
+      "formatter": function(param) { return Math.round(param * 100) / 100; }
+    }
+  },
+  "yAxis": {
+    "type": "category",
+    "name": "categories",
+    "axisTick": {
+      "show": false
+    },
+    "splitLine": {
+      "show": false
+    },
+    "data": [
+      "Autos &\n Vehicles",
+      "Comedy",
+      "Education",
+      "Entertainment",
+      "Film &\n Animation",
+      "Gaming",
+      "Howto &\n Style",
+      "Music",
+      "News &\n Politics",
+      "Nonprofits &\n Activism",
+      "People &\n Blogs",
+      "Pets &\n Animals",
+      "Science &\n Technology",
+      "Sports",
+      "Travel &\n Events"
+    ]
+  },
+  "color": [
+    "#1e66f5",
+    "#d20f39",
+    "#04a5e5",
+    "#e64553"
+  ],
+  "series": [
+    {
+      "type": "bar",
+      "name": "active sponsored",
+      "itemStyle": {
+        "borderRadius": 50.0
+      },
+      "emphasis": {
+        "focus": "series"
+      },
+      "stack": "spon",
+      "tooltip": {
+        "formatter": function(param) {
+            return Math.round(param.data * 100) / 100 + "%";
+             }
+      },
+      "data": [
+        87.97250859106529,
+        72.0558882235529,
+        83.5972850678733,
+        78.91113892365456,
+        70.52401746724891,
+        75.13199577613517,
+        85.0415512465374,
+        75.0,
+        90.14084507042253,
+        59.09090909090909,
+        77.58846657929227,
+        89.70588235294117,
+        82.04456094364352,
+        79.01554404145078,
+        86.29032258064517
+      ]
+    },
+    {
+      "type": "bar",
+      "name": "inactive sponsored",
+      "itemStyle": {
+        "borderRadius": 50.0
+      },
+      "emphasis": {
+        "focus": "series"
+      },
+      "stack": "spon",
+      "tooltip": {
+        "formatter": function(param) {
+            return Math.round(param.data * 100) / 100 + "%";
+             }
+      },
+      "data": [
+        12.027491408934708,
+        27.944111776447105,
+        16.402714932126695,
+        21.08886107634543,
+        29.475982532751093,
+        24.868004223864837,
+        14.958448753462603,
+        25.0,
+        9.859154929577464,
+        40.90909090909091,
+        22.411533420707734,
+        10.294117647058824,
+        17.955439056356486,
+        20.984455958549223,
+        13.709677419354838
+      ]
+    },
+    {
+      "type": "bar",
+      "name": "active",
+      "itemStyle": {
+        "borderRadius": 50.0
+      },
+      "emphasis": {
+        "focus": "series"
+      },
+      "stack": "nspon",
+      "tooltip": {
+        "formatter": function(param) {
+            return Math.round(param.data * 100) / 100 + "%";
+             }
+      },
+      "data": [
+        69.91798476859988,
+        52.96999387630129,
+        66.97499638676109,
+        53.86128412869386,
+        49.150693470469065,
+        51.36719820264124,
+        63.14892853940644,
+        58.631003988208775,
+        71.1928335690712,
+        32.734952481520594,
+        49.88668555240793,
+        59.39542483660131,
+        63.20409656181419,
+        66.79966400671987,
+        70.45576407506702
+      ]
+    },
+    {
+      "type": "bar",
+      "name": "inactive",
+      "itemStyle": {
+        "borderRadius": 50.0
+      },
+      "emphasis": {
+        "focus": "series"
+      },
+      "stack": "nspon",
+      "tooltip": {
+        "formatter": function(param) {
+            return Math.round(param.data * 100) / 100 + "%";
+             }
+      },
+      "data": [
+        30.082015231400117,
+        47.03000612369871,
+        33.02500361323891,
+        46.13871587130614,
+        50.849306529530935,
+        48.63280179735876,
+        36.85107146059356,
+        41.368996011791225,
+        28.807166430928806,
+        67.2650475184794,
+        50.11331444759207,
+        40.60457516339869,
+        36.79590343818581,
+        33.200335993280135,
+        29.544235924932977
+      ]
+    }
+  ]
+};
+
+    const options = [optiona, optionb];
+
+    chart.setOption(options[0]);
 
     const resizeObserver = new ResizeObserver(() => chart.resize());
     resizeObserver.observe(chartDiv);
+
+    selectedActiveInactive.subscribe(ind => {
+      chart.setOption(options[ind], { notMerge: true, lazyUpdate: false });
+    });
   });
 </script>
 

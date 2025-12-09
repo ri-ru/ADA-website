@@ -92,12 +92,16 @@
           tooltip: {
             trigger: "item",
             formatter: function(param) {
-              const count = Math.round(Math.pow(10, param.value));
-              if (param.dataType == "edge") {
-                return param.name + " " + count.toString() + " channels";
-              } else {
+              const count = Math.round(Math.pow(10, param.value - 1.0));
+              if (param.dataType !== "edge") {
                 return null;
               }
+
+              return param.name
+                + " "
+                + count.toString()
+                + " channel"
+                + (count == 1 ? "" : "s");
             }
           },
           data: [
