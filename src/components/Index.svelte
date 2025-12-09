@@ -651,7 +651,7 @@
 	  {@render dialogue(q2Chat4)}
 
 		<div class="category-selector">
-			<a href="/wasm/index.html" target="_blank" style="text-decoration: none;">
+			<a href="{base}/wasm/index.html" target="_blank" style="text-decoration: none;">
         <button class="cat-btn active">
           <span class="icon">󱁉</span>
           <span class="cat-name">Show Channel Graph</span>
