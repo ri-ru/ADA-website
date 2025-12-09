@@ -1,33 +1,4 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		
-		<link href="../../_app/immutable/assets/0.fV8q-0mq.css" rel="stylesheet">
-		<link rel="modulepreload" href="../../_app/immutable/entry/start.C5xQfPVI.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/Bx1INz7W.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/CwccpCOr.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/DmnWYc1H.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/BfgjSKTc.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/Co30ZRCK.js">
-		<link rel="modulepreload" href="../../_app/immutable/entry/app.DsCoUNQk.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/DcpDRc8R.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/CxsGtikv.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/Bzak7iHL.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/CAPsEmQu.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/CSmPSJWX.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/DjXE38an.js">
-		<link rel="modulepreload" href="../../_app/immutable/nodes/0.CdS_9C8j.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/phnCXxp8.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/VkGcdJ9y.js">
-		<link rel="modulepreload" href="../../_app/immutable/nodes/6.DOUI0C_N.js">
-	</head>
-
-	<body>
-		<a href="#content" class="skip-to-main">Skip to main content</a>
-		<div><!--[--><!--[--><!----><header class="svelte-oiwvqb"><div class="wordmark svelte-oiwvqb"><a href="https://github.com/epfl-ada/ada-2025-project-shenanigans/tree/main" aria-label="From Indie to Industry" target="_blank" rel="noopener" class="svelte-oiwvqb"><!----><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+import"../chunks/Bzak7iHL.js";import{Q as t,R as n,ab as h,ac as c,n as p}from"../chunks/CwccpCOr.js";import{f as s,b as r}from"../chunks/CxsGtikv.js";import{s as m}from"../chunks/phnCXxp8.js";import{h as g}from"../chunks/VkGcdJ9y.js";const f=!0,w="always",_=Object.freeze(Object.defineProperty({__proto__:null,prerender:f,trailingSlash:w},Symbol.toStringTag,{value:"Module"})),q=`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
@@ -100,30 +71,4 @@
     </g>
   </g>
 </svg>
-<!----></a></div></header><!----> <main id="content"><!----><!----><!----></main><!----><!--]--> <!--[!--><!--]--><!--]-->
-			
-			<script>
-				{
-					__sveltekit_8vuspk = {
-						base: new URL("../..", location).pathname.slice(0, -1),
-						assets: "/ADA-website"
-					};
-
-					const element = document.currentScript.parentElement;
-
-					Promise.all([
-						import("../../_app/immutable/entry/start.C5xQfPVI.js"),
-						import("../../_app/immutable/entry/app.DsCoUNQk.js")
-					]).then(([kit, app]) => {
-						kit.start(app, element, {
-							node_ids: [0, 6],
-							data: [null,null],
-							form: null,
-							error: null
-						});
-					});
-				}
-			</script>
-		</div>
-	</body>
-</html>
+`;var v=s('<header class="svelte-oiwvqb"><div class="wordmark svelte-oiwvqb"><a href="https://github.com/epfl-ada/ada-2025-project-shenanigans/tree/main" aria-label="From Indie to Industry" target="_blank" rel="noopener" class="svelte-oiwvqb"><!></a></div></header>');function k(l){var e=v(),o=t(e),i=t(o),a=t(i);g(a,()=>q),n(i),n(o),n(e),r(l,e)}var x=s('<!> <main id="content"><!></main>',1);function B(l,e){var o=x(),i=h(o);k(i);var a=c(i,2),d=t(a);m(d,()=>e.children??p),n(a),r(l,o)}export{B as component,_ as universal};
