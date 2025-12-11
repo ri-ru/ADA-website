@@ -340,7 +340,7 @@
 		<div class="text-image-block">
 			<div class="text-side">
 				<h2>{copy.dataset_title}</h2>
-        <p class="section-sub">{copy.dataset_subtitle}</p>
+        <p class="section-sub">{@html copy.dataset_subtitle}</p>
 				<p> {copy.dataset_p1} </p>
 			</div>
 			<div class="image-side">
@@ -358,7 +358,7 @@
 			</div>
 			<div class="text-side">
 				<h2>{copy.sb_title}</h2>
-        <p class="section-sub">{copy.sb_subtitle}</p>
+        <p class="section-sub">{@html copy.sb_subtitle}</p>
 				<p> {copy.sb_p1} </p>
 			</div>
 		</div>

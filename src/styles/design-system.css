@@ -5,8 +5,8 @@
 
 :root {
   /* ========== COLORS ========== */
-  --ds-bg: #1e1e2e;
-  --ds-surface: rgba(30, 30, 46, 0.85);
+  --ds-bg: #0f0f23;
+  --ds-surface: rgba(15, 15, 35, 0.85);
   --ds-border: rgba(205, 214, 244, 0.2);
   
   --ds-text: #cdd6f4;
