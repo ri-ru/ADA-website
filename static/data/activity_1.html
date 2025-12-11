@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Fate of 137,000 YouTube Channels – Summary</title>
+<style>
+  :root {
+    --bg: #050814;
+    --card: #0b1020;
+    --text: #f3f4f6;
+    --muted: #9ca3af;
+    --active: #ff4b4b;
+    --inactive: #4b5563;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #1f2933, #07101d);
+    color: var(--text);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    padding: 24px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .wrap {
+    width: min(1300px, 100%);
+  }
+
+  .subtitle {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 6px;
+    margin-bottom: 0;
+  }
+
+  /* Legend */
+  .legend {
+    max-width: 900px;
+    margin: 0 auto 14px auto;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .legend-btn {
+    border: none;
+    background: none;
+    color: var(--text);
+    font: inherit;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 4px 10px;
+    border-radius: 999px;
+    transition: transform 0.2s;
+  }
+
+  .legend-btn:hover {
+    transform: translateY(-1px);
+  }
+
+  .legend-btn:focus-visible {
+    outline: 2px solid rgba(255,255,255,0.6);
+    outline-offset: 4px;
+  }
+
+  .legend-icon,
+  .summary-icon {
+    width: 34px;
+    height: 22px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: #ff0000;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: inset 0 0 0 1px rgba(248, 250, 252, 0.35);
+    transition: border-color 0.2s, transform 0.2s;
+    margin-right: 6px;
+  }
+
+  .legend-icon {
+    justify-content: flex-start;
+    padding-left: 8px;
+    background: var(--active);
+  }
+
+  .legend-icon.inactive {
+    background: var(--inactive);
+  }
+
+  .legend-icon::after,
+  .summary-icon::after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 8px solid #fff;
+    margin-left: 6px;
+  }
+
+  .legend-icon.active   { background: var(--active); }
+  .legend-icon.inactive { background: var(--inactive); }
+
+  /* Summary stacked bar across categories */
+  .summary {
+    max-width: 900px;
+    margin: 0 auto 20px auto;
+  }
+
+  .summary-title {
+    font-size: 22px;
+    color: var(--text);
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+
+  .summary-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 5px 0;
+    font-size: 11px;
+    opacity: 0;
+    animation: fadein 0.8s ease forwards;
+  }
+
+  .summary-icon {
+    width: 42px;
+    height: 26px;
+    border-radius: 10px;
+    background: #ff0000;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    transition: border 0.2s, transform 0.2s;
+  }
+
+  .summary-icon::after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-left: 10px solid #fff;
+  }
+
+  .summary-icon:hover,
+  .summary-icon:focus-visible {
+    border-color: rgba(255, 255, 255, 0.9);
+    transform: translateY(-1px);
+  }
+
+  .summary-row:nth-child(2) { animation-delay: .1s }
+  .summary-row:nth-child(3) { animation-delay: .2s }
+  .summary-row:nth-child(4) { animation-delay: .3s }
+
+  @keyframes fadein {
+    from { opacity: 0; transform: translateY(3px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .summary-label {
+    width: 140px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--muted);
+  }
+
+  .summary-bar {
+    position: relative;
+    flex: 1;
+    height: 18px;
+    border-radius: 999px;
+    overflow: hidden;
+    display: flex;
+    background: #020617;
+  }
+
+  .summary-bar::before {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-style: solid;
+    border-width: 6px 0 6px 10px;
+    border-color: transparent transparent transparent rgba(248, 250, 252, 0.9);
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .summary-seg {
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f9fafb;
+    font-size: 10px;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .summary-seg.dimmed {
+    opacity: 0.35;
+  }
+
+  .summary-seg span {
+    position: relative;
+    z-index: 1;
+  }
+
+  .summary-seg.small span { display: none; }
+
+  .summary-seg.active   { background: var(--active); }
+  .summary-seg.inactive { background: var(--inactive); }
+
+  .pct-active-big {
+    font-size: 1.35em;
+    font-weight: 700;
+    color: var(--active);
+    background: rgba(255,255,255,0.07);
+    padding: 3px 8px;
+    border-radius: 6px;
+  }
+
+  .pct-inactive-text {
+    font-weight: 700;
+    font-size: 1.05em;
+    color: var(--inactive);
+  }
+
+  .activity-explainer {
+    max-width: 900px;
+    margin: 0 auto 24px auto;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .activity-text {
+    margin: 0 0 8px;
+    line-height: 1.5;
+  }
+
+  .activity-text code {
+    font-size: 12px;
+    background: rgba(15, 23, 42, 0.9);
+    padding: 2px 5px;
+    border-radius: 4px;
+  }
+
+  /* custom hover tooltip */
+  .hover-tooltip {
+    position: fixed;
+    z-index: 9999;
+    padding: 6px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    line-height: 1.4;
+    background: rgba(15, 23, 42, 0.98);
+    color: #e5e7eb;
+    border: 1px solid rgba(148, 163, 184, 0.6);
+    pointer-events: none;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translate3d(0,0,0);
+    transition: opacity 0.12s ease-out;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    white-space: pre-line;
+  }
+
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <!-- Summary stacked bar -->
+  <section class="summary">
+    <div class="summary-title">
+      About <strong>137K YouTube channels</strong> joined between <strong>2005 and 2019</strong>.<br>
+      As of 2025, roughly <span class="pct-active-big">58% (~80K)</span> are still uploading,
+      while about <span class="pct-inactive-text">42% (~55K)</span> no longer publish new videos.
+    </div>
+    <div class="legend" aria-hidden="false">
+      <button type="button" class="legend-btn" data-legend-toggle="active" aria-pressed="false">
+        <span class="legend-icon active" aria-hidden="true"></span>
+        <span>Active</span>
+      </button>
+      <button type="button" class="legend-btn" data-legend-toggle="inactive" aria-pressed="false">
+        <span class="legend-icon inactive" aria-hidden="true"></span>
+        <span>Not active</span>
+      </button>
+    </div>
+    <div id="summary-bar"></div>
+  </section>
+  <section class="activity-explainer">
+    <p class="activity-text">
+      we classify channels into <strong>activity bands</strong> based on their
+      <code>last_upload_date</code>. activity is measured using the
+      last video date in <strong>2025</strong>: if a channel uploads at least
+      one video in 2025, we treat it as <strong>active</strong>; otherwise,
+      it is considered <strong>not active</strong>.
+    </p>
+  </section>
+</div>
+
+<!-- tooltip container -->
+<div id="hover-tooltip" class="hover-tooltip"></div>
+
+<script>
+  const CONFIG = {
+    "DATA": [
+      { "id": "Music", "label": "Music", "active": 14437, "not_active": 9848 },
+      { "id": "Entertainment", "label": "Entertainment", "active": 12762, "not_active": 10189 },
+      { "id": "Gaming", "label": "Gaming", "active": 10797, "not_active": 9346 },
+      { "id": "People & Blogs", "label": "People & Blogs", "active": 9397, "not_active": 9016 },
+      { "id": "Howto & Style", "label": "Howto & Style", "active": 7657, "not_active": 4218 },
+      { "id": "Education", "label": "Education", "active": 5373, "not_active": 2430 },
+      { "id": "Film & Animation", "label": "Film & Animation", "active": 3477, "not_active": 3398 },
+      { "id": "Sports", "label": "Sports", "active": 3486, "not_active": 1662 },
+      { "id": "Science & Technology", "label": "Science & Technology", "active": 3218, "not_active": 1646 },
+      { "id": "Comedy", "label": "Comedy", "active": 2091, "not_active": 1676 },
+      { "id": "Autos & Vehicles", "label": "Autos & Vehicles", "active": 2643, "not_active": 1062 },
+      { "id": "News & Politics", "label": "News & Politics", "active": 1638, "not_active": 625 },
+      { "id": "Travel & Events", "label": "Travel & Events", "active": 1421, "not_active": 568 },
+      { "id": "Pets & Animals", "label": "Pets & Animals", "active": 788, "not_active": 504 },
+      { "id": "Nonprofits & Activism", "label": "Nonprofits & Activism", "active": 323, "not_active": 646 }
+    ]
+  };
+
+  const DATA = CONFIG.DATA || [];
+  const YOUTUBE_SEARCH = "https://www.youtube.com/results?search_query=";
+
+  function buildSummary() {
+    const container = document.getElementById("summary-bar");
+    if (!container) return;
+    container.innerHTML = "";
+
+    const rows = DATA.map(d => {
+      const active = d.active || 0;
+      const notActive = d.not_active || d.inactive || 0;
+      const total = active + notActive || 1;
+      const pctActive = (active / total) * 100;
+      const pctInactive = (notActive / total) * 100;
+      return {
+        id: d.id,
+        label: d.label,
+        active,
+        notActive,
+        total,
+        pctActive,
+        pctInactive
+      };
+    });
+
+    rows.sort((a, b) => b.pctActive - a.pctActive);
+
+    rows.forEach(r => {
+      const rowEl = document.createElement("div");
+      rowEl.className = "summary-row";
+
+      const iconLink = document.createElement("a");
+      iconLink.className = "summary-icon";
+      iconLink.href = `${YOUTUBE_SEARCH}${encodeURIComponent(r.label)}`;
+      iconLink.target = "_blank";
+      iconLink.rel = "noreferrer noopener";
+      iconLink.setAttribute("aria-label", `Search YouTube for ${r.label} channels`);
+
+      const labelEl = document.createElement("div");
+      labelEl.className = "summary-label";
+      labelEl.textContent = r.label;
+
+      const barEl = document.createElement("div");
+      barEl.className = "summary-bar";
+
+      const tooltipText = `${r.label}\nActive: ${r.active.toLocaleString()} channels (${r.pctActive.toFixed(1)}%)\nNot active: ${r.notActive.toLocaleString()} channels (${r.pctInactive.toFixed(1)}%)`;
+
+      // active segment
+      const segActive = document.createElement("div");
+      segActive.className = "summary-seg active";
+      segActive.style.width = r.pctActive + "%";
+      segActive.dataset.align = "left";
+      const spanA = document.createElement("span");
+      spanA.textContent = `${r.pctActive.toFixed(0)}%`;
+      segActive.appendChild(spanA);
+      if (r.pctActive < 8) segActive.classList.add("small");
+
+      // not active segment
+      const segInactive = document.createElement("div");
+      segInactive.className = "summary-seg inactive";
+      segInactive.style.width = r.pctInactive + "%";
+      segInactive.dataset.align = "right";
+      const spanC = document.createElement("span");
+      spanC.textContent = `${r.pctInactive.toFixed(0)}%`;
+      segInactive.appendChild(spanC);
+      if (r.pctInactive < 8) segInactive.classList.add("small");
+
+      barEl.appendChild(segActive);
+      barEl.appendChild(segInactive);
+
+      rowEl.dataset.tooltip = tooltipText;
+      rowEl.appendChild(iconLink);
+      rowEl.appendChild(labelEl);
+      rowEl.appendChild(barEl);
+
+      container.appendChild(rowEl);
+    });
+
+    attachHoverTooltips();
+  }
+
+
+  function attachHoverTooltips() {
+    const tooltip = document.getElementById("hover-tooltip");
+    const rows = document.querySelectorAll(".summary-row");
+
+    rows.forEach(row => {
+      row.addEventListener("mousemove", (e) => {
+        const text = row.dataset.tooltip || "";
+        tooltip.textContent = text;
+        tooltip.style.opacity = "1";
+
+        const padding = 10;
+        let x = e.clientX + padding;
+        let y = e.clientY + padding;
+
+        const rect = tooltip.getBoundingClientRect();
+        const vw = window.innerWidth;
+        const vh = window.innerHeight;
+
+        if (x + rect.width + padding > vw) {
+          x = e.clientX - rect.width - padding;
+        }
+        if (y + rect.height + padding > vh) {
+          y = e.clientY - rect.height - padding;
+        }
+
+        tooltip.style.left = `${x}px`;
+        tooltip.style.top = `${y}px`;
+      });
+
+      row.addEventListener("mouseleave", () => {
+        tooltip.style.opacity = "0";
+      });
+    });
+  }
+
+  function initLegendToggle() {
+    const legendButtons = document.querySelectorAll("[data-legend-toggle]");
+    if (!legendButtons.length) return;
+
+    let highlightedType = null;
+
+    const updateHighlight = () => {
+      legendButtons.forEach(btn => {
+        btn.setAttribute("aria-pressed", String(highlightedType === btn.dataset.legendToggle));
+      });
+
+      const segments = document.querySelectorAll(".summary-seg");
+      segments.forEach(seg => {
+        if (!highlightedType || seg.classList.contains(highlightedType)) {
+          seg.classList.remove("dimmed");
+        } else {
+          seg.classList.add("dimmed");
+        }
+      });
+    };
+
+    legendButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const type = btn.dataset.legendToggle;
+        highlightedType = highlightedType === type ? null : type;
+        updateHighlight();
+      });
+    });
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    buildSummary();
+    initLegendToggle();
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,1203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Fate of 137,000 YouTube Channels – Circular Grid</title>
+<style>
+  :root {
+    --bg: #050814;
+    --card: #0b1020;
+    --text: #f3f4f6;
+    --muted: #9ca3af;
+    --active: #ff4b4b;
+    --inactive: #4b5563;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #1f2933, #07101d);
+    color: var(--text);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    padding: 24px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .wrap {
+    width: min(1300px, 100%);
+  }
+
+  .subtitle {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 6px;
+    margin-bottom: 0;
+  }
+
+  .activity-explainer {
+    max-width: 900px;
+    margin: 0 auto 16px auto;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .activity-text {
+    margin: 0 0 8px;
+    line-height: 1.5;
+  }
+
+  .activity-text code {
+    font-size: 12px;
+    background: rgba(15, 23, 42, 0.9);
+    padding: 2px 5px;
+    border-radius: 4px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 22px;
+  }
+
+  .card {
+    background: radial-gradient(900px 600px at -10% 120%, rgba(148, 163, 184, .26), transparent 60%);
+    background-color: var(--card);
+    border-radius: 18px;
+    padding: 16px 18px 18px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+
+  .card-title {
+    font-size: 16px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .card-header-stats {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .header-stat {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .header-icon {
+    width: 16px;
+    height: 10px;
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: var(--active);
+  }
+
+  .header-icon::before {
+    content: "";
+    border-style: solid;
+    border-width: 3px 0 3px 5px;
+    border-color: transparent transparent transparent #ffffff;
+  }
+
+  .card-meta {
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .circle {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    max-width: 100%;
+    margin-inline: auto;
+  }
+
+  .icon {
+    position: absolute;
+    width: 26px;
+    height: 18px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 0 0 rgba(15, 23, 42, 0.4);
+    opacity: 0;
+    transform: scale(.7) translateY(4px);
+    transition: opacity .22s ease-out, transform .22s ease-out,
+                box-shadow .18s ease-out, transform .18s ease-out;
+  }
+
+  .icon--active   { background: var(--active); }
+  .icon--inactive { background: var(--inactive); }
+
+  .icon::before {
+    content: "";
+    border-style: solid;
+    border-width: 4px 0 4px 7px;
+    border-color: transparent transparent transparent #ffffff;
+    margin-left: 1px;
+  }
+
+  .icon.on {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+
+  .icon:hover {
+    box-shadow: 0 0 0 2px rgba(248, 250, 252, 0.5);
+    transform: scale(1.06) translateY(-1px);
+  }
+
+  .icon:focus {
+    outline: 2px solid rgba(248,250,252,0.18);
+    box-shadow: 0 0 0 3px rgba(248,250,252,0.12);
+    transform: scale(1.06) translateY(-1px);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="activity-explainer">
+    <p class="activity-text">
+      each icon represents about <strong>200 channels</strong>. red tiles are channels that are still
+      <strong>active</strong> in 2025 (data fetching date:2025-11-22), gray tiles show channels that have stopped uploading.
+      click a tile to open a sample channel in that category.
+    </p>
+    <p class="subtitle">
+      each icon ≈ 200 channels. click an icon to open a representative channel.
+    </p>
+  </section>
+
+  <div id="cards-grid" class="grid"></div>
+</div>
+
+<script>
+  const UNIT = 200;  // channels per icon
+
+const CONFIG = {
+  "DATA": [
+    {
+      "id": "Music",
+      "label": "Music",
+      "active": 14437,
+      "not_active": 9848
+    },
+    {
+      "id": "Entertainment",
+      "label": "Entertainment",
+      "active": 12762,
+      "not_active": 10189
+    },
+    {
+      "id": "Gaming",
+      "label": "Gaming",
+      "active": 10797,
+      "not_active": 9346
+    },
+    {
+      "id": "People & Blogs",
+      "label": "People & Blogs",
+      "active": 9397,
+      "not_active": 9016
+    },
+    {
+      "id": "Howto & Style",
+      "label": "Howto & Style",
+      "active": 7657,
+      "not_active": 4218
+    },
+    {
+      "id": "Education",
+      "label": "Education",
+      "active": 5373,
+      "not_active": 2430
+    },
+    {
+      "id": "Film & Animation",
+      "label": "Film & Animation",
+      "active": 3477,
+      "not_active": 3398
+    },
+    {
+      "id": "Sports",
+      "label": "Sports",
+      "active": 3486,
+      "not_active": 1662
+    },
+    {
+      "id": "Science & Technology",
+      "label": "Science & Technology",
+      "active": 3218,
+      "not_active": 1646
+    },
+    {
+      "id": "Comedy",
+      "label": "Comedy",
+      "active": 2091,
+      "not_active": 1676
+    },
+    {
+      "id": "Autos & Vehicles",
+      "label": "Autos & Vehicles",
+      "active": 2643,
+      "not_active": 1062
+    },
+    {
+      "id": "News & Politics",
+      "label": "News & Politics",
+      "active": 1638,
+      "not_active": 625
+    },
+    {
+      "id": "Travel & Events",
+      "label": "Travel & Events",
+      "active": 1421,
+      "not_active": 568
+    },
+    {
+      "id": "Pets & Animals",
+      "label": "Pets & Animals",
+      "active": 788,
+      "not_active": 504
+    },
+    {
+      "id": "Nonprofits & Activism",
+      "label": "Nonprofits & Activism",
+      "active": 323,
+      "not_active": 646
+    }
+  ],
+  "LINKS": {
+    "Music": {
+      "active": [
+        "https://www.youtube.com/channel/UCq-Fj5jknLsUf-MWSy4_brA",
+        "https://www.youtube.com/channel/UCFFbwnve3yF62-tVXkTyHqg",
+        "https://www.youtube.com/channel/UC0C-w0YjGpqDXGB8IHb662A",
+        "https://www.youtube.com/channel/UCfM3zsQsOnfWNUppiycmBuw",
+        "https://www.youtube.com/channel/UC9CoOnJkIBMdeijd9qYoT_g",
+        "https://www.youtube.com/channel/UCqECaJ8Gagnn7YCbPEzWH6g",
+        "https://www.youtube.com/channel/UCJrOtniJ0-NWz37R30urifQ",
+        "https://www.youtube.com/channel/UC22nIfOTM7KLIQuFGMKzQbg",
+        "https://www.youtube.com/channel/UCP6uH_XlsxrXwZQ4DlqbqPg",
+        "https://www.youtube.com/channel/UC56gTxNs4f9xZ7Pa2i5xNzg",
+        "https://www.youtube.com/channel/UCa10nxShhzNrCE1o2ZOPztg",
+        "https://www.youtube.com/channel/UCBVjMGOIkavEAhyqpxJ73Dw",
+        "https://www.youtube.com/channel/UC2xskkQVFEpLcGFnNSLQY0A",
+        "https://www.youtube.com/channel/UC-8Q-hLdECwQmaWNwXitYDw",
+        "https://www.youtube.com/channel/UCpDJl2EmP7Oh90Vylx0dZtA",
+        "https://www.youtube.com/channel/UCOsyDsO5tIt-VZ1iwjdQmew",
+        "https://www.youtube.com/channel/UC3MLnJtqc_phABBriLRhtgQ",
+        "https://www.youtube.com/channel/UC9TO_oo4c_LrOiKNaY6aysA",
+        "https://www.youtube.com/channel/UC_aEa8K-EOJ3D6gOs7HcyNg",
+        "https://www.youtube.com/channel/UCAvCL8hyXjSUHKEGuUPr1BA",
+        "https://www.youtube.com/channel/UCt-k6JwNWHMXDBGm9IYHdsg",
+        "https://www.youtube.com/channel/UCaayLD9i5x4MmIoVZxXSv_g",
+        "https://www.youtube.com/channel/UC-yXuc1__OzjwpsJPlxYUCQ",
+        "https://www.youtube.com/channel/UCM9r1xn6s30OnlJWb-jc3Sw",
+        "https://www.youtube.com/channel/UC1l7wYrva1qCH-wgqcHaaRg",
+        "https://www.youtube.com/channel/UCiGm_E4ZwYSHV3bcW1pnSeQ",
+        "https://www.youtube.com/channel/UCEf_Bc-KVd7onSeifS3py9g",
+        "https://www.youtube.com/channel/UCT9zcQNlyht7fRlcjmflRSA",
+        "https://www.youtube.com/channel/UC4rasfm9J-X4jNl9SvXp8xA",
+        "https://www.youtube.com/channel/UCmBA_wu8xGg1OfOkfW13Q0Q",
+        "https://www.youtube.com/channel/UCq3Ci-h945sbEYXpVlw7rJg",
+        "https://www.youtube.com/channel/UCuHzBCaKmtaLcRAOoazhCPA",
+        "https://www.youtube.com/channel/UCGnjeahCJW1AF34HBmQTJ-Q",
+        "https://www.youtube.com/channel/UCVp3nfGRxmMadNDuVbJSk8A",
+        "https://www.youtube.com/channel/UCByOQJjav0CUDwxCk-jVNRQ",
+        "https://www.youtube.com/channel/UC_TVqp_SyG6j5hG-xVRy95A",
+        "https://www.youtube.com/channel/UCcvNYxWXR_5TjVK7cSCdW-g",
+        "https://www.youtube.com/channel/UC2pmfLm7iq6Ov1UwYrWYkZA",
+        "https://www.youtube.com/channel/UC0VOyT2OCBKdQhF3BAbZ-1g",
+        "https://www.youtube.com/channel/UC4NALVCmcmL5ntpV0thoH6w",
+        "https://www.youtube.com/channel/UC-6czyMkxDi8E8akPl0c7_w",
+        "https://www.youtube.com/channel/UCLp8RBhQHu9wSsq62j_Md6A",
+        "https://www.youtube.com/channel/UCcYrdFJF7hmPXRNaWdrko4w",
+        "https://www.youtube.com/channel/UCtW7qWjpCZ8zps-Cf2NF26w",
+        "https://www.youtube.com/channel/UCmv1CLT6ZcFdTJMHxaR9XeA",
+        "https://www.youtube.com/channel/UCIjYyZxkFucP_W-tmXg_9Ow",
+        "https://www.youtube.com/channel/UCWi_65E_L8tQZ34C6wVAlpQ",
+        "https://www.youtube.com/channel/UCPHjpfnnGklkRBBTd0k6aHg",
+        "https://www.youtube.com/channel/UC_x8HoD18XJkILQBreVENUQ",
+        "https://www.youtube.com/channel/UC0WP5P-ufpRfjbNrmOWwLBQ",
+        "https://www.youtube.com/channel/UC6pjHMC4QXMi4llCCjtDXWg",
+        "https://www.youtube.com/channel/UCN9HPn2fq-NL8M5_kp4RWZQ",
+        "https://www.youtube.com/channel/UCgwv23FVv3lqh567yagXfNg",
+        "https://www.youtube.com/channel/UCwppdrjsBPAZg5_cUwQjfMQ",
+        "https://www.youtube.com/channel/UCjK8ORC71kwyj1DWFwril_A",
+        "https://www.youtube.com/channel/UCN1hnUccO4FD5WfM7ithXaw",
+        "https://www.youtube.com/channel/UCDPM_n1atn2ijUwHd0NNRQw",
+        "https://www.youtube.com/channel/UCeLHszkByNZtPKcaVXOCOQQ",
+        "https://www.youtube.com/channel/UClZF7OsrECe3t_ADrjZEh_Q",
+        "https://www.youtube.com/channel/UCZU9T1ceaOgwfLRq7OKFU4Q",
+        "https://www.youtube.com/channel/UCgtNC51EUSgcZ6kKyVoPxKA",
+        "https://www.youtube.com/channel/UCyxbZF7_PK4nLiexj0kkCNg",
+        "https://www.youtube.com/channel/UCzI7wZyqk7jpXWT_MILjepw",
+        "https://www.youtube.com/channel/UClkRzsdvg7_RKVhwDwiDZOA",
+        "https://www.youtube.com/channel/UC65afEgL62PGFWXY7n6CUbA",
+        "https://www.youtube.com/channel/UCgc00bfF_PvO_2AvqJZHXFg",
+        "https://www.youtube.com/channel/UC5H_KXkPbEsGs0tFt8R35mA",
+        "https://www.youtube.com/channel/UCv8nzwVPQDRjkPCkEsOdEwA",
+        "https://www.youtube.com/channel/UCqjjyPUghDSSKFBABM_CXMw",
+        "https://www.youtube.com/channel/UCaHNFIob5Ixv74f5on3lvIw",
+        "https://www.youtube.com/channel/UC3zVeAaoPEN1Tu25dW3G2Ig",
+        "https://www.youtube.com/channel/UCmdY1pHB-KbFYxOyhwjVeQw"
+      ],
+      "not_active": [
+        "https://www.youtube.com/channel/UCb2HGwORFBo94DmRx4oLzow",
+        "https://www.youtube.com/channel/UCANLZYMidaCbLQFWXBC95Jg",
+        "https://www.youtube.com/channel/UC20vb-R_px4CguHzzBPhoyQ",
+        "https://www.youtube.com/channel/UCbW18JZRgko_mOGm5er8Yzg",
+        "https://www.youtube.com/channel/UCsRM0YB_dabtEPGPTKo-gcw",
+        "https://www.youtube.com/channel/UC3jOd7GUMhpgJRBhiLzuLsg",
+        "https://www.youtube.com/channel/UComP_epzeKzvBX156r6pm1Q",
+        "https://www.youtube.com/channel/UC9zX2xZIJ4cnwRsgBpHGvMg",
+        "https://www.youtube.com/channel/UCaum3Yzdl3TbBt8YUeUGZLQ",
+        "https://www.youtube.com/channel/UCMtpmPs9end-dTNwVq16g4Q",
+        "https://www.youtube.com/channel/UCmKdSrwf1e8coqAzUsrVHZw",
+        "https://www.youtube.com/channel/UC09d82usokACH1z5YeKnfiA",
+        "https://www.youtube.com/channel/UCVWA4btXTFru9qM06FceSag",
+        "https://www.youtube.com/channel/UCE5yTn9ljzSnC_oMp9Jnckg",
+        "https://www.youtube.com/channel/UC9YcTIQuhwgoOQqYMKYqW9A",
+        "https://www.youtube.com/channel/UCulYu1HEIa7f70L2lYZWHOw",
+        "https://www.youtube.com/channel/UC2kTZB_yeYgdAg4wP2tEryA",
+        "https://www.youtube.com/channel/UCXJDX1KK6t121Z9FLhu5o2A",
+        "https://www.youtube.com/channel/UCx1f1u4XlFFr0YgqF3wB4lQ",
+        "https://www.youtube.com/channel/UCC6XuDtfec7DxZdUa7ClFBQ",
+        "https://www.youtube.com/channel/UCk78ZcA6kflEvBR0UrGDH0Q",
+        "https://www.youtube.com/channel/UCkitABalXafr-NqceQdDXtg",
+        "https://www.youtube.com/channel/UCE5910LWuMTGWmIJ_WE3KvA",
+        "https://www.youtube.com/channel/UCy5FUarBYUHFpPtYVuvzgcA",
+        "https://www.youtube.com/channel/UCOjEHmBKwdS7joWpW0VrXkg",
+        "https://www.youtube.com/channel/UC23ROAqt3prjnS89uHwcaaQ",
+        "https://www.youtube.com/channel/UCk0wwaFCIkxwSfi6gpRqQUw",
+        "https://www.youtube.com/channel/UCudKvbd6gvbm5UCYRk5tZKA",
+        "https://www.youtube.com/channel/UCcdOEjqjiVAnUtEFZIRTlHg",
+        "https://www.youtube.com/channel/UCJN4c_lZorb_0eyIP_tSS3A",
+        "https://www.youtube.com/channel/UC0sL86jDLgs2fGRD-XBnPQA",
+        "https://www.youtube.com/channel/UCDgUAAHgsV2fFZQm2fIWBnA",
+        "https://www.youtube.com/channel/UCyjuFsbclXyntSRMBAILzbw",
+        "https://www.youtube.com/channel/UC9snVocfclGhLbFuSgrEfMw",
+        "https://www.youtube.com/channel/UCXIyz409s7bNWVcM-vjfdVA",
+        "https://www.youtube.com/channel/UCS9Lijwamx03o16qbx2gEjw",
+        "https://www.youtube.com/channel/UChWmYNTHQpLmJdkScwNrgcA",
+        "https://www.youtube.com/channel/UC-KTRBl9_6AX10-Y7IKwKdw",
+        "https://www.youtube.com/channel/UC5cqeAzY9MJBiSuAtOlv6LQ",
+        "https://www.youtube.com/channel/UCnc6db-y3IU7CkT_yeVXdVg",
+        "https://www.youtube.com/channel/UCSBilL6FoaKp-RsfYvseHBQ",
+        "https://www.youtube.com/channel/UCFzm6oAGFmmZfkrzQ5wATSQ",
+        "https://www.youtube.com/channel/UCqX8hO4JWM6IJfEabbZmhUw",
+        "https://www.youtube.com/channel/UCgBN6eQyZPnsApiL1QW44Hg",
+        "https://www.youtube.com/channel/UC1iqebKNH36JIdBIjEy8-iQ",
+        "https://www.youtube.com/channel/UCU8hEdjK8u27TM7KA8JVIEw",
+        "https://www.youtube.com/channel/UCtGdOn3XSNWVK54P13jDoCg",
+        "https://www.youtube.com/channel/UChpJbg7zMbi5jx9Gdjaxa9g",
+        "https://www.youtube.com/channel/UCe3I9BAVCzf9oACYU1EtrxA"
+      ]
+    },
+    "Entertainment": {
+      "active": [
+        "https://www.youtube.com/channel/UCpEhnqL0y41EpW2TvWAHD7Q",
+        "https://www.youtube.com/channel/UCIwFjwMjI0y7PDBVEO9-bkQ",
+        "https://www.youtube.com/channel/UCppHT7SZKKvar4Oc9J4oljQ",
+        "https://www.youtube.com/channel/UCYvmuw-JtVrTZQ-7Y4kd63Q",
+        "https://www.youtube.com/channel/UCk8GzjMOrta8yxDcKfylJYw",
+        "https://www.youtube.com/channel/UCp0hYYBW6IMayGgR-WeoCvQ",
+        "https://www.youtube.com/channel/UCcgqSM4YEo5vVQpqwN-MaNw",
+        "https://www.youtube.com/channel/UCBR8-60-B28hp2BmDPdntcQ",
+        "https://www.youtube.com/channel/UCvlE5gTbOvjiolFlEm-c_Ow",
+        "https://www.youtube.com/channel/UCKqx9r4mrFglauNBJc1L_eg",
+        "https://www.youtube.com/channel/UCX6OQ3DkcsbYNE6H8uQQuVA",
+        "https://www.youtube.com/channel/UC6-F5tO8uklgE9Zy8IvbdFw",
+        "https://www.youtube.com/channel/UCstEtN0pgOmCf02EdXsGChw",
+        "https://www.youtube.com/channel/UChGJGhZ9SOOHvBB0Y4DOO_w",
+        "https://www.youtube.com/channel/UCaWd5_7JhbQBe4dknZhsHJg",
+        "https://www.youtube.com/channel/UCVtFOytbRpEvzLjvqGG5gxQ",
+        "https://www.youtube.com/channel/UC55IWqFLDH1Xp7iu1_xknRA",
+        "https://www.youtube.com/channel/UCX52tYZiEh_mHoFja3Veciw",
+        "https://www.youtube.com/channel/UCG8rbF3g2AMX70yOd8vqIZg",
+        "https://www.youtube.com/channel/UC0v-tlzsn0QZwJnkiaUSJVQ",
+        "https://www.youtube.com/channel/UC7TTtOQKMXTWWMtWQMIgVSA",
+        "https://www.youtube.com/channel/UCF1JIbMUs6uqoZEY1Haw0GQ",
+        "https://www.youtube.com/channel/UCmL1WlDI8UkXDXCXcBQN9CA",
+        "https://www.youtube.com/channel/UCw8ZhLPdQ0u_Y-TLKd61hGA",
+        "https://www.youtube.com/channel/UCweOkPb1wVVH0Q0Tlj4a5Pw",
+        "https://www.youtube.com/channel/UCwD4x63A9KC7Si2RuSfg-SA",
+        "https://www.youtube.com/channel/UCpB959t8iPrxQWj7G6n0ctQ",
+        "https://www.youtube.com/channel/UC_vcKmg67vjMP7ciLnSxSHQ",
+        "https://www.youtube.com/channel/UCucot-Zp428OwkyRm2I7v2Q",
+        "https://www.youtube.com/channel/UCEKWXRsfUHkan-D_ljU8Asw",
+        "https://www.youtube.com/channel/UC4PooiX37Pld1T8J5SYT-SQ",
+        "https://www.youtube.com/channel/UCgFXm4TI8htWmCyJ6cVPG_A",
+        "https://www.youtube.com/channel/UCZkURf9tDolFOeuw_4RD7XQ",
+        "https://www.youtube.com/channel/UCa6vGFO9ty8v5KZJXQxdhaw",
+        "https://www.youtube.com/channel/UC_W0_Nv-3rxpWVvosddhrPw",
+        "https://www.youtube.com/channel/UCMu5gPmKp5av0QCAajKTMhw",
+        "https://www.youtube.com/channel/UCMNmwqCtCSpftrbvR3KkHDA",
+        "https://www.youtube.com/channel/UCCI5Xsd_gCbZb9eTeOf9FdQ",
+        "https://www.youtube.com/channel/UCUtZaxDF3hD5VK4xRYFBePQ",
+        "https://www.youtube.com/channel/UChM5Ff2yVeIZ16EWiB081cg",
+        "https://www.youtube.com/channel/UCHwBjRoGO1V-H8QYXjSVHkQ",
+        "https://www.youtube.com/channel/UCdxi8d8qRsRyUi2ERYjYb-w",
+        "https://www.youtube.com/channel/UCT2X19JJaJGUN7mrYuImANQ",
+        "https://www.youtube.com/channel/UCilwZiBBfI9X6yiZRzWty8Q",
+        "https://www.youtube.com/channel/UCvC4D8onUfXzvjTOM-dBfEA",
+        "https://www.youtube.com/channel/UCn7dB9UMTBDjKtEKBy_XISw",
+        "https://www.youtube.com/channel/UCUK0HBIBWgM2c4vsPhkYY4w",
+        "https://www.youtube.com/channel/UC_hSjGOO67A6gIDUcyuv_8A",
+        "https://www.youtube.com/channel/UCplkk3J5wrEl0TNrthHjq4Q",
+        "https://www.youtube.com/channel/UCpVm7bg6pXKo1Pr6k5kxG9A",
+        "https://www.youtube.com/channel/UCelMeixAOTs2OQAAi9wU8-g",
+        "https://www.youtube.com/channel/UCHEf6T_gVq4tlW5i91ESiWg",
+        "https://www.youtube.com/channel/UCpcsv3Ow-8IhoUGDEfPetsQ",
+        "https://www.youtube.com/channel/UCfRNJiafEm1LBBGFTTq4cXw",
+        "https://www.youtube.com/channel/UC5nc_ZtjKW1htCVZVRxlQAQ",
+        "https://www.youtube.com/channel/UCqdGW_m8Rim4FeMM29keDEg",
+        "https://www.youtube.com/channel/UCn8zNIfYAQNdrFRrr8oibKw",
+        "https://www.youtube.com/channel/UCvpDeGlR5wLP9Z3Tb6K0Xfg",
+        "https://www.youtube.com/channel/UCNdqe5zJ6k-i7XKoYWA4Z2g",
+        "https://www.youtube.com/channel/UCS3VJQpFmLbBd5qsWci9KPA",
+        "https://www.youtube.com/channel/UCfLuMSIDmeWRYpuCQL0OJ6A",
+        "https://www.youtube.com/channel/UCIEv3lZ_tNXHzL3ox-_uUGQ",
+        "https://www.youtube.com/channel/UCWr4vlkj5xXQ4bSXNeTT2AA",
+        "https://www.youtube.com/channel/UC6sSkkemzPjmrzS0Y0V_2zw"
+      ],
+      "not_active": [
+        "https://www.youtube.com/channel/UCSAUGyc_xA8uYzaIVG6MESQ",
+        "https://www.youtube.com/channel/UCJ0uqCI0Vqr2Rrt1HseGirg",
+        "https://www.youtube.com/channel/UCqwUrj10mAEsqezcItqvwEw",
+        "https://www.youtube.com/channel/UCjtLOfx1yt1NlnFIDyAX3Ug",
+        "https://www.youtube.com/channel/UCfaZw8XH_zmAVkBst_MPD6w",
+        "https://www.youtube.com/channel/UCDo9msNItILnyF_Y2eHaNQg",
+        "https://www.youtube.com/channel/UCnOVVuoLJ_1YY8A0V802wHA",
+        "https://www.youtube.com/channel/UCc6W7efUSkd9YYoxOnctlFg",
+        "https://www.youtube.com/channel/UCwjoPtSoNLAoX2sLBaKLYng",
+        "https://www.youtube.com/channel/UC1KPy3cAAj0i0RIFC_SzjMg",
+        "https://www.youtube.com/channel/UCzeB_0FNcPIyUSjL_TL5lEw",
+        "https://www.youtube.com/channel/UC-0D1RlSzcvBoODCKSoLl2g",
+        "https://www.youtube.com/channel/UCkK0XNKXOvFkH66AS6jrCCg",
+        "https://www.youtube.com/channel/UCXLw_h6bFfPOKbDJXDUjA-Q",
+        "https://www.youtube.com/channel/UC8gKWMFvVenlVjgysNojYQg",
+        "https://www.youtube.com/channel/UC64guZp8DXzqrIQ5OPedviw",
+        "https://www.youtube.com/channel/UCWljxewHlJE3M7U_6_zFNyA",
+        "https://www.youtube.com/channel/UCGCVyTWogzQ4D170BLy2Arw",
+        "https://www.youtube.com/channel/UCAaUVu8vYss8zCaC0WuA9jA",
+        "https://www.youtube.com/channel/UCYjk_zY-iYR8YNfJmuzd70A",
+        "https://www.youtube.com/channel/UCMkfcY0uNTa7hccthSooPnQ",
+        "https://www.youtube.com/channel/UC3q2YwNGj7ktNf70PqMW72g",
+        "https://www.youtube.com/channel/UCQcf-d098cNGGl3bPGGjHBg",
+        "https://www.youtube.com/channel/UCEPTp5WMAzjh9mOrKUwRLmQ",
+        "https://www.youtube.com/channel/UCgJjd8J5moTQSwnCIx4WSIw",
+        "https://www.youtube.com/channel/UCX2y61A3llrNxXBHg2EtGQw",
+        "https://www.youtube.com/channel/UCGTxCNqN5xQx8UnJ4y8cT0w",
+        "https://www.youtube.com/channel/UCfhmwml--SRANrIVWxEM-SQ",
+        "https://www.youtube.com/channel/UCd6xjtAsyhN6HfSw6lUSVMA",
+        "https://www.youtube.com/channel/UCF5UrKfIq5ap9skGOgm4W7w",
+        "https://www.youtube.com/channel/UClG3xO5ruPVabweBBOzZlrQ",
+        "https://www.youtube.com/channel/UCwrfRCqA9wvqp9zCvzLl6Sw",
+        "https://www.youtube.com/channel/UCI4I6ldZ0jWe7vXpUVeVcpg",
+        "https://www.youtube.com/channel/UC2rd5cWeATWXJv-dPKGoVqA",
+        "https://www.youtube.com/channel/UCej8z9NGaA9Hdd8k5hueXKw",
+        "https://www.youtube.com/channel/UCtg5C-d_3rPUgMaxr285mQQ",
+        "https://www.youtube.com/channel/UCQ_RJNjvGLGLoxU6pPodvkQ",
+        "https://www.youtube.com/channel/UCOjRAkq9NNSPBgxljkFDAGg",
+        "https://www.youtube.com/channel/UC2LOY_zd1ZAc1kZPyzoqhMQ",
+        "https://www.youtube.com/channel/UC4OecQOzxkmaXZQfAPcifkA",
+        "https://www.youtube.com/channel/UCAVns3lt0t7w8lmUZQFlvrA",
+        "https://www.youtube.com/channel/UCeDzVIfXdWZe7mCFduIRaFA",
+        "https://www.youtube.com/channel/UCkAUThuNDCUG1RMRiCZTm5g",
+        "https://www.youtube.com/channel/UCQjh-JVPNWfY-KsZS3RgRHw",
+        "https://www.youtube.com/channel/UCMR4Rk-v2jDm1gf_xTgRMfg",
+        "https://www.youtube.com/channel/UCVE91qOw9Ke8EsK95lMuF2Q",
+        "https://www.youtube.com/channel/UC0CG8Kj2DqFc9bJld0hJKBA",
+        "https://www.youtube.com/channel/UChoQQRDf-zU1h6_YjKkWvdw",
+        "https://www.youtube.com/channel/UCPFVhmjjSkFhfstm2LghZIg",
+        "https://www.youtube.com/channel/UCglYq701IltaH0Fk-z3UsSA",
+        "https://www.youtube.com/channel/UCyWkpcB25Hr2oN7uRlsNg5g"
+      ]
+    },
+    "Gaming": {
+      "active": [
+        "https://www.youtube.com/channel/UC-lHJZR3Gqxm24_Vd_AJ5Yw",
+        "https://www.youtube.com/channel/UCEdvpU2pFRCVqU6yIPyTpMQ",
+        "https://www.youtube.com/channel/UCKqH_9mk1waLgBiL2vT5b9g",
+        "https://www.youtube.com/channel/UC7_YxT-KID8kRbqZo7MyscQ",
+        "https://www.youtube.com/channel/UCYzPXprvl5Y-Sf0g4vX-m6g",
+        "https://www.youtube.com/channel/UCAW-NpUFkMyCNrvRSSGIvDQ",
+        "https://www.youtube.com/channel/UCS5Oz6CHmeoF7vSad0qqXfw",
+        "https://www.youtube.com/channel/UCpGdL9Sn3Q5YWUH2DVUW1Ug",
+        "https://www.youtube.com/channel/UCYVinkwSX7szARULgYpvhLw",
+        "https://www.youtube.com/channel/UCD1Em4q90ZUK2R5HKesszJg",
+        "https://www.youtube.com/channel/UC0DZmkupLYwc0yDsfocLh0A",
+        "https://www.youtube.com/channel/UCKy1dAqELo0zrOtPkf0eTMw",
+        "https://www.youtube.com/channel/UCke6I9N4KfC968-yRcd5YRg",
+        "https://www.youtube.com/channel/UCh7EqOZt7EvO2osuKbIlpGg",
+        "https://www.youtube.com/channel/UCClNRixXlagwAd--5MwJKCw",
+        "https://www.youtube.com/channel/UCC-RHF_77zQdKcA75hr5oTQ",
+        "https://www.youtube.com/channel/UCo_IB5145EVNcf8hw1Kku7w",
+        "https://www.youtube.com/channel/UCw1SQ6QRRtfAhrN_cjkrOgA",
+        "https://www.youtube.com/channel/UC9lSZSYpDDE18hoFA7YlBpw",
+        "https://www.youtube.com/channel/UCm3hAp1m1xlAz0ve_EKAo4g",
+        "https://www.youtube.com/channel/UC2t5bjwHdUX4vM2g8TRDq5g",
+        "https://www.youtube.com/channel/UCpqXJOEqGS-TCnazcHCo0rA",
+        "https://www.youtube.com/channel/UCshoKvlZGZ20rVgazZp5vnQ",
+        "https://www.youtube.com/channel/UC1ieoHqKW-yYgDhLHIcx28w",
+        "https://www.youtube.com/channel/UCj5i58mCkAREDqFWlhaQbOw",
+        "https://www.youtube.com/channel/UC-2Y8dQb0S6DtpxNgAKoJKA",
+        "https://www.youtube.com/channel/UC2wKfjlioOCLP4xQMOWNcgg",
+        "https://www.youtube.com/channel/UCWZmCMB7mmKWcXJSIPRhzZw",
+        "https://www.youtube.com/channel/UCd534c_ehOvrLVL2v7Nl61w",
+        "https://www.youtube.com/channel/UCKYb5XBe-5OSEgLijLSoDtw",
+        "https://www.youtube.com/channel/UCh715KhLM7vbOwozSXLWI_w",
+        "https://www.youtube.com/channel/UCJ2ZDzMRgSrxmwphstrm8Ww",
+        "https://www.youtube.com/channel/UCGmnsW623G1r-Chmo5RB4Yw",
+        "https://www.youtube.com/channel/UCH-_hzb2ILSCo9ftVSnrCIQ",
+        "https://www.youtube.com/channel/UClG8odDC8TS6Zpqk9CGVQiQ",
+        "https://www.youtube.com/channel/UC-kOXc3gBwksVfmndSEz7jg",
+        "https://www.youtube.com/channel/UC_F8DoJf9MZogEOU51TpTbQ",
+        "https://www.youtube.com/channel/UCvPW1W4WlpTgNezZzwIstLA",
+        "https://www.youtube.com/channel/UCqg2eLFNUu3QN3dttNeOWkw",
+        "https://www.youtube.com/channel/UCgrA08uO7JR9h6Xr-ONjPkA",
+        "https://www.youtube.com/channel/UCrSgaO6xOY8YV1EoCbD51HA",
+        "https://www.youtube.com/channel/UCGIY_O-8vW4rfX98KlMkvRg",
+        "https://www.youtube.com/channel/UC9YydG57epLqxA9cTzZXSeQ",
+        "https://www.youtube.com/channel/UCsvn_Po0SmunchJYOWpOxMg",
+        "https://www.youtube.com/channel/UCvwgF_0NOZe2vN4Q3g1bY-A",
+        "https://www.youtube.com/channel/UCa7507M549AiDKN8J89tn5A",
+        "https://www.youtube.com/channel/UCdJdEguB1F1CiYe7OEi3SBg",
+        "https://www.youtube.com/channel/UCq54nlcoX-0pLcN5RhxHyug",
+        "https://www.youtube.com/channel/UCoz3Kpu5lv-ALhR4h9bDvcw",
+        "https://www.youtube.com/channel/UC4f1zAG2BTkfOQV4_nFbpBQ",
+        "https://www.youtube.com/channel/UCNvzD7Z-g64bPXxGzaQaa4g",
+        "https://www.youtube.com/channel/UCcWl6q7rcJ9WoF_Kwmxg23A",
+        "https://www.youtube.com/channel/UC9CuvdOVfMPvKCiwdGKL3cQ",
+        "https://www.youtube.com/channel/UCqNH56x9g4QYVpzmWTzqVYg"
+      ],
+      "not_active": [
+        "https://www.youtube.com/channel/UCKlhpmbHGxBE6uw9B_uLeqQ",
+        "https://www.youtube.com/channel/UCBw-Dz6wHRkxiXKCLoWqDzA",
+        "https://www.youtube.com/channel/UCOaMOXfe8EWH1GJyhqhXrAA",
+        "https://www.youtube.com/channel/UCNdpD9V0PIrH1glUJ6RG4-w",
+        "https://www.youtube.com/channel/UCZyxY8Q7xgUCXfFViWkjrSw",
+        "https://www.youtube.com/channel/UCLCmJiSbIoa_ZFiBOBDf6ZA",
+        "https://www.youtube.com/channel/UCEe076nFuVobN0bAsXK7ICw",
+        "https://www.youtube.com/channel/UCuj1Ms9_LCsQPSJ4p8nvOVA",
+        "https://www.youtube.com/channel/UCChwR7eLKtbl1KyI7VFASzQ",
+        "https://www.youtube.com/channel/UCQCnMFr8uHBaMTaNBhych_A",
+        "https://www.youtube.com/channel/UCxaVOVnhmT0-HCUv72jtOTA",
+        "https://www.youtube.com/channel/UCtb8P4rf_1n8KS8eZk_lNNw",
+        "https://www.youtube.com/channel/UCbJ9W-EexsJSMc4wMPOA9pA",
+        "https://www.youtube.com/channel/UC2nZMhZ2qG5-xpqb440WLYg",
+        "https://www.youtube.com/channel/UCNAz5Ut1Swwg6h6ysBtWFog",
+        "https://www.youtube.com/channel/UC_ItCy-BTDCULPpDPlieUKA",
+        "https://www.youtube.com/channel/UCC-uu-OqgYEx52KYQ-nJLRw",
+        "https://www.youtube.com/channel/UCCp4IWg4A_JLexo30Jlf-UQ",
+        "https://www.youtube.com/channel/UCoSNIVBEIX6EIateDDKVlBA",
+        "https://www.youtube.com/channel/UCxJf49T4iTO_jtzWX3rW_jg",
+        "https://www.youtube.com/channel/UCkxctb0jr8vwa4Do6c6su0Q",
+        "https://www.youtube.com/channel/UCije75lmV_7fVP7m4dJ7ZoQ",
+        "https://www.youtube.com/channel/UCyGteX4xK-ZO7u9GMB8gKfA",
+        "https://www.youtube.com/channel/UCdZX-aGH3AcJT_bQQyx6ZAA",
+        "https://www.youtube.com/channel/UCR0It5-1cif1cMKBUtUW8pg",
+        "https://www.youtube.com/channel/UCSdM6hW8PdqVve3H898ATow",
+        "https://www.youtube.com/channel/UCEHf6KUY7Zw7hlXQ7hDemwQ",
+        "https://www.youtube.com/channel/UC2D-GCxeE69hCUmRwISXABw",
+        "https://www.youtube.com/channel/UCUPwakTy_PtUBdY1HrgqaaA",
+        "https://www.youtube.com/channel/UCJM0ZIGPX2pad8IzopUkbIg",
+        "https://www.youtube.com/channel/UCTa6JUfYSSu-ELH4hlRdWpg",
+        "https://www.youtube.com/channel/UCmbnlwXAdGYACzvStDjquaA",
+        "https://www.youtube.com/channel/UCqJUX55akwq_spmYQGjiMOg",
+        "https://www.youtube.com/channel/UCny0sheaqkotZIb6BjfQGWQ",
+        "https://www.youtube.com/channel/UC2CAYseJlsa9Y6lGCQQOx4w",
+        "https://www.youtube.com/channel/UC5VnC5l4dkFR0oVaPL_en2A",
+        "https://www.youtube.com/channel/UCsr2PfJA9b-vM9qeDS4a_Qw",
+        "https://www.youtube.com/channel/UCu2yrDg7wROzElRGoLQH82A",
+        "https://www.youtube.com/channel/UCr6n2gOy_WwuXFm-YjC28GQ",
+        "https://www.youtube.com/channel/UCTwTF-woRHsXsmk4m798BkA",
+        "https://www.youtube.com/channel/UC1EBJfK7ltjYUFyzysKxr1g",
+        "https://www.youtube.com/channel/UCMxYQX1zaepCgmiSmwbT39w",
+        "https://www.youtube.com/channel/UCYz27J7fd8lK_FKKTal_I-g",
+        "https://www.youtube.com/channel/UCSDMmlBoH5wJrKm82DpqXDA",
+        "https://www.youtube.com/channel/UC7tHXQXWImq_0I3PCQ8Udaw",
+        "https://www.youtube.com/channel/UCqsBym4OHrzSp0Nq1eZoMIA",
+        "https://www.youtube.com/channel/UCL11siSgNXDxhYYNRh8CEew"
+      ]
+    },
+    "People & Blogs": {
+      "active": [
+        "https://www.youtube.com/channel/UCcgVECVN4OKV6DH1jLkqmcA",
+        "https://www.youtube.com/channel/UCpko_-a4wgz2u_DgDgd9fqA",
+        "https://www.youtube.com/channel/UCAuUUnT6oDeKwE6v1NGQxug",
+        "https://www.youtube.com/channel/UCNL1ZadSjHpjm4q9j2sVtOA",
+        "https://www.youtube.com/channel/UCmh5gdwCx6lN7gEC20leNVA",
+        "https://www.youtube.com/channel/UCBqFKDipsnzvJdt6UT0lMIg",
+        "https://www.youtube.com/channel/UCtinbF-Q-fVthA0qrFQTgXQ",
+        "https://www.youtube.com/channel/UCkXgEcpoTE4tHsebYBouWpA",
+        "https://www.youtube.com/channel/UC4-CH0epzZpD_ARhxCx6LaQ",
+        "https://www.youtube.com/channel/UCrqsNpKuDQZreGaxBL_a5Jg",
+        "https://www.youtube.com/channel/UCGCPAOQDZa_TTTXDr5byjww",
+        "https://www.youtube.com/channel/UCqIqRzEge-Qvt4Iglx-uKdQ",
+        "https://www.youtube.com/channel/UC0Kgvj5t_c9EMWpEDWJuR1Q",
+        "https://www.youtube.com/channel/UCtZAaljDNIsIAIhwYYzvEiw",
+        "https://www.youtube.com/channel/UCjmAh2qxmvWdH3xNPbg0IUQ",
+        "https://www.youtube.com/channel/UCbAwSkqJ1W_Eg7wr3cp5BUA",
+        "https://www.youtube.com/channel/UC_hoQDD6zKcIqpIYLsFbBeA",
+        "https://www.youtube.com/channel/UC0rzsIrAxF4kCsALP6J2EsA",
+        "https://www.youtube.com/channel/UCC3OGYxHwV8pB5yLobw9KdA",
+        "https://www.youtube.com/channel/UCQ7x25F6YXY9DvGeHFxLhRQ",
+        "https://www.youtube.com/channel/UCZdGJgHbmqQcVZaJCkqDRwg",
+        "https://www.youtube.com/channel/UC8yX6-5IQGOFJw31V2sw6GQ",
+        "https://www.youtube.com/channel/UCEYLdM2bdhmw-TS3c0TjFNw",
+        "https://www.youtube.com/channel/UC3EFKdXAU99j3ppGgvTz7XQ",
+        "https://www.youtube.com/channel/UCYJPby9DRCteedh5tfxVbrw",
+        "https://www.youtube.com/channel/UC63mNFJR8EAb8wAIJwoCmTA",
+        "https://www.youtube.com/channel/UCzQUP1qoWDoEbmsQxvdjxgQ",
+        "https://www.youtube.com/channel/UCWkYXtnAuu7VTLPwUcRSB6A",
+        "https://www.youtube.com/channel/UCey_c7U86mJGz1VJWH5CYPA",
+        "https://www.youtube.com/channel/UCef29bYGgUSoJjVkqhcAPkw",
+        "https://www.youtube.com/channel/UCGDumBSWK7q6Rpdwz8osbYA",
+        "https://www.youtube.com/channel/UC8asGEZcK6RBq2QY52fAVHw",
+        "https://www.youtube.com/channel/UCycM0Fd584iW3IpgCAjaSEw",
+        "https://www.youtube.com/channel/UC-TFz4MD1ZzcY6NuZAP3Ndw",
+        "https://www.youtube.com/channel/UC2LgZ_4GzSFQS-3a87_Jc6w",
+        "https://www.youtube.com/channel/UCdmnOJ63TCe2AEdeFTYiweA",
+        "https://www.youtube.com/channel/UC-OO324clObi3H-U0bP77dw",
+        "https://www.youtube.com/channel/UCudeRz9YntRrmKBSqnHyKGQ",
+        "https://www.youtube.com/channel/UCOgUcv_9DaivXzsN9mcHIzQ",
+        "https://www.youtube.com/channel/UCTbNOCtAGaqOEnLMeo3JTeg",
+        "https://www.youtube.com/channel/UCF2oW5-MO8dB6ul9WH9xi0A",
+        "https://www.youtube.com/channel/UCyCyTe_1bT2aIPwG_gxbyeg",
+        "https://www.youtube.com/channel/UCrUbqTCagwsaP2Fmr0p1TsA",
+        "https://www.youtube.com/channel/UC-fouMSM9Zot3x8Hw2_Y5yw",
+        "https://www.youtube.com/channel/UCrCkLipGria4UloMpvNil5g",
+        "https://www.youtube.com/channel/UCwIWAbIeu0xI0ReKWOcw3eg",
+        "https://www.youtube.com/channel/UCVdJk6K4LpkXaUvfjd4k4LQ"
+      ],
+      "not_active": [
+        "https://www.youtube.com/channel/UCWwWOFsW68TqXE-HZLC3WIA",
+        "https://www.youtube.com/channel/UC-SV8-bUJfXjrRMnp7F8Wzw",
+        "https://www.youtube.com/channel/UCay_OLhWtf9iklq8zg_or0g",
+        "https://www.youtube.com/channel/UCBUVGPsJzc1U8SECMgBaMFw",
+        "https://www.youtube.com/channel/UCr8EWTz_8ljPyE27CiSbsGw",
+        "https://www.youtube.com/channel/UCnrO0wqhKpMYUt_wSeaIasw",
+        "https://www.youtube.com/channel/UCWcrr8Q9INGNp-PTCLTzc8Q",
+        "https://www.youtube.com/channel/UCGjylN-4QCpn8XJ1uY-UOgA",
+        "https://www.youtube.com/channel/UCqwxMqUcL-XC3D9-fTP93Mg",
+        "https://www.youtube.com/channel/UCUKxWDTKylMaLjbNe3pOpCg",
+        "https://www.youtube.com/channel/UCi87kxosIT3wrnEA-mv4jWA",
+        "https://www.youtube.com/channel/UC7_yh9PEDpaqp34QtGO-_Yw",
+        "https://www.youtube.com/channel/UCU0X0jiii24OXllSgXbPVBw",
+        "https://www.youtube.com/channel/UCRiMBJf62RzwEHK28bUf4vg",
+        "https://www.youtube.com/channel/UCPXyQxTXhWeKJ2Nf6ywzCjw",
+        "https://www.youtube.com/channel/UCuriCa9loP_OsH75_5j8M5w",
+        "https://www.youtube.com/channel/UCJjheeAVwFB0S5HlWbBwIfQ",
+        "https://www.youtube.com/channel/UCK1cdF6-oYMrrfPkGfXwTmQ",
+        "https://www.youtube.com/channel/UCfp86n--4JvqKbunwSI2lYQ",
+        "https://www.youtube.com/channel/UCgNa58UD6RXkbxgcwwRUtWg",
+        "https://www.youtube.com/channel/UCTWm02t-F0pOPhmOnI7u4gg",
+        "https://www.youtube.com/channel/UCcOeS5aEIadAhKtJ9_VKAIw",
+        "https://www.youtube.com/channel/UCmUuT-rYYah9FYSamCH1Ljw",
+        "https://www.youtube.com/channel/UCmr0m5RQoEDXQY3hFBIEK3w",
+        "https://www.youtube.com/channel/UC2GnuulpFRtTGFNuS1LKL5g",
+        "https://www.youtube.com/channel/UCHhfSXoDG6gSgpOvLH4wrRw",
+        "https://www.youtube.com/channel/UCoukiLXW7hWT4kbyBTCzhpw",
+        "https://www.youtube.com/channel/UCHo2Gib_Jx09ym3xDKjyGhg",
+        "https://www.youtube.com/channel/UCN4pXFmJfeuHVymTTl75KOg",
+        "https://www.youtube.com/channel/UCNBvzAJI3N92Sgl0guRxSxQ",
+        "https://www.youtube.com/channel/UC4ODgZPSmUVgpbjT_CVNBpA",
+        "https://www.youtube.com/channel/UCUAfoxbjGuR4vJlT9qq9uYw",
+        "https://www.youtube.com/channel/UC0W6NYJ_y7cd3laVfaSOl0A",
+        "https://www.youtube.com/channel/UC4yqcgz49APdbgj0OMv7jpA",
+        "https://www.youtube.com/channel/UC-rN2gfG9OhqitnrRPnPmHg",
+        "https://www.youtube.com/channel/UCQ3FRaHOIwXLOQNeUwVpBUA",
+        "https://www.youtube.com/channel/UCYL9lSER7W0kMXbGCprMS0A",
+        "https://www.youtube.com/channel/UCTxZ98Ec2pb20WCSs8IBjeA",
+        "https://www.youtube.com/channel/UCtVubfONoPpn4kNuuZ1h6iQ",
+        "https://www.youtube.com/channel/UCZnOEZsMyNLNoK_aKOEUU7Q",
+        "https://www.youtube.com/channel/UCp6usJ0n9VvQyraFUuSXwjA",
+        "https://www.youtube.com/channel/UC7pp40MU_6rLK5pvJYG3d0Q",
+        "https://www.youtube.com/channel/UCSir19L_390tAg4IbCggvCg",
+        "https://www.youtube.com/channel/UCFYKs_0xpOB3YnpyfbwuSZQ",
+        "https://www.youtube.com/channel/UC6AedAhqav-H8-EE8px4r6A"
+      ]
+    },
+    "Howto & Style": {
+      "active": [
+        "https://www.youtube.com/channel/UC295-Dw_tDNtZXFeAPAW6Aw",
+        "https://www.youtube.com/channel/UC4rlAVgAK0SGk-yTfe48Qpw",
+        "https://www.youtube.com/channel/UC2etEuPIfohP4P53wM0KImA",
+        "https://www.youtube.com/channel/UCkvK_5omS-42Ovgah8KRKtg",
+        "https://www.youtube.com/channel/UCJFp8uSYCjXOMnkUyb3CQ3Q",
+        "https://www.youtube.com/channel/UC57XAjJ04TY8gNxOWf-Sy0Q",
+        "https://www.youtube.com/channel/UCD9PZYV5heAevh9vrsYmt1g",
+        "https://www.youtube.com/channel/UCR4s1DE9J4DHzZYXMltSMAg",
+        "https://www.youtube.com/channel/UCzTKskwIc_-a0cGvCXA848Q",
+        "https://www.youtube.com/channel/UCjwmbv6NE4mOh8Z8VhPUx1Q",
+        "https://www.youtube.com/channel/UC2WuPTt0k8yDJpfenggOAVQ",
+        "https://www.youtube.com/channel/UCAoMPWcQKA_9Af5YhWdrZgw",
+        "https://www.youtube.com/channel/UC0YvTCy1I4_a-3pn47_5DBA",
+        "https://www.youtube.com/channel/UC03RvJoIhm_fMwlUpm9ZvFw",
+        "https://www.youtube.com/channel/UCap97Ue8K_BpKlrvQRYd6JA",
+        "https://www.youtube.com/channel/UCuVHOs0H5hvAHGr8O4yIBNQ",
+        "https://www.youtube.com/channel/UCGwPbAQdGA3_88WBuGtg9tw",
+        "https://www.youtube.com/channel/UCe0TLA0EsQbE-MjuHXevj2A",
+        "https://www.youtube.com/channel/UCIOUkPJZtWThQBtkCRniSBw",
+        "https://www.youtube.com/channel/UCH8NnRkxQg1zX7mHFRPq73g",
+        "https://www.youtube.com/channel/UCKjJXmZxk1SiTUQUB28KHpw",
+        "https://www.youtube.com/channel/UCgoxyzvouZM-tCgsYzrYtyg",
+        "https://www.youtube.com/channel/UCSpVHeDGr9UbREhRca0qwsA",
+        "https://www.youtube.com/channel/UC8-4DBG_s3OvpuNFdEYxnFA",
+        "https://www.youtube.com/channel/UCMDQxm7cUx3yXkfeHa5zJIQ",
+        "https://www.youtube.com/channel/UCOs8VELPB5GC_eKibH9e-CQ",
+        "https://www.youtube.com/channel/UCuN4A3GCUq5-0wJDSiJoxRQ",
+        "https://www.youtube.com/channel/UCPD_bxCRGpmmeQcbe2kpPaA",
+        "https://www.youtube.com/channel/UCLEKScK-KhlSC7Nq8UBAa6w",
+        "https://www.youtube.com/channel/UCCdYYruzqbr0FdNehbUoUiw",
+        "https://www.youtube.com/channel/UCfBpv6ahDMg7kEClQuMpzzw",
+        "https://www.youtube.com/channel/UCRXiA3h1no_PFkb1JCP0yMA",
+        "https://www.youtube.com/channel/UC21yq4sq8uxTcfgIxxyE9VQ",
+        "https://www.youtube.com/channel/UC1of9ELYwB623fWaAMRDVFA",
+        "https://www.youtube.com/channel/UC6jgzx2g3nlbaYkd8EMweKA",
+        "https://www.youtube.com/channel/UCmRY4NSGK52lP_Lz11CjdYw",
+        "https://www.youtube.com/channel/UCiP6wD_tYlYLYh3agzbByWQ",
+        "https://www.youtube.com/channel/UCAeFhampgxy4JRtIDHU9pcA"
+      ],
+      "not_active": [
+        "https://www.youtube.com/channel/UCWRV5AVOlKJR1Flvgt310Cw",
+        "https://www.youtube.com/channel/UCTTJMptGhfJA67e40DlqbNw",
+        "https://www.youtube.com/channel/UCuYx81nzzz4OFQrhbKDzTng",
+        "https://www.youtube.com/channel/UC_GvMVffgctSISDkeWlKhXQ",
+        "https://www.youtube.com/channel/UCH9ciCUcWavMsFcAJtLUSyw",
+        "https://www.youtube.com/channel/UCvM1hVcRJmVWDtATYarC0KA",
+        "https://www.youtube.com/channel/UCBMxQPhfM6nkhQ8vPfQhkCg",
+        "https://www.youtube.com/channel/UCpHH-8jfIx4-xeW9d0eYU6g",
+        "https://www.youtube.com/channel/UCR1EMxu9anmg7DhJBxNUbsA",
+        "https://www.youtube.com/channel/UCl0Vpub9kTgBhGwGFd0rdfw",
+        "https://www.youtube.com/channel/UCU3juAek2IQClkV7eUw-a2w",
+        "https://www.youtube.com/channel/UCxytOEPP99jj8mqVGAO7haQ",
+        "https://www.youtube.com/channel/UCGUkuAaBDkYPdUhIetzLQxQ",
+        "https://www.youtube.com/channel/UCD0nBMLdq_KbIK9u-mzpNkA",
+        "https://www.youtube.com/channel/UCKTgL5yfBJXIgRbhe4Qs1Mg",
+        "https://www.youtube.com/channel/UCSxVXxvgv9wUeLgyeows_6w",
+        "https://www.youtube.com/channel/UCciyMo0ShVMAlYp3SWAaBcw",
+        "https://www.youtube.com/channel/UCzT17-Lvc5L_gIT10JQsjSA",
+        "https://www.youtube.com/channel/UC-MAScbt4_ypdKT2EUsiYlg",
+        "https://www.youtube.com/channel/UC_FNd7A9b0adbxmpuzIm5ZA",
+        "https://www.youtube.com/channel/UCT5yFEDO-zY1D1vrPyglmsg"
+      ]
+    },
+    "Education": {
+      "active": [
+        "https://www.youtube.com/channel/UCbCmjCuTUZos6Inko4u57UQ",
+        "https://www.youtube.com/channel/UCBnZ16ahKA2DZ_T5W0FPUXg",
+        "https://www.youtube.com/channel/UCRx3mKNUdl8QE06nEug7p6Q",
+        "https://www.youtube.com/channel/UCcdwLMPsaU2ezNSJU1nFoBQ",
+        "https://www.youtube.com/channel/UCsPF3cApzCohxPp5oKdoWSQ",
+        "https://www.youtube.com/channel/UCKAqou7V9FAWXpZd9xtOg3Q",
+        "https://www.youtube.com/channel/UCLsooMJoIpl_7ux2jvdPB-Q",
+        "https://www.youtube.com/channel/UC1ciY6kR3yj3kaKZ6R7ewAg",
+        "https://www.youtube.com/channel/UC7Pq3Ko42YpkCB_Q4E981jw",
+        "https://www.youtube.com/channel/UC1zZE_kJ8rQHgLTVfobLi_g",
+        "https://www.youtube.com/channel/UCX6b17PVsYBQ0ip5gyeme-Q",
+        "https://www.youtube.com/channel/UCsXVk37bltHxD1rDPwtNM8Q",
+        "https://www.youtube.com/channel/UCR-foyF-C6VuAlwy3KZMkgA",
+        "https://www.youtube.com/channel/UCC552Sd-3nyi_tk2BudLUzA",
+        "https://www.youtube.com/channel/UCHvoq_rGmOKJKGId1nD1V4Q",
+        "https://www.youtube.com/channel/UCRZPl8_4FXHeFhawbrtxdOQ",
+        "https://www.youtube.com/channel/UC6zhI71atP7YLoZyIyCIGNw",
+        "https://www.youtube.com/channel/UCpYye8D5fFMUPf9nSfgd4bA",
+        "https://www.youtube.com/channel/UCHcn4Ux-sO9nzNu7rDsoQLg",
+        "https://www.youtube.com/channel/UCU_AsfgtKjwR4qaSwgsWn-w",
+        "https://www.youtube.com/channel/UCYenDLnIHsoqQ6smwKXQ7Hg",
+        "https://www.youtube.com/channel/UCpwOwri-jcVCf5R9IvppTaA",
+        "https://www.youtube.com/channel/UCkQO3QsgTpNTsOw6ujimT5Q",
+        "https://www.youtube.com/channel/UCHnyfMqiRRG1u-2MsSQLbXA",
+        "https://www.youtube.com/channel/UCvEAgG7WzPZnZkf9iOV_YCg",
+        "https://www.youtube.com/channel/UCrC8mOqJQpoB7NuIMKIS6rQ",
+        "https://www.youtube.com/channel/UCfdNM3NAhaBOXCafH7krzrA"
+      ],
+      "not_active": [
+        "https://www.youtube.com/channel/UC8s9OjGX4pCnsGQt48lejfw",
+        "https://www.youtube.com/channel/UCGi_crMdUZnrcsvkCa8pt-g",
+        "https://www.youtube.com/channel/UC8oZ6DVw2vsi2yHMb_H4cRQ",
+        "https://www.youtube.com/channel/UCKRavtVhYBxTzigyGVLPPZQ",
+        "https://www.youtube.com/channel/UCmDalaHBMDjFT65eYI50ZzQ",
+        "https://www.youtube.com/channel/UCc-YCLZsBzb3tytzEDToZVw",
+        "https://www.youtube.com/channel/UCqmugCqELzhIMNYnsjScXXw",
+        "https://www.youtube.com/channel/UCUI8XDywSfFSYBLqNS79QKQ",
+        "https://www.youtube.com/channel/UCHCz1chpRB9eeFwKf-UEBUQ",
+        "https://www.youtube.com/channel/UC9GUxJlPNLRRPM1PZMTW0Rw",
+        "https://www.youtube.com/channel/UCbEW8ye_j0HuPFXyiYyQnLg",
+        "https://www.youtube.com/channel/UCeUYwh-WiIoG47ECQvQxKsA"
+      ]
+    },
+    "Film & Animation": {
+      "active": [
+        "https://www.youtube.com/channel/UC3gNmTGu-TTbFPpfSs5kNkg",
+        "https://www.youtube.com/channel/UCyoXW-Dse7fURq30EWl_CUA",
+        "https://www.youtube.com/channel/UCbTLwN10NoCU4WDzLf1JMOA",
+        "https://www.youtube.com/channel/UCCrw5RBWF9i8VPt4IxL8IsQ",
+        "https://www.youtube.com/channel/UCi8e0iOVk1fEOogdfu4YgfA",
+        "https://www.youtube.com/channel/UCUAL--p3qAa27luR0IYbjZA",
+        "https://www.youtube.com/channel/UCK5Q72Uyo73uRPk8PmM2A3w",
+        "https://www.youtube.com/channel/UCK9F8nycURBsR0YlrBsu1Ag",
+        "https://www.youtube.com/channel/UCAOtE1V7Ots4DjM8JLlrYgg",
+        "https://www.youtube.com/channel/UCHCph-_jLba_9atyCZJPLQQ",
+        "https://www.youtube.com/channel/UCbKWv2x9t6u8yZoB3KcPtnw",
+        "https://www.youtube.com/channel/UCDsO-0Yo5zpJk575nKXgMVA",
+        "https://www.youtube.com/channel/UCUe6ZpY6TJ0no8jI4l2iLxw",
+        "https://www.youtube.com/channel/UCYUQQgogVeQY8cMQamhHJcg",
+        "https://www.youtube.com/channel/UCFeUyPY6W8qX8w2o6oSiRmw",
+        "https://www.youtube.com/channel/UC3sznuotAs2ohg_U__Jzj_Q",
+        "https://www.youtube.com/channel/UCzIdYMdAtTsWucGCZyZvN6w"
+      ],
+      "not_active": [
+        "https://www.youtube.com/channel/UCWENB1OaGA9402PKzEVl0ow",
+        "https://www.youtube.com/channel/UC6qycQEHPUAjbL3hlOO0-oA",
+        "https://www.youtube.com/channel/UC5K8SEF_7GQBedXIjtXLCRg",
+        "https://www.youtube.com/channel/UCHifU9A81EtAM4qY5dNApIw",
+        "https://www.youtube.com/channel/UCGDV4-Gr3gyc-eGCgRtXknw",
+        "https://www.youtube.com/channel/UCeTzt8EPd5KZn6ZYH07eUSA",
+        "https://www.youtube.com/channel/UCuaFvcY4MhZY3U43mMt1dYQ",
+        "https://www.youtube.com/channel/UCCuIq8gvVXGUe00Bti3uv9w",
+        "https://www.youtube.com/channel/UCVi2lI40LetxLBKn-rtWC3A",
+        "https://www.youtube.com/channel/UCXN7NMwjjQpBHxzMwOPYzjQ",
+        "https://www.youtube.com/channel/UC59jm6JUT_PNciq8XNHDCbA",
+        "https://www.youtube.com/channel/UC-L9KNntvOrGkFRmD9SE4fw",
+        "https://www.youtube.com/channel/UCz0yhTJVJoN20-e5FKJhkeg",
+        "https://www.youtube.com/channel/UC-T_EdQ6MTufAWnFXa7dnYw",
+        "https://www.youtube.com/channel/UCyjTUNqX_vasRG4AAaM34jA",
+        "https://www.youtube.com/channel/UC3D_ZXHwaKekKwbO_LM48OQ",
+        "https://www.youtube.com/channel/UCpsHnULJAkwwckxzdmspKDw"
+      ]
+    },
+    "Sports": {
+      "active": [
+        "https://www.youtube.com/channel/UCJ5v_MCY6GNUBTO8-D3XoAg",
+        "https://www.youtube.com/channel/UCRijo3ddMTht_IHyNSNXpNQ",
+        "https://www.youtube.com/channel/UCWJ2lWNubArHWmf3FIHbfcQ",
+        "https://www.youtube.com/channel/UCI4fHQkguBNW3SwTqmehzjw",
+        "https://www.youtube.com/channel/UCblfuW_4rakIf2h6aqANefA",
+        "https://www.youtube.com/channel/UCpcTrCXblq78GZrTUTLWeBw",
+        "https://www.youtube.com/channel/UC14UlmYlSNiQCBe9Eookf_A",
+        "https://www.youtube.com/channel/UCqhnX4jA0A5paNd1v-zEysw",
+        "https://www.youtube.com/channel/UCvgfXK4nTYKudb0rFR6noLA",
+        "https://www.youtube.com/channel/UCBvc7pmUp9wiZIFOXEp1sCg",
+        "https://www.youtube.com/channel/UCiWLfSweyRNmLpgEHekhoAg",
+        "https://www.youtube.com/channel/UCt2JXOLNxqry7B_4rRZME3Q",
+        "https://www.youtube.com/channel/UCOiFUE8BrJaAje9IlSmzCtg",
+        "https://www.youtube.com/channel/UC5f5IV0Bf79YLp_p9nfInRA",
+        "https://www.youtube.com/channel/UCDVYQ4Zhbm3S2dlz7P1GBDg",
+        "https://www.youtube.com/channel/UCdPui8EYr_sX6q1xNXCRPXg",
+        "https://www.youtube.com/channel/UCvB3solmhqtgDeLpD-yTtfg"
+      ],
+      "not_active": [
+        "https://www.youtube.com/channel/UCKvn9VBLAiLiYL4FFJHri6g",
+        "https://www.youtube.com/channel/UCM1Nde-9eorUhq-teaWlgUA",
+        "https://www.youtube.com/channel/UCGFiLsAujWrKmp2Q9X2dmbA",
+        "https://www.youtube.com/channel/UC5EKlflss5IVgIfI4-sjd9w",
+        "https://www.youtube.com/channel/UCvcLCMmInjvU_p7FEePAo0g",
+        "https://www.youtube.com/channel/UCYG6DQUw79szmnuNux_S8pg",
+        "https://www.youtube.com/channel/UCu5epGvTDl0J0pPt01pGlLg",
+        "https://www.youtube.com/channel/UCleo0cLOSiib0W62-GK1KdQ"
+      ]
+    },
+    "Science & Technology": {
+      "active": [
+        "https://www.youtube.com/channel/UCsTcErHg8oDvUnTzoqsYeNw",
+        "https://www.youtube.com/channel/UC6nSFpj9HTCZ5t-N3Rm3-HA",
+        "https://www.youtube.com/channel/UCOhHO2ICt0ti9KAh-QHvttQ",
+        "https://www.youtube.com/channel/UCe_vXdMrHHseZ_esYUskSBw",
+        "https://www.youtube.com/channel/UCE_M8A5yxnLfW0KghEeajjw",
+        "https://www.youtube.com/channel/UCAL3JXZSzSm8AlZyD3nQdBA",
+        "https://www.youtube.com/channel/UCBJycsmduvYEL83R_U4JriQ",
+        "https://www.youtube.com/channel/UCXuqSBlHAE6Xw-yeJA0Tunw",
+        "https://www.youtube.com/channel/UCY1kMZp36IQSyNx_9h4mpCg",
+        "https://www.youtube.com/channel/UCK8sQmJBp8GCxrOtXWBpyEA",
+        "https://www.youtube.com/channel/UCj34AOIMl_k1fF7hcBkD_dw",
+        "https://www.youtube.com/channel/UC6107grRI4m0o2-emgoDnAA",
+        "https://www.youtube.com/channel/UCatfiM69M9ZnNhOzy0jZ41A",
+        "https://www.youtube.com/channel/UCqsS8fU6yVxrJr5y_CoUn3w",
+        "https://www.youtube.com/channel/UCDRx0wMgscsG6vPNB0sO65Q",
+        "https://www.youtube.com/channel/UCftwRNsjfRo08xYE31tkiyw"
+      ],
+      "not_active": [
+        "https://www.youtube.com/channel/UCSrPuHtKbst7Zy8pyWn_3Cg",
+        "https://www.youtube.com/channel/UCzWQYUVCpZqtN93H8RR44Qw",
+        "https://www.youtube.com/channel/UCwmFOfFuvRPI112vR5DNnrA",
+        "https://www.youtube.com/channel/UCpT9kL2Eba91BB9CK6wJ4Pg",
+        "https://www.youtube.com/channel/UCQlGBspQdj17WOPBQMT1k9A",
+        "https://www.youtube.com/channel/UC0vBXGSyV14uvJ4hECDOl0Q",
+        "https://www.youtube.com/channel/UCVLZmDKeT-mV4H3ToYXIFYg",
+        "https://www.youtube.com/channel/UCeQEKFH31vvD-InkTGSvCrA"
+      ]
+    },
+    "Comedy": {
+      "active": [
+        "https://www.youtube.com/channel/UCY30JRSgfhYXA6i6xX1erWg",
+        "https://www.youtube.com/channel/UC8-Th83bH_thdKZDJCrn88g",
+        "https://www.youtube.com/channel/UCxSz6JVYmzVhtkraHWZC7HQ",
+        "https://www.youtube.com/channel/UCkAGrHCLFmlK3H2kd6isipg",
+        "https://www.youtube.com/channel/UCfm4y4rHF5HGrSr-qbvOwOg",
+        "https://www.youtube.com/channel/UCPDis9pjXuqyI7RYLJ-TTSA",
+        "https://www.youtube.com/channel/UCB0d0JLn1WcGYcwwZ87d2LA",
+        "https://www.youtube.com/channel/UC7eHZXheF8nVOfwB2PEslMw",
+        "https://www.youtube.com/channel/UCPDXXXJj9nax0fr0Wfc048g",
+        "https://www.youtube.com/channel/UCo8bcnLyZH8tBIH9V1mLgqQ"
+      ],
+      "not_active": [
+        "https://www.youtube.com/channel/UCV9_KinVpV-snHe3C3n1hvA",
+        "https://www.youtube.com/channel/UC9gFih9rw0zNCK3ZtoKQQyA",
+        "https://www.youtube.com/channel/UCi9cDo6239RAzPpBZO9y5SA",
+        "https://www.youtube.com/channel/UC1OFDlfdRb6ma1ZGZd07gWA",
+        "https://www.youtube.com/channel/UCITqR49EAUY8i1vZtXTwe-A",
+        "https://www.youtube.com/channel/UCazMm3tOCkYrIGE_17j0mVg",
+        "https://www.youtube.com/channel/UCR-QYzXrZF8yFarK8wZbHog",
+        "https://www.youtube.com/channel/UCN9wHzrHRdKVzCSeV-5RuzA"
+      ]
+    },
+    "Autos & Vehicles": {
+      "active": [
+        "https://www.youtube.com/channel/UCjOl2AUblVmg2rA_cRgZkFg",
+        "https://www.youtube.com/channel/UCsAegdhiYLEoaFGuJFVrqFQ",
+        "https://www.youtube.com/channel/UCes1EvRjcKU4sY_UEavndBw",
+        "https://www.youtube.com/channel/UCgJRL30YS6XFxq9Ga8W2J3A",
+        "https://www.youtube.com/channel/UCsqjHFMB_JYTaEnf_vmTNqg",
+        "https://www.youtube.com/channel/UCXlfi8sf6cKGQ8sOd0-yRuw",
+        "https://www.youtube.com/channel/UCUhFaUpnq31m6TNX2VKVSVA",
+        "https://www.youtube.com/channel/UCxcjVHL-2o3D6Q9esu05a1Q",
+        "https://www.youtube.com/channel/UCuxpxCCevIlF-k-K5YU8XPA",
+        "https://www.youtube.com/channel/UCQMELFlXQL38KPm8kM-4Adg",
+        "https://www.youtube.com/channel/UC0PXqiud6dbwOAk8RvslgpQ",
+        "https://www.youtube.com/channel/UCNBbCOuAN1NZAuj0vPe_MkA",
+        "https://www.youtube.com/channel/UCXIYLgIp6DYZHjmUUUXErmg"
+      ],
+      "not_active": [
+        "https://www.youtube.com/channel/UC0GCfmegABym-JmOHk92vpA",
+        "https://www.youtube.com/channel/UC59ejpMDHCZESZid3Q4UGvg",
+        "https://www.youtube.com/channel/UCgEM7vuFsoFZH6Yt_i4E1gw",
+        "https://www.youtube.com/channel/UCp8Y8CHWmhEFP_FHbELobjQ",
+        "https://www.youtube.com/channel/UChsKsAhfnqI5v6vuedbOYpA"
+      ]
+    },
+    "News & Politics": {
+      "active": [
+        "https://www.youtube.com/channel/UCRWFSbif-RFENbBrSiez1DA",
+        "https://www.youtube.com/channel/UCttspZesZIDEwwpVIgoZtWQ",
+        "https://www.youtube.com/channel/UCmphdqZNmqL72WJ2uyiNw5w",
+        "https://www.youtube.com/channel/UCIvaYmXn910QMdemBG3v1pQ",
+        "https://www.youtube.com/channel/UCx8Z14PpntdaxCt2hakbQLQ",
+        "https://www.youtube.com/channel/UCupvZG-5ko_eiXAupbDfxWw",
+        "https://www.youtube.com/channel/UCfwx98Wty7LhdlkxL5PZyLA",
+        "https://www.youtube.com/channel/UCj5RwDivLksanrNvkW0FB4w"
+      ],
+      "not_active": [
+        "https://www.youtube.com/channel/UCpwvZwUam-URkxB7g4USKpg",
+        "https://www.youtube.com/channel/UCw-qpEGN-NutDLSdbJ364UQ",
+        "https://www.youtube.com/channel/UC1NB1xUQ8ItM5VoA4101lUQ"
+      ]
+    },
+    "Travel & Events": {
+      "active": [
+        "https://www.youtube.com/channel/UCyEd6QBSgat5kkC6svyjudA",
+        "https://www.youtube.com/channel/UCHKVXtT1YBCYUnnr4apqXfg",
+        "https://www.youtube.com/channel/UCBdHwFIE4AJWSa3Wxdu7bAQ",
+        "https://www.youtube.com/channel/UCcAd5Np7fO8SeejB1FVKcYw",
+        "https://www.youtube.com/channel/UCiAq_SU0ED1C6vWFMnw8Ekg",
+        "https://www.youtube.com/channel/UCixvwLpO_pk4uVOkkkqP3Mw",
+        "https://www.youtube.com/channel/UC9avFXTdbSo5ATvzTRnAVFg"
+      ],
+      "not_active": [
+        "https://www.youtube.com/channel/UCLMtDePlMyiqv2XC_ByNEVQ",
+        "https://www.youtube.com/channel/UCdPambxHRj0kdFPNoJFM98A",
+        "https://www.youtube.com/channel/UCBeWGn3mho4_5Og6D4jHbXw"
+      ]
+    },
+    "Pets & Animals": {
+      "active": [
+        "https://www.youtube.com/channel/UC6E2mP01ZLH_kbAyeazCNdg",
+        "https://www.youtube.com/channel/UCC7tqA6lA2QRw4BdrAEKFxg",
+        "https://www.youtube.com/channel/UCwmZiChSryoWQCZMIQezgTg",
+        "https://www.youtube.com/channel/UCINb0wqPz-A0dV9nARjJlOQ"
+      ],
+      "not_active": [
+        "https://www.youtube.com/channel/UCVUdHi-tdW5AKdzMiTPG97Q",
+        "https://www.youtube.com/channel/UCKy3MG7_If9KlVuvw3rPMfw",
+        "https://www.youtube.com/channel/UCYFo16eFDNhD3W_POj9gKFw"
+      ]
+    },
+    "Nonprofits & Activism": {
+      "active": [
+        "https://www.youtube.com/channel/UCsT0YIqwnpJCM-mx7-gSA4Q",
+        "https://www.youtube.com/channel/UCX7SHIccUCj3S4cID-pM-Xg"
+      ],
+      "not_active": [
+        "https://www.youtube.com/channel/UC2uUW9Go9rl5VHWPSrppuHQ",
+        "https://www.youtube.com/channel/UCX4kkW2kc-x_3EbbkxhZZLw",
+        "https://www.youtube.com/channel/UCBP4B896svWOcWdRp8UjH2Q"
+      ]
+    }
+  }
+};
+
+  const DATA = CONFIG.DATA || [];
+  const LINKS = CONFIG.LINKS || {};
+  let MAX_ICONS = 0;
+
+  function formatPct(v, total) {
+    return (v / total * 100).toFixed(0);
+  }
+
+  function computeMaxIcons() {
+    if (!DATA.length) {
+      MAX_ICONS = 0;
+      return;
+    }
+    const counts = DATA.map(d => {
+      const nActive   = Math.round((d.active || 0) / UNIT);
+      const nInactive = Math.round((d.not_active || d.inactive || 0) / UNIT);
+      return nActive + nInactive;
+    });
+    MAX_ICONS = Math.max(...counts);
+  }
+
+  function buildCard(d) {
+    const active = d.active || 0;
+    const notActive = d.not_active || d.inactive || 0;
+    const total = active + notActive || 1;
+    const grid = document.getElementById("cards-grid");
+
+    const card = document.createElement("div");
+    card.className = "card";
+
+    const circleId = "circle-" + d.id;
+    const pctActive = formatPct(active, total);
+
+    card.innerHTML = `
+      <div class="card-header">
+        <div class="card-title">${d.label}</div>
+        <div class="card-header-stats">
+          <span class="header-stat">
+            <span class="header-icon"></span>
+            <span>${pctActive}%</span>
+          </span>
+        </div>
+      </div>
+      <div class="card-meta">
+        total channels: ${(total / 1000).toFixed(1)}K
+      </div>
+      <div class="circle" id="${circleId}"></div>
+    `;
+
+    grid.appendChild(card);
+
+    const circleEl = document.getElementById(circleId);
+    const linkObj = LINKS[d.id] || {};
+    buildCircle(d, circleEl, linkObj);
+  }
+
+  function buildCircle(d, container, linkObj) {
+    const active = d.active || 0;
+    const notActive = d.not_active || d.inactive || 0;
+
+    const nActive   = Math.round(active / UNIT);
+    const nInactive = Math.round(notActive / UNIT);
+
+    const bands = [];
+    bands.push(...Array(nActive).fill("active"));
+    bands.push(...Array(nInactive).fill("inactive"));
+
+    const nIcons = bands.length;
+    if (nIcons === 0 || MAX_ICONS === 0) return;
+
+    const rect = container.getBoundingClientRect();
+    const cx = rect.width  / 2;
+    const cy = rect.height / 2;
+
+    const GOLDEN_ANGLE = Math.PI * (3 - Math.sqrt(5));
+    const baseMaxR = Math.min(cx, cy) + 10;
+    const maxR = baseMaxR * Math.sqrt(nIcons / MAX_ICONS);
+    const step = maxR / Math.sqrt(nIcons);
+
+    const urlsByBand = {
+      active:   (linkObj.active || []).slice(),
+      inactive: (linkObj.not_active || linkObj.inactive || []).slice()
+    };
+
+    const icons = [];
+
+    bands.forEach((band, idx) => {
+      const r = step * Math.sqrt(idx + 0.5);
+      const theta = idx * GOLDEN_ANGLE;
+      const x = cx + r * Math.cos(theta);
+      const y = cy + r * Math.sin(theta);
+
+      const div = document.createElement("div");
+      div.className = "icon icon--" + band;
+      div.style.left = (x - 13) + "px";
+      div.style.top  = (y - 9)  + "px";
+
+      const url = urlsByBand[band].shift();
+      div.tabIndex = 0;
+      div.setAttribute('role', 'link');
+
+      if (url) {
+        div.title = "open channel";
+        div.addEventListener("click", () => {
+          window.open(url, "_blank");
+        });
+        div.addEventListener('keydown', (ev) => {
+          if (ev.key === 'Enter' || ev.key === ' ') {
+            ev.preventDefault();
+            window.open(url, '_blank');
+          }
+        });
+        div.style.cursor = 'pointer';
+        div.setAttribute('aria-label', `${d.label} — open sample channel`);
+      } else {
+        div.style.cursor = "default";
+        div.setAttribute('aria-label', `${d.label} — no sample channel`);
+      }
+
+      container.appendChild(div);
+      icons.push(div);
+    });
+
+    icons.forEach((icon, idx) => {
+      setTimeout(() => icon.classList.add("on"), idx * 20);
+    });
+  }
+
+  function init() {
+    if (!DATA.length) return;
+    computeMaxIcons();
+    const grid = document.getElementById('cards-grid');
+    if (grid) grid.innerHTML = '';
+    DATA.forEach(buildCard);
+  }
+
+  window.addEventListener("DOMContentLoaded", init);
+</script>
+</body>
+</html>
