@@ -13,6 +13,8 @@
   import Activity2 from "./Activity2.svelte"
   import VisualizationFocus from "./VisualizationFocus.svelte"
   import VisualizationCompare from "./VisualizationCompare.svelte"
+  import VisualizationDumbbell from "./VisualizationDumbbell.svelte"
+  import VisualizationDeltaViews from "./VisualizationDeltaViews.svelte"
   import { rq2 } from "../lib/research_question_2"
   import "katex/dist/katex.min.css"
   import renderMathInElement from "katex/contrib/auto-render"
@@ -546,7 +548,46 @@
 
 	<section id="section-categories" class="content-section">
 		<h2>{copy.section3_title}</h2>
-		<div class="placeholder">{copy.section3_placeholder}</div>
+		
+		<p style="max-width: 900px; margin: 1.5rem auto; text-align: left; color: #9ca3af; font-size: 0.95rem; line-height: 1.6;">
+			{copy.section3_intro}
+		</p>
+
+		<p style="max-width: 900px; margin: 1.5rem auto; text-align: left; color: #9ca3af; font-size: 0.95rem; line-height: 1.6;">
+			{copy.section3_dumbbell_intro}
+		</p>
+
+		<VisualizationDumbbell />
+
+		<p style="max-width: 900px; margin: 1.5rem auto; text-align: left; color: #9ca3af; font-size: 0.95rem; line-height: 1.6;">
+			{copy.section3_dumbbell_analysis}
+		</p>
+
+		<p style="max-width: 900px; margin: 1.5rem auto; text-align: left; color: #9ca3af; font-size: 0.95rem; line-height: 1.6;">
+			{copy.section3_dumbbell_conclusion}
+		</p>
+
+		<p style="max-width: 900px; margin: 1.5rem auto; text-align: left; color: #9ca3af; font-size: 0.95rem; line-height: 1.6;">
+			{copy.section3_delta_intro}
+		</p>
+
+		<VisualizationDeltaViews />
+
+		<p style="max-width: 900px; margin: 1.5rem auto; text-align: left; color: #9ca3af; font-size: 0.95rem; line-height: 1.6;">
+			{copy.section3_delta_analysis}
+		</p>
+
+		<p style="max-width: 900px; margin: 1.5rem auto; text-align: left; color: #9ca3af; font-size: 0.95rem; line-height: 1.6;">
+			{copy.section3_delta_views}
+		</p>
+
+		<p style="max-width: 900px; margin: 1.5rem auto; text-align: left; color: #9ca3af; font-size: 0.95rem; line-height: 1.6;">
+			{copy.section3_delta_subs}
+		</p>
+
+		<p style="max-width: 900px; margin: 1.5rem auto; text-align: left; color: #9ca3af; font-size: 0.95rem; line-height: 1.6;">
+			{copy.section3_conclusion}
+		</p>
 	</section>
 
 	<!-- ========== MEET THE TEAM ========== -->
