@@ -392,48 +392,48 @@
 	<section id="section-monetization" class="content-section">
 		<h2>{copy.section1_title}</h2>
 
-		<div class="section-intro" style="text-align: center; margin-bottom: 1.5rem;">
-			<p style="font-size: 1.25rem; line-height: 1.6;">
+		<div class="section-intro">
+			<p class="intro-text">
 				About <strong>137K YouTube channels</strong> joined between <strong>2005 and 2019</strong>.
-				As of 2025, roughly <strong style="color: #ff4b4b;">58% (~80K)</strong> are still uploading,
-				while about <strong style="color: #6b7280;">42% (~55K)</strong> no longer publish new videos.
+				As of 2025, roughly <strong class="highlight-error">58% (~80K)</strong> are still uploading,
+				while about <strong class="highlight-muted">42% (~55K)</strong> no longer publish new videos.
 			</p>
 		</div>
 
 		<Activity1 />
 
-		<p style="max-width: 800px; margin: 1.5rem auto; text-align: left; color: #9ca3af; font-size: 0.95rem; line-height: 1.6;">
-			We classify channels into <strong>activity bands</strong> based on their <code style="background: rgba(15, 23, 42, 0.9); padding: 2px 5px; border-radius: 4px; font-size: 0.9em;">last_upload_date</code>. Activity is measured using the last video date in <strong>2025</strong>: if a channel uploads at least one video in 2025, we treat it as <strong>active</strong>; otherwise, it is considered <strong>not active</strong>.
+		<p class="text-content">
+			We classify channels into <strong>activity bands</strong> based on their <code class="inline-code">last_upload_date</code>. Activity is measured using the last video date in <strong>2025</strong>: if a channel uploads at least one video in 2025, we treat it as <strong>active</strong>; otherwise, it is considered <strong>not active</strong>.
 		</p>
 
 		<Activity2 />
 
-		<h2 style="max-width: 900px; margin: 2.5rem auto 1rem; font-size: 1.5rem; font-weight: 700; color: #f3f4f6; text-align: left;">
+		<h2 class="section-subtitle">
 			{copy.viz_main_title}
 		</h2>
-		<p style="max-width: 900px; margin: 0 auto 1.5rem; text-align: left; color: #9ca3af; font-size: 0.95rem; line-height: 1.6;">
+		<p class="text-content">
 			{copy.viz_main_desc}
 		</p>
 
-		<div style="width: 100%; margin: 2rem auto;">
+		<div class="iframe-wrapper">
 			<iframe 
 				src="{base}/data/visualisation_full.html" 
 				title="YouTube Upload Volume Visualization"
-				style="width: 100%; height: 2925px; border: 1px solid rgba(148, 163, 184, 0.3); border-radius: 12px; background: #020617; overflow: hidden;"
+				class="viz-iframe"
 				scrolling="no"
 			></iframe>
 		</div>
 
-		<p style="max-width: 900px; margin: 2rem auto 1.5rem; text-align: left; color: #9ca3af; font-size: 0.95rem; line-height: 1.6;">
+		<p class="text-content">
 			{copy.viz_focus_desc}
 		</p>
 
 		<VisualizationFocus />
 
-		<h2 style="max-width: 900px; margin: 2.5rem auto 1rem; font-size: 1.5rem; font-weight: 700; color: #f3f4f6; text-align: left;">
+		<h2 class="section-subtitle">
 			{copy.viz_compare_title}
 		</h2>
-		<p style="max-width: 900px; margin: 0 auto 1.5rem; text-align: left; color: #9ca3af; font-size: 0.95rem; line-height: 1.6;">
+		<p class="text-content">
 			{copy.viz_compare_desc}
 		</p>
 
@@ -523,7 +523,7 @@
 	  {@render dialogue(q2Chat4)}
 
 		<div class="category-selector">
-			<a href="{base}/wasm/index.html" target="_blank" style="text-decoration: none;">
+			<a href="{base}/wasm/index.html" target="_blank" class="plain-link">
         <button class="cat-btn active">
           <span class="icon">󱁉</span>
           <span class="cat-name">Show Channel Graph</span>
@@ -549,43 +549,43 @@
 	<section id="section-categories" class="content-section">
 		<h2>{copy.section3_title}</h2>
 		
-		<p style="max-width: 900px; margin: 1.5rem auto; text-align: left; color: #9ca3af; font-size: 0.95rem; line-height: 1.6;">
+		<p class="text-content">
 			{copy.section3_intro}
 		</p>
 
-		<p style="max-width: 900px; margin: 1.5rem auto; text-align: left; color: #9ca3af; font-size: 0.95rem; line-height: 1.6;">
+		<p class="text-content">
 			{copy.section3_dumbbell_intro}
 		</p>
 
 		<VisualizationDumbbell />
 
-		<p style="max-width: 900px; margin: 1.5rem auto; text-align: left; color: #9ca3af; font-size: 0.95rem; line-height: 1.6;">
+		<p class="text-content">
 			{copy.section3_dumbbell_analysis}
 		</p>
 
-		<p style="max-width: 900px; margin: 1.5rem auto; text-align: left; color: #9ca3af; font-size: 0.95rem; line-height: 1.6;">
+		<p class="text-content">
 			{copy.section3_dumbbell_conclusion}
 		</p>
 
-		<p style="max-width: 900px; margin: 1.5rem auto; text-align: left; color: #9ca3af; font-size: 0.95rem; line-height: 1.6;">
+		<p class="text-content">
 			{copy.section3_delta_intro}
 		</p>
 
 		<VisualizationDeltaViews />
 
-		<p style="max-width: 900px; margin: 1.5rem auto; text-align: left; color: #9ca3af; font-size: 0.95rem; line-height: 1.6;">
+		<p class="text-content">
 			{copy.section3_delta_analysis}
 		</p>
 
-		<p style="max-width: 900px; margin: 1.5rem auto; text-align: left; color: #9ca3af; font-size: 0.95rem; line-height: 1.6;">
+		<p class="text-content">
 			{copy.section3_delta_views}
 		</p>
 
-		<p style="max-width: 900px; margin: 1.5rem auto; text-align: left; color: #9ca3af; font-size: 0.95rem; line-height: 1.6;">
+		<p class="text-content">
 			{copy.section3_delta_subs}
 		</p>
 
-		<p style="max-width: 900px; margin: 1.5rem auto; text-align: left; color: #9ca3af; font-size: 0.95rem; line-height: 1.6;">
+		<p class="text-content">
 			{copy.section3_conclusion}
 		</p>
 	</section>

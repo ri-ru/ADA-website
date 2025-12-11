@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import Chart from 'chart.js/auto';
 	import annotationPlugin from 'chartjs-plugin-annotation';
+	import { CHART_COLORS, TOOLTIP_CONFIG, LEGEND_CONFIG } from '$lib/chartColors';
 
 	Chart.register(annotationPlugin);
 
@@ -159,7 +160,7 @@
 			ctx.lineTo(x, bottom);
 			ctx.lineWidth = 1;
 			ctx.setLineDash([2, 2]);
-			ctx.strokeStyle = '#38bdf8';
+			ctx.strokeStyle = CHART_COLORS.chart11;
 			ctx.stroke();
 			ctx.restore();
 		}
@@ -226,19 +227,19 @@
 						borderWidth: 0,
 						pointRadius: 0,
 						fill: { target: '-1' },
-						backgroundColor: 'rgba(148, 163, 184, 0.25)',
+						backgroundColor: CHART_COLORS.textMutedAlpha,
 					},
 					{
 						label: yLabelViews,
 						data: initial.meanPoints,
-						borderColor: '#38bdf8',
+						borderColor: CHART_COLORS.chart11,
 						borderWidth: 2,
 						pointRadius: 3,
 						pointHoverRadius: 7,
-						pointBackgroundColor: '#38bdf8',
-						pointBorderColor: '#38bdf8',
-						pointHoverBackgroundColor: '#38bdf8',
-						pointHoverBorderColor: '#e5e7eb',
+						pointBackgroundColor: CHART_COLORS.chart11,
+						pointBorderColor: CHART_COLORS.chart11,
+						pointHoverBackgroundColor: CHART_COLORS.chart11,
+						pointHoverBorderColor: CHART_COLORS.text,
 						pointHoverBorderWidth: 2,
 						tension: 0,
 					}
@@ -254,11 +255,11 @@
 				},
 				plugins: {
 					legend: {
+						...LEGEND_CONFIG,
 						display: true,
 						position: 'bottom',
 						labels: {
-							color: '#e5e7eb',
-							font: { size: 12 },
+							...LEGEND_CONFIG.labels,
 							filter: function (item) {
 								return item.text !== 'CI upper';
 							},
@@ -269,14 +270,8 @@
 						}
 					},
 					tooltip: {
-						backgroundColor: 'rgba(15, 23, 42, 0.96)',
-						titleColor: '#e5e7eb',
-						bodyColor: '#e5e7eb',
-						borderColor: 'rgba(148, 163, 184, 0.6)',
-						borderWidth: 1,
+						...TOOLTIP_CONFIG,
 						displayColors: false,
-						padding: 10,
-						bodyFont: { size: 13 },
 						callbacks: {
 							title: function () {
 								return '';
@@ -303,7 +298,7 @@
 								xMax: 0,
 								yMin: yMinViews,
 								yMax: yMaxViews,
-								borderColor: '#38bdf8',
+								borderColor: CHART_COLORS.chart11,
 								borderWidth: 3,
 								borderDash: [5, 5]
 							},
@@ -311,13 +306,13 @@
 								type: 'label',
 								xValue: 0,
 								yValue: yLabelPosViews,
-								backgroundColor: 'rgba(15, 23, 42, 0.95)',
+								backgroundColor: CHART_COLORS.bgSecondaryAlpha,
 								borderWidth: 1,
-								borderColor: 'rgba(148, 163, 184, 0.6)',
+								borderColor: CHART_COLORS.border,
 								borderRadius: 6,
-								color: '#e5e7eb',
+								color: CHART_COLORS.text,
 								content: ['First sponsor appearance (week 0)'],
-								font: { size: 11 },
+								font: { size: 11, family: '"Tex Gyre Adventor", sans-serif' },
 								padding: 6
 							}
 						}
@@ -331,11 +326,12 @@
 						title: {
 							display: true,
 							text: 'Weeks relative to first sponsor',
-							color: '#e5e7eb',
-							font: { size: 13 }
+							color: CHART_COLORS.text,
+							font: { size: 13, family: '"Tex Gyre Adventor", sans-serif', weight: '600' }
 						},
 						ticks: {
-							color: '#94a3b8',
+							color: CHART_COLORS.textMuted,
+							font: { family: '"Tex Gyre Adventor", sans-serif' },
 							callback: function (value) {
 								const validTicks = [-25, -20, -15, -10, -5, 0, 5, 10, 15, 20, 25];
 								if (validTicks.includes(value)) {
@@ -345,7 +341,7 @@
 							}
 						},
 						grid: {
-							color: 'rgba(15, 23, 42, 0.85)',
+							color: CHART_COLORS.grid,
 							lineWidth: 1
 						}
 					},
@@ -355,14 +351,15 @@
 						title: {
 							display: true,
 							text: yLabelViews,
-							color: '#e5e7eb',
-							font: { size: 13 }
+							color: CHART_COLORS.text,
+							font: { size: 13, family: '"Tex Gyre Adventor", sans-serif', weight: '600' }
 						},
 						ticks: {
-							color: '#94a3b8'
+							color: CHART_COLORS.textMuted,
+							font: { family: '"Tex Gyre Adventor", sans-serif' }
 						},
 						grid: {
-							color: 'rgba(15, 23, 42, 0.85)',
+							color: CHART_COLORS.grid,
 							lineWidth: 1
 						}
 					}
@@ -408,56 +405,58 @@
 	.delta-container {
 		width: 100%;
 		max-width: 1200px;
-		margin: 2rem auto;
+		margin: var(--ds-space-lg) auto;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 1rem;
+		gap: var(--ds-space-md);
 	}
 
 	.chart-title {
 		margin: 0;
-		font-size: 1.125rem;
+		font-size: var(--ds-text-lg);
 		font-weight: 600;
 		text-align: center;
-		color: #f3f4f6;
+		color: var(--ds-text);
+		font-family: var(--ds-font-chart);
 	}
 
 	.controls {
 		display: flex;
-		gap: 10px;
+		gap: var(--ds-space-xs);
 		flex-wrap: wrap;
 		justify-content: center;
 	}
 
 	.toggle-button {
-		padding: 6px 14px;
+		padding: var(--ds-space-xs) var(--ds-space-sm);
 		border-radius: 999px;
-		border: 1px solid rgba(148, 163, 184, 0.3);
-		background: rgba(15, 23, 42, 0.7);
-		color: #e5e7eb;
-		font-size: 0.75rem;
+		border: 1px solid var(--ds-border);
+		background: var(--ds-bg);
+		color: var(--ds-text);
+		font-size: var(--ds-text-sm);
+		font-family: var(--ds-font-chart);
 		cursor: pointer;
-		transition: all 0.18s ease;
+		transition: var(--ds-transition);
 	}
 
 	.toggle-button:hover {
 		transform: translateY(-1px);
-		border-color: rgba(148, 163, 184, 0.65);
+		border-color: var(--ds-border);
 	}
 
 	.toggle-button.active {
-		background: #38bdf8;
-		color: #0b1120;
-		box-shadow: 0 6px 20px rgba(56, 189, 248, 0.25);
+		background: var(--ds-accent);
+		color: var(--ds-bg);
+		box-shadow: 0 6px 20px rgba(114,135,253,0.25);
 		font-weight: 600;
 	}
 
 	.chart-card {
-		background: rgba(15, 23, 42, 0.85);
-		border: 1px solid rgba(148, 163, 184, 0.3);
-		border-radius: 14px;
-		padding: 14px;
+		background: var(--ds-surface);
+		border: 1px solid var(--ds-border);
+		border-radius: var(--ds-radius);
+		padding: var(--ds-space-sm);
 		width: 100%;
 		height: clamp(420px, 60vh, 640px);
 		display: flex;
@@ -471,3 +470,5 @@
 		display: block;
 	}
 </style>
+
+

@@ -1,0 +1,55 @@
+/* ============================================ */
+/* UNIFIED DESIGN SYSTEM */
+/* Based on Catppuccin-inspired echarts theme */
+/* ============================================ */
+
+:root {
+  /* ========== COLORS ========== */
+  --ds-bg: #1e1e2e;
+  --ds-surface: rgba(30, 30, 46, 0.85);
+  --ds-border: rgba(205, 214, 244, 0.2);
+  
+  --ds-text: #cdd6f4;
+  --ds-text-muted: #9399b2;
+  
+  --ds-accent: #7287fd;
+  --ds-error: #d20f39;
+  
+  /* Chart colors */
+  --ds-chart-1: #dc8a78;
+  --ds-chart-2: #dd7878;
+  --ds-chart-3: #ea76cb;
+  --ds-chart-4: #8839ef;
+  --ds-chart-5: #d20f39;
+  --ds-chart-6: #e64553;
+  --ds-chart-7: #fe640b;
+  --ds-chart-8: #df8e1d;
+  --ds-chart-9: #40a02b;
+  --ds-chart-10: #179299;
+  --ds-chart-11: #04a5e5;
+  --ds-chart-12: #209fb5;
+  --ds-chart-13: #1e66f5;
+  --ds-chart-14: #7287fd;
+  
+  /* ========== TYPOGRAPHY ========== */
+  --ds-font-title: "Tex Gyre Adventor", sans-serif;
+  --ds-font-body: "Inter", "Segoe UI", system-ui, sans-serif;
+  --ds-font-chart: "Tex Gyre Adventor", sans-serif;
+  
+  --ds-text-sm: 0.875rem;
+  --ds-text-base: 1.1rem;
+  --ds-text-lg: 1.125rem;
+  --ds-text-3xl: 1.875rem;
+  --ds-text-5xl: 3rem;  
+  
+  /* ========== SPACING ========== */
+  --ds-space-xs: 0.5rem;
+  --ds-space-sm: 1rem;
+  --ds-space-md: 1.5rem;
+  --ds-space-lg: 2rem;
+  --ds-space-xl: 3rem;
+  
+  /* ========== OTHER ========== */
+  --ds-radius: 12px;
+  --ds-transition: 200ms ease;
+}

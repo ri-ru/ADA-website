@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import Chart from 'chart.js/auto';
+	import { CHART_COLORS, TOOLTIP_CONFIG, AXIS_CONFIG, LEGEND_CONFIG } from '$lib/chartColors';
 
 	const dumbbellData = {
 		"categories": ["Autos & Vehicles", "Comedy", "Education", "Entertainment", "Film & Animation", "Gaming", "Howto & Style", "Music", "News & Politics", "Nonprofits & Activism", "People & Blogs", "Pets & Animals", "Science & Technology", "Sports", "Travel & Events"],
@@ -106,16 +107,16 @@
 					{
 						label: "Not sponsored",
 						data: initial.dataNon,
-						backgroundColor: "#38bdf8",
-						borderColor: "#bae6fd",
+						backgroundColor: CHART_COLORS.chart11,
+						borderColor: CHART_COLORS.chart12,
 						pointRadius: 5,
 						pointHoverRadius: 8
 					},
 					{
 						label: "Sponsored",
 						data: initial.dataSpon,
-						backgroundColor: "#f472b6",
-						borderColor: "#fce7f3",
+						backgroundColor: CHART_COLORS.chart3,
+						borderColor: CHART_COLORS.chart2,
 						pointRadius: 5,
 						pointHoverRadius: 8
 					}
@@ -136,22 +137,15 @@
 				},
 				plugins: {
 					legend: {
-						position: "bottom",
+						...LEGEND_CONFIG,
 						labels: {
-							color: "#e5e7eb",
-							font: { size: 12 },
-							usePointStyle: true,
+							...LEGEND_CONFIG.labels,
 							pointStyle: "circle"
 						}
 					},
 					tooltip: {
-						backgroundColor: "rgba(15, 23, 42, 0.96)",
-						borderColor: "rgba(148, 163, 184, 0.6)",
-						borderWidth: 1,
-						padding: 10,
+						...TOOLTIP_CONFIG,
 						displayColors: false,
-						titleColor: "#e5e7eb",
-						bodyColor: "#e5e7eb",
 						callbacks: {
 							title: ctx => {
 								const c = ctx[0].raw;
@@ -211,26 +205,26 @@
 						labels: categories,
 						offset: true,
 						grid: {
-							color: "rgba(15, 23, 42, 0.9)"
+							color: CHART_COLORS.grid
 						},
 						ticks: {
-							color: "#94a3b8",
-							font: { size: 11 }
+							color: CHART_COLORS.textMuted,
+							font: { size: 11, family: '"Tex Gyre Adventor", sans-serif' }
 						}
 					},
 					x: {
 						title: {
 							display: true,
 							text: metricsConfig[currentMetric].axisLabel,
-							color: "#e5e7eb",
-							font: { size: 13 }
+							color: CHART_COLORS.text,
+							font: { size: 13, family: '"Tex Gyre Adventor", sans-serif', weight: '600' }
 						},
 						grid: {
-							color: "rgba(15, 23, 42, 0.9)"
+							color: CHART_COLORS.grid
 						},
 						ticks: {
-							color: "#94a3b8",
-							font: { size: 11 }
+							color: CHART_COLORS.textMuted,
+							font: { size: 11, family: '"Tex Gyre Adventor", sans-serif' }
 						}
 					}
 				}
@@ -255,8 +249,8 @@
 							ctx.lineTo(p2.x, p2.y);
 							ctx.lineWidth = isHover ? 4 : 2;
 							ctx.strokeStyle = isHover
-								? "rgba(245, 158, 11, 1.0)"
-								: "rgba(148, 163, 184, 0.6)";
+								? CHART_COLORS.accent
+								: CHART_COLORS.textMuted;
 							ctx.stroke();
 						}
 						ctx.restore();
@@ -315,56 +309,58 @@
 	.dumbbell-container {
 		width: 100%;
 		max-width: 1200px;
-		margin: 2rem auto;
+		margin: var(--ds-space-lg) auto;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 1rem;
+		gap: var(--ds-space-md);
 	}
 
 	.chart-title {
 		margin: 0;
-		font-size: 1.125rem;
+		font-size: var(--ds-text-lg);
 		font-weight: 600;
 		text-align: center;
-		color: #f3f4f6;
+		color: var(--ds-text);
+		font-family: var(--ds-font-chart);
 	}
 
 	.controls {
 		display: flex;
-		gap: 10px;
+		gap: var(--ds-space-xs);
 		flex-wrap: wrap;
 		justify-content: center;
 	}
 
 	.toggle-button {
-		padding: 6px 14px;
+		padding: var(--ds-space-xs) var(--ds-space-sm);
 		border-radius: 999px;
-		border: 1px solid rgba(148, 163, 184, 0.3);
-		background: rgba(15, 23, 42, 0.7);
-		color: #e5e7eb;
-		font-size: 0.75rem;
+		border: 1px solid var(--ds-border);
+		background: var(--ds-bg);
+		color: var(--ds-text);
+		font-size: var(--ds-text-sm);
+		font-family: var(--ds-font-chart);
 		cursor: pointer;
-		transition: all 0.18s ease;
+		transition: var(--ds-transition);
 	}
 
 	.toggle-button:hover {
 		transform: translateY(-1px);
-		border-color: rgba(148, 163, 184, 0.65);
+		border-color: var(--ds-border);
 	}
 
 	.toggle-button.active {
-		background: #38bdf8;
-		color: #0b1120;
-		box-shadow: 0 6px 20px rgba(56, 189, 248, 0.25);
+		background: var(--ds-accent);
+		color: var(--ds-bg);
+		box-shadow: 0 6px 20px rgba(114,135,253,0.25);
 		font-weight: 600;
 	}
 
 	.chart-card {
-		background: rgba(15, 23, 42, 0.85);
-		border: 1px solid rgba(148, 163, 184, 0.3);
-		border-radius: 14px;
-		padding: 12px;
+		background: var(--ds-surface);
+		border: 1px solid var(--ds-border);
+		border-radius: var(--ds-radius);
+		padding: var(--ds-space-sm);
 		width: 100%;
 		height: clamp(420px, 60vh, 640px);
 		display: flex;
@@ -378,3 +374,5 @@
 		display: block;
 	}
 </style>
+
+

@@ -392,3 +392,5 @@
     <canvas bind:this={chartCanvas}></canvas>
   </div>
 </div>
+
+
