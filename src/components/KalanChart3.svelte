@@ -61,8 +61,8 @@
     }
   ],
   "color": [
-    "#eca9b5",
-    "#eca9b5"
+    "#f5c2e7",
+    "#f5c2e7"
   ],
   "series": [
     {

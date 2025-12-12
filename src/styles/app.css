@@ -27,7 +27,7 @@
 	--color-link-hover: var(--color-black);
 	--color-focus: var(--color-red);
 	--color-mark: var(--color-yellow);
-	--color-selection: var(--color-gray-300);
+	--color-selection: #8839ef80;
 	--color-border: var(--color-gray-300);
 	--color-button-bg: var(--color-gray-300);
 	--color-button-fg: var(--color-gray-900);

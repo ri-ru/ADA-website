@@ -1,6 +1,7 @@
 @font-face {
 	font-family: "Atlas Grotesk";
-	src: url("https://pudding.cool/assets/fonts/atlas/AtlasGrotesk-Regular-Web.woff2") format("woff2");
+	src: url("https://pudding.cool/assets/fonts/atlas/AtlasGrotesk-Regular-Web.woff2")
+		format("woff2");
 	font-weight: 400;
 	font-style: normal;
 	font-stretch: normal;
@@ -9,7 +10,8 @@
 
 @font-face {
 	font-family: "Atlas Grotesk";
-	src: url("https://pudding.cool/assets/fonts/atlas/AtlasGrotesk-Bold-Web.woff2") format("woff2");
+	src: url("https://pudding.cool/assets/fonts/atlas/AtlasGrotesk-Bold-Web.woff2")
+		format("woff2");
 	font-weight: 700;
 	font-style: normal;
 	font-stretch: normal;
@@ -18,7 +20,8 @@
 
 @font-face {
 	font-family: "Tiempos Text";
-	src: url("https://pudding.cool/assets/fonts/tiempos/TiemposTextWeb-Regular.woff2") format("woff2");
+	src: url("https://pudding.cool/assets/fonts/tiempos/TiemposTextWeb-Regular.woff2")
+		format("woff2");
 	font-weight: 400;
 	font-style: normal;
 	font-stretch: normal;
@@ -27,7 +30,8 @@
 
 @font-face {
 	font-family: "Tiempos Text";
-	src: url("https://pudding.cool/assets/fonts/tiempos/TiemposTextWeb-Bold.woff2") format("woff2");
+	src: url("https://pudding.cool/assets/fonts/tiempos/TiemposTextWeb-Bold.woff2")
+		format("woff2");
 	font-weight: 700;
 	font-style: normal;
 	font-stretch: normal;
@@ -36,7 +40,8 @@
 
 @font-face {
 	font-family: "Atlas Typewriter";
-	src: url("https://pudding.cool/assets/fonts/atlas/AtlasTypewriter-Medium-Web.woff2") format("woff2");
+	src: url("https://pudding.cool/assets/fonts/atlas/AtlasTypewriter-Medium-Web.woff2")
+		format("woff2");
 	font-weight: 500;
 	font-style: normal;
 	font-stretch: normal;
@@ -47,6 +52,42 @@
 	font-family: "BlexMono";
 	src: url("../fonts/BlexMonoNerdFontMono-Regular.ttf") format("truetype");
 	font-weight: 500;
+	font-style: normal;
+	font-stretch: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "TexGyreAdventor";
+	src: url("../fonts/texgyreadventor-bolditalic.otf") format("opentype");
+	font-weight: bold;
+	font-style: italic;
+	font-stretch: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "TexGyreAdventor";
+	src: url("../fonts/texgyreadventor-bold.otf") format("opentype");
+	font-weight: bold;
+	font-style: normal;
+	font-stretch: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "TexGyreAdventor";
+	src: url("../fonts/texgyreadventor-italic.otf") format("opentype");
+	font-weight: normal;
+	font-style: italic;
+	font-stretch: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "TexGyreAdventor";
+	src: url("../fonts/texgyreadventor-regular.otf") format("opentype");
+	font-weight: normal;
 	font-style: normal;
 	font-stretch: normal;
 	font-display: swap;

@@ -35,7 +35,8 @@
 				x: Math.random() * 100,
 				y: Math.random() * 100,
 				size: Math.random() * 2 + 1,
-				opacity: Math.random() * 0.5 + 0.5
+				opacity: Math.random() * 0.5 + 0.5,
+        delay: Math.random() * 3.0,
 			});
 		}
 		stars = newStars;
@@ -285,7 +286,7 @@
 			{#each stars as star}
 				<div
 					class="star"
-					style="left: {star.x}%; top: {star.y}%; width: {star.size}px; height: {star.size}px; opacity: {star.opacity};"
+					style="left: {star.x}%; top: {star.y}%; width: {star.size}px; height: {star.size}px; opacity: {star.opacity}; animation-delay: {star.delay}s;"
 				></div>
 			{/each}
 		</div>
@@ -416,8 +417,8 @@
 		</p>
 
 		<div class="iframe-wrapper">
-			<iframe 
-				src="{base}/data/visualisation_full.html" 
+			<iframe
+				src="{base}/data/visualisation_full.html"
 				title="YouTube Upload Volume Visualization"
 				class="viz-iframe"
 				scrolling="no"
@@ -548,7 +549,7 @@
 
 	<section id="section-categories" class="content-section">
 		<h2>{copy.section3_title}</h2>
-		
+
 		<p class="text-content">
 			{copy.section3_intro}
 		</p>
@@ -600,7 +601,7 @@
 				<div class="expert-card">
 					<img class="expert-avatar" src={member.avatar} alt={member.name} />
 					<h3>{member.name}</h3>
-					<span class="role">{member.role}</span>
+					<span class="role">{@html member.role}</span>
 					<p class="desc">{member.desc}</p>
 				</div>
 			{/each}

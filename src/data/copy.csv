@@ -19,7 +19,7 @@ transcript_btn_hide,Hide Transcript
 transcript_content,"Hey guys, Jimmy here, welcome to my first YouTube video. I'm going to be very famous and get a lot of money from this, but I don't know how to yet. But hey, check this out, I found this really cool site, where apparently, they offer a course, on how to make a living off YouTube. It's quite expensive but at least you do save the one dollar. So um I definitely want to do this, let's check it out... Let's see what happens"
 ,
 ,═══════════════════════════════════════════════════════════
-, INTRO DIALOGUE (Meeting the Experts)
+,INTRO DIALOGUE (Meeting the Experts)
 ,Format: [speaker] message text
 ,═══════════════════════════════════════════════════════════
 ,
@@ -29,10 +29,10 @@ intro_chat_3,[kaleb] ...
 intro_chat_4,[jimmy] Can you help me make a lot of money on YouTube?
 intro_chat_5,[daniel] Maybe.
 intro_chat_6,[jimmy] ....I'm getting a refund.
-intro_chat_7,[vivian] Wait! What we CAN do is show you just how Youtube went from an hobby to an industry that makes many people tons of money. We are really good at what we do! We are super trustworthy and we have the best dataset! Check this out... 
+intro_chat_7,[vivian] Wait! What we CAN do is show you just how Youtube went from an hobby to an industry that makes many people tons of money. We are really good at what we do! We are super trustworthy and we have the best dataset! Check this out...
 ,
 ,═══════════════════════════════════════════════════════════
-, DATASET SECTION
+,DATASET SECTION
 ,═══════════════════════════════════════════════════════════
 ,
 dataset_title,The YouNiverse Dataset
@@ -56,11 +56,11 @@ dataset_chat_4,[eddie] Ignore that.
 dataset_chat_5,"[daniel] He's trying to say that in order to master something, you need to first understand it. We have researched several questions, just for you, about what the data tell us."
 ,
 ,═══════════════════════════════════════════════════════════
-, RESEARCH QUESTIONS OVERVIEW
+,RESEARCH QUESTIONS OVERVIEW
 ,═══════════════════════════════════════════════════════════
 ,
 learn_title,What You'll Learn
-learn_subtitle,Click any question to jump to that section **I KNOW THIS BIT IS A BIT UGLY** 
+learn_subtitle,Click any question to jump to that section **I KNOW THIS BIT IS A BIT UGLY**
 q1_title,How have channels evolved from indie to professional?
 q1_desc,What is the adoption curve of sponsorships between different categories?
 q2_title,What enabled indie channels to become professional-minded?
@@ -69,15 +69,15 @@ q3_title,How does a focus on professionalism affect engagement?
 q3_desc,Does the number of views change after channels get sponsors?
 ,
 ,═══════════════════════════════════════════════════════════
-, SECTION 1: Channel Evolution
+,SECTION 1: Channel Evolution
 ,═══════════════════════════════════════════════════════════
 ,
 section1_title,How have channels evolved from indie to professional?
 section1_intro,"YouTube grew from 338k uploads in 2008 to over 15.2 million in 2018. This rapid rise changed which categories became more or less common, and how creators approached their content."
 dialogue_eddie_ask,"Jimmy, what category do you want to explore?"
-dialogue_jimmy_show,Hmmm... Show me 
-dialogue_eddie_response_1,Great choice! Here's how 
-dialogue_eddie_response_2, evolved over time. Check out the full visualization below!
+dialogue_jimmy_show,Hmmm... Show me
+dialogue_eddie_response_1,Great choice! Here's how
+dialogue_eddie_response_2,evolved over time. Check out the full visualization below!
 dialogue_jimmy_hint,Let me pick a category...
 ,
 ,--- Compare Categories Dialogue ---
@@ -85,20 +85,20 @@ dialogue_jimmy_hint,Let me pick a category...
 dialogue_compare_ask,Want to compare two categories side by side? Pick Category A and Category B below!
 compare_label_a,Category A:
 compare_label_b,Category B:
-dialogue_compare_response,Let's compare 
-dialogue_compare_vs, vs 
-dialogue_compare_end, !
+dialogue_compare_response,Let's compare
+dialogue_compare_vs,vs
+dialogue_compare_end,!
 dialogue_pick_other_a,Now pick Category A...
 dialogue_pick_other_b,Now pick Category B...
 ,
 ,═══════════════════════════════════════════════════════════
-, SECTION 2: Professional Growth
+,SECTION 2: Professional Growth
 ,═══════════════════════════════════════════════════════════
 ,
 section2_title,What enabled indie channels to become professional-minded?
-section2_chat_1,[jimmy] Okay but how long is this going to take?! My mom is already wondering why her card is being declined.
+section2_chat_1,[jimmy] Okay but <b>how long is this going to take?!</b> My mom is already wondering why her card is being declined.
 section2_chat_2,[kaleb] <i>All human wisdom is contained in these two words &mdash; wait and hope.</i>
-section2_chat_3, [jimmy] ...
+section2_chat_3,[jimmy] ...
 section2_chat_4,"[kaleb] It's Dumas... Anyway, I hate to break it to you, but you might be waiting a while."
 section2_chat_5,"[kaleb] The median time between posting your first video and obtaining your first sponsor is <b>1108 days</b> or around <b>3 years</b>! It also takes a median of <b>148 videos</b>! </br> <span class=""bubble-hint"">Note the logarithmic x axes. The right plot seems to follow a log-normal distribtion, whereas the left plot obtained $\lambda = 0.429\pm 0.017$ with a <a href=""https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.boxcox.html"" target=""_blank"">Box-Cox transformation</a>, suggesting it is gamma-like.</span>"
 section2_chat_6,[jimmy] Three years!!! I want to throw up. But what kind of stats do I need to get my first sponsor? Maybe if I buy enough bot accounts...
@@ -132,7 +132,7 @@ section2_chat_32,"[kaleb] Notice you can toggle different colourmaps. <i>Connect
 ,
 ,
 ,═══════════════════════════════════════════════════════════
-, SECTION 3: Engagement Impact
+,SECTION 3: Engagement Impact
 ,═══════════════════════════════════════════════════════════
 ,
 section3_title,How does a focus on professionalism affect engagement?
@@ -147,7 +147,7 @@ section3_delta_subs,"For subscribers (note the change in the y-axis scale!), thi
 section3_conclusion,"Ultimately, causal conclusions cannot be drawn, but the observed relationship between sponsorship and audience engagement can be summarized as follows: Your channel will probably need to already be in a steady growth phase before introducing its first sponsor. Even though sponsored videos are likely to be longer in duration, attract more views, and receive positive audience feedback overall, there will probably be a short period of strong growth in the channel around the time of your first sponsor, but followed by a slowdown in the growth rate (for both views and subscribers). But hey, look at the bright side: more money will be flowing in! 🤑💵"
 ,
 ,═══════════════════════════════════════════════════════════
-, TEAM MEMBERS
+,TEAM MEMBERS
 ,Each member has: name / role / avatar / desc
 ,═══════════════════════════════════════════════════════════
 ,
@@ -162,7 +162,7 @@ team_1_desc,expert on question #1
 ,
 ,--- Team Member 2 ---
 team_2_name,Kaleb
-team_2_role,(...) Specialist
+team_2_role,Resident Rustacian
 team_2_avatar,kalan.gif
 team_2_desc,expert on question #2
 ,
