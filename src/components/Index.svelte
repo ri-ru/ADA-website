@@ -338,31 +338,21 @@
 
 	<!-- ========== DATASET SECTION ========== -->
 	<section class="dataset-section">
-		<div class="text-image-block">
-			<div class="text-side">
-				<h2>{copy.dataset_title}</h2>
-        <p class="section-sub">{@html copy.dataset_subtitle}</p>
-				<p> {copy.dataset_p1} </p>
-			</div>
-			<div class="image-side">
-        <a href="https://github.com/epfl-dlab/YouNiverse" target="_blank">
-          <img src="assets/youniverse.png" alt={copy.dataset_img_alt} />
-        </a>
-			</div>
-		</div>
+		<h2>{@html
+      copy.datasets_title
+        .replace(
+          "YouNiverse",
+          "<a href='https://github.com/epfl-dlab/YouNiverse' target='_blank'><img src='assets/youniverse.png' alt='YouNiverse' style='height: 1.5em; transform: translateY(40%); display: inline;'/></a>"
+        )
+        .replace(
+          "SponsorBlock",
+          "SponsorBlock <a href='https://github.com/ajayyy/SponsorBlock' target='_blank'><img src='assets/sponsorblock.png' alt='SponsorBlock Logo' style='height: 1.0em; transform: translateY(20%); display: inline;'/></a>"
+        )
+      }</h2>
+    <p class="section-sub">{@html copy.datasets_subtitle}</p>
+		<p> {@html copy.datasets_overview}</p>
 
-		<div class="text-image-block">
-			<div class="image-side">
-        <a href="https://github.com/ajayyy/SponsorBlock" target="_blank">
-          <img src="assets/sponsorblock.png" alt={copy.sb_img_alt} />
-        </a>
-			</div>
-			<div class="text-side">
-				<h2>{copy.sb_title}</h2>
-        <p class="section-sub">{@html copy.sb_subtitle}</p>
-				<p> {copy.sb_p1} </p>
-			</div>
-		</div>
+    <KalanChart0/>
 	</section>
 
 
@@ -448,6 +438,8 @@
 
     <KalanChart3/>
 
+		<p class="text-content">{@html copy.section2_text_1}</p>
+
 	  {@render dialogue(q2Chat1)}
 
 		<div class="category-selector">
@@ -490,10 +482,12 @@
 		{/if}
 
     <KalanChart1/>
+		<p class="text-content">{@html copy.section2_text_2}</p>
 
 	  {@render dialogue(q2Chat2)}
 
     <KalanChart2/>
+		<p class="text-content">{@html copy.section2_text_3}</p>
 
 	  {@render dialogue(q2Chat3)}
 
@@ -533,8 +527,6 @@
 		</div>
 
 	  {@render dialogue(q2Chat5)}
-
-    <KalanChart0/>
 
 		<!--
 		<div class="container">

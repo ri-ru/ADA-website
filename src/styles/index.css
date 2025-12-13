@@ -124,6 +124,7 @@ h2 {
 	margin: 0 0 var(--ds-space-sm);
 	text-align: center;
 	font-family: var(--ds-font-title), "BlexMono";
+  position: relative;
 }
 
 .section-sub {

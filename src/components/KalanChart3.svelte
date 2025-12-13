@@ -26,10 +26,12 @@
   },
   "grid": [
     {
-      "right": "55%"
+      "right": "55%",
+      bottom: 0
     },
     {
-      "left": "55%"
+      "left": "55%",
+      bottom: 0
     }
   ],
   "xAxis": [
