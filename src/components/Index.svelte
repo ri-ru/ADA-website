@@ -380,8 +380,9 @@
 		<!-- In your questions-section -->
 		<div class="questions-list">
 			{#each questions as q, i}
+				{@const icons = ['', '', '']}
 				<button class="question-btn" onclick={() => jumpTo(q.id)}>
-					<span class="q-num">{i + 1}</span>
+					<span class="q-num">{icons[i]}</span>
 					<div class="q-text">
 						<h3>{q.title}</h3>
 						<p>{@html q.desc.replace(/\n/g, '<br>')}</p>
@@ -532,9 +533,16 @@
 
 		<div class="category-selector">
 			<a href="{base}/wasm/index.html" target="_blank" class="plain-link">
-        <button class="cat-btn active">
+        <button class="cat-btn active leak-particles">
           <span class="icon" style="font-size: 3rem;">󱁉</span>
           <span class="cat-name" style="font-size: 2rem;">Show Channel Graph</span>
+          <div class="particle-container">
+            {#each Array(30) as _, i}
+              {@const angle = (i / 30) * 360}
+              {@const startPos = i % 4}
+              <div class="particle" style="--particle-delay: {i * 0.15}s; --particle-angle: {angle}deg; --particle-start: {startPos}; --particle-duration: {1.5 + Math.random() * 1.5}s;"></div>
+            {/each}
+          </div>
         </button>
 			</a>
 		</div>
