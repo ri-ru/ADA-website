@@ -126,7 +126,6 @@
 	].filter(m => m && m.text);
 
   const q2Chat4 = [
-		parseChatMessage(copy.section2_chat_17),
 		parseChatMessage(copy.section2_chat_18),
 		parseChatMessage(copy.section2_chat_19),
 		parseChatMessage(copy.section2_chat_20),
@@ -145,6 +144,20 @@
 
   const q2Chat5 = [
 		parseChatMessage(copy.section2_chat_32),
+	].filter(m => m && m.text);
+
+  const q3Chat0 = [
+		parseChatMessage(copy.section3_chat_1),
+		parseChatMessage(copy.section3_chat_2),
+		parseChatMessage(copy.section3_chat_3),
+		parseChatMessage(copy.section3_chat_4),
+		parseChatMessage(copy.section3_chat_5),
+	].filter(m => m && m.text);
+
+  const q3Chat1 = [
+		parseChatMessage(copy.section3_chat_6),
+		parseChatMessage(copy.section3_chat_7),
+		parseChatMessage(copy.section3_chat_8),
 	].filter(m => m && m.text);
 
 	// ============================================
@@ -512,19 +525,20 @@
 				<span class="cat-name">Not Sponsored</span>
 			</button>
 		</div>
-
     <KalanChart4/>
+		<p class="text-content">{@html copy.section2_text_4}</p>
 
 	  {@render dialogue(q2Chat4)}
 
 		<div class="category-selector">
 			<a href="{base}/wasm/index.html" target="_blank" class="plain-link">
         <button class="cat-btn active">
-          <span class="icon">󱁉</span>
-          <span class="cat-name">Show Channel Graph</span>
+          <span class="icon" style="font-size: 3rem;">󱁉</span>
+          <span class="cat-name" style="font-size: 2rem;">Show Channel Graph</span>
         </button>
 			</a>
 		</div>
+		<p class="text-content">{@html copy.section2_text_5}</p>
 
 	  {@render dialogue(q2Chat5)}
 
@@ -542,9 +556,7 @@
 	<section id="section-categories" class="content-section">
 		<h2>{copy.section3_title}</h2>
 
-		<p class="text-content">
-			{copy.section3_intro}
-		</p>
+	  {@render dialogue(q3Chat0)}
 
 		<p class="text-content">
 			{copy.section3_dumbbell_intro}
@@ -578,9 +590,7 @@
 			{copy.section3_delta_subs}
 		</p>
 
-		<p class="text-content">
-			{copy.section3_conclusion}
-		</p>
+	  {@render dialogue(q3Chat1)}
 	</section>
 
 	<!-- ========== MEET THE TEAM ========== -->
