@@ -129,7 +129,7 @@ h2 {
 
 .section-sub {
 	color: var(--ds-text-muted) !important;
-	font-size: var(--ds-text-sm);
+	font-size: var(--ds-text-base);
 	margin: 0 0 var(--ds-space-xl);
 	text-align: center;
 }
