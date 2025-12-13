@@ -87,7 +87,7 @@ p {
 .byline {
 	margin-top: var(--ds-space-xl);
 	color: var(--ds-text-muted);
-	font-size: var(--ds-text-sm);
+	font-size: var(--ds-text-base);
 }
 
 .scroll-indicator {
