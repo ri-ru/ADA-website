@@ -15,6 +15,7 @@
   import VisualizationCompare from "./VisualizationCompare.svelte"
   import VisualizationDumbbell from "./VisualizationDumbbell.svelte"
   import VisualizationDeltaViews from "./VisualizationDeltaViews.svelte"
+  import VisualizationFull from "./VisualizationFull.svelte"
   import { rq2 } from "../lib/research_question_2"
   import "katex/dist/katex.min.css"
   import renderMathInElement from "katex/contrib/auto-render"
@@ -405,13 +406,7 @@
 			</p>
 		</div>
 
-		<Activity1 />
-
-		<p class="text-content">
-			We classify channels into <strong>activity bands</strong> based on their <code class="inline-code">last_upload_date</code>. Activity is measured using the last video date in <strong>2025</strong>: if a channel uploads at least one video in 2025, we treat it as <strong>active</strong>; otherwise, it is considered <strong>not active</strong>.
-		</p>
-
-		<Activity2 />
+		<VisualizationFull />
 
 		<h2 class="section-subtitle">
 			{copy.viz_main_title}
@@ -419,15 +414,6 @@
 		<p class="text-content">
 			{copy.viz_main_desc}
 		</p>
-
-		<div class="iframe-wrapper">
-			<iframe
-				src="{base}/data/visualisation_full.html"
-				title="YouTube Upload Volume Visualization"
-				class="viz-iframe"
-				scrolling="no"
-			></iframe>
-		</div>
 
 		<p class="text-content">
 			{copy.viz_focus_desc}
@@ -505,6 +491,12 @@
 
 	  {@render dialogue(q2Chat3)}
 
+		<p class="text-content">
+			We classify channels into <strong>activity bands</strong> based on their <code class="inline-code">last_upload_date</code>. Activity is measured using the last video date in <strong>2025</strong>: if a channel uploads at least one video in 2025, we treat it as <strong>active</strong>; otherwise, it is considered <strong>not active</strong>.
+		</p>
+
+	<Activity2 />
+
 		<div class="category-selector">
 			<button
 				class="cat-btn"
@@ -526,6 +518,7 @@
 				<span class="cat-name">Not Sponsored</span>
 			</button>
 		</div>
+
     <KalanChart4/>
 		<p class="text-content">{@html copy.section2_text_4}</p>
 
