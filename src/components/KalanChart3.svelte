@@ -26,10 +26,12 @@
   },
   "grid": [
     {
-      "right": "55%"
+      "right": "55%",
+      bottom: 0
     },
     {
-      "left": "55%"
+      "left": "55%",
+      bottom: 0
     }
   ],
   "xAxis": [
@@ -61,8 +63,8 @@
     }
   ],
   "color": [
-    "#eca9b5",
-    "#eca9b5"
+    "#f5c2e7",
+    "#f5c2e7"
   ],
   "series": [
     {

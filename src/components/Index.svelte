@@ -35,7 +35,8 @@
 				x: Math.random() * 100,
 				y: Math.random() * 100,
 				size: Math.random() * 2 + 1,
-				opacity: Math.random() * 0.5 + 0.5
+				opacity: Math.random() * 0.5 + 0.5,
+        delay: Math.random() * 3.0,
 			});
 		}
 		stars = newStars;
@@ -125,7 +126,6 @@
 	].filter(m => m && m.text);
 
   const q2Chat4 = [
-		parseChatMessage(copy.section2_chat_17),
 		parseChatMessage(copy.section2_chat_18),
 		parseChatMessage(copy.section2_chat_19),
 		parseChatMessage(copy.section2_chat_20),
@@ -144,6 +144,20 @@
 
   const q2Chat5 = [
 		parseChatMessage(copy.section2_chat_32),
+	].filter(m => m && m.text);
+
+  const q3Chat0 = [
+		parseChatMessage(copy.section3_chat_1),
+		parseChatMessage(copy.section3_chat_2),
+		parseChatMessage(copy.section3_chat_3),
+		parseChatMessage(copy.section3_chat_4),
+		parseChatMessage(copy.section3_chat_5),
+	].filter(m => m && m.text);
+
+  const q3Chat1 = [
+		parseChatMessage(copy.section3_chat_6),
+		parseChatMessage(copy.section3_chat_7),
+		parseChatMessage(copy.section3_chat_8),
 	].filter(m => m && m.text);
 
 	// ============================================
@@ -285,7 +299,7 @@
 			{#each stars as star}
 				<div
 					class="star"
-					style="left: {star.x}%; top: {star.y}%; width: {star.size}px; height: {star.size}px; opacity: {star.opacity};"
+					style="left: {star.x}%; top: {star.y}%; width: {star.size}px; height: {star.size}px; opacity: {star.opacity}; animation-delay: {star.delay}s;"
 				></div>
 			{/each}
 		</div>
@@ -337,31 +351,21 @@
 
 	<!-- ========== DATASET SECTION ========== -->
 	<section class="dataset-section">
-		<div class="text-image-block">
-			<div class="text-side">
-				<h2>{copy.dataset_title}</h2>
-        <p class="section-sub">{@html copy.dataset_subtitle}</p>
-				<p> {copy.dataset_p1} </p>
-			</div>
-			<div class="image-side">
-        <a href="https://github.com/epfl-dlab/YouNiverse" target="_blank">
-          <img src="assets/youniverse.png" alt={copy.dataset_img_alt} />
-        </a>
-			</div>
-		</div>
+		<h2>{@html
+      copy.datasets_title
+        .replace(
+          "YouNiverse",
+          "<a href='https://github.com/epfl-dlab/YouNiverse' target='_blank'><img src='assets/youniverse.png' alt='YouNiverse' style='height: 1.5em; transform: translateY(40%); display: inline;'/></a>"
+        )
+        .replace(
+          "SponsorBlock",
+          "SponsorBlock <a href='https://github.com/ajayyy/SponsorBlock' target='_blank'><img src='assets/sponsorblock.png' alt='SponsorBlock Logo' style='height: 1.0em; transform: translateY(20%); display: inline;'/></a>"
+        )
+      }</h2>
+    <p class="section-sub">{@html copy.datasets_subtitle}</p>
+		<p> {@html copy.datasets_overview}</p>
 
-		<div class="text-image-block">
-			<div class="image-side">
-        <a href="https://github.com/ajayyy/SponsorBlock" target="_blank">
-          <img src="assets/sponsorblock.png" alt={copy.sb_img_alt} />
-        </a>
-			</div>
-			<div class="text-side">
-				<h2>{copy.sb_title}</h2>
-        <p class="section-sub">{@html copy.sb_subtitle}</p>
-				<p> {copy.sb_p1} </p>
-			</div>
-		</div>
+    <KalanChart0/>
 	</section>
 
 
@@ -416,8 +420,8 @@
 		</p>
 
 		<div class="iframe-wrapper">
-			<iframe 
-				src="{base}/data/visualisation_full.html" 
+			<iframe
+				src="{base}/data/visualisation_full.html"
 				title="YouTube Upload Volume Visualization"
 				class="viz-iframe"
 				scrolling="no"
@@ -446,6 +450,8 @@
 	  {@render dialogue(q2Chat0)}
 
     <KalanChart3/>
+
+		<p class="text-content">{@html copy.section2_text_1}</p>
 
 	  {@render dialogue(q2Chat1)}
 
@@ -489,10 +495,12 @@
 		{/if}
 
     <KalanChart1/>
+		<p class="text-content">{@html copy.section2_text_2}</p>
 
 	  {@render dialogue(q2Chat2)}
 
     <KalanChart2/>
+		<p class="text-content">{@html copy.section2_text_3}</p>
 
 	  {@render dialogue(q2Chat3)}
 
@@ -517,23 +525,22 @@
 				<span class="cat-name">Not Sponsored</span>
 			</button>
 		</div>
-
     <KalanChart4/>
+		<p class="text-content">{@html copy.section2_text_4}</p>
 
 	  {@render dialogue(q2Chat4)}
 
 		<div class="category-selector">
 			<a href="{base}/wasm/index.html" target="_blank" class="plain-link">
         <button class="cat-btn active">
-          <span class="icon">󱁉</span>
-          <span class="cat-name">Show Channel Graph</span>
+          <span class="icon" style="font-size: 3rem;">󱁉</span>
+          <span class="cat-name" style="font-size: 2rem;">Show Channel Graph</span>
         </button>
 			</a>
 		</div>
+		<p class="text-content">{@html copy.section2_text_5}</p>
 
 	  {@render dialogue(q2Chat5)}
-
-    <KalanChart0/>
 
 		<!--
 		<div class="container">
@@ -548,10 +555,8 @@
 
 	<section id="section-categories" class="content-section">
 		<h2>{copy.section3_title}</h2>
-		
-		<p class="text-content">
-			{copy.section3_intro}
-		</p>
+
+	  {@render dialogue(q3Chat0)}
 
 		<p class="text-content">
 			{copy.section3_dumbbell_intro}
@@ -585,9 +590,7 @@
 			{copy.section3_delta_subs}
 		</p>
 
-		<p class="text-content">
-			{copy.section3_conclusion}
-		</p>
+	  {@render dialogue(q3Chat1)}
 	</section>
 
 	<!-- ========== MEET THE TEAM ========== -->
@@ -600,7 +603,7 @@
 				<div class="expert-card">
 					<img class="expert-avatar" src={member.avatar} alt={member.name} />
 					<h3>{member.name}</h3>
-					<span class="role">{member.role}</span>
+					<span class="role">{@html member.role}</span>
 					<p class="desc">{member.desc}</p>
 				</div>
 			{/each}

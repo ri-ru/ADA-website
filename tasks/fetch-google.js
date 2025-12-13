@@ -42,7 +42,7 @@ const fetchGoogle = async ({ id, gid }) => {
 
 	const base = "https://docs.google.com";
 	const post = gid
-		? `spreadsheets/u/1/d/${id}/export?format=csv&id=${id}&gid=${gid}`
+		? `spreadsheets/d/${id}/export?format=csv`
 		: `document/d/${id}/export?format=txt`;
 	const url = `${base}/${post}`;
 

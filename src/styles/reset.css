@@ -26,10 +26,10 @@ mark {
 }
 
 a {
-	color: var(--color-link, blue);
+	color: inherit;
 	text-decoration-line: underline;
 	text-decoration-style: solid;
-	text-decoration-color: var(--color-link, blue);
+	text-decoration-color: inherit;
 	text-decoration-thickness: 2px;
 }
 
