@@ -307,28 +307,6 @@
     });
   }
 
-  function updateCount(newCount) {
-    const clamped = Math.min(Math.max(Number(newCount) || 0, 2), categories.length);
-
-    // Keep unique existing picks, then append next unused categories in order
-    const seen = new Set();
-    const next = [];
-    selectedCategories.slice(0, clamped).forEach((cat) => {
-      if (cat && !seen.has(cat)) {
-        seen.add(cat);
-        next.push(cat);
-      }
-    });
-    const pool = categories.filter((c) => !seen.has(c));
-    while (next.length < clamped) {
-      next.push(pool.shift() || categories[next.length % categories.length]);
-    }
-
-    compareCount = clamped;
-    selectedCategories = next;
-    setTimeout(() => renderAll(), 50);
-  }
-
   function clearAllHover() {
     chartInstances.forEach((c) => {
       if (!c) return;
@@ -373,49 +351,6 @@
   margin: 2rem 0;
   font-family: var(--viz-font, "TeX Gyre Adventor", "Tex Gyre Adventor", "Helvetica Neue", Arial, sans-serif);
 }
-
-  .controls {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    align-items: center;
-    margin-bottom: 12px;
-  }
-
-  .count-block {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 12px;
-    color: #94a3b8;
-  }
-
-  .slider-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  input[type="range"] {
-    appearance: none;
-    width: 220px;
-    height: 6px;
-    background: linear-gradient(90deg, #ea76cb, #dd7878);
-    border-radius: 999px;
-    outline: none;
-    cursor: pointer;
-    box-shadow: 0 0 0 1px rgba(148,163,184,0.3);
-  }
-
-  input[type="range"]::-webkit-slider-thumb {
-    appearance: none;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: #ea76cb;
-    border: 2px solid #f4e4f2;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.35);
-  }
 
   label {
     font-size: 12px;
@@ -566,23 +501,6 @@
 </style>
 
 <div class="viz-compare-wrap">
-  <div class="controls">
-    <div class="count-block">
-      <label class="slider-row">
-        Categories in view:
-        <input
-          type="range"
-          min="2"
-          max={categories.length}
-          step="1"
-          bind:value={compareCount}
-          oninput={(e) => updateCount(Number(e.currentTarget?.value || compareCount))}
-        />
-        <span>{compareCount}</span>
-      </label>
-    </div>
-  </div>
-
   <div class="selectors">
     {#each Array(compareCount) as _, i}
       <label class="selector-label">
