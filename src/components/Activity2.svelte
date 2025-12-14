@@ -1,5 +1,5 @@
 <script lang="ts">
-  import LINKS from './activity2_links.json';
+  import enriched from './data_config_activity_v2_enriched.json';
   import chartTheme from '../lib/echarts-theme';
 
   const UNIT = 200;  // channels per icon
@@ -7,30 +7,59 @@
   const ICON_WIDTH = 14;
   const ICON_HEIGHT = 10;
 
-  const DATA = [
-    { id: "Music", label: "Music", active: 14437, not_active: 9848 },
-    { id: "Entertainment", label: "Entertainment", active: 12762, not_active: 10189 },
-    { id: "Gaming", label: "Gaming", active: 10797, not_active: 9346 },
-    { id: "People & Blogs", label: "People & Blogs", active: 9397, not_active: 9016 },
-    { id: "Howto & Style", label: "Howto & Style", active: 7657, not_active: 4218 },
-    { id: "Education", label: "Education", active: 5373, not_active: 2430 },
-    { id: "Film & Animation", label: "Film & Animation", active: 3477, not_active: 3398 },
-    { id: "Sports", label: "Sports", active: 3486, not_active: 1662 },
-    { id: "Science & Technology", label: "Science & Tech.", active: 3218, not_active: 1646 },
-    { id: "Comedy", label: "Comedy", active: 2091, not_active: 1676 },
-    { id: "Autos & Vehicles", label: "Autos & Vehicles", active: 2643, not_active: 1062 },
-    { id: "News & Politics", label: "News & Politics", active: 1638, not_active: 625 },
-    { id: "Travel & Events", label: "Travel & Events", active: 1421, not_active: 568 },
-    { id: "Pets & Animals", label: "Pets & Animals", active: 788, not_active: 504 },
-    { id: "Nonprofits & Activism", label: "Nonprofits", active: 323, not_active: 646 }
-  ];
+  const RAW_DATA = (enriched as any)?.DATA || [];
+  const DATA = RAW_DATA.map((d: any) => ({
+    id: d.id,
+    label: d.label,
+    active: Number(d.active) || 0,
+    not_active: Number(d.not_active) || 0,
+  }));
+
+  const rawLinks = (enriched as any)?.LINKS || {};
+  const LINKS: Record<string, { active: IconLink[]; not_active: IconLink[] }> = Object.fromEntries(
+    Object.entries(rawLinks).map(([cat, entry]: [string, any]) => {
+      const normalize = (item: any): IconLink | null => {
+        if (!item) return null;
+        if (typeof item === "string") return { url: item };
+        return {
+          url: item.url || null,
+          name: item.name_cc ?? item.name ?? null,
+          subscribers: item.subscribers_cc ?? null,
+          lastTitle: item.last_video_title ?? null,
+          joinDate: item.join_date ?? null,
+        };
+      };
+      const active = (entry?.active || []).map(normalize).filter(Boolean) as IconLink[];
+      const inactive = (entry?.not_active || []).map(normalize).filter(Boolean) as IconLink[];
+      return [cat, { active, not_active: inactive }];
+    })
+  );
+
+  interface IconLink {
+    url: string | null;
+    name?: string | null;
+    subscribers?: number | null;
+    lastTitle?: string | null;
+    joinDate?: string | null;
+  }
 
   interface IconData {
     band: 'active' | 'inactive';
     x: number;
     y: number;
     url: string | null;
+    label?: string | null;
+    meta?: IconLink | null;
     delay: number;
+  }
+
+  function iconTooltip(icon: IconData) {
+    if (!icon.meta) return "";
+    const parts = [];
+    if (icon.meta.name) parts.push(`• Channel: ${icon.meta.name}`);
+    if (icon.meta.subscribers) parts.push(`• Subscribers: ${icon.meta.subscribers.toLocaleString()}`);
+    if (icon.meta.joinDate) parts.push(`• Join Date: ${icon.meta.joinDate}`);
+    return parts.join("\n");
   }
 
   interface CardData {
@@ -188,9 +217,11 @@
       const theta = idx * GOLDEN_ANGLE;
       const x = cx + r * Math.cos(theta) - ICON_WIDTH / 2;
       const y = cy + r * Math.sin(theta) - ICON_HEIGHT / 2;
-      const url = urlsByBand[band].shift() || null;
+      const link = urlsByBand[band].shift() || null;
+      const url = link?.url || null;
+      const label = link?.name || null;
 
-      return { band, x, y, url, delay: idx * 20 };
+      return { band, x, y, url, label, meta: link, delay: idx * 20 };
     });
 
     const iconMeta = CATEGORY_ICONS[d.label];
@@ -301,18 +332,18 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    background: linear-gradient(135deg, #d20f39, #e64553);
+    background: linear-gradient(135deg, #1e66f5, #04a5e5);
     box-shadow: inset 0 0 0 1px rgba(255,255,255,0.2);
   }
 
   .header-icon.inactive {
-    background: linear-gradient(135deg, #6c7086, #4c4f69);
+    background: linear-gradient(135deg, #d20f39, #e64553);
   }
 
   .header-icon::before {
     content: "";
     border-style: solid;
-    border-width: 2px 0 2px 4px;
+    border-width: 1.5px 0 1.5px 3.5px;
     border-color: transparent transparent transparent #ffffff;
   }
 
@@ -337,8 +368,9 @@
     max-width: 100%;
     margin: 0 auto;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(114, 135, 253, 0.12), transparent 70%);
+    background: radial-gradient(circle, rgba(30, 102, 245, 0.16), transparent 70%);
     border: none;
+    overflow: visible;
   }
 
   .circle::after {
@@ -348,6 +380,7 @@
     border-radius: 50%;
     border: none;
     pointer-events: none;
+    z-index: 0;
   }
 
   .icon {
@@ -367,25 +400,52 @@
     border: 1px solid rgba(255,255,255,0.25);
   }
 
-  .icon.active { background: linear-gradient(135deg, #d20f39, #e64553); }
-  .icon.inactive { background: linear-gradient(135deg, #6c7086, #4c4f69); }
+  .icon.active { background: linear-gradient(135deg, #1e66f5, #04a5e5); }
+  .icon.inactive { background: linear-gradient(135deg, #d20f39, #e64553); }
 
   .icon::before {
     content: "";
     border-style: solid;
-    border-width: 3px 0 2px 6px;
+    border-width: 2px 0 2px 4px;
     border-color: transparent transparent transparent #ffffff;
-    margin-left: 1px;
+    margin-left: 0.5px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .icon[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 50%;
+    top: -10px;
+    transform: translate(-50%, -100%);
+    background: #0b1222;
+    color: #f8fafc;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 12px;
+    font-size: 11px;
+    line-height: 1.35;
+    white-space: pre-line;
+    min-width: 200px;
+    max-width: 280px;
+    word-break: break-word;
+    text-align: left;
+    pointer-events: none;
+    z-index: 400;
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.6);
   }
 
   .icon.on {
     opacity: 1;
     transform: scale(1) translateY(0);
+    z-index: 2;
   }
 
   .icon:hover {
     box-shadow: 0 0 0 2px rgba(114,135,253,0.4);
     transform: scale(1.06) translateY(-1px);
+    z-index: 500;
   }
 
   .icon.no-link {
@@ -406,10 +466,6 @@
 </style>
 
 <div class="activity2-wrap">
-  <div class="helper-text">
-    Each icon represents roughly 200 channels.
-  </div>
-
   <div class="grid">
     {#each cards as card}
         <div class="card">
@@ -452,7 +508,7 @@
               onkeydown={(e) => { if (e.key === 'Enter') openChannel(icon.url); }}
               role="link"
               tabindex="0"
-              title={icon.url ? 'open channel' : ''}
+              data-tooltip={iconTooltip(icon)}
             ></div>
           {/each}
         </div>
