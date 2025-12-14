@@ -7,17 +7,204 @@
   Chart.defaults.font.family = fontStack;
 
   const dataRows = [
-    {year:2008,"Autos & Vehicles":18476,"Comedy":9555,"Education":22799,"Entertainment":55638,"Film & Animation":7751,"Gaming":25312,"Howto & Style":26063,"Music":51183,"News & Politics":25270,"Nonprofits & Activism":6123,"People & Blogs":31167,"Pets & Animals":6921,"Science & Technology":17317,"Sports":23328,"Travel & Events":11130},
-    {year:2009,"Autos & Vehicles":35480,"Comedy":14795,"Education":41520,"Entertainment":91212,"Film & Animation":14809,"Gaming":86693,"Howto & Style":42771,"Music":116200,"News & Politics":67463,"Nonprofits & Activism":13577,"People & Blogs":60399,"Pets & Animals":10295,"Science & Technology":32539,"Sports":45629,"Travel & Events":21174},
-    {year:2010,"Autos & Vehicles":59593,"Comedy":18945,"Education":74632,"Entertainment":153734,"Film & Animation":28327,"Gaming":141462,"Howto & Style":67351,"Music":174585,"News & Politics":97464,"Nonprofits & Activism":21495,"People & Blogs":66036,"Pets & Animals":15596,"Science & Technology":52310,"Sports":82347,"Travel & Events":31476},
-    {year:2011,"Autos & Vehicles":88574,"Comedy":32902,"Education":120596,"Entertainment":304094,"Film & Animation":62429,"Gaming":290048,"Howto & Style":108199,"Music":285111,"News & Politics":169560,"Nonprofits & Activism":28280,"People & Blogs":97349,"Pets & Animals":21037,"Science & Technology":83395,"Sports":137547,"Travel & Events":45701},
-    {year:2012,"Autos & Vehicles":135684,"Comedy":50393,"Education":169777,"Entertainment":497732,"Film & Animation":91988,"Gaming":509309,"Howto & Style":180681,"Music":404498,"News & Politics":246839,"Nonprofits & Activism":39107,"People & Blogs":156526,"Pets & Animals":30398,"Science & Technology":125864,"Sports":219892,"Travel & Events":67591},
-    {year:2013,"Autos & Vehicles":162838,"Comedy":68485,"Education":216381,"Entertainment":634714,"Film & Animation":125449,"Gaming":833420,"Howto & Style":246132,"Music":521508,"News & Politics":349808,"Nonprofits & Activism":59203,"People & Blogs":221188,"Pets & Animals":38922,"Science & Technology":168943,"Sports":287302,"Travel & Events":83874},
-    {year:2014,"Autos & Vehicles":186404,"Comedy":90952,"Education":255626,"Entertainment":807142,"Film & Animation":170831,"Gaming":1146869,"Howto & Style":293392,"Music":653974,"News & Politics":460032,"Nonprofits & Activism":70375,"People & Blogs":411033,"Pets & Animals":37009,"Science & Technology":186324,"Sports":330836,"Travel & Events":78988},
-    {year:2015,"Autos & Vehicles":258044,"Comedy":124527,"Education":326137,"Entertainment":1029927,"Film & Animation":233288,"Gaming":1512749,"Howto & Style":380797,"Music":795565,"News & Politics":596981,"Nonprofits & Activism":82187,"People & Blogs":635832,"Pets & Animals":48439,"Science & Technology":220923,"Sports":435426,"Travel & Events":127107},
-    {year:2016,"Autos & Vehicles":260582,"Comedy":164941,"Education":446510,"Entertainment":1565403,"Film & Animation":329656,"Gaming":2035816,"Howto & Style":523933,"Music":1012825,"News & Politics":873908,"Nonprofits & Activism":97483,"People & Blogs":1012489,"Pets & Animals":66900,"Science & Technology":281005,"Sports":545189,"Travel & Events":135793},
-    {year:2017,"Autos & Vehicles":345724,"Comedy":212665,"Education":660003,"Entertainment":2176261,"Film & Animation":430470,"Gaming":2478332,"Howto & Style":702145,"Music":1320471,"News & Politics":1290183,"Nonprofits & Activism":118501,"People & Blogs":1411483,"Pets & Animals":101161,"Science & Technology":390603,"Sports":687902,"Travel & Events":160395},
-    {year:2018,"Autos & Vehicles":385196,"Comedy":224823,"Education":854858,"Entertainment":2697068,"Film & Animation":467608,"Gaming":2641479,"Howto & Style":791664,"Music":1612171,"News & Politics":2120989,"Nonprofits & Activism":130403,"People & Blogs":1684526,"Pets & Animals":145417,"Science & Technology":476513,"Sports":861920,"Travel & Events":181124},
+    {
+      year: 2008,
+      "Autos & Vehicles": 18476,
+      Comedy: 9555,
+      Education: 22799,
+      Entertainment: 55638,
+      "Film & Animation": 7751,
+      Gaming: 25312,
+      "Howto & Style": 26063,
+      Music: 51183,
+      "News & Politics": 25270,
+      "Nonprofits & Activism": 6123,
+      "People & Blogs": 31167,
+      "Pets & Animals": 6921,
+      "Science & Technology": 17317,
+      Sports: 23328,
+      "Travel & Events": 11130
+    },
+    {
+      year: 2009,
+      "Autos & Vehicles": 35480,
+      Comedy: 14795,
+      Education: 41520,
+      Entertainment: 91212,
+      "Film & Animation": 14809,
+      Gaming: 86693,
+      "Howto & Style": 42771,
+      Music: 116200,
+      "News & Politics": 67463,
+      "Nonprofits & Activism": 13577,
+      "People & Blogs": 60399,
+      "Pets & Animals": 10295,
+      "Science & Technology": 32539,
+      Sports: 45629,
+      "Travel & Events": 21174
+    },
+    {
+      year: 2010,
+      "Autos & Vehicles": 59593,
+      Comedy: 18945,
+      Education: 74632,
+      Entertainment: 153734,
+      "Film & Animation": 28327,
+      Gaming: 141462,
+      "Howto & Style": 67351,
+      Music: 174585,
+      "News & Politics": 97464,
+      "Nonprofits & Activism": 21495,
+      "People & Blogs": 66036,
+      "Pets & Animals": 15596,
+      "Science & Technology": 52310,
+      Sports: 82347,
+      "Travel & Events": 31476
+    },
+    {
+      year: 2011,
+      "Autos & Vehicles": 88574,
+      Comedy: 32902,
+      Education: 120596,
+      Entertainment: 304094,
+      "Film & Animation": 62429,
+      Gaming: 290048,
+      "Howto & Style": 108199,
+      Music: 285111,
+      "News & Politics": 169560,
+      "Nonprofits & Activism": 28280,
+      "People & Blogs": 97349,
+      "Pets & Animals": 21037,
+      "Science & Technology": 83395,
+      Sports: 137547,
+      "Travel & Events": 45701
+    },
+    {
+      year: 2012,
+      "Autos & Vehicles": 135684,
+      Comedy: 50393,
+      Education: 169777,
+      Entertainment: 497732,
+      "Film & Animation": 91988,
+      Gaming: 509309,
+      "Howto & Style": 180681,
+      Music: 404498,
+      "News & Politics": 246839,
+      "Nonprofits & Activism": 39107,
+      "People & Blogs": 156526,
+      "Pets & Animals": 30398,
+      "Science & Technology": 125864,
+      Sports: 219892,
+      "Travel & Events": 67591
+    },
+    {
+      year: 2013,
+      "Autos & Vehicles": 162838,
+      Comedy: 68485,
+      Education: 216381,
+      Entertainment: 634714,
+      "Film & Animation": 125449,
+      Gaming: 833420,
+      "Howto & Style": 246132,
+      Music: 521508,
+      "News & Politics": 349808,
+      "Nonprofits & Activism": 59203,
+      "People & Blogs": 221188,
+      "Pets & Animals": 38922,
+      "Science & Technology": 168943,
+      Sports: 287302,
+      "Travel & Events": 83874
+    },
+    {
+      year: 2014,
+      "Autos & Vehicles": 186404,
+      Comedy: 90952,
+      Education: 255626,
+      Entertainment: 807142,
+      "Film & Animation": 170831,
+      Gaming: 1146869,
+      "Howto & Style": 293392,
+      Music: 653974,
+      "News & Politics": 460032,
+      "Nonprofits & Activism": 70375,
+      "People & Blogs": 411033,
+      "Pets & Animals": 37009,
+      "Science & Technology": 186324,
+      Sports: 330836,
+      "Travel & Events": 78988
+    },
+    {
+      year: 2015,
+      "Autos & Vehicles": 258044,
+      Comedy: 124527,
+      Education: 326137,
+      Entertainment: 1029927,
+      "Film & Animation": 233288,
+      Gaming: 1512749,
+      "Howto & Style": 380797,
+      Music: 795565,
+      "News & Politics": 596981,
+      "Nonprofits & Activism": 82187,
+      "People & Blogs": 635832,
+      "Pets & Animals": 48439,
+      "Science & Technology": 220923,
+      Sports: 435426,
+      "Travel & Events": 127107
+    },
+    {
+      year: 2016,
+      "Autos & Vehicles": 260582,
+      Comedy: 164941,
+      Education: 446510,
+      Entertainment: 1565403,
+      "Film & Animation": 329656,
+      Gaming: 2035816,
+      "Howto & Style": 523933,
+      Music: 1012825,
+      "News & Politics": 873908,
+      "Nonprofits & Activism": 97483,
+      "People & Blogs": 1012489,
+      "Pets & Animals": 66900,
+      "Science & Technology": 281005,
+      Sports: 545189,
+      "Travel & Events": 135793
+    },
+    {
+      year: 2017,
+      "Autos & Vehicles": 345724,
+      Comedy: 212665,
+      Education: 660003,
+      Entertainment: 2176261,
+      "Film & Animation": 430470,
+      Gaming: 2478332,
+      "Howto & Style": 702145,
+      Music: 1320471,
+      "News & Politics": 1290183,
+      "Nonprofits & Activism": 118501,
+      "People & Blogs": 1411483,
+      "Pets & Animals": 101161,
+      "Science & Technology": 390603,
+      Sports: 687902,
+      "Travel & Events": 160395
+    },
+    {
+      year: 2018,
+      "Autos & Vehicles": 385196,
+      Comedy: 224823,
+      Education: 854858,
+      Entertainment: 2697068,
+      "Film & Animation": 467608,
+      Gaming: 2641479,
+      "Howto & Style": 791664,
+      Music: 1612171,
+      "News & Politics": 2120989,
+      "Nonprofits & Activism": 130403,
+      "People & Blogs": 1684526,
+      "Pets & Animals": 145417,
+      "Science & Technology": 476513,
+      Sports: 861920,
+      "Travel & Events": 181124
+    }
   ];
 
   const categories = ["Gaming","Entertainment","Music","News & Politics","People & Blogs","Sports","Howto & Style","Education","Science & Technology","Film & Animation","Autos & Vehicles","Comedy","Travel & Events","Nonprofits & Activism","Pets & Animals"];
@@ -50,6 +237,68 @@
 
   const years = dataRows.map(d => d.year);
   const totals = dataRows.map(row => categories.reduce((sum, cat) => sum + (row[cat] || 0), 0));
+  const HEADLINES: Record<string, { title: string; subtitle: string }> = {
+    Gaming: {
+      title: "Gaming Over Time",
+      subtitle: "Gaming grew from a small category into one of the largest sources of uploads on YouTube."
+    },
+    Entertainment: {
+      title: "Entertainment Over Time",
+      subtitle: "Entertainment was already popular early on and continued to grow as the platform expanded."
+    },
+    Music: {
+      title: "Music Over Time",
+      subtitle: "Music uploads increased steadily, remaining a core category throughout YouTube’s growth."
+    },
+    "News & Politics": {
+      title: "News & Politics Over Time",
+      subtitle: "This category grew slowly at first, then expanded rapidly in later years."
+    },
+    "People & Blogs": {
+      title: "People & Blogs Over Time",
+      subtitle: "Uploads in this category rose sharply as more people began sharing personal content."
+    },
+    "Film & Animation": {
+      title: "Film & Animation Over Time",
+      subtitle: "Film and animation grew steadily but remained smaller than entertainment-driven categories."
+    },
+    Education: {
+      title: "Education Over Time",
+      subtitle: "Education content expanded quickly, becoming a much more visible part of the platform."
+    },
+    "Howto & Style": {
+      title: "Howto & Style Over Time",
+      subtitle: "Practical and instructional content grew consistently as YouTube matured."
+    },
+    Sports: {
+      title: "Sports Over Time",
+      subtitle: "Sports uploads increased steadily, following the platform’s overall growth."
+    },
+    "Autos & Vehicles": {
+      title: "Autos & Vehicles Over Time",
+      subtitle: "This category grew gradually, reflecting steady interest rather than rapid expansion."
+    },
+    "Science & Technology": {
+      title: "Science & Technology Over Time",
+      subtitle: "Science and technology content grew at a moderate pace over the decade."
+    },
+    "Pets & Animals": {
+      title: "Pets & Animals Over Time",
+      subtitle: "Starting from a small base, pet-related content grew slowly but consistently."
+    },
+    "Nonprofits & Activism": {
+      title: "Nonprofits & Activism Over Time",
+      subtitle: "This category remained relatively small, even as overall uploads increased."
+    },
+    "Travel & Events": {
+      title: "Travel & Events Over Time",
+      subtitle: "Travel content grew over time but did not scale as quickly as major categories."
+    },
+    Comedy: {
+      title: "Comedy Over Time",
+      subtitle: "Comedy uploads increased steadily, becoming more common as the platform grew."
+    }
+  };
 
   let xyCanvas: HTMLCanvasElement | null = null;
   let overlayEl: HTMLDivElement | null = null;
@@ -141,12 +390,34 @@
     // Ensure a stable canvas size for the small sparkline
     const w = sparkCanvas.clientWidth || sparkCanvas.parentElement?.clientWidth || 600;
     sparkCanvas.width = w;
-    sparkCanvas.height = 110;
+    sparkCanvas.height = 170;
 
     const ctx = sparkCanvas.getContext("2d");
     if (!ctx) return;
     const dataValues = dataRows.map((row) => row[activeCategory] || 0);
     const tint = categoryColors[activeCategory] || "#38bdf8";
+    const maxVal = Math.max(...dataValues);
+    const paddedMax = maxVal > 0 ? maxVal * 1.08 : 1;
+
+    const valueLabelPlugin = {
+      id: "sparkValueLabels",
+      afterDatasetsDraw(chart: Chart) {
+        const { ctx } = chart;
+        const meta = chart.getDatasetMeta(0);
+        if (!meta?.data?.length) return;
+        ctx.save();
+        ctx.font = "10px " + (Chart.defaults.font.family ?? fontStack);
+        ctx.fillStyle = tint;
+        ctx.textAlign = "center";
+        ctx.textBaseline = "bottom";
+        meta.data.forEach((pt, idx) => {
+          const val = dataValues[idx];
+          const label = formatMillions(val);
+          ctx.fillText(label, pt.x, pt.y - 6);
+        });
+        ctx.restore();
+      }
+    };
 
     sparkChart = new Chart(ctx, {
       type: "line",
@@ -197,12 +468,24 @@
           },
           y: {
             ticks: { color: "#cbd5e1", callback: (v) => formatMillions(Number(v)), font: { size: 10 } },
-            grid: { display: false }
+            grid: { display: false },
+            suggestedMax: paddedMax
           }
         },
         layout: { padding: { top: 8, right: 12, left: 6, bottom: 6 } },
-        elements: { line: { capBezierPoints: true } }
-      }
+        elements: { line: { capBezierPoints: true } },
+        animations: {
+          x: {
+            duration: 0
+          },
+          y: {
+            duration: 500,
+            easing: "easeInOutQuad",
+            delay: (ctx) => (ctx?.index ?? 0) * 50
+          }
+        }
+      },
+      plugins: [valueLabelPlugin]
     });
   }
 
@@ -397,8 +680,6 @@
 
       polarCharts.push(polarChart);
 
-      canvas.addEventListener("mousemove", hideHoverTooltip);
-      canvas.addEventListener("mouseleave", hideHoverTooltip);
       canvas.addEventListener("click", (event) => {
         const points = polarChart.getElementsAtEventForMode(
           event,
@@ -412,30 +693,33 @@
         }
       });
 
-      if (!activeCategory) {
-        const totalLabel = document.createElement("div");
-        totalLabel.className = "polar-total";
-        totalLabel.textContent = formatMillions(total);
-        const fontSize = 12 + Math.sqrt(total / maxTotal) * 8;
-        totalLabel.style.fontSize = `${fontSize}px`;
-        totalLabel.style.left = `${Math.max(30, Math.min(point.x, overlayEl.clientWidth - 30))}px`;
-        totalLabel.style.top = `${Math.max(12, point.y - size / 2 - 8)}px`;
-        overlayEl.appendChild(totalLabel);
-      } else {
-        const catIndex = categories.indexOf(activeCategory);
-        if (catIndex >= 0) {
-          const catValue = values[catIndex] || 0;
-          const catPct = total ? (catValue / total) * 100 : 0;
-          const catLabel = document.createElement("div");
-          catLabel.className = "polar-total";
-          catLabel.textContent = `${formatMillions(catValue)} (${catPct.toFixed(1)}%)`;
-          const fontSize = 10 + Math.sqrt(catValue / maxTotal) * 4.5;
-          catLabel.style.fontSize = `${fontSize}px`;
-          catLabel.style.left = `${Math.max(30, Math.min(point.x, overlayEl.clientWidth - 30))}px`;
-          catLabel.style.top = `${Math.max(12, point.y - size / 2 - 8)}px`;
-          overlayEl.appendChild(catLabel);
+      canvas.addEventListener("mousemove", (event) => {
+        const points = polarChart.getElementsAtEventForMode(
+          event,
+          "nearest",
+          { intersect: false },
+          false
+        );
+        if (points?.length) {
+          const idx = points[0].index;
+          const label = categories[idx];
+          const tint = palette[idx] || "#38bdf8";
+          const catValue = values[idx] || 0;
+          const pct = percents[idx] || 0;
+          const content = `<strong>${label}</strong><br>${formatMillions(catValue)} (${pct.toFixed(1)}%)`;
+          const targetX = left + event.offsetX;
+          const targetY = top + event.offsetY;
+          showHoverTooltip(content, targetX, targetY, tint, targetX, targetY - 12);
+        } else {
+          hideHoverTooltip();
         }
-      }
+      });
+
+      canvas.addEventListener("mouseleave", () => {
+        hideHoverTooltip();
+      });
+
+      // Labels moved to sparkline chart; keep overlay clean.
     });
   }
 
@@ -555,7 +839,7 @@
     background: transparent;
     border: none;
     color: #e2e8f0;
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: 0.12px;
     cursor: pointer;
     transition: color 0.2s ease, transform 0.2s ease;
@@ -611,8 +895,8 @@
   canvas { cursor: default; }
 
   .spark-wrap {
-    margin: 6px 0 8px;
-    padding: 0 12px 4px 24px;
+    margin: 14px 0 12px;
+    padding: 10px 12px 8px 24px;
     background: transparent;
     border-top: none;
   }
@@ -623,20 +907,83 @@
     margin: 2px 0 2px;
   }
 
+  .spark-headline {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #e5e7eb;
+    margin: 2px 0 2px;
+  }
+
+  .spark-headline svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  .spark-avatar-col {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    margin-right: 10px;
+  }
+
+  .spark-text {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 6px;
+  }
+
+  .spark-headline-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .spark-avatar {
+    width: 64px;
+    height: 66px;
+    border-radius: 8px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .spark-avatar-name {
+    font-size: 0px;
+    color: #f9a8d4;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    line-height: 0.9;
+  }
+
+  .spark-subtitle {
+    font-size: 12px;
+    color: #9ca3af;
+    font-weight: 400;
+    margin: 0 0 4px;
+    padding: 0; /* align directly under headline text */
+  }
+
   .spark-wrap canvas {
     width: 100%;
-    height: 90px;
+    height: 150px;
     cursor: default;
   }
 
   .chart-container canvas {
     cursor: crosshair;
   }
+
 </style>
 
 <div class="viz-main-wrap">
-  <h1>YouTube – XY with Polar Breakdowns</h1>
-  <p class="note">Hover or click a category to see its share across the years.</p>
+  <h1>From Indie to Industry: Growth of YouTube uploads across categories (2008–2018)</h1>
+  <p class="note">YouTube became capable of sustaining large-scale content production across many categories.</p>
 
   <div class="chart-container">
     <canvas id="xyChart" bind:this={xyCanvas}></canvas>
@@ -645,7 +992,42 @@
 
   {#if activeCategory}
     <div class="spark-wrap">
-      <div class="spark-title">{activeCategory} over years</div>
+      {#if HEADLINES[activeCategory]}
+        <div class="spark-headline">
+          <div class="spark-avatar-col">
+            <img src="/assets/pixel_art/ender.gif" alt="Ender" class="spark-avatar" />
+            <span class="spark-avatar-name">Andy</span>
+          </div>
+          <div class="spark-text">
+            <div class="spark-headline-row">
+              {#if CATEGORY_ICONS[activeCategory]}
+                <svg viewBox={CATEGORY_ICONS[activeCategory].viewBox} aria-hidden="true">
+                  <path d={CATEGORY_ICONS[activeCategory].path} fill={categoryColors[activeCategory]} />
+                </svg>
+              {/if}
+              {HEADLINES[activeCategory].title}
+            </div>
+            <div class="spark-subtitle">{HEADLINES[activeCategory].subtitle}</div>
+          </div>
+        </div>
+      {:else}
+        <div class="spark-title spark-headline">
+          <div class="spark-avatar-col">
+            <img src="/assets/pixel_art/ender.gif" alt="Ender" class="spark-avatar" />
+            <span class="spark-avatar-name">Andy</span>
+          </div>
+          <div class="spark-text">
+            <div class="spark-headline-row">
+              {#if CATEGORY_ICONS[activeCategory]}
+                <svg viewBox={CATEGORY_ICONS[activeCategory].viewBox} aria-hidden="true">
+                  <path d={CATEGORY_ICONS[activeCategory].path} fill={categoryColors[activeCategory]} />
+                </svg>
+              {/if}
+              {activeCategory} uploads over the years
+            </div>
+          </div>
+        </div>
+      {/if}
       <canvas bind:this={sparkCanvas}></canvas>
     </div>
   {/if}
