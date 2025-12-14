@@ -400,9 +400,7 @@
 
 		<div class="section-intro">
 			<p class="intro-text">
-				About <strong>137K YouTube channels</strong> joined between <strong>2005 and 2019</strong>.
-				As of 2025, roughly <strong class="highlight-error">58% (~80K)</strong> are still uploading,
-				while about <strong class="highlight-muted">42% (~55K)</strong> no longer publish new videos.
+				About...
 			</p>
 		</div>
 
@@ -418,8 +416,6 @@
 		<p class="text-content">
 			{copy.viz_focus_desc}
 		</p>
-
-		<VisualizationFocus />
 
 		<h2 class="section-subtitle">
 			{copy.viz_compare_title}
