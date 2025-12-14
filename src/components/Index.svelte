@@ -11,6 +11,9 @@
   import KalanChart4 from "./KalanChart4.svelte"
   import Activity1 from "./Activity1.svelte"
   import Activity2 from "./Activity2.svelte"
+  import Compare_1 from "./Compare_1.svelte"
+  import Compare_2 from "./Compare_2.svelte"
+  import Compare_3 from "./Compare_3.svelte"
   import VisualizationFocus from "./VisualizationFocus.svelte"
   import VisualizationCompare from "./VisualizationCompare.svelte"
   import VisualizationDumbbell from "./VisualizationDumbbell.svelte"
@@ -424,7 +427,9 @@
 			{copy.viz_compare_desc}
 		</p>
 
-		<VisualizationCompare />
+		<Compare_1 />
+        <Compare_2 />
+        <Compare_3 />
 	</section>
 
 	<section id="section-sponsors" class="content-section">
