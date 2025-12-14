@@ -487,10 +487,6 @@
 
 	  {@render dialogue(q2Chat3)}
 
-		<p class="text-content">
-			We classify channels into <strong>activity bands</strong> based on their <code class="inline-code">last_upload_date</code>. Activity is measured using the last video date in <strong>2025</strong>: if a channel uploads at least one video in 2025, we treat it as <strong>active</strong>; otherwise, it is considered <strong>not active</strong>.
-		</p>
-
 	<Activity2 />
 
 		<div class="category-selector">
