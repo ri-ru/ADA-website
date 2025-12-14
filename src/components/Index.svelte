@@ -400,7 +400,7 @@
 
 		<div class="section-intro">
 			<p class="intro-text">
-				About...
+				In 2008, YouTube saw only a few hundred thousand uploads a year. By 2018, that number had exploded past 15 million. As the platform filled with videos, some categories surged while others grew more steadily, tracing YouTube’s shift from indie-scale creation to industry-scale content production.
 			</p>
 		</div>
 
