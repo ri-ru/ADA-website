@@ -995,7 +995,7 @@
       {#if HEADLINES[activeCategory]}
         <div class="spark-headline">
           <div class="spark-avatar-col">
-            <img src="./static/assets/pixel_art/ender.gif" alt="Ender" class="spark-avatar" />
+            <img src="./assets/pixel_art/ender.gif" alt="Ender" class="spark-avatar" />
             <span class="spark-avatar-name">Andy</span>
           </div>
           <div class="spark-text">
@@ -1013,7 +1013,7 @@
       {:else}
         <div class="spark-title spark-headline">
           <div class="spark-avatar-col">
-            <img src="./static/assets/pixel_art/ender.gif" alt="Ender" class="spark-avatar" />
+            <img src="./assets/pixel_art/ender.gif" alt="Ender" class="spark-avatar" />
             <span class="spark-avatar-name">Andy</span>
           </div>
           <div class="spark-text">
