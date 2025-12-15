@@ -434,11 +434,7 @@
 	<section id="section-monetization" class="content-section">
 		<h2>{copy.section1_title}</h2>
 
-		<div class="section-intro">
-			<p class="intro-text">
-				{copy.section1_intro}
-			</p>
-		</div>
+		<p class="text-content">{copy.section1_intro}</p>
 
 		<VisualizationFull />
 

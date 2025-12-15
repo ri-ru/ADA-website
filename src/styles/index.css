@@ -819,7 +819,7 @@ h2 {
 	max-width: 900px;
 	margin: var(--ds-space-lg) auto;
 	text-align: left;
-	color: var(--ds-text-muted);
+	color: var(--ds-text);
 	font-size: var(--ds-text-base);
 	line-height: 1.5;
 	font-family: var(--ds-font-body), "BlexMono";
@@ -831,6 +831,7 @@ h2 {
 	line-height: 1.5;
 	color: var(--ds-text);
 	font-family: var(--ds-font-body), "BlexMono";
+	text-align: left;
 }
 
 /* Section subtitles (subsection headings) */
