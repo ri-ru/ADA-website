@@ -534,8 +534,6 @@
 
 	<Activity2 />
 
-		<p class="text-content">{@html copy.section2_text_4}</p>
-
 		<div class="category-selector">
 			<button
 				class="cat-btn"
