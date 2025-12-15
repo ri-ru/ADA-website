@@ -398,7 +398,11 @@
     <p class="section-sub">{@html copy.datasets_subtitle}</p>
 		<p> {@html copy.datasets_overview}</p>
 
+		<p class="text-content">{@html copy.datasets_plots_intro}</p>
+
     <KalanChart0/>
+
+		<p class="text-content">{@html copy.datasets_plots_comments}</p>
 	</section>
 
 
