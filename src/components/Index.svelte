@@ -530,10 +530,9 @@
 		<p class="text-content">{@html copy.section2_text_3}</p>
 
 	  {@render dialogue(q2Chat3)}
+      {@render dialogue(q2Chat3b)}
 
 	<Activity2 />
-
-	  {@render dialogue(q2Chat3b)}
 
 		<p class="text-content">{@html copy.section2_text_4}</p>
 
