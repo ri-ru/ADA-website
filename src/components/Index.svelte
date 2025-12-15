@@ -103,6 +103,35 @@
 		parseChatMessage(copy.dataset_chat_5),
 	].filter(m => m && m.text);
 
+  const q1Chat0 = [
+		parseChatMessage(copy.section1_chat_1),
+		parseChatMessage(copy.section1_chat_2),
+		parseChatMessage(copy.section1_chat_3),
+		parseChatMessage(copy.section1_chat_4),
+	].filter(m => m && m.text);
+
+  const q1Chat1 = [
+		parseChatMessage(copy.section1_chat_5),
+		parseChatMessage(copy.section1_chat_6),
+	].filter(m => m && m.text);
+
+  const q1Chat2 = [
+		parseChatMessage(copy.section1_chat_7),
+		parseChatMessage(copy.section1_chat_8),
+	].filter(m => m && m.text);
+
+  const q1Chat3 = [
+		parseChatMessage(copy.section1_chat_9),
+		parseChatMessage(copy.section1_chat_10),
+		parseChatMessage(copy.section1_chat_11),
+		parseChatMessage(copy.section1_chat_12),
+	].filter(m => m && m.text);
+
+  const q1Chat4 = [
+		parseChatMessage(copy.section1_chat_13),
+		parseChatMessage(copy.section1_chat_14),
+	].filter(m => m && m.text);
+
   const q2Chat0 = [
 		parseChatMessage(copy.section2_chat_1),
 		parseChatMessage(copy.section2_chat_2),
@@ -403,33 +432,39 @@
 
 		<div class="section-intro">
 			<p class="intro-text">
-				In 2008, YouTube saw only a few hundred thousand uploads a year. By 2018, that number had exploded past 15 million. As the platform filled with videos, some categories surged while others grew more steadily, tracing YouTube’s shift from indie-scale creation to industry-scale content production.
+				{copy.section1_intro}
 			</p>
 		</div>
 
 		<VisualizationFull />
 
-		<h2 class="section-subtitle">
-			{copy.viz_main_title}
-		</h2>
-		<p class="text-content">
-			{copy.viz_main_desc}
-		</p>
+	  {@render dialogue(q1Chat0)}
 
-		<p class="text-content">
-			{copy.viz_focus_desc}
-		</p>
-
-		<h2 class="section-subtitle">
-			{copy.viz_compare_title}
-		</h2>
-		<p class="text-content">
-			{copy.viz_compare_desc}
-		</p>
+		<p class="text-content">{copy.section1_text_1}</p>
 
 		<Compare_1 />
+
+	  {@render dialogue(q1Chat1)}
+
+		<p class="text-content">{copy.section1_text_2}</p>
+
+	  {@render dialogue(q1Chat2)}
+
         <Compare_2 />
+
+		<p class="text-content">{copy.section1_text_3}</p>
+
+		<p class="text-content">{copy.section1_text_4}</p>
+
+		<p class="text-content">{copy.section1_text_5}</p>
+
+		<p class="text-content">{copy.section1_text_6}</p>
+
+	  {@render dialogue(q1Chat3)}
+
         <Compare_3 />
+
+	  {@render dialogue(q1Chat4)}
 	</section>
 
 	<section id="section-sponsors" class="content-section">
