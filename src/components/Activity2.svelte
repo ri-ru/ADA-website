@@ -1,5 +1,6 @@
 <script lang="ts">
   import enriched from './data_config_activity_v2_enriched.json';
+  import enrichedLive from './data_config_activity_v2_enriched_live.json';
   import chartTheme from '../lib/echarts-theme';
 
   const UNIT = 200;  // channels per icon
@@ -7,7 +8,10 @@
   const ICON_WIDTH = 14;
   const ICON_HEIGHT = 10;
 
-  const RAW_DATA = (enriched as any)?.DATA || [];
+  // Prefer the live file when available so tooltips get 2025 counts.
+  const dataset = (enrichedLive as any)?.DATA ? enrichedLive : enriched;
+
+  const RAW_DATA = (dataset as any)?.DATA || [];
   const DATA = RAW_DATA.map((d: any) => ({
     id: d.id,
     label: d.label,
@@ -15,18 +19,28 @@
     not_active: Number(d.not_active) || 0,
   }));
 
-  const rawLinks = (enriched as any)?.LINKS || {};
+  const rawLinks = (dataset as any)?.LINKS || {};
   const LINKS: Record<string, { active: IconLink[]; not_active: IconLink[] }> = Object.fromEntries(
     Object.entries(rawLinks).map(([cat, entry]: [string, any]) => {
+      const toNumber = (value: any): number | null => {
+        if (typeof value === "number") return value;
+        if (typeof value === "string" && value !== "Not Available" && value.trim() !== "") {
+          const parsed = Number(value);
+          return Number.isFinite(parsed) ? parsed : null;
+        }
+        return null;
+      };
       const normalize = (item: any): IconLink | null => {
         if (!item) return null;
         if (typeof item === "string") return { url: item };
         return {
           url: item.url || null,
           name: item.name_cc ?? item.name ?? null,
-          subscribers: item.subscribers_cc ?? null,
-          lastTitle: item.last_video_title ?? null,
+          subscribers2019: toNumber(item.subscribers_cc),
+          subscriberCount2025: toNumber(item.subscriber_count_live),
           joinDate: item.join_date ?? null,
+          avatarUrl: item.channel_avatar_url ?? null,
+          lastTitle: item.last_video_title ?? null,
         };
       };
       const active = (entry?.active || []).map(normalize).filter(Boolean) as IconLink[];
@@ -38,9 +52,21 @@
   interface IconLink {
     url: string | null;
     name?: string | null;
-    subscribers?: number | null;
-    lastTitle?: string | null;
+    subscribers2019?: number | null;
+    subscriberCount2025?: number | null;
     joinDate?: string | null;
+    avatarUrl?: string | null;
+    lastTitle?: string | null;
+  }
+
+  interface TooltipSnapshot {
+    name: string;
+    joined: string | null;
+    start: number | null;
+    end: number | null;
+    delta: number | null;
+    pctChange: number | null;
+    avatarUrl: string | null;
   }
 
   interface IconData {
@@ -50,16 +76,52 @@
     url: string | null;
     label?: string | null;
     meta?: IconLink | null;
+    tooltip?: TooltipSnapshot | null;
     delay: number;
   }
 
-  function iconTooltip(icon: IconData) {
-    if (!icon.meta) return "";
-    const parts = [];
-    if (icon.meta.name) parts.push(`• Channel: ${icon.meta.name}`);
-    if (icon.meta.subscribers) parts.push(`• Subscribers: ${icon.meta.subscribers.toLocaleString()}`);
-    if (icon.meta.joinDate) parts.push(`• Join Date: ${icon.meta.joinDate}`);
-    return parts.join("\n");
+  const compactNumber = new Intl.NumberFormat('en', { notation: 'compact', maximumFractionDigits: 1 });
+
+  function formatCount(value: number | null | undefined): string {
+    if (value === null || value === undefined || Number.isNaN(value)) return 'N/A';
+    return compactNumber.format(value);
+  }
+
+  function formatJoinDate(value: string | null | undefined): string | null {
+    if (!value) return null;
+    const parsed = new Date(value);
+    if (Number.isNaN(parsed.getTime())) return value;
+    return new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', year: 'numeric' }).format(parsed);
+  }
+
+  function formatChange(value: number | null | undefined): string {
+    if (value === null || value === undefined || Number.isNaN(value)) return 'N/A';
+    const sign = value > 0 ? '+' : '';
+    return `${sign}${formatCount(value)}`;
+  }
+
+  function formatPercent(value: number | null | undefined): string {
+    if (value === null || value === undefined || Number.isNaN(value)) return '';
+    const sign = value > 0 ? '+' : '';
+    return `${sign}${value.toFixed(1)}%`;
+  }
+
+  function buildTooltip(meta: IconLink | null): TooltipSnapshot | null {
+    if (!meta) return null;
+    const start = meta.subscribers2019 ?? null;
+    const end = meta.subscriberCount2025 ?? null;
+    const delta = start !== null && end !== null ? end - start : null;
+    const pctChange = start && end ? (delta / start) * 100 : null;
+
+    return {
+      name: meta.name || 'Unknown channel',
+      joined: formatJoinDate(meta.joinDate) || meta.joinDate || null,
+      start,
+      end,
+      delta,
+      pctChange,
+      avatarUrl: meta.avatarUrl || null,
+    };
   }
 
   interface CardData {
@@ -221,7 +283,9 @@
       const url = link?.url || null;
       const label = link?.name || null;
 
-      return { band, x, y, url, label, meta: link, delay: idx * 20 };
+      const tooltip = buildTooltip(link);
+
+      return { band, x, y, url, label, meta: link, tooltip, delay: idx * 20 };
     });
 
     const iconMeta = CATEGORY_ICONS[d.label];
@@ -361,6 +425,11 @@
     flex-wrap: wrap;
   }
 
+  .card-meta .total-channels {
+    color: #fff;
+    font-weight: 400;
+  }
+
   .circle {
     position: relative;
     width: 170px;
@@ -397,11 +466,11 @@
     transform: scale(.7) translateY(4px);
     transition: opacity .22s ease-out, transform .22s ease-out,
                 box-shadow .18s ease-out;
-    border: 1px solid rgba(255,255,255,0.25);
+    border: 1px solid #7c828f;
   }
 
-  .icon.active { background: linear-gradient(135deg, #1e66f5, #04a5e5); }
-  .icon.inactive { background: linear-gradient(135deg, #d20f39, #e64553); }
+  .icon.active { background: linear-gradient(135deg, #7c828f, #646b79); }
+  .icon.inactive { background: linear-gradient(135deg, #7c828f, #646b79); }
 
   .icon::before {
     content: "";
@@ -411,29 +480,6 @@
     margin-left: 0.5px;
     position: relative;
     z-index: 1;
-  }
-
-  .icon[data-tooltip]:hover::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    left: 50%;
-    top: -10px;
-    transform: translate(-50%, -100%);
-    background: #0b1222;
-    color: #f8fafc;
-    border: none;
-    border-radius: 12px;
-    padding: 10px 12px;
-    font-size: 11px;
-    line-height: 1.35;
-    white-space: pre-line;
-    min-width: 200px;
-    max-width: 280px;
-    word-break: break-word;
-    text-align: left;
-    pointer-events: none;
-    z-index: 400;
-    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.6);
   }
 
   .icon.on {
@@ -448,10 +494,152 @@
     z-index: 500;
   }
 
+  /* Bring band color back on hover/focus */
+  .icon.active:hover,
+  .icon.active:focus-visible {
+    background: linear-gradient(135deg, #1e66f5, #04a5e5);
+    border-color: #1e66f5;
+  }
+
+  .icon.inactive:hover,
+  .icon.inactive:focus-visible {
+    background: linear-gradient(135deg, #d20f39, #e64553);
+    border-color: #d20f39;
+  }
+
   .icon.no-link {
     cursor: default;
     box-shadow: none;
     opacity: 0.35;
+  }
+
+  .tooltip-card {
+    position: absolute;
+    left: 50%;
+    top: -10px;
+    transform: translate(-50%, -115%) scale(0.96);
+    background: #0b1222;
+    color: #e6edf7;
+    border-radius: 10px;
+    padding: 10px 12px;
+    min-width: 210px;
+    max-width: 260px;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .16s ease-out, transform .16s ease-out;
+    z-index: 400;
+    font-size: 11px;
+    line-height: 1.4;
+    white-space: normal;
+  }
+
+  .icon:hover .tooltip-card,
+  .icon:focus-visible .tooltip-card {
+    opacity: 1;
+    transform: translate(-50%, -122%) scale(1);
+  }
+
+  .tooltip-card.active-band {
+    border-color: rgba(30, 102, 245, 0.0);
+  }
+
+  .tooltip-card.inactive-band {
+    border-color: rgba(210, 15, 57, 0.0);
+  }
+
+  .icon:hover .tooltip-card.active-band,
+  .icon:focus-visible .tooltip-card.active-band {
+    border-color: #1e66f5;
+    box-shadow: 0 14px 34px rgba(30, 102, 245, 0.18);
+  }
+
+  .icon:hover .tooltip-card.inactive-band,
+  .icon:focus-visible .tooltip-card.inactive-band {
+    border-color: #d20f39;
+    box-shadow: 0 14px 34px rgba(210, 15, 57, 0.18);
+  }
+
+  .tooltip-top {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: nowrap;
+    margin-bottom: 8px;
+  }
+
+  .tooltip-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.1);
+  }
+
+  .tooltip-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  .tooltip-name {
+    font-weight: 700;
+    color: #f8fafc;
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .tooltip-join {
+    color: #cbd5e1;
+    font-size: 10px;
+  }
+
+  .tooltip-change {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .trend-icon {
+    font-size: 12px;
+  }
+
+  .trend-label {
+    color: #cbd5e1;
+    font-weight: 600;
+    font-size: 10px;
+  }
+
+  .trend-up {
+    color: #38b249;
+  }
+
+  .trend-down {
+    color: #e5484d;
+  }
+
+  .trend-pct {
+    color: inherit;
+    font-weight: 600;
+  }
+
+  .tooltip-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #e2e8f0;
+    font-weight: 600;
+  }
+
+  .dot-sep {
+    color: #94a3b8;
   }
 
   @media (max-width: 640px) {
@@ -487,7 +675,7 @@
           </div>
         </div>
         <div class="card-meta">
-          <span>Total channels {(card.total / 1000).toFixed(1)}K</span>
+          <span class="total-channels">Total channels {(card.total / 1000).toFixed(1)}K</span>
           <span class="stat-inline">
             <span class="header-icon"></span>
             <span>Active {card.pctActive}%</span>
@@ -508,8 +696,44 @@
               onkeydown={(e) => { if (e.key === 'Enter') openChannel(icon.url); }}
               role="link"
               tabindex="0"
-              data-tooltip={iconTooltip(icon)}
-            ></div>
+            >
+              {#if icon.tooltip}
+                <div
+                  class="tooltip-card"
+                  class:active-band={icon.band === 'active'}
+                  class:inactive-band={icon.band === 'inactive'}
+                  aria-hidden="true"
+                >
+                  <div class="tooltip-top">
+                    {#if icon.tooltip.avatarUrl}
+                      <img class="tooltip-avatar" src={icon.tooltip.avatarUrl} alt="" />
+                    {/if}
+                    <div class="tooltip-text">
+                      <span class="tooltip-name">{icon.tooltip.name}</span>
+                      {#if icon.tooltip.joined}
+                        <span class="tooltip-join">Joined {icon.tooltip.joined}</span>
+                      {/if}
+                    </div>
+                  </div>
+                  <div class="tooltip-row">
+                    <span class="trend-label">Subscribers</span>
+                    <span>2019 {formatCount(icon.tooltip.start)}</span>
+                    <span class="dot-sep">·</span>
+                    <span>2025 {formatCount(icon.tooltip.end)}</span>
+                  </div>
+                  {#if icon.tooltip.delta !== null}
+                    <div class="tooltip-change {icon.tooltip.delta >= 0 ? 'trend-up' : 'trend-down'}">
+                      <span class="trend-icon">{icon.tooltip.delta >= 0 ? '▲' : '▼'}</span>
+                      <span class="trend-value">{formatChange(icon.tooltip.delta)}</span>
+                      {#if icon.tooltip.pctChange !== null}
+                        <span class="trend-pct">({formatPercent(icon.tooltip.pctChange)})</span>
+                      {/if}
+                      <span class="trend-label">from 2019</span>
+                    </div>
+                  {/if}
+                </div>
+              {/if}
+            </div>
           {/each}
         </div>
       </div>
