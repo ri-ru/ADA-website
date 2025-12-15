@@ -158,6 +158,10 @@
 		parseChatMessage(copy.section2_chat_16),
 	].filter(m => m && m.text);
 
+  const q2Chat3b = [
+		parseChatMessage(copy.section2_chat_17),
+	].filter(m => m && m.text);
+
   const q2Chat4 = [
 		parseChatMessage(copy.section2_chat_18),
 		parseChatMessage(copy.section2_chat_19),
@@ -528,6 +532,10 @@
 	  {@render dialogue(q2Chat3)}
 
 	<Activity2 />
+
+	  {@render dialogue(q2Chat3b)}
+
+		<p class="text-content">{@html copy.section2_text_4}</p>
 
 		<div class="category-selector">
 			<button
