@@ -1,226 +1,226 @@
-key,value,,,,,,
-,═══════════════════════════════════════════════════════════,,,,,,
-,HERO SECTION,,,,,,
-,═══════════════════════════════════════════════════════════,,,,,,
-,,,,,,,
-hero_title,From Indie to Industry,,,,,,
-,,,,,,,
-hero_subtitle,how YouTube went from a hobbyist paradise to a whole industry,,,,,,
-hero_byline,"Jan Juraszek, Danael Robert-Nicoud, Ender Sari, Kalan Walmsley, Veronika Wannack ",,,,,,
-,,,,,,,
-,═══════════════════════════════════════════════════════════,,,,,,
-,VIDEO & TRANSCRIPT,,,,,,
-,═══════════════════════════════════════════════════════════,,,,,,
-,,,,,,,
-youtube_url,https://www.youtube.com/embed/39ORolk1P0I,,,,,,
-,https://www.youtube.com/embed/dQw4w9WgXcQ?si=VxMoZOfZwmttftNy,,,,,,
-transcript_btn_show,Show Transcript,,,,,,
-transcript_btn_hide,Hide Transcript,,,,,,
-transcript_content,"Hey guys, Jimmy here, welcome to my first YouTube video. I'm going to be very famous and get a lot of money from this, but I don't know how to yet. But hey, check this out, I found this really cool site, where apparently, they offer a course, on how to make a living off YouTube. It's quite expensive but at least you do save the one dollar. So um I definitely want to do this, let's check it out... Let's see what happens",,,,,,
-,,,,,,,
-,═══════════════════════════════════════════════════════════,,,,,,
-,INTRO DIALOGUE (Meeting the Experts),,,,,,
-,Format: [speaker] message text,,,,,,
-,═══════════════════════════════════════════════════════════,,,,,,
-intro_action,"Jimmy purchases a course on how to be a world class YouTuber... Little does he know, he will also ... (TODO)",,,,,,
-,,,,,,,
-intro_chat_1,[eddie] Wow... a real customer?,,,,,,
-intro_chat_2,[jimmy] I just spent 999$ on your course with my mom's credit card...,,,,,,
-intro_chat_3,[kaleb] ...,,,,,,
-intro_chat_4,[jimmy] Can you help me make a lot of money on YouTube?,,,,,,
-intro_chat_5,[daniel] Maybe.,,,,,,
-intro_chat_6,[jimmy] ...I'm getting a refund,,,,,,
-intro_chat_7,[vivian] Wait! What we CAN do is show you just how Youtube went from an hobby to an industry that makes many people tons of money. We are really good at what we do! We are super trustworthy and we have the best dataset! Check this out...,,,,,,
-,,,,,,,
-,═══════════════════════════════════════════════════════════,,,,,,
-,DATASET SECTION,,,,,,
-,═══════════════════════════════════════════════════════════,,,,,,
-,who are you and what are you doing?! check telegram,,,,,,
-datasets_title,The YouNiverse and SponsorBlock Datasets,,,,,,
-datasets_subtitle,"Manoel Horta Ribeiro and Robert West (YouNiverse), Ajay Ramachandran (SponsorBlock)",,,,,,
-datasets_overview,"The YouNiverse dataset, produced by the ADA lab at EPFL, provides a large-scale overview of the English-language YouTube ecosystem. It incorporates metadata for more than 72.9 million videos published on the platform between May 2005 and October 2019. In addition, it includes weekly channel-level time series spanning January 2015 to September 2019 for 153,550 channels, totaling 18,872,499 observations. While YouNiverse also includes other aspects (such as comment-related data), the analysis relies exclusively on the metadata and channel time-series elements described above. <br> Given the focus of the analysis on professionalism and sponsorship practices on YouTube, SponsorBlock data is paired with YouNiverse. SponsorBlock is an open-source browser extension enabling users to automatically skip chosen types of segments on YouTube videos (preview, credits, ...) and it is crowdsourced: users submit the start and end times of these segments. For the analysis, only the sponsor segment category is selected, thus including only videos with paid promotional content for a brand or product. <br> Together, these two datasets complement each other well. YouNiverse gives a broad view of YouTube (video- and channel-wise, evolution over time), while SponsorBlock adds sponsorship insights at the video scale. Their combination forms the central foundation for the analysis.",,,,,,
-dataset_img_alt,YouNiverse logo,,,,,,
-sb_img_alt,SponsorBlock logo,,,,,,
-datasets_plots_intro,Below are two plots to provide better insight into the relationship between these two datasets,,,,,,
-,# here come Kalan's plots linking YouNiverse and SponsorBlock ;-),,,,,,
-datasets_plots_comments,"The left plot considers all types of skippable segments from Sponsorblock. Apart from the earliest years (roughly up to 2010), the percentage of YouNiverse videos that appeared in SponsorBlock stayed approximately constant over time. This is interesting: while the annual volume of YouTube uploads grew strongly, the annual number of videos added to SponsorBlock appears to have grown with the same trend. <br> The right plot is restricted to in-video sponsor segments. Here the pattern is completely different: the fraction rose steeply from around 2015 onward. In 2019, almost 0.25% of the videos from YouNiverse were labeled as containing a sponsor segment, a non-negligible amount given the sheer size of the YouNiverse dataset (and also keeping in mind that in practice, only a subset of all videos actually include sponsorship segments).",,,,,,
-,,,,,,,
-,═══════════════════════════════════════════════════════════,,,,,,
-,DATASET DIALOGUE,,,,,,
-,Format: [speaker] message text,,,,,,
-,═══════════════════════════════════════════════════════════,,,,,,
-,,,,,,,
-dataset_chat_1,"[jimmy] Okay, fine. You know what you are doing. So how do I make money? ",,,,,,
-dataset_chat_2,"[kaleb] To know that we know what we know, and that we do not know what we do not know, that is true knowledge...",,,,,,
-dataset_chat_3,[jimmy] ...,,,,,,
-dataset_chat_4,[eddie] Ignore that.,,,,,,
-dataset_chat_5,"[daniel] He's trying to say that in order to master something, you need to first understand it. We have researched several questions, just for you, about what the data tell us.",,,,,,
-,,,,,,,
-,═══════════════════════════════════════════════════════════,,,,,,
-,RESEARCH QUESTIONS OVERVIEW,,,,,,
-,═══════════════════════════════════════════════════════════,,,,,,
-,,,,,,,
-learn_title,What You'll Learn,,,,,,
-learn_subtitle,Click any question to jump to that section ,,,,,,
-q1_title,How have channels evolved from indie to professional?,,,,,,
-q1_desc,,,,,,,
-q2_title,What enabled indie channels to become professional-minded?,,,,,,
-q2_desc,,,,,,,
-q3_title,How does a focus on professionalism affect engagement?,,,,,,
-q3_desc,,,,,,,give the motivation before the question.
-,,,,,,,
-,═══════════════════════════════════════════════════════════,,,,,,
-,SECTION 1: Channel Evolution,,,,,,
-,═══════════════════════════════════════════════════════════,,,,,,
-section1_title,How has YouTube’s content ecosystem changed over time?,,,,,,
-section1_intro,"In 2008, YouTube saw only a few hundred thousand uploads a year. By 2018, that number had exploded past 15 million. As the platform filled with videos, some categories surged while others grew more steadily, tracing YouTube’s shift from indie-scale creation to industry-scale content production.",,,,,,
+key,value
+,═══════════════════════════════════════════════════════════
+,HERO SECTION
+,═══════════════════════════════════════════════════════════
+,
+hero_title,From Indie to Industry
+,
+hero_subtitle,how YouTube went from a hobbyist paradise to a whole industry
+hero_byline,"Jan Juraszek, Danael Robert-Nicoud, Ender Sari, Kalan Walmsley, Veronika Wannack "
+,
+,═══════════════════════════════════════════════════════════
+,VIDEO & TRANSCRIPT
+,═══════════════════════════════════════════════════════════
+,
+youtube_url,https://www.youtube.com/embed/39ORolk1P0I
+,https://www.youtube.com/embed/dQw4w9WgXcQ?si=VxMoZOfZwmttftNy
+transcript_btn_show,Show Transcript
+transcript_btn_hide,Hide Transcript
+transcript_content,"Hey guys, Jimmy here, welcome to my first YouTube video. I'm going to be very famous and get a lot of money from this, but I don't know how to yet. But hey, check this out, I found this really cool site, where apparently, they offer a course, on how to make a living off YouTube. It's quite expensive but at least you do save the one dollar. So um I definitely want to do this, let's check it out... Let's see what happens"
+,
+,═══════════════════════════════════════════════════════════
+,INTRO DIALOGUE (Meeting the Experts)
+,Format: [speaker] message text
+,═══════════════════════════════════════════════════════════
+intro_action,"Jimmy purchases a course on how to be a world class YouTuber... Little does he know, he will also ... (TODO)"
+,
+intro_chat_1,[eddie] Wow... a real customer?
+intro_chat_2,[jimmy] I just spent 999$ on your course with my mom's credit card...
+intro_chat_3,[kaleb] ...
+intro_chat_4,[jimmy] Can you help me make a lot of money on YouTube?
+intro_chat_5,[daniel] Maybe.
+intro_chat_6,[jimmy] ...I'm getting a refund
+intro_chat_7,[vivian] Wait! What we CAN do is show you just how Youtube went from an hobby to an industry that makes many people tons of money. We are really good at what we do! We are super trustworthy and we have the best dataset! Check this out...
+,
+,═══════════════════════════════════════════════════════════
+,DATASET SECTION
+,═══════════════════════════════════════════════════════════
+,who are you and what are you doing?! check telegram
+datasets_title,The YouNiverse and SponsorBlock Datasets
+datasets_subtitle,"Manoel Horta Ribeiro and Robert West (YouNiverse), Ajay Ramachandran (SponsorBlock)"
+datasets_overview,"The YouNiverse dataset, produced by the ADA lab at EPFL, provides a large-scale overview of the English-language YouTube ecosystem. It incorporates metadata for more than 72.9 million videos published on the platform between May 2005 and October 2019. In addition, it includes weekly channel-level time series spanning January 2015 to September 2019 for 153,550 channels, totaling 18,872,499 observations. While YouNiverse also includes other aspects (such as comment-related data), the analysis relies exclusively on the metadata and channel time-series elements described above. <br> Given the focus of the analysis on professionalism and sponsorship practices on YouTube, SponsorBlock data is paired with YouNiverse. SponsorBlock is an open-source browser extension enabling users to automatically skip chosen types of segments on YouTube videos (preview, credits, ...) and it is crowdsourced: users submit the start and end times of these segments. For the analysis, only the sponsor segment category is selected, thus including only videos with paid promotional content for a brand or product. <br> Together, these two datasets complement each other well. YouNiverse gives a broad view of YouTube (video- and channel-wise, evolution over time), while SponsorBlock adds sponsorship insights at the video scale. Their combination forms the central foundation for the analysis."
+dataset_img_alt,YouNiverse logo
+sb_img_alt,SponsorBlock logo
+datasets_plots_intro,Below are two plots to provide better insight into the relationship between these two datasets
+,# here come Kalan's plots linking YouNiverse and SponsorBlock ;-)
+datasets_plots_comments,"The left plot considers all types of skippable segments from Sponsorblock. Apart from the earliest years (roughly up to 2010), the percentage of YouNiverse videos that appeared in SponsorBlock stayed approximately constant over time. This is interesting: while the annual volume of YouTube uploads grew strongly, the annual number of videos added to SponsorBlock appears to have grown with the same trend. <br> The right plot is restricted to in-video sponsor segments. Here the pattern is completely different: the fraction rose steeply from around 2015 onward. In 2019, almost 0.25% of the videos from YouNiverse were labeled as containing a sponsor segment, a non-negligible amount given the sheer size of the YouNiverse dataset (and also keeping in mind that in practice, only a subset of all videos actually include sponsorship segments)."
+,
+,═══════════════════════════════════════════════════════════
+,DATASET DIALOGUE
+,Format: [speaker] message text
+,═══════════════════════════════════════════════════════════
+,
+dataset_chat_1,"[jimmy] Okay, fine. You know what you are doing. So how do I make money? "
+dataset_chat_2,"[kaleb] To know that we know what we know, and that we do not know what we do not know, that is true knowledge..."
+dataset_chat_3,[jimmy] ...
+dataset_chat_4,[eddie] Ignore that.
+dataset_chat_5,"[daniel] He's trying to say that in order to master something, you need to first understand it. We have researched several questions, just for you, about what the data tell us."
+,
+,═══════════════════════════════════════════════════════════
+,RESEARCH QUESTIONS OVERVIEW
+,═══════════════════════════════════════════════════════════
+,
+learn_title,What You'll Learn
+learn_subtitle,Click any question to jump to that section 
+q1_title,How have channels evolved from indie to professional?
+q1_desc,
+q2_title,What enabled indie channels to become professional-minded?
+q2_desc,
+q3_title,How does a focus on professionalism affect engagement?
+q3_desc,
+,
+,═══════════════════════════════════════════════════════════
+,SECTION 1: Channel Evolution
+,═══════════════════════════════════════════════════════════
+section1_title,How has YouTube’s content ecosystem changed over time?
+section1_intro,"In 2008, YouTube saw only a few hundred thousand uploads a year. By 2018, that number had exploded past 15 million. As the platform filled with videos, some categories surged while others grew more steadily, tracing YouTube’s shift from indie-scale creation to industry-scale content production."
 ,"                <VisualizationFull />
-",,,,,,
-section1_chat_1,"[jimmy] Okay, so there are way more videos now…",,,,,,
-section1_chat_2,[eddie] Right. That’s when the video stopped doing all the work.,,,,,,
-section1_chat_3,[jimmy] And did what instead?,,,,,,
-section1_chat_4,[eddie] Opened a few doors..,,,,,,
-section1_text_1,"Links are grouped into three types and are extracted from video descriptions: monetization links, such as amzn.to, amazon.com, or patreon.com; social links, pointing to platforms like Twitter, Instagram, or Facebook; and content links, used to promote creators’ own channels, previous videos, or related content on YouTube. Tracking their use over time reveals a clear pattern: from 2008 to 2018, all three types become increasingly common across categories, showing how creators gradually changed their publishing habits as the platform grew.",,,,,,
-,		<Compare_1 />,,,,,,
-section1_chat_5,[jimmy] So the description became… mandatory?,,,,,,
-section1_chat_6,[eddie] Optional in theory. Essential in practice.,,,,,,
-section1_text_2,"Across categories, the share of uploads containing at least 1 link rises steadily over time, becoming common by the late 2010s. This overall increase shows that descriptions gradually became part of standard publishing practice, but it does not yet distinguish how links were used.",,,,,,
-section1_chat_7,"[jimmy] Okay, but what were creators actually doing with all those links?",,,,,,
-section1_chat_8,[eddie] Different things. And not at the same pace.,,,,,,
-,                <Compare_2 />,,,,,,
-section1_text_3,"Monetization links show the most uneven adoption. In a typical year, Gaming and Howto and Style include monetization links in about 16% of uploads, while News and Politics and Nonprofits and Activism remain closer to 4%. When weighted by upload volume, pooled shares exceed 20% in Gaming and remain in single digits for the lowest categories, indicating that monetization spreads later and unevenly across the platform.",,,,,,
-section1_text_4,"Content links appear earlier and spread more evenly. In a typical year, leading categories reach the low to mid 30% range, while even lower intensity categories exceed 10%. Pooled shares often cluster between 40% and 50%, suggesting that linking to other videos or channels became a broadly shared way to organize viewing.",,,,,,
-section1_text_5,"Social links grow fastest and reach the highest levels overall. In a typical year, Gaming exceeds 40%, with Entertainment and Music at similar levels. When weighted by volume, pooled shares approach 60% in Gaming and exceed 40% in several other categories, reflecting a widespread pattern of linking beyond a single video.",,,,,,
-section1_text_6,"Taken together, the charts describe a progression in link usage over time. URLs become common first, followed by widespread adoption of content and social links, while monetization remains more selective. Video descriptions shift from optional text to a functional component of publishing across categories.",,,,,,
-section1_chat_9,"[jimmy] These category trends look similar. If I had to choose, does it really matter which one?",,,,,,
-section1_chat_10,[eddie] It does. Similar percentages can reflect very different scales of activity.,,,,,,
-section1_chat_11,[jimmy] So the lines alone are not enough?,,,,,,
-section1_chat_12,[eddie] Exactly..,,,,,,
+"
+section1_chat_1,"[jimmy] Okay, so there are way more videos now…"
+section1_chat_2,[eddie] Right. That’s when the video stopped doing all the work.
+section1_chat_3,[jimmy] And did what instead?
+section1_chat_4,[eddie] Opened a few doors..
+section1_text_1,"Links are grouped into three types and are extracted from video descriptions: monetization links, such as amzn.to, amazon.com, or patreon.com; social links, pointing to platforms like Twitter, Instagram, or Facebook; and content links, used to promote creators’ own channels, previous videos, or related content on YouTube. Tracking their use over time reveals a clear pattern: from 2008 to 2018, all three types become increasingly common across categories, showing how creators gradually changed their publishing habits as the platform grew."
+,		<Compare_1 />
+section1_chat_5,[jimmy] So the description became… mandatory?
+section1_chat_6,[eddie] Optional in theory. Essential in practice.
+section1_text_2,"Across categories, the share of uploads containing at least 1 link rises steadily over time, becoming common by the late 2010s. This overall increase shows that descriptions gradually became part of standard publishing practice, but it does not yet distinguish how links were used."
+section1_chat_7,"[jimmy] Okay, but what were creators actually doing with all those links?"
+section1_chat_8,[eddie] Different things. And not at the same pace.
+,                <Compare_2 />
+section1_text_3,"Monetization links show the most uneven adoption. In a typical year, Gaming and Howto and Style include monetization links in about 16% of uploads, while News and Politics and Nonprofits and Activism remain closer to 4%. When weighted by upload volume, pooled shares exceed 20% in Gaming and remain in single digits for the lowest categories, indicating that monetization spreads later and unevenly across the platform."
+section1_text_4,"Content links appear earlier and spread more evenly. In a typical year, leading categories reach the low to mid 30% range, while even lower intensity categories exceed 10%. Pooled shares often cluster between 40% and 50%, suggesting that linking to other videos or channels became a broadly shared way to organize viewing."
+section1_text_5,"Social links grow fastest and reach the highest levels overall. In a typical year, Gaming exceeds 40%, with Entertainment and Music at similar levels. When weighted by volume, pooled shares approach 60% in Gaming and exceed 40% in several other categories, reflecting a widespread pattern of linking beyond a single video."
+section1_text_6,"Taken together, the charts describe a progression in link usage over time. URLs become common first, followed by widespread adoption of content and social links, while monetization remains more selective. Video descriptions shift from optional text to a functional component of publishing across categories."
+section1_chat_9,"[jimmy] These category trends look similar. If I had to choose, does it really matter which one?"
+section1_chat_10,[eddie] It does. Similar percentages can reflect very different scales of activity.
+section1_chat_11,[jimmy] So the lines alone are not enough?
+section1_chat_12,[eddie] Exactly..
 ,"		<Compare_3 />
-",,,,,,
-section1_chat_13,[jimmy] The charts make it look slow!,,,,,,
-section1_chat_14,[eddie] Waiting never feels slow.,,,,,,
-,,,,,,,
-,--- Compare Categories Dialogue ---,,,,,,
-,,,,,,,
-dialogue_compare_ask,Want to compare two categories side by side? Pick Category A and Category B below!,,,,,,
-compare_label_a,Category A:,,,,,,
-compare_label_b,Category B:,,,,,,
-dialogue_compare_response,Let's compare,,,,,,
-dialogue_compare_vs,vs,,,,,,
-dialogue_compare_end,!,,,,,,
-dialogue_pick_other_a,Now pick Category A...,,,,,,
-dialogue_pick_other_b,Now pick Category B...,,,,,,
-,,,,,,,
-,═══════════════════════════════════════════════════════════,,,,,,
-,SECTION 2: Professional Growth,,,,,,
-,═══════════════════════════════════════════════════════════,,,,,,
-,,,,,,,
-section2_title,What enabled indie channels to become professional-minded?,,,,,,
-section2_chat_1,[jimmy] Okay but <b>how long is this going to take?!</b> My mom is already wondering why her card is being declined.,,,,,,
-section2_chat_2,[kaleb] <i>All human wisdom is contained in these two words &mdash; wait and hope.</i>,,,,,,
-section2_chat_3,[jimmy] ...,,,,,,
-section2_chat_4,"[kaleb] It's Dumas... Anyway, I hate to break it to you, but you might be waiting a while.",,,,,,
-section2_text_1,"Note the logarithmic $x$ axes. The right plot seems to follow a log-normal distribtion, whereas the left plot obtained $\lambda = 0.429\pm 0.017$ with a <a href=""https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.boxcox.html"" target=""_blank"">Box-Cox transformation</a>, suggesting it is gamma-like.",,,,,,
-section2_chat_5,[kaleb] The median time between posting your first video and obtaining your first sponsor is <b>1108 days</b> or around <b>3 years</b>! It also takes a median of <b>148 videos</b>!,,,,,,
-section2_chat_6,[jimmy] Three years!!! I want to throw up. But <b>what kind of stats do I need to get my first sponsor?</b> Maybe if I buy enough bot accounts...,,,,,,
-section2_chat_7,[kaleb] Ever heard of the sunk cost fallacy? A story for another day. Metrics your channel will likely need to reach before your first sponsor <b>depend on the category</b> of videos you want to make. How about you pick one?,,,,,,
-section2_chat_8,[jimmy] Maybe <b><cat></b>?,,,,,,
-section2_chat_9,"[kaleb] <joke> On median, you would need a total of around <b><views> views</b>, <b><subs> subscribers</b>, and <b><vids> videos</b>. In comparison, the medians of the distributions over all categories are <b><gen_views> views</b>, <b><gen_subs> subscribers</b>, and <b><gen_vids> videos</b>.",,,,,,
-section2_text_2,"Note the logarithmic $x$ axes for all plots, and the logarithmic $y$ axis for activity. All distributions seem to be log-normal, apart from activity, which seems to follow a power law. This might suggest that the activity has little-to-no effect on getting sponsored.",,,,,,
-section2_chat_10,"[jimmy] I still don't know what to pick... And the longer I take to decide, the closer I get to having to explain a 1k transfer to <i>""sheNaNigans incoporated""</i>. Aargh! <b>Do I really have to choose a category or can I just pick whatever and switch once I get sponsored?</b>",,,,,,
-section2_chat_11,[kaleb] Interesting strategy... It does happen but only quite rarely. Let's look at <b>category transitions</b> between <b>before and after the first sponsor</b>.,,,,,,
-section2_text_3,"If we look at the <b>6 months before</b> the first sponsor and the <b>6 months after</b>, and we compare the most common video categories in both periods, we get a sense of what kind of transitions people make. Note the connections shown are logarithmic.",,,,,,
-section2_chat_12,"[kaleb] I know you won't like this, but you may be able to pay your mom back over a longer period of time &mdash; like an investment! Except instead of asking the bank for a loan you went straight to the vault.",,,,,,
-section2_chat_13,[jimmy] I don't know... <b>How sustainable could it really be?</b>,,,,,,
-section2_chat_14,"[kaleb] <b>More than you might think!</b> Look at the proportions of channels still active in 2025. The YouNiverse dataset only goes until 2019, so these data had to be collected using the <a href=""https://developers.google.com/youtube/v3"" target=""_blank"">YouTube API</a>.",,,,,,
-section2_chat_15,[eddie] Yeah it was a real pain to get. I have so many API keys now...,,,,,,
-section2_chat_16,[kaleb] You can choose to look at all channels or compare sponsored and non-sponsored channels!,,,,,,
-section2_chat_17,"[eddie] Here I’m looking at channel activity as of November 2025 across about 137,000 YouTube channels in our YouNiverse dataset. We call a channel active if it uploaded at least once in 2025. Each little icon represents roughly 200 channels. I did this so you can actually compare categories by how many channels they have, without the biggest ones completely dominating the picture. Blue indicates active channels and red indicates inactive ones. You can click icons to explore real channels across different subscriber sizes. Hovering reveals the channel name, join date, and subscriber counts in 2019 (YouNiverse) and 2025 (YouTube API).",,,,,,
-section2_text_4,Notice how the sponsored channels seem to consistently be more active in 2025 than the non-sponsored ones? We can test this using a paired t-test between categories. The results show a significant ($p < 0.01$) <b>16.12%</b> difference in activity! Whether this is caused by obtaining a sponsorship is a different question though...,,,,,,
-section2_chat_18,[jimmy] So you <i>can</i> make YouTube your job!,,,,,,
-section2_chat_19,[kaleb] That's not what I...,,,,,,
-section2_chat_20,[jimmy] I need to start right away! Tell me <b>which sponsors pay the most?</b>,,,,,,
-section2_chat_21,"[kaleb] Oof, that's a tough one... We don't really have the data on that. Although, we could look at <b>which sponsors interact with which channels!</b>",,,,,,
-section2_chat_22,[jimmy] How do you know who sponsored a channel though?,,,,,,
-section2_chat_23,"[kaleb] Good question! The short answer is <i>painfully</i>. You know how we mentioned earlier that video descriptions can contain URLs? Well we can look at those. However, a huge proportion of those URLs are <i>shortened</i>. URL shortening is when you use a service like <a href=""https://bit.ly"" target=""_blank"">bit.ly</a> to make a URL shorter. Here comes the hard part: there is absolutely no way to figure out the link a shortened URL points to without pinging the shortener service.",,,,,,
-section2_chat_24,[jimmy] Wow that sounds evil... How did you do it then?,,,,,,
-section2_chat_25,"[kaleb] Since we weren't going to hack the shortening services to steal their hashing algorithms, we had to use clever brute force. To minimise the amount of data we were requesting, we used <code>HEAD</code> requests with a ""no redirect"" policy. This meant that in the <code>HEAD</code> response header, we could extract the address the shortened link immediately redirected to. Since making thousands of requests a second looked suspicious, we used an exponential backoff strategy. This worked by waiting a random, exponentially increasing amount of time between failed requests. That way, it would eventually wait long enough to reset any rate limits. We also ran multiple HTTP clients in parallel and tried proxy rotation...",,,,,,
-section2_chat_26,[jimmy] Okay I get it &mdash; it was a bad time. That was the last hurdle right?,,,,,,
-section2_chat_27,"[vivian] We wish! Having the full URLs is great, but we don't know which ones are linked to monetisation yet. Think about it, people put all sorts of links in their descriptions: WikiPedia articles, social media profiles, personal websites... The list goes on!",,,,,,
-section2_chat_28,[jimmy] But then how did you figure it out? There must be millions of links!,,,,,,
-section2_chat_29,[vivian] We tried a bunch of different strategies. The one we ended up going for was to use the GPT-5 nano model with a handful of manual examples to classify the URLs as monetised or not.,,,,,,
-section2_chat_30,[jimmy] Then were you fine?!,,,,,,
-section2_chat_31,"[kaleb] Yes! Checkout the graph below. It's on a separate page because it runs preformance intense <a href=""https://webassembly.org/"" target=""_blank"">WebAssembly</a>.",,,,,,
-section2_text_5,"Let's take channels <i>A</i>, <i>B</i>, and <i>C</i>. Let's say that <i>A</i> is sponsored by sponsors $\alpha$ and $\beta$, <i>B</i> by $\alpha$, $\beta$, and $\gamma$, and <i>C</i> by $\gamma$. Then <i>A</i> and <i>B</i> would have a connection of weight 2 between them and <i>B</i> and <i>C</i> a connection of weight 1. <i>A</i> and <i>C</i> would have no connection. Using this, we can build a graph. <br> Notice you can toggle different colourmaps. <i>Connectivity</i> shows how many neighbours each node has (logarithmic scale), <i>Category</i> shows the channel category, <i>Subscriber</i> and <i>Videos</i> show the number of subscribers and videos (logarithmic scale), and <i>Activity</i> shows channels active in 2025 in blue, others in red. The most interesting colourmap is <i>Leiden</i>, which shows different community assignments by the <a href=""https://en.wikipedia.org/wiki/Leiden_algorithm"" target=""_blank"">Leiden algorithm</a>. In short, it is a community detection algorithm that optimises the modularity of the graph.",,,,,,
-section2_chat_32,[kaleb] ...,,,,,,
-,,,,,,,
-,,,,,,,
-,,,,,,,
-,═══════════════════════════════════════════════════════════,,,,,,
-,SECTION 3: Engagement Impact,,,,,,
-,═══════════════════════════════════════════════════════════,,,,,,
-,,,,,,,
-section3_title,How does a focus on professionalism affect engagement?,,,,,,
-section3_chat_1,"[jimmy] Thanks for all these explanations, but can I know what will happen once I get my first sponsor?",,,,,,
-section3_chat_2,"[daniel] Ok, then let's study the relationship between sponsorship and engagement! I bet you would like to know what to expect after you enter the world of sponsorship 😁",,,,,,
-section3_chat_3,[jimmy] Sure! Will my YouTube stats skyrocket?!,,,,,,
-section3_chat_4,"[daniel] Take a chill pill! Don't forget that establishing causation is very hard, thus my goal is to analyze and show you the observed patterns and propose plausible interpretations.",,,,,,
-section3_chat_5,"[jimmy] Ok, I'm listening carefully then...",,,,,,
-section3_dumbbell_intro,"First, some characteristics of sponsored vs. non-sponsored videos are compared within channels that have sponsors (restricting to channels with at least 5 sponsored videos in SponsorBlock, so it is representative). In the plot, for each category, video status (sponsored or not), and metric of interest (for example, video duration), the median per channel is first computed. Then, the median of these channel-wise medians is taken to obtain the values displayed. This procedure ensures that each channel has the same weight (even if some channels have many more videos than others) and that the final values can be interpreted as ""typical"" at the channel level.",,,,,,
-section3_dumbbell_analysis,"First of all, the like/dislike ratio is defined as $\frac{\text{like\_count}}{\text{like\_count} + \text{dislike\_count}} \cdot 100$, to get a comprehensive measure of viewer satisfaction (percentage of likes among all feedback). Notice the values for News & Politics compared to the other categories. No surprise: this is a more delicate, polarizing topic 😅. Apart from that, sponsored videos tend to reach a higher percentage of likes in most categories. This is quite interesting: even though the viewer is interrupted in the video (usually considered annoying), the higher budgets of sponsored videos may translate into better production quality, which viewers appreciate. All values in the plot are above 95.5%, meaning that the median viewer satisfaction is very high overall.",,,,,,
-section3_dumbbell_conclusion,"Next, the focus moves to video duration and view counts. Without exception, sponsored videos are, on average, longer and more viewed than non-sponsored ones. Again, a plausible explanation is that sponsored videos have higher production means, leading to more polished content that attracts more viewers. Taken together, these results suggest a higher audience engagement for sponsored videos.",,,,,,
-section3_delta_intro,"However, at this stage, jumping to conclusions would be premature, as it is also informative to examine how some metrics evolve around the first-ever sponsor appearance on a channel (turning point where a channel actually becomes labelled as sponsored). For this, the number of weeks relative to the first sponsor appearance is used (26 weeks before and after, to cover a full year). Two metrics are compared: delta_views and delta_subs, defined as the week-to-week differences in views and subscribers for each channel. Because channels display vastly different sizes, the logarithm of these differences is taken, then averaged for each relative week.",,,,,,
-section3_delta_analysis,"On these plots, a steady increase in delta_views and delta_subs is visible before the first sponsor, indicating that channels are already in a growth phase before they attract sponsorship. Moreover, the confidence intervals are quite narrow, suggesting stable and reliable mean estimates.",,,,,,
-section3_delta_views,"In the views plot, the week-to-week change in views increases as the first sponsor approaches (we can even see a jump at this first appearance), but a week after that point, the rate of change becomes slower than before (the slope is smaller).",,,,,,
-section3_delta_subs,"For subscribers (note the change in the y-axis scale!), this pattern is even clearer. Here, the week-to-week gain in subscribers also increases as the first sponsor approaches (same with the observed jump), but then stabilizes to an approximately constant value. This indicates that channels continue to gain subscribers over time, but the rate of increase no longer rises as it did in the weeks leading up to the first sponsor.",,,,,,
-section3_chat_6,"[daniel] Let's summarize the results: Your channel will probably need to already be in a steady growth phase before introducing its first sponsor. Even though sponsored videos are likely to be longer in duration, attract more views, and receive positive audience feedback overall, there will probably be a short period of strong growth in the channel around the time of your first sponsor, but followed by a slowdown in the growth rate (for both views and subscribers). ",,,,,,
-section3_chat_7,"[jimmy] Oh well, not entirely positive then...",,,,,,
-section3_chat_8,"[daniel] Hey, look at the bright side! more money will be flowing in! 🤑💵",,,,,,
-,,,,,,,
-,═══════════════════════════════════════════════════════════,,,,,,
-,TEAM MEMBERS,,,,,,
-,Each member has: name / role / avatar / desc,,,,,,
-,═══════════════════════════════════════════════════════════,,,,,,
-,,,,,,,
-team_title,Meet the <b>REAL</b> Team,,,,,,
-team_subtitle,The people behind this project,,,,,,
-,,,,,,,
-,--- Team Member 1 ---,,,,,,
-team_1_name,Ender,,,,,,
-team_1_role,(...) Specialist,,,,,,
-team_1_avatar,ender.gif,,,,,,
-team_1_desc,expert on question #1,,,,,,
-,,,,,,,
-,--- Team Member 2 ---,,,,,,
-team_2_name,Kalan (,,,,,,
-team_2_role,Resident Rustacian,,,,,,
-team_2_avatar,kalan.gif,,,,,,
-team_2_desc,aka Kaleb <br> expert on question #2 </br>,,,,,,
-,,,,,,,
-,--- Team Member 3 ---,,,,,,
-team_3_name,Danael,,,,,,
-team_3_role,(...) Specialist,,,,,,
-team_3_avatar,danael.gif,,,,,,
-team_3_desc,expert on question #3,,,,,,
-,,,,,,,
-,--- Team Member 4 ---,,,,,,
-team_4_name,Vivian,,,,,,
-team_4_role,website wizard,,,,,,
-team_4_avatar,veronika.gif,,,,,,
-team_4_desc,likes to snack,,,,,,
-,,,,,,,
-,--- Team Member 5 ---,,,,,,
-team_5_name,Jimmy,,,,,,
-team_5_role,top 10 world youtuber,,,,,,
-team_5_avatar,jan.gif,,,,,,
-team_5_desc,our loyal customer,,,,,,
-,,,,,,,
-,--- Team Member 6 ---,,,,,,
-team_6_name,Siba,,,,,,
-team_6_role,Amazing Assistant,,,,,,
-team_6_avatar,siba.gif,,,,,,
-team_6_desc,Thanks for your support!!!! ,,,,,,
-,,,,,,,
-,oops,,,,,,
-dialogue_jimmy_hint,Let me pick a category...,,,,,,
+"
+section1_chat_13,[jimmy] The charts make it look slow!
+section1_chat_14,[eddie] Waiting never feels slow.
+,
+,--- Compare Categories Dialogue ---
+,
+dialogue_compare_ask,Want to compare two categories side by side? Pick Category A and Category B below!
+compare_label_a,Category A:
+compare_label_b,Category B:
+dialogue_compare_response,Let's compare
+dialogue_compare_vs,vs
+dialogue_compare_end,!
+dialogue_pick_other_a,Now pick Category A...
+dialogue_pick_other_b,Now pick Category B...
+,
+,═══════════════════════════════════════════════════════════
+,SECTION 2: Professional Growth
+,═══════════════════════════════════════════════════════════
+,
+section2_title,What enabled indie channels to become professional-minded?
+section2_chat_1,[jimmy] Okay but <b>how long is this going to take?!</b> My mom is already wondering why her card is being declined.
+section2_chat_2,[kaleb] <i>All human wisdom is contained in these two words &mdash; wait and hope.</i>
+section2_chat_3,[jimmy] ...
+section2_chat_4,"[kaleb] It's Dumas... Anyway, I hate to break it to you, but you might be waiting a while."
+section2_text_1,"Note the logarithmic $x$ axes. The right plot seems to follow a log-normal distribtion, whereas the left plot obtained $\lambda = 0.429\pm 0.017$ with a <a href=""https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.boxcox.html"" target=""_blank"">Box-Cox transformation</a>, suggesting it is gamma-like."
+section2_chat_5,[kaleb] The median time between posting your first video and obtaining your first sponsor is <b>1108 days</b> or around <b>3 years</b>! It also takes a median of <b>148 videos</b>!
+section2_chat_6,[jimmy] Three years!!! I want to throw up. But <b>what kind of stats do I need to get my first sponsor?</b> Maybe if I buy enough bot accounts...
+section2_chat_7,[kaleb] Ever heard of the sunk cost fallacy? A story for another day. Metrics your channel will likely need to reach before your first sponsor <b>depend on the category</b> of videos you want to make. How about you pick one?
+section2_chat_8,[jimmy] Maybe <b><cat></b>?
+section2_chat_9,"[kaleb] <joke> On median, you would need a total of around <b><views> views</b>, <b><subs> subscribers</b>, and <b><vids> videos</b>. In comparison, the medians of the distributions over all categories are <b><gen_views> views</b>, <b><gen_subs> subscribers</b>, and <b><gen_vids> videos</b>."
+section2_text_2,"Note the logarithmic $x$ axes for all plots, and the logarithmic $y$ axis for activity. All distributions seem to be log-normal, apart from activity, which seems to follow a power law. This might suggest that the activity has little-to-no effect on getting sponsored."
+section2_chat_10,"[jimmy] I still don't know what to pick... And the longer I take to decide, the closer I get to having to explain a 1k transfer to <i>""sheNaNigans incoporated""</i>. Aargh! <b>Do I really have to choose a category or can I just pick whatever and switch once I get sponsored?</b>"
+section2_chat_11,[kaleb] Interesting strategy... It does happen but only quite rarely. Let's look at <b>category transitions</b> between <b>before and after the first sponsor</b>.
+section2_text_3,"If we look at the <b>6 months before</b> the first sponsor and the <b>6 months after</b>, and we compare the most common video categories in both periods, we get a sense of what kind of transitions people make. Note the connections shown are logarithmic."
+section2_chat_12,"[kaleb] I know you won't like this, but you may be able to pay your mom back over a longer period of time &mdash; like an investment! Except instead of asking the bank for a loan you went straight to the vault."
+section2_chat_13,[jimmy] I don't know... <b>How sustainable could it really be?</b>
+section2_chat_14,"[kaleb] <b>More than you might think!</b> Look at the proportions of channels still active in 2025. The YouNiverse dataset only goes until 2019, so these data had to be collected using the <a href=""https://developers.google.com/youtube/v3"" target=""_blank"">YouTube API</a>."
+section2_chat_15,[eddie] Yeah it was a real pain to get. I have so many API keys now...
+section2_chat_16,[kaleb] You can choose to look at all channels or compare sponsored and non-sponsored channels!
+section2_chat_17,"[eddie] Here I’m looking at channel activity as of November 2025 across about 137,000 YouTube channels in our YouNiverse dataset. We call a channel active if it uploaded at least once in 2025. Each little icon represents roughly 200 channels. I did this so you can actually compare categories by how many channels they have, without the biggest ones completely dominating the picture. Blue indicates active channels and red indicates inactive ones. You can click icons to explore real channels across different subscriber sizes. Hovering reveals the channel name, join date, and subscriber counts in 2019 (YouNiverse) and 2025 (YouTube API)."
+section2_text_4,Notice how the sponsored channels seem to consistently be more active in 2025 than the non-sponsored ones? We can test this using a paired t-test between categories. The results show a significant ($p < 0.01$) <b>16.12%</b> difference in activity! Whether this is caused by obtaining a sponsorship is a different question though...
+section2_chat_18,[jimmy] So you <i>can</i> make YouTube your job!
+section2_chat_19,[kaleb] That's not what I...
+section2_chat_20,[jimmy] I need to start right away! Tell me <b>which sponsors pay the most?</b>
+section2_chat_21,"[kaleb] Oof, that's a tough one... We don't really have the data on that. Although, we could look at <b>which sponsors interact with which channels!</b>"
+section2_chat_22,[jimmy] How do you know who sponsored a channel though?
+section2_chat_23,"[kaleb] Good question! The short answer is <i>painfully</i>. You know how we mentioned earlier that video descriptions can contain URLs? Well we can look at those. However, a huge proportion of those URLs are <i>shortened</i>. URL shortening is when you use a service like <a href=""https://bit.ly"" target=""_blank"">bit.ly</a> to make a URL shorter. Here comes the hard part: there is absolutely no way to figure out the link a shortened URL points to without pinging the shortener service."
+section2_chat_24,[jimmy] Wow that sounds evil... How did you do it then?
+section2_chat_25,"[kaleb] Since we weren't going to hack the shortening services to steal their hashing algorithms, we had to use clever brute force. To minimise the amount of data we were requesting, we used <code>HEAD</code> requests with a ""no redirect"" policy. This meant that in the <code>HEAD</code> response header, we could extract the address the shortened link immediately redirected to. Since making thousands of requests a second looked suspicious, we used an exponential backoff strategy. This worked by waiting a random, exponentially increasing amount of time between failed requests. That way, it would eventually wait long enough to reset any rate limits. We also ran multiple HTTP clients in parallel and tried proxy rotation..."
+section2_chat_26,[jimmy] Okay I get it &mdash; it was a bad time. That was the last hurdle right?
+section2_chat_27,"[vivian] We wish! Having the full URLs is great, but we don't know which ones are linked to monetisation yet. Think about it, people put all sorts of links in their descriptions: WikiPedia articles, social media profiles, personal websites... The list goes on!"
+section2_chat_28,[jimmy] But then how did you figure it out? There must be millions of links!
+section2_chat_29,[vivian] We tried a bunch of different strategies. The one we ended up going for was to use the GPT-5 nano model with a handful of manual examples to classify the URLs as monetised or not.
+section2_chat_30,[jimmy] Then were you fine?!
+section2_chat_31,"[kaleb] Yes! Checkout the graph below. It's on a separate page because it runs preformance intense <a href=""https://webassembly.org/"" target=""_blank"">WebAssembly</a>."
+section2_text_5,"Let's take channels <i>A</i>, <i>B</i>, and <i>C</i>. Let's say that <i>A</i> is sponsored by sponsors $\alpha$ and $\beta$, <i>B</i> by $\alpha$, $\beta$, and $\gamma$, and <i>C</i> by $\gamma$. Then <i>A</i> and <i>B</i> would have a connection of weight 2 between them and <i>B</i> and <i>C</i> a connection of weight 1. <i>A</i> and <i>C</i> would have no connection. Using this, we can build a graph. <br> Notice you can toggle different colourmaps. <i>Connectivity</i> shows how many neighbours each node has (logarithmic scale), <i>Category</i> shows the channel category, <i>Subscriber</i> and <i>Videos</i> show the number of subscribers and videos (logarithmic scale), and <i>Activity</i> shows channels active in 2025 in blue, others in red. The most interesting colourmap is <i>Leiden</i>, which shows different community assignments by the <a href=""https://en.wikipedia.org/wiki/Leiden_algorithm"" target=""_blank"">Leiden algorithm</a>. In short, it is a community detection algorithm that optimises the modularity of the graph."
+section2_chat_32,[kaleb] ...
+,
+,
+,
+,═══════════════════════════════════════════════════════════
+,SECTION 3: Engagement Impact
+,═══════════════════════════════════════════════════════════
+,
+section3_title,How does a focus on professionalism affect engagement?
+section3_chat_1,"[jimmy] Thanks for all these explanations, but can I know what will happen once I get my first sponsor?"
+section3_chat_2,"[daniel] Ok, then let's study the relationship between sponsorship and engagement! I bet you would like to know what to expect after you enter the world of sponsorship 😁"
+section3_chat_3,[jimmy] Sure! Will my YouTube stats skyrocket?!
+section3_chat_4,"[daniel] Take a chill pill! Don't forget that establishing causation is very hard, thus my goal is to analyze and show you the observed patterns and propose plausible interpretations."
+section3_chat_5,"[jimmy] Ok, I'm listening carefully then..."
+section3_dumbbell_intro,"First, some characteristics of sponsored vs. non-sponsored videos are compared within channels that have sponsors (restricting to channels with at least 5 sponsored videos in SponsorBlock, so it is representative). In the plot, for each category, video status (sponsored or not), and metric of interest (for example, video duration), the median per channel is first computed. Then, the median of these channel-wise medians is taken to obtain the values displayed. This procedure ensures that each channel has the same weight (even if some channels have many more videos than others) and that the final values can be interpreted as ""typical"" at the channel level."
+section3_dumbbell_analysis,"First of all, the like/dislike ratio is defined as $\frac{\text{like\_count}}{\text{like\_count} + \text{dislike\_count}} \cdot 100$, to get a comprehensive measure of viewer satisfaction (percentage of likes among all feedback). Notice the values for News & Politics compared to the other categories. No surprise: this is a more delicate, polarizing topic 😅. Apart from that, sponsored videos tend to reach a higher percentage of likes in most categories. This is quite interesting: even though the viewer is interrupted in the video (usually considered annoying), the higher budgets of sponsored videos may translate into better production quality, which viewers appreciate. All values in the plot are above 95.5%, meaning that the median viewer satisfaction is very high overall."
+section3_dumbbell_conclusion,"Next, the focus moves to video duration and view counts. Without exception, sponsored videos are, on average, longer and more viewed than non-sponsored ones. Again, a plausible explanation is that sponsored videos have higher production means, leading to more polished content that attracts more viewers. Taken together, these results suggest a higher audience engagement for sponsored videos."
+section3_delta_intro,"However, at this stage, jumping to conclusions would be premature, as it is also informative to examine how some metrics evolve around the first-ever sponsor appearance on a channel (turning point where a channel actually becomes labelled as sponsored). For this, the number of weeks relative to the first sponsor appearance is used (26 weeks before and after, to cover a full year). Two metrics are compared: delta_views and delta_subs, defined as the week-to-week differences in views and subscribers for each channel. Because channels display vastly different sizes, the logarithm of these differences is taken, then averaged for each relative week."
+section3_delta_analysis,"On these plots, a steady increase in delta_views and delta_subs is visible before the first sponsor, indicating that channels are already in a growth phase before they attract sponsorship. Moreover, the confidence intervals are quite narrow, suggesting stable and reliable mean estimates."
+section3_delta_views,"In the views plot, the week-to-week change in views increases as the first sponsor approaches (we can even see a jump at this first appearance), but a week after that point, the rate of change becomes slower than before (the slope is smaller)."
+section3_delta_subs,"For subscribers (note the change in the y-axis scale!), this pattern is even clearer. Here, the week-to-week gain in subscribers also increases as the first sponsor approaches (same with the observed jump), but then stabilizes to an approximately constant value. This indicates that channels continue to gain subscribers over time, but the rate of increase no longer rises as it did in the weeks leading up to the first sponsor."
+section3_chat_6,"[daniel] Let's summarize the results: Your channel will probably need to already be in a steady growth phase before introducing its first sponsor. Even though sponsored videos are likely to be longer in duration, attract more views, and receive positive audience feedback overall, there will probably be a short period of strong growth in the channel around the time of your first sponsor, but followed by a slowdown in the growth rate (for both views and subscribers). "
+section3_chat_7,"[jimmy] Oh well, not entirely positive then..."
+section3_chat_8,"[daniel] Hey, look at the bright side! more money will be flowing in! 🤑💵"
+,
+,═══════════════════════════════════════════════════════════
+,TEAM MEMBERS
+,Each member has: name / role / avatar / desc
+,═══════════════════════════════════════════════════════════
+,
+team_title,Meet the <b>REAL</b> Team
+team_subtitle,The people behind this project
+,
+,--- Team Member 1 ---
+team_1_name,Ender
+team_1_role,(...) Specialist
+team_1_avatar,ender.gif
+team_1_desc,expert on question #1
+,
+,--- Team Member 2 ---
+team_2_name,Kalan (
+team_2_role,Resident Rustacian
+team_2_avatar,kalan.gif
+team_2_desc,aka Kaleb <br> expert on question #2 </br>
+,
+,--- Team Member 3 ---
+team_3_name,Danael
+team_3_role,(...) Specialist
+team_3_avatar,danael.gif
+team_3_desc,expert on question #3
+,
+,--- Team Member 4 ---
+team_4_name,Vivian
+team_4_role,website wizard
+team_4_avatar,veronika.gif
+team_4_desc,likes to snack
+,
+,--- Team Member 5 ---
+team_5_name,Jimmy
+team_5_role,top 10 world youtuber
+team_5_avatar,jan.gif
+team_5_desc,our loyal customer
+,
+,--- Team Member 6 ---
+team_6_name,Siba
+team_6_role,Amazing Assistant
+team_6_avatar,siba.gif
+team_6_desc,Thanks for your support!!!! 
+,
+,oops
+dialogue_jimmy_hint,Let me pick a category...
