@@ -326,6 +326,7 @@
   let iconsByCard = $state<Record<string, IconData[]>>({});
   let avatarReady = $state<Record<string, boolean>>({});
   let avatarLoading = $state<Record<string, boolean>>({});
+  let showDetails = $state(false);
 
   function openChannel(url: string | null) {
     if (url) window.open(url, '_blank');
@@ -402,6 +403,57 @@ function observeCard(node: HTMLElement) {
     border: none;
     box-shadow: none;
     position: relative;
+  }
+
+  .activity2-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ds-text);
+    margin: 0 0 var(--ds-space-xs);
+  }
+
+  .activity2-subtitle {
+    font-size: 0.78rem;
+    color: var(--ds-text-muted);
+    line-height: 1.5;
+    margin: 0 0 var(--ds-space-sm);
+  }
+
+  .activity2-subtitle-row {
+    display: block;
+    margin: 0 0 var(--ds-space-sm);
+  }
+
+  .activity2-subtitle-button {
+    appearance: none;
+    border: 2px solid rgba(234, 118, 203, 0.5);
+    outline: none;
+    background: transparent;
+    color: var(--ds-text);
+    font-size: 0.72rem;
+    padding: 2px 8px;
+    border-radius: 999px;
+    cursor: pointer;
+    margin-left: 6px;
+    white-space: nowrap;
+    vertical-align: baseline;
+  }
+
+  .activity2-subtitle-button:hover {
+    color: var(--ds-text);
+    border-color: var(--ds-chart-3);
+  }
+
+  .activity2-subtitle-button:focus-visible {
+    outline: 2px solid var(--ds-focus, #7aa2f7);
+    outline-offset: 2px;
+  }
+
+  .activity2-subtitle-detail {
+    font-size: 0.78rem;
+    color: var(--ds-text-muted);
+    line-height: 1.5;
+    margin: 0 0 var(--ds-space-md);
   }
 
   .grid {
@@ -739,6 +791,20 @@ function observeCard(node: HTMLElement) {
 </style>
 
 <div class="activity2-wrap">
+  <h2 class="activity2-title">Most Channels Try. Fewer Stay Active.</h2>
+  <div class="activity2-subtitle-row">
+    <p class="activity2-subtitle">
+      Activity status of ~137k YouTube channels in 2025
+      <button class="activity2-subtitle-button" type="button" on:click={() => { showDetails = !showDetails; }}>
+        {showDetails ? 'Read Less' : 'Read More'}
+      </button>
+    </p>
+  </div>
+  {#if showDetails}
+    <p class="activity2-subtitle-detail">
+      This view shows channel activity in November 2025 for ~137K YouTube channels from the YouNiverse dataset. A channel is labeled active if it uploaded at least once in 2025. Since YouNiverse data ends in 2019, recent activity and subscriber counts were collected using the YouTube Data API. Each icon represents roughly 200 channels, making category sizes easier to compare without the largest ones dominating the view. Hovering over an icon reveals whether channels are active or inactive, along with the channel’s join date and subscriber counts in 2019 and 2025. Clicking an icon opens the channel’s YouTube page, allowing direct exploration of individual channels.
+    </p>
+  {/if}
   <div class="grid">
     {#each cards as card}
         <div class="card" data-card-id={card.id} use:observeCard>
