@@ -17,7 +17,7 @@ export default {
 	],
 	backgroundColor: "transparent",
 	textStyle: {
-		fontFamily: "Tex Gyre Adventor"
+		fontFamily: "TexGyreAdventor"
 	},
 	title: {
 		textStyle: {
