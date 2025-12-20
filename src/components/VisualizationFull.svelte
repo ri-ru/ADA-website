@@ -240,63 +240,63 @@
   const HEADLINES: Record<string, { title: string; subtitle: string }> = {
     Gaming: {
       title: "Gaming Over Time",
-      subtitle: "Gaming grew from a small category into one of the largest sources of uploads on YouTube."
+      subtitle: "Ah Jimmy! It is Explosive industrialization. Gaming grew from a small category into one of the largest sources of uploads on YouTube.",
     },
     Entertainment: {
       title: "Entertainment Over Time",
-      subtitle: "Entertainment was already popular early on and continued to grow as the platform expanded."
+      subtitle: "Ah. Early dominance. Professionalized early and kept scaling. Entertainment was already popular early on and continued to grow as the platform expanded."
     },
     Music: {
       title: "Music Over Time",
-      subtitle: "Music uploads increased steadily, remaining a core category throughout YouTube’s growth."
+      subtitle: "Ah. Platform backbone. Structurally central and consistently present.Music uploads increased steadily, remaining a core category throughout YouTube’s growth."
     },
     "News & Politics": {
       title: "News & Politics Over Time",
-      subtitle: "This category grew slowly at first, then expanded rapidly in later years."
+      subtitle: "Ah. Late acceleration. Growth surged once YouTube became a news medium. | This category grew slowly at first, then expanded rapidly in later years."
     },
     "People & Blogs": {
       title: "People & Blogs Over Time",
-      subtitle: "Uploads in this category rose sharply as more people began sharing personal content."
+      subtitle: "Ah. Mass participation. Low barriers enabled rapid entry. | Uploads in this category rose sharply as more people began sharing personal content."
     },
     "Film & Animation": {
       title: "Film & Animation Over Time",
-      subtitle: "Film and animation grew steadily but remained smaller than entertainment-driven categories."
+      subtitle: "Ah. Craft constrained growth. Production intensity limited scale. | Film and animation grew steadily but remained smaller than entertainment-driven categories."
     },
     Education: {
       title: "Education Over Time",
-      subtitle: "Education content expanded quickly, becoming a much more visible part of the platform."
+      subtitle: "Ah. Credibility-driven expansion. Trust unlocked faster growth. | Education content expanded quickly, becoming a much more visible part of the platform."
     },
     "Howto & Style": {
       title: "Howto & Style Over Time",
-      subtitle: "Practical and instructional content grew consistently as YouTube matured."
+      subtitle: "Ah. Utility scaling. Search and repeatable formats supported growth. | Practical and instructional content grew consistently as YouTube matured."
     },
     Sports: {
       title: "Sports Over Time",
-      subtitle: "Sports uploads increased steadily, following the platform’s overall growth."
+      subtitle: "Ah. Rights-limited growth. Content supply constrained scale. | Sports uploads increased steadily, following the platform’s overall growth."
     },
     "Autos & Vehicles": {
       title: "Autos & Vehicles Over Time",
-      subtitle: "This category grew gradually, reflecting steady interest rather than rapid expansion."
+      subtitle: "Ah. Enthusiast niche. Stable interest without mass expansion. | This category grew gradually, reflecting steady interest rather than rapid expansion."
     },
     "Science & Technology": {
       title: "Science & Technology Over Time",
-      subtitle: "Science and technology content grew at a moderate pace over the decade."
+      subtitle: "Ah. Expertise-bound growth. Scaling tied to knowledge density. | Science and technology content grew at a moderate pace over the decade."
     },
     "Pets & Animals": {
       title: "Pets & Animals Over Time",
-      subtitle: "Starting from a small base, pet-related content grew slowly but consistently."
+      subtitle: "Ah. Viral but bounded. Growth without large-scale expansion. | Starting from a small base, pet-related content grew slowly but consistently."
     },
     "Nonprofits & Activism": {
       title: "Nonprofits & Activism Over Time",
-      subtitle: "This category remained relatively small, even as overall uploads increased."
+      subtitle: "Ah. Persistent niche. Mission-driven content stayed low volume. | This category remained relatively small, even as overall uploads increased."
     },
     "Travel & Events": {
       title: "Travel & Events Over Time",
-      subtitle: "Travel content grew over time but did not scale as quickly as major categories."
+      subtitle: "Ah. Experience-dependent growth. Tied to real-world activity. | Travel content grew over time but did not scale as quickly as major categories."
     },
     Comedy: {
       title: "Comedy Over Time",
-      subtitle: "Comedy uploads increased steadily, becoming more common as the platform grew."
+      subtitle: "Ah. Format maturation. Repeatable formats supported steady scaling. | Comedy uploads increased steadily, becoming more common as the platform grew."
     }
   };
 
@@ -861,6 +861,12 @@
     flex-shrink: 0;
   }
 
+  .category-note {
+    margin-top: 14px;
+    font-size: 12px;
+    text-align: center;
+  }
+
   :global(.polar-anno) {
     position: absolute;
     background: rgba(2, 6, 23, 0.85);
@@ -1007,7 +1013,11 @@
               {/if}
               {HEADLINES[activeCategory].title}
             </div>
-            <div class="spark-subtitle">{HEADLINES[activeCategory].subtitle}</div>
+            <div class="spark-subtitle">
+              {#each HEADLINES[activeCategory].subtitle.split(" | ") as line, idx}
+                {line}{#if idx < HEADLINES[activeCategory].subtitle.split(" | ").length - 1}<br />{/if}
+              {/each}
+            </div>
           </div>
         </div>
       {:else}
@@ -1051,4 +1061,5 @@
       </button>
     {/each}
   </div>
+  <p class="category-note">Click on any category to explore its growth trajectory over time.</p>
 </div>
