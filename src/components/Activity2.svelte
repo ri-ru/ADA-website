@@ -794,7 +794,7 @@ function observeCard(node: HTMLElement) {
   <h2 class="activity2-title">Most Channels Try. Fewer Stay Active.</h2>
   <div class="activity2-subtitle-row">
     <p class="activity2-subtitle">
-      Activity status of ~137k YouTube channels in 2025
+      Activity status of ~137K YouTube channels in 2025
       <button class="activity2-subtitle-button" type="button" on:click={() => { showDetails = !showDetails; }}>
         {showDetails ? 'Read Less' : 'Read More'}
       </button>
