@@ -818,7 +818,7 @@ h2 {
 .text-content {
 	max-width: 900px;
 	margin: var(--ds-space-lg) auto;
-	text-align: left;
+	text-align: justify;
 	color: var(--ds-text);
 	font-size: var(--ds-text-base);
 	line-height: 1.5;
