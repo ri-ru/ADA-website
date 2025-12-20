@@ -193,7 +193,7 @@ team_1_avatar,ender.gif
 team_1_desc,expert on question #1
 ,
 ,--- Team Member 2 ---
-team_2_name,Kalan (
+team_2_name,Kalan 
 team_2_role,Resident Rustacian
 team_2_avatar,kalan.gif
 team_2_desc,"aka Kaleb, expert on question #2"
@@ -205,13 +205,13 @@ team_3_avatar,danael.gif
 team_3_desc,expert on question #3
 ,
 ,--- Team Member 4 ---
-team_4_name,Vivian
+team_4_name,Veronika
 team_4_role,website wizard
 team_4_avatar,veronika.gif
 team_4_desc,likes to snack
 ,
 ,--- Team Member 5 ---
-team_5_name,Jimmy
+team_5_name,Jan
 team_5_role,top 10 world youtuber
 team_5_avatar,jan.gif
 team_5_desc,our loyal customer
