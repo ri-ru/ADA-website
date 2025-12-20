@@ -406,14 +406,14 @@ function observeCard(node: HTMLElement) {
   }
 
   .activity2-title {
-    font-size: 1rem;
+    font-size: 1.3rem;
     font-weight: 600;
     color: var(--ds-text);
     margin: 0 0 var(--ds-space-xs);
   }
 
   .activity2-subtitle {
-    font-size: 0.78rem;
+    font-size: 1rem;
     color: var(--ds-text-muted);
     line-height: 1.5;
     margin: 0 0 var(--ds-space-sm);
@@ -430,7 +430,7 @@ function observeCard(node: HTMLElement) {
     outline: none;
     background: transparent;
     color: var(--ds-text);
-    font-size: 0.72rem;
+    font-size: 0.92rem;
     padding: 2px 8px;
     border-radius: 999px;
     cursor: pointer;
@@ -450,7 +450,7 @@ function observeCard(node: HTMLElement) {
   }
 
   .activity2-subtitle-detail {
-    font-size: 0.78rem;
+    font-size: 1rem;
     color: var(--ds-text-muted);
     line-height: 1.5;
     margin: 0 0 var(--ds-space-md);
