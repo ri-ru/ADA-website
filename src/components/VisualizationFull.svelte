@@ -244,59 +244,59 @@
     },
     Entertainment: {
       title: "Entertainment Over Time",
-      subtitle: "Ah. Early dominance. Professionalized early and kept scaling. Entertainment was already popular early on and continued to grow as the platform expanded."
+      subtitle: "Ah Jimmy! It is Early dominance. Entertainment was already popular early on and continued to grow as the platform expanded."
     },
     Music: {
       title: "Music Over Time",
-      subtitle: "Ah. Platform backbone. Structurally central and consistently present.Music uploads increased steadily, remaining a core category throughout YouTube’s growth."
+      subtitle: "Ah Jimmy! It is Platform backbone. Music uploads increased steadily, remaining a core category throughout YouTube’s growth."
     },
     "News & Politics": {
       title: "News & Politics Over Time",
-      subtitle: "Ah. Late acceleration. Growth surged once YouTube became a news medium. | This category grew slowly at first, then expanded rapidly in later years."
+      subtitle: "Ah Jimmy! It is Late acceleration. This category grew slowly at first, then expanded rapidly in later years."
     },
     "People & Blogs": {
       title: "People & Blogs Over Time",
-      subtitle: "Ah. Mass participation. Low barriers enabled rapid entry. | Uploads in this category rose sharply as more people began sharing personal content."
+      subtitle: "Ah Jimmy! It is Mass participation. Uploads in this category rose sharply as more people began sharing personal content."
     },
     "Film & Animation": {
       title: "Film & Animation Over Time",
-      subtitle: "Ah. Craft constrained growth. Production intensity limited scale. | Film and animation grew steadily but remained smaller than entertainment-driven categories."
+      subtitle: "Ah Jimmy! It is Craft constrained growth. Film and animation grew steadily but remained smaller than entertainment-driven categories."
     },
     Education: {
       title: "Education Over Time",
-      subtitle: "Ah. Credibility-driven expansion. Trust unlocked faster growth. | Education content expanded quickly, becoming a much more visible part of the platform."
+      subtitle: "Ah Jimmy! It is Credibility-driven expansion. Education content expanded quickly, becoming a much more visible part of the platform."
     },
     "Howto & Style": {
       title: "Howto & Style Over Time",
-      subtitle: "Ah. Utility scaling. Search and repeatable formats supported growth. | Practical and instructional content grew consistently as YouTube matured."
+      subtitle: "Ah Jimmy! It is Utility scaling. Practical and instructional content grew consistently as YouTube matured."
     },
     Sports: {
       title: "Sports Over Time",
-      subtitle: "Ah. Rights-limited growth. Content supply constrained scale. | Sports uploads increased steadily, following the platform’s overall growth."
+      subtitle: "Ah Jimmy! It is Rights-limited growth. Sports uploads increased steadily, following the platform’s overall growth."
     },
     "Autos & Vehicles": {
       title: "Autos & Vehicles Over Time",
-      subtitle: "Ah. Enthusiast niche. Stable interest without mass expansion. | This category grew gradually, reflecting steady interest rather than rapid expansion."
+      subtitle: "Ah Jimmy! It is Enthusiast niche. This category grew gradually, reflecting steady interest rather than rapid expansion."
     },
     "Science & Technology": {
       title: "Science & Technology Over Time",
-      subtitle: "Ah. Expertise-bound growth. Scaling tied to knowledge density. | Science and technology content grew at a moderate pace over the decade."
+      subtitle: "Ah Jimmy! It is Expertise-bound growth. Science and technology content grew at a moderate pace over the decade."
     },
     "Pets & Animals": {
       title: "Pets & Animals Over Time",
-      subtitle: "Ah. Viral but bounded. Growth without large-scale expansion. | Starting from a small base, pet-related content grew slowly but consistently."
+      subtitle: "Ah Jimmy! It is Viral but bounded. Starting from a small base, pet-related content grew slowly but consistently."
     },
     "Nonprofits & Activism": {
       title: "Nonprofits & Activism Over Time",
-      subtitle: "Ah. Persistent niche. Mission-driven content stayed low volume. | This category remained relatively small, even as overall uploads increased."
+      subtitle: "Ah Jimmy! It is Nonprofits. This category remained relatively small, even as overall uploads increased."
     },
     "Travel & Events": {
       title: "Travel & Events Over Time",
-      subtitle: "Ah. Experience-dependent growth. Tied to real-world activity. | Travel content grew over time but did not scale as quickly as major categories."
+      subtitle: "Ah Jimmy! It is Experience-dependent growth. Travel content grew over time but did not scale as quickly as major categories."
     },
     Comedy: {
       title: "Comedy Over Time",
-      subtitle: "Ah. Format maturation. Repeatable formats supported steady scaling. | Comedy uploads increased steadily, becoming more common as the platform grew."
+      subtitle: "Ah Jimmy! It is Format maturation. Comedy uploads increased steadily, becoming more common as the platform grew."
     }
   };
 
@@ -309,6 +309,19 @@
   let activeCategory = $state<string | null>(null);
   let sparkCanvas: HTMLCanvasElement | null = null;
   let sparkChart: Chart | null = null;
+
+  function splitSubtitle(subtitle: string) {
+    const splitIndex = subtitle.indexOf(". ");
+    if (splitIndex === -1) return [subtitle];
+    return [subtitle.slice(0, splitIndex + 1), subtitle.slice(splitIndex + 2)];
+  }
+
+  function splitEmphasis(line: string) {
+    const marker = "It is ";
+    const idx = line.indexOf(marker);
+    if (idx === -1) return { before: line, bold: "" };
+    return { before: line.slice(0, idx + marker.length), bold: line.slice(idx + marker.length) };
+  }
 
   function formatMillions(value: number) {
     const v = Number(value) || 0;
@@ -968,11 +981,24 @@
   }
 
   .spark-subtitle {
-    font-size: 12px;
-    color: #9ca3af;
+    margin: 6px 0 4px;
+  }
+
+  .spark-subtitle.bubble {
+    max-width: 520px;
+    padding: 6px 10px;
+    font-family: var(--ds-font-body), "BlexMono";
+    background: color-mix(in srgb, var(--ds-pale-3) 92%, transparent);
+    color: var(--ds-bg);
+    border-radius: var(--ds-radius);
+    border-top-left-radius: 0;
+    display: inline-block;
+  }
+
+  .spark-subtitle.bubble p {
+    margin: 0;
+    font: inherit;
     font-weight: 400;
-    margin: 0 0 4px;
-    padding: 0; /* align directly under headline text */
   }
 
   .spark-wrap canvas {
@@ -1013,10 +1039,18 @@
               {/if}
               {HEADLINES[activeCategory].title}
             </div>
-            <div class="spark-subtitle">
-              {#each HEADLINES[activeCategory].subtitle.split(" | ") as line, idx}
-                {line}{#if idx < HEADLINES[activeCategory].subtitle.split(" | ").length - 1}<br />{/if}
-              {/each}
+            <div class="spark-subtitle bubble bubble-left">
+              <p>
+                {#each splitSubtitle(HEADLINES[activeCategory].subtitle) as line, idx}
+                  {#if idx === 0}
+                    {@const parts = splitEmphasis(line)}
+                    {parts.before}{#if parts.bold}<strong>{parts.bold}</strong>{/if}
+                  {:else}
+                    {line}
+                  {/if}
+                  {#if idx < 1}<br />{/if}
+                {/each}
+              </p>
             </div>
           </div>
         </div>
