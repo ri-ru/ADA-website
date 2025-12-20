@@ -9,7 +9,6 @@
   import KalanChart2 from "./KalanChart2.svelte"
   import KalanChart3 from "./KalanChart3.svelte"
   import KalanChart4 from "./KalanChart4.svelte"
-  import Activity1 from "./Activity1.svelte"
   import Activity2 from "./Activity2.svelte"
   import Compare_1 from "./Compare_1.svelte"
   import Compare_2 from "./Compare_2.svelte"
