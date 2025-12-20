@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onDestroy } from 'svelte';
   import enriched from './data_config_activity_v2_enriched.json';
   import enrichedLive from './data_config_activity_v2_enriched_live.json';
   import chartTheme from '../lib/echarts-theme';
@@ -71,12 +72,11 @@
 
   interface IconData {
     band: 'active' | 'inactive';
+    key: string;
     x: number;
     y: number;
     url: string | null;
-    label?: string | null;
     meta?: IconLink | null;
-    tooltip?: TooltipSnapshot | null;
     delay: number;
   }
 
@@ -135,7 +135,6 @@
     total: number;
     pctActive: number;
     pctInactive: number;
-    icons: IconData[];
   }
 
   const CATEGORY_ICONS: Record<string, { path: string; viewBox: string }> = {
@@ -236,10 +235,10 @@
     return CATEGORY_COLORS[key] || 'var(--ds-text-muted)';
   }
 
-  let circleRefs: Record<string, HTMLDivElement> = {};
+  let cardObserver: IntersectionObserver | null = null;
 
   // Compute max icons for scaling
-  const MAX_ICONS = Math.max(...DATA.map(d => {
+  const MAX_ICONS = Math.max(1, ...DATA.map(d => {
     const nActive = Math.round((d.active || 0) / UNIT);
     const nInactive = Math.round((d.not_active || 0) / UNIT);
     return nActive + nInactive;
@@ -247,12 +246,9 @@
 
   const GOLDEN_ANGLE = Math.PI * (3 - Math.sqrt(5));
 
-  function buildCardData(d: typeof DATA[0]): CardData {
+  function buildIcons(d: typeof DATA[0]): IconData[] {
     const active = d.active || 0;
     const notActive = d.not_active || 0;
-    const total = active + notActive || 1;
-    const pctActive = Math.round((active / total) * 100);
-    const pctInactive = Math.round((notActive / total) * 100);
 
     const nActive = Math.round(active / UNIT);
     const nInactive = Math.round(notActive / UNIT);
@@ -269,25 +265,39 @@
     const maxR = baseMaxR * Math.sqrt(nIcons / MAX_ICONS);
     const step = nIcons > 0 ? maxR / Math.sqrt(nIcons) : 0;
 
-    const urlsByBand = {
-      active: [...(LINKS[d.id]?.active || [])],
-      inactive: [...(LINKS[d.id]?.not_active || [])]
-    };
+    const activeLinks = LINKS[d.id]?.active || [];
+    const inactiveLinks = LINKS[d.id]?.not_active || [];
+    let ai = 0;
+    let ii = 0;
 
     const icons: IconData[] = bands.map((band, idx) => {
       const r = step * Math.sqrt(idx + 0.5);
       const theta = idx * GOLDEN_ANGLE;
       const x = cx + r * Math.cos(theta) - ICON_WIDTH / 2;
       const y = cy + r * Math.sin(theta) - ICON_HEIGHT / 2;
-      const link = urlsByBand[band].shift() || null;
+      const link = band === 'active' ? (activeLinks[ai++] || null) : (inactiveLinks[ii++] || null);
       const url = link?.url || null;
-      const label = link?.name || null;
 
-      const tooltip = buildTooltip(link);
-
-      return { band, x, y, url, label, meta: link, tooltip, delay: idx * 20 };
+      return {
+        band,
+        key: `${d.id}-${idx}`,
+        x,
+        y,
+        url,
+        meta: link,
+        delay: idx * 20
+      };
     });
 
+    return icons;
+  }
+
+  function buildCardData(d: typeof DATA[0]): CardData {
+    const active = d.active || 0;
+    const notActive = d.not_active || 0;
+    const total = active + notActive || 1;
+    const pctActive = Math.round((active / total) * 100);
+    const pctInactive = Math.round((notActive / total) * 100);
     const iconMeta = CATEGORY_ICONS[d.label];
     const iconPath = iconMeta?.path ?? null;
     const iconViewBox = iconMeta?.viewBox ?? "0 0 1400 1400";
@@ -300,7 +310,6 @@
       total,
       pctActive,
       pctInactive,
-      icons,
       iconPath,
       iconViewBox,
       iconColor
@@ -308,10 +317,80 @@
   }
 
   const cards: CardData[] = DATA.map(buildCardData);
+  const dataById: Record<string, (typeof DATA)[number]> = Object.fromEntries(
+    DATA.map((item) => [item.id, item])
+  );
+
+  let hoveredIconKey = $state<string | null>(null);
+  let isVisible = $state<Record<string, boolean>>({});
+  let iconsByCard = $state<Record<string, IconData[]>>({});
+  let avatarReady = $state<Record<string, boolean>>({});
+  let avatarLoading = $state<Record<string, boolean>>({});
 
   function openChannel(url: string | null) {
     if (url) window.open(url, '_blank');
   }
+
+  function ensureIcons(cardId: string) {
+    if (iconsByCard[cardId]) return;
+    const data = dataById[cardId];
+    if (!data) return;
+    iconsByCard[cardId] = buildIcons(data);
+  }
+
+  function warmAvatar(icon: IconData) {
+    if (avatarReady[icon.key] || avatarLoading[icon.key]) return;
+    const url = icon.meta?.avatarUrl;
+    if (!url) return;
+    avatarLoading[icon.key] = true;
+    const img = new Image();
+    img.onload = () => {
+      avatarReady[icon.key] = true;
+      avatarLoading[icon.key] = false;
+    };
+    img.onerror = () => {
+      avatarLoading[icon.key] = false;
+    };
+    img.src = url;
+  }
+
+function observeCard(node: HTMLElement) {
+  if (!cardObserver) {
+    cardObserver = new IntersectionObserver(
+      (entries, observer) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+
+          const target = entry.target as HTMLElement;
+          const id = target.dataset.cardId;
+
+          // always unobserve once it intersects (even if already visible)
+          observer.unobserve(target);
+
+          if (!id || isVisible[id]) continue;
+
+          isVisible[id] = true;
+          ensureIcons(id);
+        }
+      },
+      { rootMargin: '200px' }
+    );
+  }
+
+  cardObserver.observe(node);
+
+  return {
+    destroy() {
+      cardObserver?.unobserve(node);
+    }
+  };
+}
+
+
+  onDestroy(() => {
+    cardObserver?.disconnect();
+    cardObserver = null;
+  });
 </script>
 
 <style>
@@ -488,7 +567,8 @@
     z-index: 2;
   }
 
-  .icon:hover {
+  .icon:hover,
+  .icon.is-hovered {
     box-shadow: 0 0 0 2px rgba(114,135,253,0.4);
     transform: scale(1.06) translateY(-1px);
     z-index: 500;
@@ -496,12 +576,14 @@
 
   /* Bring band color back on hover/focus */
   .icon.active:hover,
+  .icon.active.is-hovered,
   .icon.active:focus-visible {
     background: linear-gradient(135deg, #1e66f5, #04a5e5);
     border-color: #1e66f5;
   }
 
   .icon.inactive:hover,
+  .icon.inactive.is-hovered,
   .icon.inactive:focus-visible {
     background: linear-gradient(135deg, #d20f39, #e64553);
     border-color: #d20f39;
@@ -536,6 +618,7 @@
   }
 
   .icon:hover .tooltip-card,
+  .icon.is-hovered .tooltip-card,
   .icon:focus-visible .tooltip-card {
     opacity: 1;
     transform: translate(-50%, -122%) scale(1);
@@ -550,12 +633,14 @@
   }
 
   .icon:hover .tooltip-card.active-band,
+  .icon.is-hovered .tooltip-card.active-band,
   .icon:focus-visible .tooltip-card.active-band {
     border-color: #1e66f5;
     box-shadow: 0 14px 34px rgba(30, 102, 245, 0.18);
   }
 
   .icon:hover .tooltip-card.inactive-band,
+  .icon.is-hovered .tooltip-card.inactive-band,
   .icon:focus-visible .tooltip-card.inactive-band {
     border-color: #d20f39;
     box-shadow: 0 14px 34px rgba(210, 15, 57, 0.18);
@@ -656,7 +741,7 @@
 <div class="activity2-wrap">
   <div class="grid">
     {#each cards as card}
-        <div class="card">
+        <div class="card" data-card-id={card.id} use:observeCard>
           <div class="card-header">
           <div class="card-title">
             {#if card.iconPath}
@@ -685,19 +770,26 @@
             <span>Inactive {card.pctInactive}%</span>
           </span>
         </div>
-        <div class="circle" bind:this={circleRefs[card.id]}>
-          {#each card.icons as icon, idx}
-            <div
-              class="icon {icon.band}"
-              class:on={true}
-              class:no-link={!icon.url}
-              style="left: {icon.x}px; top: {icon.y}px; animation-delay: {icon.delay}ms;"
-              onclick={() => openChannel(icon.url)}
-              onkeydown={(e) => { if (e.key === 'Enter') openChannel(icon.url); }}
-              role="link"
-              tabindex="0"
+        <div class="circle">
+          {#if isVisible[card.id]}
+            {#each iconsByCard[card.id] ?? [] as icon}
+              <div
+                class="icon {icon.band}"
+                class:on={true}
+                class:no-link={!icon.url}
+                class:is-hovered={hoveredIconKey === icon.key}
+                style="left: {icon.x}px; top: {icon.y}px; animation-delay: {icon.delay}ms;"
+                on:click={() => { if (icon.url) openChannel(icon.url); }}
+                on:keydown={(e) => { if (icon.url && e.key === 'Enter') openChannel(icon.url); }}
+                on:pointerenter={() => { hoveredIconKey = icon.key; warmAvatar(icon); }}
+                on:pointerleave={() => { hoveredIconKey = null; }}
+                on:focus={() => { hoveredIconKey = icon.key; warmAvatar(icon); }}
+                on:blur={() => { hoveredIconKey = null; }}
+                role={icon.url ? 'link' : undefined}
+                tabindex={icon.url ? 0 : -1}
             >
-              {#if icon.tooltip}
+              {#if hoveredIconKey === icon.key && icon.meta}
+                {@const tooltip = buildTooltip(icon.meta)}
                 <div
                   class="tooltip-card"
                   class:active-band={icon.band === 'active'}
@@ -705,36 +797,37 @@
                   aria-hidden="true"
                 >
                   <div class="tooltip-top">
-                    {#if icon.tooltip.avatarUrl}
-                      <img class="tooltip-avatar" src={icon.tooltip.avatarUrl} alt="" />
+                    {#if tooltip?.avatarUrl && avatarReady[icon.key]}
+                      <img class="tooltip-avatar" src={tooltip.avatarUrl} alt="" loading="lazy" decoding="async" />
                     {/if}
                     <div class="tooltip-text">
-                      <span class="tooltip-name">{icon.tooltip.name}</span>
-                      {#if icon.tooltip.joined}
-                        <span class="tooltip-join">Joined {icon.tooltip.joined}</span>
+                      <span class="tooltip-name">{tooltip?.name}</span>
+                      {#if tooltip?.joined}
+                        <span class="tooltip-join">Joined {tooltip.joined}</span>
                       {/if}
                     </div>
                   </div>
                   <div class="tooltip-row">
                     <span class="trend-label">Subscribers</span>
-                    <span>2019 {formatCount(icon.tooltip.start)}</span>
+                    <span>2019 {formatCount(tooltip?.start)}</span>
                     <span class="dot-sep">·</span>
-                    <span>2025 {formatCount(icon.tooltip.end)}</span>
+                    <span>2025 {formatCount(tooltip?.end)}</span>
                   </div>
-                  {#if icon.tooltip.delta !== null}
-                    <div class="tooltip-change {icon.tooltip.delta >= 0 ? 'trend-up' : 'trend-down'}">
-                      <span class="trend-icon">{icon.tooltip.delta >= 0 ? '▲' : '▼'}</span>
-                      <span class="trend-value">{formatChange(icon.tooltip.delta)}</span>
-                      {#if icon.tooltip.pctChange !== null}
-                        <span class="trend-pct">({formatPercent(icon.tooltip.pctChange)})</span>
+                  {#if tooltip?.delta !== null}
+                    <div class="tooltip-change {tooltip.delta >= 0 ? 'trend-up' : 'trend-down'}">
+                      <span class="trend-icon">{tooltip.delta >= 0 ? '▲' : '▼'}</span>
+                      <span class="trend-value">{formatChange(tooltip.delta)}</span>
+                      {#if tooltip?.pctChange !== null}
+                        <span class="trend-pct">({formatPercent(tooltip.pctChange)})</span>
                       {/if}
                       <span class="trend-label">from 2019</span>
                     </div>
                   {/if}
                 </div>
               {/if}
-            </div>
-          {/each}
+              </div>
+            {/each}
+          {/if}
         </div>
       </div>
     {/each}
