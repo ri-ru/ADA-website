@@ -3,7 +3,7 @@
   import Chart from "chart.js/auto";
   import chartTheme from "../lib/echarts-theme";
 
-  const fontStack = '"TeX Gyre Adventor", "Tex Gyre Adventor", "Helvetica Neue", Arial, sans-serif';
+  const fontStack = '"TeXGyreAdventor", "Tex Gyre Adventor", "Helvetica Neue", Arial, sans-serif';
   Chart.defaults.font.family = fontStack;
 
   const dataRows = [
