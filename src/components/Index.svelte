@@ -740,6 +740,8 @@
 		{/each}
 	</div>
 
+	<p class="interlude">{@html copy.interlude_2}</p>
+
 	{@render dialogue(conclusionChat0)}
 
 	<div class="video-container">

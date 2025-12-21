@@ -185,10 +185,14 @@ section3_chat_8,"[daniel] Hey, look at the bright side! More money will be flowi
 ,═══════════════════════════════════════════════════════════
 ,Conclusion
 ,═══════════════════════════════════════════════════════════
-,
-,
-,
-,
+conclusion_title,"So... what did you learn, Jimmy?"
+conclusion_subtitle,Click each card to reveal the key takeaways
+conclusion_q1_title,How did YouTube evolve?
+conclusion_q1_answer,"YouTube grew from <b>hundreds of thousands</b> of uploads in 2008 to <b>15+ million</b> by 2018. Creators professionalized by adding monetization, social, and content links—but different categories did it at different speeds."
+conclusion_q2_title,What does it take to get sponsored?
+conclusion_q2_answer,"On median, it takes <b>~3 years</b> and <b>~148 videos</b> to land your first sponsor. But sponsored channels are <b>16% more likely</b> to still be active in 2025."
+conclusion_q3_title,How does sponsorship affect engagement?
+conclusion_q3_answer,"Sponsored videos get <b>more views</b>, are <b>longer</b>, and have <b>higher like ratios</b>. But after your first sponsor, growth rate <b>slows down</b>—you're still growing, just not as fast."
 ,
 ,
 interlude_2,Some time later...
