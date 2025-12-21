@@ -525,12 +525,16 @@
 	  {@render dialogue(q2Chat3)}
 
 
+
+
+
+	<Activity2 />
+
 		<p class="text-content">{@html copy.section2_activity2_intro}</p>
 
 		<p class="text-content">{@html copy.section2_activity2_text}</p>
 
-
-	<Activity2 />
+		<p class="text-content">{@html copy.section2_api_observations}</p>
 
 
 
