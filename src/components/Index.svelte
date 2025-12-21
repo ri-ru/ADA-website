@@ -717,7 +717,17 @@
 	</section>
 
 	<!-- ========== CONCLUSION ========== -->
+
+
+
+
 	<section class="conclusion-section">
+
+
+		<h2>Conclusion</h2>
+
+		<p> {@html copy.conclusion}</p>
+
 		<h2>{copy.conclusion_title}</h2>
 		<p class="section-sub">{copy.conclusion_subtitle}</p>
 
