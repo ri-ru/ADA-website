@@ -171,31 +171,33 @@ h2 {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	width: 101%;
-	height: 101%;
+	max-width: 800px;
+	margin: 0 auto;
 }
 
-/* ============================================ */
-/* COLLAPSIBLE (Pudding-style) */
-/* ============================================ */
-.collapsible {
-	margin-top: 1.5rem;
-}
-
-.collapsible h3 {
-	margin: 0;
-}
-
-.collapsible-btn {
-	display: flex;
-	align-items: center;
-	gap: 1rem;
+.video-container {
+	position: relative;
+	padding-bottom: 56.25%;
+	height: 0;
 	width: 100%;
-	padding: 1rem 1.5rem;
-	background: transparent;
+	overflow: hidden;
 	border: 2px solid rgba(234, 118, 203, 0.6);
 	border-radius: 12px;
-	color: var(--ds-text);
+	background: var(--ds-surface);
+	box-shadow: 0 2px 16px 0 rgba(43, 45, 66, 0.08);
+	margin-bottom: var(--ds-space-lg);
+	max-width: 800px;
+}
+
+.video-container iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 12px;
+	max-width: 800px;
+}
 	font-size: var(--ds-text-base);
 	font-weight: 500;
 	cursor: pointer;
@@ -1016,95 +1018,106 @@ h2 {
 /* ============================================ */
 
 .conclusion-section {
-  padding: var(--ds-space-xl) var(--ds-space-md);
-  max-width: 1000px;
-  margin: 0 auto;
+	padding: var(--ds-space-xl) var(--ds-space-md);
+	max-width: 1000px;
+	margin: 0 auto;
 }
 
 .conclusion-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--ds-space-lg);
-  margin: var(--ds-space-xl) 0;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	gap: var(--ds-space-lg);
+	margin: var(--ds-space-xl) 0;
 }
 
 .conclusion-card {
-  perspective: 1000px;
-  height: 250px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
+	perspective: 1000px;
+	height: 250px;
+	background: none;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+	transition: box-shadow 0.3s;
+	border-radius: var(--ds-radius);
+	box-shadow: 0 2px 16px 0 rgba(43, 45, 66, 0.08);
 }
 
 .card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	transition: transform 0.6s;
+	transform-style: preserve-3d;
 }
 
 .conclusion-card.flipped .card-inner {
-  transform: rotateY(180deg);
+	transform: rotateY(180deg);
 }
 
 .card-front,
 .card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  border-radius: var(--ds-radius);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: var(--ds-space-lg);
-  border: 1px solid var(--ds-border);
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	backface-visibility: hidden;
+	border-radius: var(--ds-radius);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: var(--ds-space-lg);
+	border: 1px solid var(--ds-border);
+	box-shadow: 0 2px 16px 0 rgba(43, 45, 66, 0.08);
 }
 
 .card-front {
-  background: var(--ds-surface);
+	background: var(--ds-surface);
+	color: var(--ds-text);
 }
 
 .card-back {
-  background: linear-gradient(135deg, var(--ds-chart-4) 0%, var(--ds-chart-14) 100%);
-  transform: rotateY(180deg);
-  color: var(--ds-text);
+	background: var(--ds-bg);
+	color: var(--ds-text);
+	transform: rotateY(180deg);
 }
 
 .card-icon {
-  font-size: 2.5rem;
-  margin-bottom: var(--ds-space-sm);
+	font-size: 2.5rem;
+	margin-bottom: var(--ds-space-sm);
+	color: var(--ds-chart-14);
 }
 
 .conclusion-card h3 {
-  font-family: var(--ds-font-title);
-  font-size: var(--ds-text-lg);
-  color: var(--ds-text);
-  text-align: center;
-  margin: 0;
+	font-family: var(--ds-font-title);
+	font-size: var(--ds-text-lg);
+	color: var(--ds-text);
+	text-align: center;
+	margin: 0;
+	font-weight: 700;
 }
 
 .card-hint {
-  font-size: var(--ds-text-sm);
-  color: var(--ds-text-muted);
-  margin-top: var(--ds-space-sm);
-  opacity: 0.7;
+	font-size: var(--ds-text-sm);
+	color: var(--ds-text-muted);
+	margin-top: var(--ds-space-sm);
+	opacity: 0.7;
 }
 
 .card-back p {
-  font-size: var(--ds-text-base);
-  text-align: center;
-  line-height: 1.5;
-  margin: 0;
+	font-size: var(--ds-text-base);
+	text-align: center;
+	line-height: 1.5;
+	margin: 0;
 }
 
-.conclusion-card:hover .card-inner {
-  transform: scale(1.02);
+.conclusion-card:hover,
+.conclusion-card:focus {
+	box-shadow: 0 4px 24px 0 rgba(234, 118, 203, 0.18);
+	border-color: var(--ds-chart-14);
+	outline: none;
 }
 
-.conclusion-card.flipped:hover .card-inner {
-  transform: rotateY(180deg) scale(1.02);
+.conclusion-card.flipped:hover .card-inner,
+.conclusion-card.flipped:focus .card-inner {
+	transform: rotateY(180deg) scale(1.02);
 }

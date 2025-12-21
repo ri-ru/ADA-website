@@ -716,63 +716,63 @@
 
 	<!-- ========== CONCLUSION ========== -->
 	<section class="conclusion-section">
-	<h2>{copy.conclusion_title}</h2>
-	<p class="section-sub">{copy.conclusion_subtitle}</p>
+		<h2>{copy.conclusion_title}</h2>
+		<p class="section-sub">{copy.conclusion_subtitle}</p>
 
-	<div class="conclusion-cards">
-		{#each conclusionCards as card, i}
-		<button 
-			class="conclusion-card" 
-			class:flipped={flippedCards[i]}
-			onclick={() => flippedCards[i] = !flippedCards[i]}
-		>
-			<div class="card-inner">
-			<div class="card-front">
-				<span class="card-icon">{card.icon}</span>
-				<h3>{card.question}</h3>
-				<p class="card-hint">click to reveal!✨</p>
-			</div>
-			<div class="card-back">
-				<p>{@html card.answer}</p>
-			</div>
-			</div>
-		</button>
-		{/each}
-	</div>
-
-	<p class="interlude">{@html copy.interlude_2}</p>
-
-	{@render dialogue(conclusionChat0)}
-
-	<div class="video-container">
-		<iframe
-		src={copy.conclusion_youtube_url}
-		title="Jimmy's sponsored video"
-		frameborder="0"
-		allowfullscreen
-		></iframe>
-	</div>
-
-	<div class="collapsible">
-		<h3>
-		<button
-			class="collapsible-btn"
-			aria-expanded={showConclusionTranscript}
-			onclick={() => showConclusionTranscript = !showConclusionTranscript}
-		>
-			<span class="collapsible-icon">{showConclusionTranscript ? '−' : '+'}</span>
-			{showConclusionTranscript ? copy.transcript_btn_hide : copy.transcript_btn_show}
-		</button>
-		</h3>
-
-		{#if showConclusionTranscript}
-		<div class="collapsible-content">
-			<p><strong>Jimmy:</strong> {copy.conclusion_transcript}</p>
+		<div class="conclusion-cards">
+			{#each conclusionCards as card, i}
+			<button 
+				class="conclusion-card" 
+				class:flipped={flippedCards[i]}
+				onclick={() => flippedCards[i] = !flippedCards[i]}
+			>
+				<div class="card-inner">
+				<div class="card-front">
+					<span class="card-icon">{card.icon}</span>
+					<h3>{card.question}</h3>
+					<p class="card-hint">click to reveal!✨</p>
+				</div>
+				<div class="card-back">
+					<p>{@html card.answer}</p>
+				</div>
+				</div>
+			</button>
+			{/each}
 		</div>
-		{/if}
-	</div>
 
-	{@render dialogue(conclusionChat1)}
+		<p class="interlude">{@html copy.interlude_2}</p>
+
+		{@render dialogue(conclusionChat0)}
+
+		<div class="video-container">
+			<iframe
+			src={copy.conclusion_youtube_url}
+			title="Jimmy's sponsored video"
+			frameborder="0"
+			allowfullscreen
+			></iframe>
+		</div>
+
+		<div class="collapsible">
+			<h3>
+			<button
+				class="collapsible-btn"
+				aria-expanded={showConclusionTranscript}
+				onclick={() => showConclusionTranscript = !showConclusionTranscript}
+			>
+				<span class="collapsible-icon">{showConclusionTranscript ? '−' : '+'}</span>
+				{showConclusionTranscript ? copy.transcript_btn_hide : copy.transcript_btn_show}
+			</button>
+			</h3>
+
+			{#if showConclusionTranscript}
+			<div class="collapsible-content">
+				<p><strong>Jimmy:</strong> {copy.conclusion_transcript}</p>
+			</div>
+			{/if}
+		</div>
+
+		{@render dialogue(conclusionChat1)}
 	</section>
 
 	<!-- ========== MEET THE TEAM ========== -->
