@@ -1,21 +1,21 @@
 export namespace rq2 {
 	export const repliques = {
-		"Autos & Vehicles": "Can you even drive yet?",
-		Comedy: "You definitely are funny...",
-		Education: "Are you even done with school?",
-		Entertainment: "A bit niche don't you think?",
-		"Film & Animation": "Your life might soon be a movie...",
-		Gaming: 'Oh you\'re the "never touch grass" type...',
-		"Howto & Style": "I do like your haircut...",
-		Music: "Let me guess... progressive metal?",
-		"News & Politics": "Can you even vote?",
-		"Nonprofits & Activism": "You're definitely in the no profit stage...",
-		"People & Blogs": "Ooh fancy avocado and toast!",
+		"Autos & Vehicles": "Can you even drive yet 🛺?",
+		Comedy: "You definitely are funny...😅",
+		Education: "Are you even done with school 🏫?",
+		Entertainment: "A bit niche don't you think 😜?",
+		"Film & Animation": "Your life might soon be a movie...🩴",
+		Gaming: 'Oh you\'re the "never touch grass" type...🌿',
+		"Howto & Style": "I do like your haircut...✂️",
+		Music: "Let me guess... progressive metal 🎸?",
+		"News & Politics": "Can you even vote 🗳️?",
+		"Nonprofits & Activism": "You're definitely in the no profit stage...🤑",
+		"People & Blogs": "Ooh fancy avocado and toast 🥑!",
 		"Pets & Animals":
-			"Cats or dogs? Keep in mind there is a correct answer...",
-		"Science & Technology": "Yeah Science!",
-		Sports: "I also like sportsball!",
-		"Travel & Events": "Oh where do you want to go?"
+			"Cats or dogs? Keep in mind there is a correct answer... 🐶",
+		"Science & Technology": "Yeah Science 🧬!",
+		Sports: "I also like sportsball 🎱!",
+		"Travel & Events": "Oh where do you want to go 🌏?"
 	};
 
 	export const views = {
