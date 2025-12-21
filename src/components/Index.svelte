@@ -54,7 +54,6 @@
 	let flippedCards = $state([false, false, false]);
 
 
-					{@const icons = ['', '󰣖', '󱖜']}
 
 	const conclusionCards = [
 		{
