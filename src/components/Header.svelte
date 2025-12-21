@@ -31,6 +31,10 @@
 		max-width: 14em;
 		margin: 0 auto;
 		padding: 32px 0;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
 		/* transform: rotate(-4deg); */
 	}
 
