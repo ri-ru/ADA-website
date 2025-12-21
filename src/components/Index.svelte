@@ -463,6 +463,8 @@
 
     <KalanChart3/>
 
+
+
 		<p class="text-content">{@html copy.section2_text_1}</p>
 
 	  {@render dialogue(q2Chat1)}
@@ -507,6 +509,9 @@
 		{/if}
 
     <KalanChart1/>
+
+		<p class="text-content">{@html copy.section2_text_2_introduction}</p>
+
 		<p class="text-content">{@html copy.section2_text_2}</p>
 
 	  {@render dialogue(q2Chat2)}
