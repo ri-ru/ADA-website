@@ -249,8 +249,8 @@
 	].filter(m => m && m.text);
 
   const conclu = [
-		parseChatMessage(copy.conclusion_chat_1),
-		parseChatMessage(copy.conclusion_chat_2),
+		parseChatMessage(copy.conclusion_chat_big_1),
+		parseChatMessage(copy.conclusion_chat_big_2),
 	].filter(m => m && m.text);
 
 	// ============================================
