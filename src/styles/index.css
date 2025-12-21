@@ -510,6 +510,8 @@ h2 {
 	cursor: pointer;
 	text-align: left;
 	color: var(--ds-text);
+	font-weight: bold;
+	font-size: var(--ds-text-lg);
 	transition: all 0.3s ease;
 	width: 100%;
 }
@@ -521,16 +523,15 @@ h2 {
 }
 
 .q-num {
-	width: 40px;
-	height: 40px;
-	background: var(--ds-chart-3);
-	color: var(--ds-bg);
-	border-radius: 50%;
-	display: flex;
+	/* width: 50px; */
+	/* height: 50px; */
+	/* background: linear-gradient(120deg, var(--ds-chart-3), var(--ds-chart-4)); */
+	/* border-radius: 50%; */
+	color: var(--ds-chart-14);
+	font-size: var(--ds-text-5xl);
+	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	font-weight: 700;
-	flex-shrink: 0;
 }
 
 .q-text {
@@ -550,6 +551,7 @@ h2 {
 .q-arrow {
 	color: var(--ds-chart-14);
 	font-size: var(--ds-text-3xl);
+	margin-left: auto;
 	opacity: 0;
 	transition: opacity var(--ds-transition);
 }
@@ -859,7 +861,7 @@ h2 {
 .section-subtitle {
 	max-width: 900px;
 	margin: var(--ds-space-xl) auto var(--ds-space-md);
-	font-size: var(--ds-text-2xl);
+	font-size: var(--ds-text-lg);
 	font-weight: 700;
 	color: var(--ds-text);
 	text-align: left;

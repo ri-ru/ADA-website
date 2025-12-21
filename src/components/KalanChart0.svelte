@@ -9,12 +9,12 @@
     var option = {
   "title": [
     {
-      "text": "SponsorBlock All Categories",
+      "text": "SponsorBlock All Segments",
       "textAlign": "center",
       "left": "22.5%"
     },
     {
-      "text": "SponsorBlock Sponsored Category",
+      "text": "SponsorBlock Sponsored Segments",
       "textAlign": "center",
       "left": "77.5%"
     }

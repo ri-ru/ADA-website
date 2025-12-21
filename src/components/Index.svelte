@@ -386,6 +386,7 @@
         )
       }</h2>
     <p class="section-sub">{@html copy.datasets_subtitle}</p>
+
 		<p> {@html copy.datasets_overview}</p>
 
 		<p class="text-content">{@html copy.datasets_plots_intro}</p>
@@ -393,11 +394,11 @@
     <KalanChart0/>
 
 		<p class="text-content">{@html copy.datasets_plots_comments}</p>
+
+    <!-- ========== DIALOGUE 2 ========== -->
+    {@render dialogue(datasetChat)}
 	</section>
 
-
-	<!-- ========== DIALOGUE 2 ========== -->
-	{@render dialogue(datasetChat)}
 
 	<!-- ========== RESEARCH QUESTIONS ========== -->
 	<section class="questions-section">
@@ -407,13 +408,10 @@
 		<!-- In your questions-section -->
 		<div class="questions-list">
 			{#each questions as q, i}
-				{@const icons = ['', '', '']}
+				{@const icons = ['', '󰣖', '󱖜']}
 				<button class="question-btn" onclick={() => jumpTo(q.id)}>
 					<span class="q-num">{icons[i]}</span>
-					<div class="q-text">
-						<h3>{q.title}</h3>
-						<p>{@html q.desc.replace(/\n/g, '<br>')}</p>
-					</div>
+					{q.title}
 					<span class="q-arrow">→</span>
 				</button>
 			{/each}

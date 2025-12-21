@@ -28,7 +28,7 @@ prologue_chat_1,"[jimmy] Hey! What's up? My name's Jimmy and I want to become a 
 prologue_chat_2,"[jimmy] Pretty cool right?! I emailed some companies to ask them to <b>sponsor me</b>, but the only one that bothered replying just sent me <q>😂🤮</q>. I don't get it... I need to <b>ask some experts!</b>"
 interlude_1,5 minutes later...
 intro_chat_1,[eddie] Wow... a real customer?
-intro_chat_2,[jimmy] I just spent $999\$$ on your course with my mom's credit card...
+intro_chat_2,[jimmy] I just spent $999\$$ on your course with my mom's credit card 💸
 intro_chat_3,[kaleb] ...
 intro_chat_4,[jimmy] Can you help me make a lot of money on YouTube?
 intro_chat_5,[daniel] Maybe.
@@ -38,21 +38,20 @@ intro_chat_7,[vivian] Wait! What we CAN do is show you just <b>how YouTube went 
 ,═══════════════════════════════════════════════════════════
 ,DATASET SECTION
 ,═══════════════════════════════════════════════════════════
-,who are you and what are you doing?! check telegram
+,
 datasets_title,The YouNiverse and SponsorBlock Datasets
 datasets_subtitle,"Manoel Horta Ribeiro and Robert West (YouNiverse), Ajay Ramachandran (SponsorBlock)"
-datasets_overview,"The YouNiverse dataset, produced by the ADA lab at EPFL, provides a large-scale overview of the English-language YouTube ecosystem. It incorporates metadata for more than 72.9 million videos published on the platform between May 2005 and October 2019. In addition, it includes weekly channel-level time series spanning January 2015 to September 2019 for 153,550 channels, totaling 18,872,499 observations. While YouNiverse also includes other aspects (such as comment-related data), the analysis relies exclusively on the metadata and channel time-series elements described above. <br> Given the focus of the analysis on professionalism and sponsorship practices on YouTube, SponsorBlock data is paired with YouNiverse. SponsorBlock is an open-source browser extension enabling users to automatically skip chosen types of segments on YouTube videos (preview, credits, ...) and it is crowdsourced: users submit the start and end times of these segments. For the analysis, only the sponsor segment category is selected, thus including only videos with paid promotional content for a brand or product. <br> Together, these two datasets complement each other well. YouNiverse gives a broad view of YouTube (video- and channel-wise, evolution over time), while SponsorBlock adds sponsorship insights at the video scale. Their combination forms the central foundation for the analysis."
-sb_img_alt,SponsorBlock logo
-datasets_plots_intro,Below are two plots to provide better insight into the relationship between these two datasets:
+datasets_overview,"The YouNiverse dataset, produced by the ADA lab at EPFL, provides a large-scale overview of the English-language YouTube ecosystem. It incorporates <b>metadata</b> for more than <b>72.9 million videos</b> published on the platform between May <b>2005</b> and October <b>2019</b>. In addition, it includes weekly channel-level <b>time series</b> spanning January 2015 to September 2019 for 153,550 channels, totaling 18,872,499 observations. While YouNiverse also includes other aspects (such as comment-related data), this project relies exclusively on the metadata and channel time-series elements. <br> Given the focus of the analysis on <b>professionalism and sponsorship practices on YouTube</b>, the SponsorBlock database is paired with YouNiverse. SponsorBlock is an open-source browser extension enabling users to automatically skip chosen types of segments on YouTube videos (preview, credits, sponsor segments, ...) and it is crowdsourced: users submit the start and end times of these segments. For this project, only the <b>sponsor segment</b> category is selected, thus including only videos with paid promotional content for a brand or product. <br> Together, these two datasets complement each other well. YouNiverse gives a broad view of YouTube (video- and channel-wise, evolution over time), while SponsorBlock adds sponsorship insights at the single-video scale. Their combination forms the central foundation for the analysis."
+datasets_plots_intro,Below are two plots providing better insights into the relationships between these two datasets:
 ,# here come Kalan's plots linking YouNiverse and SponsorBlock ;-)
-datasets_plots_comments,"The left plot considers all types of skippable segments from Sponsorblock. Apart from the earliest years (roughly up to 2010), the percentage of YouNiverse videos that appeared in SponsorBlock remained approximately constant over time. This is interesting: while the annual volume of YouTube uploads grew strongly, the annual number of videos added to SponsorBlock appears to have grown with the same trend. <br> The right plot is restricted to in-video sponsor segments. Here the pattern is completely different: the fraction rose steeply from around 2015 onward, indicating that sponsors in particular seemed to be skyrocketing, making them interesting to analyse. In 2019, almost 0.25% of the videos from YouNiverse were labeled as containing a sponsor segment, a non-negligible amount given the sheer size of the YouNiverse dataset (and also keeping in mind that in practice, only a subset of all videos actually include sponsorship segments). "
+datasets_plots_comments,"The <b>left plot</b> considers <b>all types of segments</b> from SponsorBlock. Apart from the earliest years (roughly up to 2010), the </b>proportion</b> of YouNiverse videos that appeared in SponsorBlock remained <b>approximately constant over time</b>. This is interesting: while the annual volume of YouTube uploads grew strongly, the annual number of videos added to SponsorBlock appears to have grown with the same trend. <br> The <b>right plot</b> is restricted to <b>in-video sponsor segments</b>. Here the pattern is completely different: the <b>fraction rose steeply</b> from around 2015 onward, indicating that sponsors in particular seemed to be skyrocketing, making them interesting to analyse. In 2019, almost $0.25\%$ of the videos from YouNiverse were labelled as containing a sponsor segment, a non-negligible amount given the sheer size of the YouNiverse dataset (and also keeping in mind that in practice, only a subset of all videos actually include sponsorship segments)."
 ,
 ,═══════════════════════════════════════════════════════════
 ,DATASET DIALOGUE
 ,Format: [speaker] message text
 ,═══════════════════════════════════════════════════════════
 ,
-dataset_chat_1,"[jimmy] Okay, fine. You know what you are doing. So how do I make money? "
+dataset_chat_1,"[jimmy] Okay, fine. You know what you are doing. <b>So how do I make money?</b>"
 dataset_chat_2,"[kaleb] To know that we know what we know, and that we do not know what we do not know, that is true knowledge..."
 dataset_chat_3,[jimmy] ...
 dataset_chat_4,[eddie] Ignore that.
