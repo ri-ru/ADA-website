@@ -78,6 +78,7 @@
 			const side = speakerKey === 'jimmy' ? 'right' : 'left';
 			return { speaker: match[1], text, side };
 		}
+    // console.log(str)
 		return { speaker: "Unknown", text: str, side: "left" };
 	}
 
@@ -100,6 +101,11 @@
 		parseChatMessage(copy.dataset_chat_3),
 		parseChatMessage(copy.dataset_chat_4),
 		parseChatMessage(copy.dataset_chat_5),
+	].filter(m => m && m.text);
+
+  const q1Chat5 = [
+		parseChatMessage(copy.section1_why_jimmy),
+		parseChatMessage(copy.section1_why_ender),
 	].filter(m => m && m.text);
 
   const q1Chat0 = [
@@ -232,48 +238,6 @@
 
 	function jumpTo(id) {
 		document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-	}
-
-	// ============================================
-	// QUESTION 1: Interactive Category Selection
-	// ============================================
-	let selectedCategory = $state(null);
-	let vizIframe = $state(null);
-
-	// Compare categories
-	let compareCatA = $state(null);
-	let compareCatB = $state(null);
-	let compareIframe = $state(null);
-
-	function selectCategory(cat) {
-		selectedCategory = cat;
-		// Send message to iframe to update visualization
-		if (vizIframe && vizIframe.contentWindow) {
-			vizIframe.contentWindow.postMessage({
-				type: "selectCategory",
-				category: cat ? cat.name : null
-			}, "*");
-		}
-	}
-
-	function selectCompareA(cat) {
-		compareCatA = cat;
-		sendCompareMessage();
-	}
-
-	function selectCompareB(cat) {
-		compareCatB = cat;
-		sendCompareMessage();
-	}
-
-	function sendCompareMessage() {
-		if (compareIframe && compareIframe.contentWindow) {
-			const cats = [compareCatA?.name, compareCatB?.name].filter(Boolean);
-			compareIframe.contentWindow.postMessage({
-				type: "compareCategories",
-				categories: cats
-			}, "*");
-		}
 	}
 
 	// ===========
@@ -440,6 +404,8 @@
 
 	<!-- ========== CONTENT SECTIONS ========== -->
 	<section id="section-monetization" class="content-section">
+	  {@render dialogue(q1Chat5)}
+
 		<h2>{copy.section1_title}</h2>
 
 		<p class="text-content">{copy.section1_intro}</p>
@@ -460,13 +426,13 @@
 
         <Compare_2 />
 
-		<p class="text-content">{copy.section1_text_3}</p>
+		<p class="text-content">{@html copy.section1_text_3}</p>
 
-		<p class="text-content">{copy.section1_text_4}</p>
+		<p class="text-content">{@html copy.section1_text_4}</p>
 
-		<p class="text-content">{copy.section1_text_5}</p>
+		<p class="text-content">{@html copy.section1_text_5}</p>
 
-		<p class="text-content">{copy.section1_text_6}</p>
+		<p class="text-content">{@html copy.section1_text_6}</p>
 
 	  {@render dialogue(q1Chat3)}
 
@@ -600,37 +566,23 @@
 
 	  {@render dialogue(q3Chat0)}
 
-		<p class="text-content">
-			{copy.section3_dumbbell_intro}
-		</p>
+		<p class="text-content">{@html copy.section3_dumbbell_intro}</p>
 
 		<VisualizationDumbbell />
 
-		<p class="text-content">
-			{copy.section3_dumbbell_analysis}
-		</p>
+		<p class="text-content">{@html copy.section3_dumbbell_analysis}</p>
 
-		<p class="text-content">
-			{copy.section3_dumbbell_conclusion}
-		</p>
+		<p class="text-content">{@html copy.section3_dumbbell_conclusion}</p>
 
-		<p class="text-content">
-			{copy.section3_delta_intro}
-		</p>
+		<p class="text-content">{@html copy.section3_delta_intro}</p>
 
 		<VisualizationDeltaViews />
 
-		<p class="text-content">
-			{copy.section3_delta_analysis}
-		</p>
+		<p class="text-content">{@html copy.section3_delta_analysis}</p>
 
-		<p class="text-content">
-			{copy.section3_delta_views}
-		</p>
+		<p class="text-content">{@html copy.section3_delta_views}</p>
 
-		<p class="text-content">
-			{copy.section3_delta_subs}
-		</p>
+		<p class="text-content">{@html copy.section3_delta_subs}</p>
 
 	  {@render dialogue(q3Chat1)}
 	</section>

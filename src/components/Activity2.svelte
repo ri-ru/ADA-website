@@ -434,15 +434,6 @@ function observeCard(node: HTMLElement) {
     gap: 6px;
   }
 
-  .title-svg {
-    width: 18px;
-    height: 18px;
-  }
-
-  .title-svg path {
-    fill: currentColor;
-  }
-
   .stat-inline {
     display: inline-flex;
     align-items: center;
