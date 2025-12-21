@@ -113,7 +113,6 @@
 	].filter(m => m && m.text);
 
   const q1Chat5 = [
-		parseChatMessage(copy.section1_why_jimmy),
 		parseChatMessage(copy.section1_why_ender),
 	].filter(m => m && m.text);
 
