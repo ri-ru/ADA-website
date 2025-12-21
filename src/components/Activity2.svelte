@@ -613,14 +613,14 @@ function observeCard(node: HTMLElement) {
   .icon:hover .tooltip-card.active-band,
   .icon.is-hovered .tooltip-card.active-band,
   .icon:focus-visible .tooltip-card.active-band {
-    border-color: #1e66f5;
+    border-color: #d20f39;
     box-shadow: 0 14px 34px rgba(30, 102, 245, 0.18);
   }
-
+  
   .icon:hover .tooltip-card.inactive-band,
   .icon.is-hovered .tooltip-card.inactive-band,
   .icon:focus-visible .tooltip-card.inactive-band {
-    border-color: #d20f39;
+    border-color: #313244;
     box-shadow: 0 14px 34px rgba(210, 15, 57, 0.18);
   }
 
