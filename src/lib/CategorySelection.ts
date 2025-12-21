@@ -19,3 +19,4 @@ export const ytCategories = [
 ];
 export const selectedActiveInactive = writable<number>(0);
 export const selectedGraph = writable<number | null>(null);
+export const selectedLeiden = writable<number | null>(null);

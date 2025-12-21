@@ -3,7 +3,7 @@
 	import { base } from '$app/paths';
 	import '../styles/index.css';
 	import copy from '../data/copy.json';
-  import { selectedCat, selectedActiveInactive, ytCategories } from "../lib/CategorySelection"
+  import { selectedCat, selectedActiveInactive, selectedLeiden, ytCategories } from "../lib/CategorySelection"
   import KalanChart0 from "./KalanChart0.svelte"
   import KalanChart1 from "./KalanChart1.svelte"
   import KalanChart2 from "./KalanChart2.svelte"
@@ -194,6 +194,12 @@
 
   const q2Chat5 = [
 		parseChatMessage(copy.section2_chat_32),
+		parseChatMessage(copy.section2_chat_33),
+		parseChatMessage(copy.section2_chat_34),
+	].filter(m => m && m.text);
+
+  const q2Chat6 = [
+    parseChatMessage(copy.section2_chat_35),
 	].filter(m => m && m.text);
 
   const q3Chat0 = [
@@ -586,12 +592,57 @@
 
 	  {@render dialogue(q2Chat5)}
 
-		<!--
-		<div class="container">
-       		<div class="item" id="chart" style="width: 900px; height: 600px"></div>
-      	</div>
-		-->
+		<div class="category-selector">
+      {#each { length: 5 }, l}
+        <button
+          class="cat-btn"
+          class:active={$selectedLeiden === l}
+          onclick={() => selectedLeiden.set(l)}
+        >
+          <span class="cat-name">Leiden {l + 1}</span>
+        </button>
+      {/each}
+		</div>
 
+		{#if $selectedLeiden !== null}
+        <div class="leiden-com">
+          <h4>
+            <b>Welcome to community #{$selectedLeiden + 1}:</b>
+            <i>{rq2.leiden[$selectedLeiden].tag}</i>
+          </h4>
+          <p> ({rq2.leiden[$selectedLeiden].n_channels} channels) </p>
+          <div class="leiden-img-banner">
+            {#each rq2.leiden[$selectedLeiden].channels as c}
+                <a href="https://youtube.com/channel/{c.channel}" target="_blank">
+                    <img src="assets/ytprofiles/{c.profile}.jpg" alt={c.name}>
+                    <span>{c.name}</span>
+                </a>
+            {/each}
+            {#each rq2.leiden[$selectedLeiden].channels as c}
+                <a href="https://youtube.com/channel/{c.channel}" target="_blank">
+                    <img src="assets/ytprofiles/{c.profile}.jpg" alt={c.name}>
+                    <span>{c.name}</span>
+                </a>
+            {/each}
+          </div>
+          <div class="leiden-url-banner">
+            {#each rq2.leiden[$selectedLeiden].top as t}
+                <div class="leiden-url">
+                    <code>{t[1]} × {t[0]}</code>
+                </div>
+            {/each}
+            {#each rq2.leiden[$selectedLeiden].top as t}
+                <div class="leiden-url">
+                    <code>{t[1]} × {t[0]}</code>
+                </div>
+            {/each}
+          </div>
+        </div>
+		{/if}
+
+		<p class="text-content">{@html copy.section2_text_6}</p>
+
+	  {@render dialogue(q2Chat6)}
 
 	</section>
 
