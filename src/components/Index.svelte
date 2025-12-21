@@ -732,7 +732,6 @@
 					<div class="card-front">
 						<span class="card-icon">{card.icon}</span>
 						<h3>{card.question}</h3>
-						<p class="card-hint">click to reveal!✨</p>
 					</div>
 					<div class="card-back">
 						<p>{@html card.answer}</p>
@@ -775,6 +774,23 @@
 		</div>
 
 		{@render dialogue(conclusionChat1)}
+	</section>
+
+	<!-- ========== MEET THE TEAM ========== -->
+	<section class="team-section">
+		<h2>{copy.team_title}</h2>
+		<p class="section-sub">{copy.team_subtitle}</p>
+
+		<div class="team-grid">
+			{#each team as member}
+				<div class="expert-card">
+					<img class="expert-avatar" src={member.avatar} alt={member.name} />
+					<h3>{member.name}</h3>
+					<span class="role">{@html member.role}</span>
+					<p class="desc">{member.desc}</p>
+				</div>
+			{/each}
+		</div>
 	</section>
 
 </div>
