@@ -714,7 +714,7 @@
 	  {@render dialogue(q3Chat1)}
 	</section>
 
-<!-- ========== CONCLUSION ========== -->
+	<!-- ========== CONCLUSION ========== -->
 	<section class="conclusion-section">
 		<h2>{copy.conclusion_title}</h2>
 		<p class="section-sub">{copy.conclusion_subtitle}</p>
@@ -727,14 +727,14 @@
 				onclick={() => flippedCards[i] = !flippedCards[i]}
 			>
 				<div class="card-inner">
-				<div class="card-front">
-					<span class="card-icon">{card.icon}</span>
-					<h3>{card.question}</h3>
-					<p class="card-hint">click to reveal!✨</p>
-				</div>
-				<div class="card-back">
-					<p>{@html card.answer}</p>
-				</div>
+					<div class="card-front">
+						<span class="card-icon">{card.icon}</span>
+						<h3>{card.question}</h3>
+						<p class="card-hint">click to reveal!✨</p>
+					</div>
+					<div class="card-back">
+						<p>{@html card.answer}</p>
+					</div>
 				</div>
 			</button>
 			{/each}
@@ -744,7 +744,7 @@
 
 		{@render dialogue(conclusionChat0)}
 
-		<div class="video-container">
+		<div class="video-container" style="max-width: 800px; margin: 0 auto;">
 			<iframe
 				src={copy.conclusion_youtube_url}
 				title="Jimmy's sponsored video"
@@ -753,22 +753,22 @@
 			></iframe>
 		</div>
 
-		<div class="collapsible">
+		<div class="collapsible" style="max-width: 800px; margin: 1.5rem auto 0;">
 			<h3>
-			<button
-				class="collapsible-btn"
-				aria-expanded={showConclusionTranscript}
-				onclick={() => showConclusionTranscript = !showConclusionTranscript}
-			>
-				<span class="collapsible-icon">{showConclusionTranscript ? '−' : '+'}</span>
-				{showConclusionTranscript ? copy.transcript_btn_hide : copy.transcript_btn_show}
-			</button>
+				<button
+					class="collapsible-btn"
+					aria-expanded={showConclusionTranscript}
+					onclick={() => showConclusionTranscript = !showConclusionTranscript}
+				>
+					<span class="collapsible-icon">{showConclusionTranscript ? '−' : '+'}</span>
+					{showConclusionTranscript ? copy.transcript_btn_hide : copy.transcript_btn_show}
+				</button>
 			</h3>
 
 			{#if showConclusionTranscript}
-			<div class="collapsible-content">
-				<p><strong>Jimmy:</strong> {copy.conclusion_transcript}</p>
-			</div>
+				<div class="collapsible-content">
+					<p><strong>Jimmy:</strong> {copy.conclusion_transcript}</p>
+				</div>
 			{/if}
 		</div>
 

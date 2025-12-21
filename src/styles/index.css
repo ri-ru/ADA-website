@@ -1010,7 +1010,6 @@ h2 {
 	}
 }
 
-
 /* ============================================ */
 /* CONCLUSION SECTION */
 /* ============================================ */
@@ -1052,33 +1051,37 @@ h2 {
 .card-front,
 .card-back {
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   border-radius: var(--ds-radius);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: var(--ds-space-lg);
-  border: 1px solid var(--ds-border);
+  box-sizing: border-box;
 }
 
 .card-front {
   background: var(--ds-surface);
+  border: 1px solid var(--ds-border);
 }
 
 .card-back {
-  background: var(--ds-bg);
-  transform: rotateY(180deg);
-  color: var(--ds-text);
+  background: #0f0f23;
   border: 2px solid var(--ds-chart-3);
+  transform: rotateY(180deg);
   box-shadow: 0 0 20px rgba(234, 118, 203, 0.2);
 }
 
 .card-icon {
   font-size: 2.5rem;
   margin-bottom: var(--ds-space-sm);
+  color: var(--ds-chart-14);
 }
 
 .conclusion-card h3 {
@@ -1098,6 +1101,7 @@ h2 {
 
 .card-back p {
   font-size: var(--ds-text-base);
+  color: var(--ds-text);
   text-align: center;
   line-height: 1.5;
   margin: 0;
