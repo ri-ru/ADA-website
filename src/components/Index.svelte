@@ -424,19 +424,19 @@
 
 	  {@render dialogue(q1Chat5)}
 
-		<p class="text-content">{copy.section1_intro}</p>
+		<p class="text-content">{@html copy.section1_intro}</p>
 
 		<VisualizationFull />
 
 	  {@render dialogue(q1Chat0)}
 
-		<p class="text-content">{copy.section1_text_1}</p>
+		<p class="text-content">{@html copy.section1_text_1}</p>
 
 		<Compare_1 />
 
 	  {@render dialogue(q1Chat1)}
 
-		<p class="text-content">{copy.section1_text_2}</p>
+		<p class="text-content">{@html copy.section1_text_2}</p>
 
 	  {@render dialogue(q1Chat2)}
 

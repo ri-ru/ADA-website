@@ -321,7 +321,6 @@
 
   canvas {
     width: 100% !important;
-    height: 360px !important;
     background: transparent !important;
   }
 </style>

@@ -83,13 +83,13 @@ section1_intro2,"Not all YouTube categories evolved in the same way. While total
 section1_chat_1,"[jimmy] Okay, so there are way more videos now... but <b>categories clearly behave differently.</b>"
 section1_chat_2,"[eddie] Right. With such scaling, it's no wonder that channels started <i>diversifying</i>."
 section1_chat_3,[jimmy] Diversifying?
-section1_chat_4,"[eddie] Professionally-minded creators started building systems around their videos, rather than simply uploading them."
-section1_text_1,"As competition increased and channels professionalized, creators began to rely on more than the video itself. One clear signal of this shift appears in video descriptions. We extract URLs from descriptions and group them into three functional types: monetization links, which point to revenue sources (for example amzn.to, amazon.com, patreon.com); social links, which connect creators to off-platform audiences (for example twitter.com, instagram.com, facebook.com); and content links, which promote channels or other videos within YouTube (for example links to youtube.com channels or videos). The chart below tracks the share of uploads containing each link type over time. From 2008 to 2018, all three become increasingly common across YouTube, reflecting a platform-wide shift toward more professional publishing practices."
+section1_chat_4,"[eddie] Professionally-minded creators started building infrastructure around their videos, rather than simply clicking upload."
+section1_text_1,"As channels <b>professionalized</b>, creators began to rely on more than just videos themselves. One clear signal of this shift appears in <b>video descriptions</b>. We extract <b>URLs</b> from descriptions and grouped them into three functional types: <b>monetization links</b>, which point to revenue sources (<i>e.g.</i> <code>skl.sh</code>, <code>amazon.com</code>, <code>patreon.com</code>); <b>social links</b>, which connect creators to off-platform audiences (<i>e.g.</i> <code>twitter.com</code>, <code>instagram.com</code>, <code>facebook.com</code>); and <b>content links</b>, which promote channels or other videos within YouTube (<i>e.g.</i> links to <code>youtube.com</code> channels or videos). The chart below tracks the share of uploads containing each link type over time. From 2008 to 2018, all three become increasingly common across YouTube, reflecting a <b>platform-wide shift toward more professional publishing practices</b>."
 ,		<Compare_1 />
-section1_chat_5,[jimmy] So the description became... mandatory?
+section1_chat_5,[jimmy] So writing video descriptions became... mandatory?
 section1_chat_6,[eddie] Optional in theory. Essential in practice.
 section1_chat_7,"[jimmy] Okay, but what were creators actually doing with all those links?"
-section1_chat_8,[eddie] Different things in different categories. And they did not adopt them at the same speed.
+section1_chat_8,[eddie] Different things in different categories. And they did not all adopt them at the same speed.
 ,                <Compare_2 />
 section1_text_3,"<b>Monetization links</b> show the <b>most uneven adoption across categories</b>. In a typical year, <b>Gaming</b> and <b>Howto & Style</b> include monetization links in around $16\%$ of uploads, while <b>News & Politics</b> and <b>Nonprofits & Activism</b> remain closer to $4\%$. When weighted by upload volume, <b>pooled shares exceed</b> $20\%$ in <b>Gaming</b> and stay in <b>single digits</b> for the lowest categories. This indicates that <b>monetization practices spread later and more unevenly</b> across the platform."
 section1_text_4,"<b>Content links</b> appear <b>earlier</b> and spread <b>more evenly</b>. In a typical year, <b>leading categories reach the low to mid $30\%$ range</b>, while even <b>lower intensity categories exceed</b> $10\%$. When weighted by volume, <b>pooled shares often cluster between $40\%$ and $50\%$</b>. This suggests that <b>linking to other videos or channels became a broadly shared way to organize viewing and retain attention</b>."
@@ -184,7 +184,7 @@ team_subtitle,The people behind this project
 ,
 ,--- Team Member 1 ---
 team_1_name,Ender
-team_1_role,(...) Specialist
+team_1_role,Business Barista
 team_1_avatar,ender.gif
 team_1_desc,expert on question #1
 ,
