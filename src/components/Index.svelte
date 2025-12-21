@@ -738,7 +738,7 @@
 
 		
 
-		<h3>{copy.conclusion_title}</h3>
+		<h2>{copy.conclusion_title}</h2>
 		<p class="section-sub">{copy.conclusion_subtitle}</p>
 
 		<div class="conclusion-cards">
