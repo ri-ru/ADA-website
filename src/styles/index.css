@@ -197,7 +197,6 @@ h2 {
 	height: 100%;
 	border-radius: 12px;
 	max-width: 800px;
-}
 	font-size: var(--ds-text-base);
 	font-weight: 500;
 	cursor: pointer;
@@ -1056,7 +1055,11 @@ h2 {
 
 .card-front,
 .card-back {
-	position: absolute;
+	position: transparent;
+  	color: var(--ds-text);
+	transform: rotateY(180deg);
+
+
 	width: 100%;
 	height: 100%;
 	backface-visibility: hidden;
