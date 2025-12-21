@@ -248,6 +248,11 @@
 		parseChatMessage(copy.section3_chat_8),
 	].filter(m => m && m.text);
 
+  const conclu = [
+		parseChatMessage(copy.conclusion_chat_1),
+		parseChatMessage(copy.conclusion_chat_2),
+	].filter(m => m && m.text);
+
 	// ============================================
 	// TEAM DATA (from Google Sheet)
 	// ============================================
@@ -726,9 +731,14 @@
 
 		<h2>Conclusion</h2>
 
+
 		<p> {@html copy.conclusion}</p>
 
-		<h2>{copy.conclusion_title}</h2>
+	  	{@render dialogue(conclu)}
+
+		
+
+		<h3>{copy.conclusion_title}</h3>
 		<p class="section-sub">{copy.conclusion_subtitle}</p>
 
 		<div class="conclusion-cards">
