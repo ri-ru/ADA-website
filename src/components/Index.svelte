@@ -524,7 +524,15 @@
 
 	  {@render dialogue(q2Chat3)}
 
+
+		<p class="text-content">{@html copy.section2_activity2_intro}</p>
+
+		<p class="text-content">{@html copy.section2_activity2_text}</p>
+
+
 	<Activity2 />
+
+
 
     {@render dialogue(q2Chat3b)}
 
