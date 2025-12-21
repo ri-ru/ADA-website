@@ -420,9 +420,9 @@
 
 	<!-- ========== CONTENT SECTIONS ========== -->
 	<section id="section-monetization" class="content-section">
-	  {@render dialogue(q1Chat5)}
-
 		<h2>{copy.section1_title}</h2>
+
+	  {@render dialogue(q1Chat5)}
 
 		<p class="text-content">{copy.section1_intro}</p>
 

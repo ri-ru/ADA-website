@@ -165,24 +165,11 @@
 
 <style>
 .viz-compare-wrap {
-  padding: 0;
+  display: inline-table;
   color: #e5e7eb;
-  font-family: var(--viz-font, 'TeX Gyre Adventor', 'Tex Gyre Adventor', 'Helvetica Neue', Arial, sans-serif);
-  overflow-x: hidden;
+  font-family: var(--viz-font, 'TeXGyreAdventor', 'Tex Gyre Adventor', 'Helvetica Neue', Arial, sans-serif);
   width: 100%;
-  max-width: none;
-  margin: 0;
 }
-
-  .aggregate-wrap {
-    width: 100%;
-    box-sizing: border-box;
-    border: none;
-    border-radius: 10px;
-    padding: 10px;
-    margin: 10px 0 16px;
-    background: transparent !important;
-  }
 
   .aggregate-controls {
     display: flex;
@@ -294,13 +281,12 @@
 
   canvas {
     width: 100% !important;
-    height: 360px !important;
     background: transparent !important;
   }
 </style>
 
 <div class="viz-compare-wrap">
-  <div class="aggregate-wrap">
+  <!-- <div class="aggregate-wrap"> -->
     <div class="aggregate-controls">
       <div>
         <p class="aggregate-title">How creators learned to use links on YouTube</p>
@@ -328,5 +314,5 @@
     <div class="aggregate-chart">
       <canvas bind:this={linkAggregateCanvas}></canvas>
     </div>
-  </div>
+  <!-- </div> -->
 </div>
