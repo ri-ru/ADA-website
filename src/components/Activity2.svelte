@@ -716,10 +716,10 @@ function observeCard(node: HTMLElement) {
 </style>
 
 <div class="activity2-wrap">
-  <h2 class="activity2-title">Most Channels Try. Fewer Stay Active.</h2>
+  <h2 class="activity2-title">Activity Status of YouTube Channels in 2025</h2>
   <div class="activity2-subtitle-row">
     <p class="activity2-subtitle">
-      Activity status of ~136K YouTube channels in 2025
+      We sample YouTube videos from ~136K YouTube channels in 2025 to see which channels remain active. Each icon represents about $200$ channels. Blue means active in 2025, red means inactive. 
       <button class="activity2-subtitle-button" type="button" onclick={() => { showDetails = !showDetails; }}>
         {showDetails ? 'Read Less' : 'Read More'}
       </button>
