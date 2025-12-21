@@ -241,63 +241,63 @@
   {
 Gaming: {
   title: "Gaming Over Time",
-  subtitle: "Ah Jimmy! It may show explosive scaling. Gaming grew from a small category into one of the largest sources of uploads on YouTube."
+  subtitle: "Ah, Jimmy! Here we see explosive growth. Gaming grew from a small category into one of the largest sources of uploads on YouTube."
 },
 Entertainment: {
   title: "Entertainment Over Time",
-  subtitle: "Ah Jimmy! It may show early dominance. Entertainment was already popular early on and continued to grow as the platform expanded."
+  subtitle: "Ah, Jimmy! Here we see early dominance. Entertainment was already popular early on and continued to grow as the platform expanded."
 },
 Music: {
   title: "Music Over Time",
-  subtitle: "Ah Jimmy! It may show a platform backbone. Music uploads increased steadily, remaining a core category throughout YouTube’s growth."
+  subtitle: "Ah, Jimmy! Here we see the platform's backbone. Music uploads increased steadily, remaining a core category throughout YouTube’s growth."
 },
 "News & Politics": {
   title: "News & Politics Over Time",
-  subtitle: "Ah Jimmy! It may show late acceleration. This category grew slowly at first, then expanded rapidly in later years."
+  subtitle: "Ah, Jimmy! Here we see late acceleration. This category grew slowly at first, then expanded rapidly in later years."
 },
 "People & Blogs": {
   title: "People & Blogs Over Time",
-  subtitle: "Ah Jimmy! It may show mass participation. Uploads rose sharply as more people began sharing personal content."
+  subtitle: "Ah, Jimmy! Here we see mass adoption. Uploads rose sharply as more people began sharing personal content."
 },
 "Film & Animation": {
   title: "Film & Animation Over Time",
-  subtitle: "Ah Jimmy! It may show slower, more constrained growth. Film and animation grew steadily but remained smaller than entertainment-driven categories."
+  subtitle: "Ah, Jimmy! Here we see slower growth. Film and animation grew steadily but remained smaller than entertainment-driven categories."
 },
 Education: {
   title: "Education Over Time",
-  subtitle: "Ah Jimmy! It may show credibility-driven expansion. Education content expanded quickly, becoming a much more visible part of the platform."
+  subtitle: "Ah, Jimmy! Here we see rapid expansion. Education content expanded quickly, becoming a much more visible part of the platform."
 },
 "Howto & Style": {
   title: "Howto & Style Over Time",
-  subtitle: "Ah Jimmy! It may show utility-driven scaling. Practical and instructional content grew consistently as YouTube matured."
+  subtitle: "Ah, Jimmy! Here we see practical content scaling. Practical and instructional content grew consistently as YouTube matured."
 },
 Sports: {
   title: "Sports Over Time",
-  subtitle: "Ah Jimmy! It may show steady but bounded growth. Sports uploads increased steadily, broadly tracking platform growth."
+  subtitle: "Ah, Jimmy! Here we see steady and bounded growth. Sports uploads increased steadily, broadly tracking platform growth."
 },
 "Autos & Vehicles": {
   title: "Autos & Vehicles Over Time",
-  subtitle: "Ah Jimmy! It may show an enthusiast niche. This category grew gradually, reflecting sustained but limited interest."
+  subtitle: "Ah, Jimmy! Here we see an enthusiast niche. This category grew gradually, reflecting sustained but limited interest."
 },
 "Science & Technology": {
   title: "Science & Technology Over Time",
-  subtitle: "Ah Jimmy! It may show expertise-bound growth. Science and technology content grew at a moderate pace over the decade."
+  subtitle: "Ah, Jimmy! Here we see moderate growth based on credibility. Science and technology content grew at a moderate pace over the decade."
 },
 "Pets & Animals": {
   title: "Pets & Animals Over Time",
-  subtitle: "Ah Jimmy! It may show bounded virality. Starting from a small base, pet-related content grew slowly but consistently."
+  subtitle: "Ah, Jimmy! Here we see consistent growth. Starting from a small base, pet-related content grew slowly but consistently."
 },
 "Nonprofits & Activism": {
   title: "Nonprofits & Activism Over Time",
-  subtitle: "Ah Jimmy! It may show **limited scaling**. This category remained relatively small, even as overall uploads increased."
+  subtitle: "Ah, Jimmy! Here we see limited growth. This category remained relatively small, even as overall uploads increased."
 },
 "Travel & Events": {
   title: "Travel & Events Over Time",
-  subtitle: "Ah Jimmy! It may show **experience-dependent growth**. Travel content grew over time but did not scale as quickly as major categories."
+  subtitle: "Ah, Jimmy! Here we see slow growth. Travel content grew over time but did not scale as quickly as major categories."
 },
 Comedy: {
   title: "Comedy Over Time",
-  subtitle: "Ah Jimmy! It may show format maturation. Comedy uploads increased steadily, becoming more common as the platform grew."
+  subtitle: "Ah, Jimmy! Here we see steady growth. Comedy uploads increased steadily, becoming more common as the platform grew."
 }
   };
 
@@ -331,7 +331,7 @@ Comedy: {
       }
     }
 
-    const marker = "It may show ";
+    const marker = "Here we see ";
     const idx = line.indexOf(marker);
     if (idx !== -1) {
       return { before: line.slice(0, idx + marker.length), bold: line.slice(idx + marker.length), after: "" };
