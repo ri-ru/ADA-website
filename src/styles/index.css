@@ -1069,9 +1069,11 @@ h2 {
 }
 
 .card-back {
-  background: linear-gradient(135deg, var(--ds-chart-4) 0%, var(--ds-chart-14) 100%);
+  background: var(--ds-bg);
   transform: rotateY(180deg);
   color: var(--ds-text);
+  border: 2px solid var(--ds-chart-3);
+  box-shadow: 0 0 20px rgba(234, 118, 203, 0.2);
 }
 
 .card-icon {
