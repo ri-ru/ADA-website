@@ -22,6 +22,7 @@
   import "katex/dist/katex.min.css"
   import renderMathInElement from "katex/contrib/auto-render"
 
+  let introSection;
 
 	// ============================================
 	// STARFIELD
@@ -85,7 +86,12 @@
 	// ============================================
 	// DIALOGUE DATA (from Google Sheet)
 	// ============================================
+	const prologueChat = [
+		parseChatMessage(copy.prologue_chat_1),
+	].filter(m => m && m.text);
+
 	const introChat = [
+		parseChatMessage(copy.prologue_chat_2),
 		parseChatMessage(copy.intro_chat_1),
 		parseChatMessage(copy.intro_chat_2),
 		parseChatMessage(copy.intro_chat_3),
@@ -312,20 +318,25 @@
 		<p class="byline">{copy.hero_byline}</p>
 		<button
         class="scroll-indicator"
-        onclick={e => e.target.scrollIntoView({
+        onclick={() => introSection.scrollIntoView({
             behavior: "smooth",
             block: "start",
-        })}>↓</button>
+        })}>
+            <span>let's go</span>
+            <br>
+            ↓
+        </button>
 	</section>
 
 	<!-- ========== VIDEO + TRANSCRIPT ========== -->
-	<section class="video-section">
+	<section bind:this={introSection} class="video-section">
+    {@render dialogue(prologueChat)}
+
 		<div class="video-container">
 			<iframe
 				src={copy.youtube_url}
 				title="Jimmy's video"
 				frameborder="0"
-				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 				allowfullscreen
 			></iframe>
 		</div>
@@ -349,10 +360,10 @@
 				</div>
 			{/if}
 		</div>
-	</section>
 
-	<!-- ========== DIALOGUE 1: Meeting the Experts ========== -->
-	{@render dialogue(introChat)}
+    <!-- ========== DIALOGUE 1: Meeting the Experts ========== -->
+    {@render dialogue(introChat)}
+	</section>
 
 	<!-- ========== DATASET SECTION ========== -->
 	<section class="dataset-section">

@@ -24,13 +24,16 @@ transcript_content,"Hey guys, Jimmy here, welcome to my first YouTube video. I'm
 ,═══════════════════════════════════════════════════════════
 intro_action,"Jimmy purchases a course on how to be a world class YouTuber... Little does he know, he will also ... (TODO)"
 ,
+prologue_chat_1,"[jimmy] Hey! What's up? My name's Jimmy and I want to become a world-class <a href=""https://www.urbandictionary.com/define.php?term=Youtuber"" target=""_blank""><i>YouTuber</i></a>! I just published my first video &mdash; check it out..."
+prologue_chat_2,"[jimmy] Pretty cool right?! I emailed some companies to ask them to <b>sponsor me</b>, but the only one that bothered replying just sent me <q>😂🤮</q>. I don't get it... I need to <b>ask some experts!</b>"
+,
 intro_chat_1,[eddie] Wow... a real customer?
-intro_chat_2,[jimmy] I just spent 999$ on your course with my mom's credit card...
+intro_chat_2,[jimmy] I just spent $999\$$ on your course with my mom's credit card...
 intro_chat_3,[kaleb] ...
 intro_chat_4,[jimmy] Can you help me make a lot of money on YouTube?
 intro_chat_5,[daniel] Maybe.
 intro_chat_6,[jimmy] ...I'm getting a refund
-intro_chat_7,[vivian] Wait! What we CAN do is show you just how YouTube went from a hobby to an industry that makes many people tons of money. We are really good at what we do! We are super trustworthy and we have the best datasets! Check this out...
+intro_chat_7,[vivian] Wait! What we CAN do is show you just <b>how YouTube went from a hobby to an industry that makes many people tons of money</b>. We are really good at what we do! We are super trustworthy and we have the best datasets! Check this out...
 ,
 ,═══════════════════════════════════════════════════════════
 ,DATASET SECTION
