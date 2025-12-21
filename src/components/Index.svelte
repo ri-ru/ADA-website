@@ -53,21 +53,24 @@
 	let showConclusionTranscript = $state(false);
 	let flippedCards = $state([false, false, false]);
 
+
+					{@const icons = ['', '󰣖', '󱖜']}
+
 	const conclusionCards = [
 		{
 			question: copy.conclusion_q1_title,
 			answer: copy.conclusion_q1_answer,
-			icon: "󰀷"
+			icon: ""
 		},
 		{
 			question: copy.conclusion_q2_title,
 			answer: copy.conclusion_q2_answer,
-			icon: "󰀸"
+			icon: "󰣖"
 		},
 		{
 			question: copy.conclusion_q3_title,
 			answer: copy.conclusion_q3_answer,
-			icon: "󰀹"
+			icon: "󱖜"
 		},
 	];
 
