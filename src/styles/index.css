@@ -924,6 +924,73 @@ h2 {
 	overflow: hidden;
 }
 
+.leiden-com {
+	overflow: hidden;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	border: 2px solid rgba(234, 118, 203, 0.6);
+	border-radius: 12px;
+	padding: 2rem 0;
+	row-gap: 2rem;
+}
+
+.leiden-com h4 {
+	margin: 0rem;
+	margin-bottom: -1.5rem;
+	text-align: center;
+}
+
+.leiden-com p {
+	margin-top: 0rem;
+	text-align: center;
+}
+
+.leiden-img-banner {
+	display: flex;
+	width: 140rem;
+	height: 13rem;
+	animation: bannerscroll 20s infinite linear;
+}
+
+.leiden-img-banner > a {
+	flex: 1;
+	text-decoration: none;
+	display: flex;
+	flex-direction: column;
+	justify-items: center;
+	justify-content: flex-start;
+	padding: 0 2rem;
+}
+
+.leiden-img-banner > a > img {
+	border-radius: 50%;
+}
+
+.leiden-img-banner > a > span {
+	padding-top: 1rem;
+	text-align: center;
+}
+
+.leiden-url-banner {
+	display: flex;
+	width: 280rem;
+	animation: bannerscroll 20s infinite linear;
+}
+
+.leiden-url {
+	flex: auto;
+}
+
+@keyframes bannerscroll {
+	0% {
+		transform: translateX(0%);
+	}
+	100% {
+		transform: translateX(-50%);
+	}
+}
+
 /* ============================================ */
 /* RESPONSIVE */
 /* ============================================ */
