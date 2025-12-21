@@ -366,7 +366,7 @@
 
   canvas {
     width: 100% !important;
-    height: var(--canvas-h, 360px) !important;
+    max-height: 360px;
     background: transparent !important;
   }
 
@@ -466,7 +466,7 @@
 
   <div
     class="grid"
-    style={`--card-min:${layoutDims.cardMin}px; --card-min-height:${layoutDims.cardMinHeight}px; --canvas-h:${layoutDims.canvasHeight}px;`}
+    style={`--card-min:${layoutDims.cardMin}px; --card-min-height:${layoutDims.cardMinHeight}px;`}
   >
     {#each Array(compareCount) as _, i}
       <div class="card">
