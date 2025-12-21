@@ -1014,22 +1014,16 @@ h2 {
 /* CONCLUSION SECTION */
 /* ============================================ */
 
-.conclusion-section {
-  padding: var(--ds-space-xl) var(--ds-space-md);
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
 .conclusion-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: var(--ds-space-lg);
   margin: var(--ds-space-xl) 0;
 }
 
 .conclusion-card {
   perspective: 1000px;
-  height: 250px;
+  height: 340px;
   background: none;
   border: none;
   cursor: pointer;

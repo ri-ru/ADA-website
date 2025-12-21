@@ -73,6 +73,17 @@
 		},
 	];
 
+	const summaryChat0 = [
+		parseChatMessage(copy.summary_chat_1),
+	].filter(m => m && m.text);
+
+	const summaryChat1 = [
+		parseChatMessage(copy.summary_chat_2),
+		parseChatMessage(copy.summary_chat_3),
+		parseChatMessage(copy.summary_chat_4),
+		parseChatMessage(copy.summary_chat_5),
+	].filter(m => m && m.text);
+
 	const conclusionChat0 = [
 		parseChatMessage(copy.conclusion_chat_1),
 		parseChatMessage(copy.conclusion_chat_2),
@@ -726,25 +737,22 @@
 
 
 
-	<section class="conclusion-section">
-
-
+	<section class="content-section">
 		<h2>Conclusion</h2>
 
+		{@render dialogue(summaryChat0)}
 
-		<p> {@html copy.conclusion}</p>
+		<p class="text-content">{@html copy.conclusion}</p>
 
-	  	{@render dialogue(conclu)}
-
-		
+		{@render dialogue(summaryChat1)}
 
 		<h2>{copy.conclusion_title}</h2>
 		<p class="section-sub">{copy.conclusion_subtitle}</p>
 
 		<div class="conclusion-cards">
 			{#each conclusionCards as card, i}
-			<button 
-				class="conclusion-card" 
+			<button
+				class="conclusion-card"
 				class:flipped={flippedCards[i]}
 				onclick={() => flippedCards[i] = !flippedCards[i]}
 			>
