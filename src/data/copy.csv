@@ -33,7 +33,7 @@ intro_chat_3,[kaleb] ...
 intro_chat_4,[jimmy] Will you promise to help me make a lot of money on YouTube?
 intro_chat_5,[daniel] Maybe.
 intro_chat_6,[jimmy] ...I'm getting a refund. 
-intro_chat_7,"[vivian] Wait! What we CAN promise is to show you <b>how YouTube grew, how creators turned their hobbies into real careers, and how sponsorships affect engagement and the trajectory of the channel.</b> We have real data to prove it! <b>Let me introduce you to the datasets we used:</b>"
+intro_chat_7,[vivian] Wait! What we CAN promise is to show you exactly how YouTube went from a hobby to an industry that makes many people tons of money. We have real data to prove it! <b>Let me introduce you to the datasets we used:</b>
 ,═══════════════════════════════════════════════════════════
 ,DATASET SECTION
 ,═══════════════════════════════════════════════════════════
@@ -50,16 +50,16 @@ datasets_plots_comments,"The <b>left plot</b> considers <b>all types of segments
 ,Format: [speaker] message text
 ,═══════════════════════════════════════════════════════════
 ,
-dataset_chat_1,"[jimmy] Okay, fine. You know what you are doing. <b>So how do I make money?</b>"
+dataset_chat_1,"[jimmy] Okay, fine. I guess you sound like you know what you are doing. <b>So how do I make money?</b>"
 dataset_chat_2,"[kaleb] To know that we know what we know, and that we do not know what we do not know, that is true knowledge..."
-dataset_chat_3,[jimmy] ...
-dataset_chat_4,[eddie] Ignore that.
-dataset_chat_5,"[daniel] He's trying to say that in order to master something, you need to first understand it. We have researched several questions, just for you, about what the data tell us."
+dataset_chat_3,[jimmy] ...what? 
+dataset_chat_4,"[eddie] He means that before you can make money, you need to understand the YouTube sponsorship ecosystem. "
+dataset_chat_5,"[daniel] We did the research just for you: how YouTube grew, how creators turned their hobbies into real careers, and how sponsorships affect engagement and the trajectory of the channel. Pick a question below, or start from the beginning. "
 ,
 ,═══════════════════════════════════════════════════════════
 ,RESEARCH QUESTIONS OVERVIEW
 ,═══════════════════════════════════════════════════════════
-,
+,"[vivian] <b>Wait! What we CAN promise is to show you how YouTube grew, how creators turned their hobbies into real careers, and how sponsorships affect engagement and the trajectory of the channel. We have real data to prove it! Let me introduce you to the datasets we used:</b>"
 learn_title,What You'll Learn
 learn_subtitle,Click any question to jump to that section 
 q1_title,How have channels evolved from indie to professional?
