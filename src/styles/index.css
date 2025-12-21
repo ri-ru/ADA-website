@@ -34,6 +34,7 @@ p {
 	height: 100%;
 	z-index: 0;
 	pointer-events: none;
+	overflow: hidden;
 }
 
 .star {
@@ -124,7 +125,7 @@ h2 {
 	margin: 0 0 var(--ds-space-sm);
 	text-align: center;
 	font-family: var(--ds-font-title), "BlexMono";
-  position: relative;
+	position: relative;
 }
 
 .section-sub {
@@ -662,7 +663,9 @@ h2 {
 	opacity: 0;
 	animation: particleLeak var(--particle-duration) ease-out infinite;
 	animation-delay: var(--particle-delay);
-	box-shadow: 0 0 8px var(--ds-chart-3), 0 0 12px var(--ds-chart-4);
+	box-shadow:
+		0 0 8px var(--ds-chart-3),
+		0 0 12px var(--ds-chart-4);
 }
 
 .particle:nth-child(4n) {
@@ -671,19 +674,19 @@ h2 {
 	transform-origin: center;
 }
 
-.particle:nth-child(4n+1) {
+.particle:nth-child(4n + 1) {
 	top: 50%;
 	right: 0;
 	transform-origin: center;
 }
 
-.particle:nth-child(4n+2) {
+.particle:nth-child(4n + 2) {
 	bottom: 0;
 	left: 50%;
 	transform-origin: center;
 }
 
-.particle:nth-child(4n+3) {
+.particle:nth-child(4n + 3) {
 	top: 50%;
 	left: 0;
 	transform-origin: center;
@@ -700,9 +703,10 @@ h2 {
 	100% {
 		opacity: 0;
 		transform: translate(
-			calc(cos(var(--particle-angle)) * 100px),
-			calc(sin(var(--particle-angle)) * 100px)
-		) scale(0.3);
+				calc(cos(var(--particle-angle)) * 100px),
+				calc(sin(var(--particle-angle)) * 100px)
+			)
+			scale(0.3);
 	}
 }
 
@@ -805,7 +809,8 @@ h2 {
 	backdrop-filter: blur(0.2em);
 }
 
-.icon {
+.icon,
+.nf-icon {
 	font-family: "BlexMono";
 	font-size: 1.5rem;
 }
