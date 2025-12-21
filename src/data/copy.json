@@ -1,7 +1,7 @@
 {
   "": "oops",
   "hero_title": "From Indie to Industry",
-  "hero_subtitle": "how YouTube went from a hobbyist paradise to a whole industry",
+  "hero_subtitle": "how YouTube went from a hobbyist heaven to a corporate paradise",
   "hero_byline": "Jan Juraszek, Danael Robert-Nicoud, Ender Sari, Kalan Walmsley, Veronika Wannack ",
   "youtube_url": "https://www.youtube.com/embed/39ORolk1P0I",
   "transcript_btn_show": "Show Transcript",
@@ -10,6 +10,7 @@
   "intro_action": "Jimmy purchases a course on how to be a world class YouTuber... Little does he know, he will also ... (TODO)",
   "prologue_chat_1": "[jimmy] Hey! What's up? My name's Jimmy and I want to become a world-class <a href=\"https://www.urbandictionary.com/define.php?term=Youtuber\" target=\"_blank\"><i>YouTuber</i></a>! I just published my first video &mdash; check it out...",
   "prologue_chat_2": "[jimmy] Pretty cool right?! I emailed some companies to ask them to <b>sponsor me</b>, but the only one that bothered replying just sent me <q>😂🤮</q>. I don't get it... I need to <b>ask some experts!</b>",
+  "interlude_1": "5 minutes later...",
   "intro_chat_1": "[eddie] Wow... a real customer?",
   "intro_chat_2": "[jimmy] I just spent $999\\$$ on your course with my mom's credit card...",
   "intro_chat_3": "[kaleb] ...",

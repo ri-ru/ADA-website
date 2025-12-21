@@ -86,12 +86,15 @@
 	// ============================================
 	// DIALOGUE DATA (from Google Sheet)
 	// ============================================
-	const prologueChat = [
+	const prologueChat0 = [
 		parseChatMessage(copy.prologue_chat_1),
 	].filter(m => m && m.text);
 
-	const introChat = [
+	const prologueChat1 = [
 		parseChatMessage(copy.prologue_chat_2),
+	].filter(m => m && m.text);
+
+	const introChat = [
 		parseChatMessage(copy.intro_chat_1),
 		parseChatMessage(copy.intro_chat_2),
 		parseChatMessage(copy.intro_chat_3),
@@ -330,7 +333,7 @@
 
 	<!-- ========== VIDEO + TRANSCRIPT ========== -->
 	<section bind:this={introSection} class="video-section">
-    {@render dialogue(prologueChat)}
+    {@render dialogue(prologueChat0)}
 
 		<div class="video-container">
 			<iframe
@@ -360,6 +363,10 @@
 				</div>
 			{/if}
 		</div>
+
+    {@render dialogue(prologueChat1)}
+
+    <p class="interlude">{@html copy.interlude_1}</p>
 
     <!-- ========== DIALOGUE 1: Meeting the Experts ========== -->
     {@render dialogue(introChat)}

@@ -863,6 +863,16 @@ h2 {
 	font-family: var(--ds-font-title), "BlexMono";
 }
 
+.interlude {
+	width: 100%;
+	color: var(--ds-text-muted);
+	margin: var(--ds-space-xl) auto;
+	font-weight: 400;
+	text-align: center;
+	font-style: italic;
+	font-weight: bold;
+}
+
 /* Section intro container */
 .section-intro {
 	text-align: center;
