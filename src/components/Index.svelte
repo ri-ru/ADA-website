@@ -571,15 +571,11 @@
 
 		<p class="text-content">{@html copy.section2_text_2_introduction_2}</p>
 
-		<p class="text-content">{@html copy.section2_text_2}</p>
-
 	  {@render dialogue(q2Chat2)}
 
     <KalanChart2/>
 
 		<p class="text-content">{@html copy.section2_text_3_introduction}</p>
-
-		<p class="text-content">{@html copy.section2_text_3}</p>
 
 	  {@render dialogue(q2Chat3)}
 
