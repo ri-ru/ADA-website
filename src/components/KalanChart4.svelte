@@ -83,8 +83,8 @@
   "color": [
     "#d20f39", //currently actively sponsored --> dark red 
     "#e64553", //active --> light red 
-    "#888888", //inactive spons --> dark gray 
-    "#cccccc"  //inactive  --> gray
+    "#313244", //inactive spons --> dark gray 
+    "#585b70"  //inactive  --> gray
   ],
 	grid: {
 		bottom: 50
@@ -305,9 +305,9 @@
   },
   "color": [
     "#d20f39",
-    "#888888",
+    "#313244",
     "#e64553",
-    "#cccccc"
+    "#585b70"
   ],
   "series": [
     {
