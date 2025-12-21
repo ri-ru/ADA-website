@@ -346,7 +346,12 @@
 		<h1 class="title">{copy.hero_title}</h1>
 		<p class="subtitle">{copy.hero_subtitle}</p>
 		<p class="byline">{copy.hero_byline}</p>
-		<div class="scroll-indicator">↓</div>
+		<button
+        class="scroll-indicator"
+        onclick={e => e.target.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+        })}>↓</button>
 	</section>
 
 	<!-- ========== VIDEO + TRANSCRIPT ========== -->

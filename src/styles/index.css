@@ -97,6 +97,14 @@ p {
 	font-size: 2rem;
 	color: rgba(255, 255, 255, 0.5);
 	animation: bounce 2s infinite;
+	outline: none;
+	background-color: transparent;
+	transition: color 0.3s;
+}
+
+.scroll-indicator:hover {
+	color: rgba(255, 255, 255, 0.8);
+	background-color: transparent;
 }
 
 @keyframes bounce {
