@@ -136,8 +136,6 @@
   const q1Chat3 = [
 		parseChatMessage(copy.section1_chat_9),
 		parseChatMessage(copy.section1_chat_10),
-		parseChatMessage(copy.section1_chat_11),
-		parseChatMessage(copy.section1_chat_12),
 	].filter(m => m && m.text);
 
   const q1Chat4 = [
@@ -470,8 +468,11 @@
 
 	  {@render dialogue(q2Chat0)}
 
+
+
     <KalanChart3/>
 
+		<p class="text-content">{@html copy.section2_text_2_introduction}</p>
 
 
 		<p class="text-content">{@html copy.section2_text_1}</p>
@@ -517,9 +518,10 @@
         ])}
 		{/if}
 
+
     <KalanChart1/>
 
-		<p class="text-content">{@html copy.section2_text_2_introduction}</p>
+		<p class="text-content">{@html copy.section2_text_2_introduction_2}</p>
 
 		<p class="text-content">{@html copy.section2_text_2}</p>
 
@@ -534,12 +536,12 @@
 	  {@render dialogue(q2Chat3)}
 
 
+		<p class="text-content">{@html copy.section2_activity2_intro}</p>
 
 
 
 	<Activity2 />
 
-		<p class="text-content">{@html copy.section2_activity2_intro}</p>
 
 		<p class="text-content">{@html copy.section2_activity2_text}</p>
 
