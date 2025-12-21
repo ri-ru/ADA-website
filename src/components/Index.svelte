@@ -46,6 +46,39 @@
 		stars = newStars;
 	});
 
+	// ===========================================
+	// CONCLUSION CARDS
+	// ===========================================
+
+	let showConclusionTranscript = $state(false);
+	let flippedCards = $state([false, false, false]);
+
+	const conclusionCards = [
+		{
+			question: copy.conclusion_q1_title,
+			answer: copy.conclusion_q1_answer,
+			icon: "󰀷"
+		},
+		{
+			question: copy.conclusion_q2_title,
+			answer: copy.conclusion_q2_answer,
+			icon: "󰀸"
+		},
+		{
+			question: copy.conclusion_q3_title,
+			answer: copy.conclusion_q3_answer,
+			icon: "󰀹"
+		},
+	];
+
+	const conclusionChat0 = [
+		parseChatMessage(copy.conclusion_chat_1),
+		parseChatMessage(copy.conclusion_chat_2),
+	].filter(m => m && m.text);
+
+	const conclusionChat1 = [
+		parseChatMessage(copy.conclusion_chat_3),
+	].filter(m => m && m.text);
 
 	// ============================================
 	// TRANSCRIPT - Using $state for Svelte 5 reactivity
@@ -679,6 +712,65 @@
 		<p class="text-content">{@html copy.section3_delta_subs}</p>
 
 	  {@render dialogue(q3Chat1)}
+	</section>
+
+	<!-- ========== CONCLUSION ========== -->
+	<section class="conclusion-section">
+	<h2>{copy.conclusion_title}</h2>
+	<p class="section-sub">{copy.conclusion_subtitle}</p>
+
+	<div class="conclusion-cards">
+		{#each conclusionCards as card, i}
+		<button 
+			class="conclusion-card" 
+			class:flipped={flippedCards[i]}
+			onclick={() => flippedCards[i] = !flippedCards[i]}
+		>
+			<div class="card-inner">
+			<div class="card-front">
+				<span class="card-icon">{card.icon}</span>
+				<h3>{card.question}</h3>
+				<p class="card-hint">click to reveal!✨</p>
+			</div>
+			<div class="card-back">
+				<p>{@html card.answer}</p>
+			</div>
+			</div>
+		</button>
+		{/each}
+	</div>
+
+	{@render dialogue(conclusionChat0)}
+
+	<div class="video-container">
+		<iframe
+		src={copy.conclusion_youtube_url}
+		title="Jimmy's sponsored video"
+		frameborder="0"
+		allowfullscreen
+		></iframe>
+	</div>
+
+	<div class="collapsible">
+		<h3>
+		<button
+			class="collapsible-btn"
+			aria-expanded={showConclusionTranscript}
+			onclick={() => showConclusionTranscript = !showConclusionTranscript}
+		>
+			<span class="collapsible-icon">{showConclusionTranscript ? '−' : '+'}</span>
+			{showConclusionTranscript ? copy.transcript_btn_hide : copy.transcript_btn_show}
+		</button>
+		</h3>
+
+		{#if showConclusionTranscript}
+		<div class="collapsible-content">
+			<p><strong>Jimmy:</strong> {copy.conclusion_transcript}</p>
+		</div>
+		{/if}
+	</div>
+
+	{@render dialogue(conclusionChat1)}
 	</section>
 
 	<!-- ========== MEET THE TEAM ========== -->
