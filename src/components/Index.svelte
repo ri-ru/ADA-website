@@ -614,13 +614,13 @@
           <div class="leiden-img-banner">
             {#each rq2.leiden[$selectedLeiden].channels as c}
                 <a href="https://youtube.com/channel/{c.channel}" target="_blank">
-                    <img src="/assets/ytprofiles/{c.profile}.jpg" alt={c.name}>
+                    <img src="assets/ytprofiles/{c.profile}.jpg" alt={c.name}>
                     <span>{c.name}</span>
                 </a>
             {/each}
             {#each rq2.leiden[$selectedLeiden].channels as c}
                 <a href="https://youtube.com/channel/{c.channel}" target="_blank">
-                    <img src="/assets/ytprofiles/{c.profile}.jpg" alt={c.name}>
+                    <img src="assets/ytprofiles/{c.profile}.jpg" alt={c.name}>
                     <span>{c.name}</span>
                 </a>
             {/each}
