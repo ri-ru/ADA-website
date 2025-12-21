@@ -525,8 +525,9 @@ function observeCard(node: HTMLElement) {
     border: 1px solid #7c828f;
   }
 
-  .icon.active { background: linear-gradient(135deg, #7c828f, #646b79); }
-  .icon.inactive { background: linear-gradient(135deg, #7c828f, #646b79); }
+  .icon.active { background: linear-gradient(135deg, #d20f39, #e64553); }
+  .icon.inactive { background: linear-gradient(135deg, #313244, #585b70); }
+
 
   .icon::before {
     content: "";
@@ -555,15 +556,15 @@ function observeCard(node: HTMLElement) {
   .icon.active:hover,
   .icon.active.is-hovered,
   .icon.active:focus-visible {
-    background: linear-gradient(135deg, #1e66f5, #04a5e5);
-    border-color: #1e66f5;
+    background: linear-gradient(135deg, #d20f39, #e64553);
+    border-color: #e64553;
   }
 
   .icon.inactive:hover,
   .icon.inactive.is-hovered,
   .icon.inactive:focus-visible {
-    background: linear-gradient(135deg, #d20f39, #e64553);
-    border-color: #d20f39;
+    background: linear-gradient(135deg, #313244	, #585b70);
+    border-color: #585b70;
   }
 
   .icon.no-link {
