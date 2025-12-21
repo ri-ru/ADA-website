@@ -11,12 +11,12 @@
     {
       "text": "Time Before First Sponsor",
       "textAlign": "center",
-      "left": "22.5%"
+      "left": "25%"
     },
     {
       "text": "Number of Videos Before First Sponsor",
       "textAlign": "center",
-      "left": "77.5%"
+      "left": "75%"
     }
   ],
   "animationDuration": 1500.0,
@@ -39,6 +39,7 @@
       "type": "log",
       "gridIndex": 0.0,
       "name": "days",
+      "nameLocation": "center",
       "axisLabel": {
         "formatter": function(value, index) { return value.toExponential().replace("+",""); }
       }
@@ -47,6 +48,7 @@
       "type": "log",
       "gridIndex": 1.0,
       "name": "videos",
+      "nameLocation": "center",
       "axisLabel": {
         "formatter": function(value, index) { return value.toExponential().replace("+",""); }
       }
@@ -55,10 +57,12 @@
   "yAxis": [
     {
       "gridIndex": 0.0,
+      "nameLocation": "center",
       "name": "channel density"
     },
     {
       "gridIndex": 1.0,
+      "nameLocation": "center",
       "name": "channel density"
     }
   ],
