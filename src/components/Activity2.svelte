@@ -452,12 +452,12 @@ function observeCard(node: HTMLElement) {
     align-items: center;
     justify-content: center;
     position: relative;
-    background: linear-gradient(135deg, #1e66f5, #04a5e5);
+    background: linear-gradient(135deg, #d20f39, #e64553);
     box-shadow: inset 0 0 0 1px rgba(255,255,255,0.2);
   }
 
   .header-icon.inactive {
-    background: linear-gradient(135deg, #d20f39, #e64553);
+    background: linear-gradient(135deg, #313244, #585b70);
   }
 
   .header-icon::before {
