@@ -144,18 +144,19 @@ section2_chat_21,"[kaleb] Oof, that's a tough one... We don't really have the da
 section2_chat_22,[jimmy] How do you know who sponsored a channel though?
 section2_chat_23,"[kaleb] Good question! The short answer is <i>painfully</i>. You know how we mentioned earlier that video descriptions can contain URLs? Well we can look at those. However, a huge proportion of those URLs are <i>shortened</i>. URL shortening is when you use a service like <a href=""https://bit.ly"" target=""_blank"">bit.ly</a> to make a URL shorter. Here comes the hard part: there is absolutely no way to figure out the link a shortened URL points to without pinging the shortener service."
 section2_chat_24,[jimmy] Wow that sounds evil... How did you do it then?
-section2_chat_25,"[kaleb] Since we weren't going to hack the shortening services to steal their hashing algorithms, we had to use clever brute force. To minimise the amount of data we were requesting, we used <code>HEAD</code> requests with a ""no redirect"" policy. This meant that in the <code>HEAD</code> response header, we could extract the address the shortened link immediately redirected to. Since making thousands of requests a second looked suspicious, we used an exponential backoff strategy. This worked by waiting a random, exponentially increasing amount of time between failed requests. That way, it would eventually wait long enough to reset any rate limits. We also ran multiple HTTP clients in parallel and tried proxy rotation..."
-section2_chat_26,[jimmy] Okay I get it &mdash; it was a bad time. That was the last hurdle right?
+section2_chat_25,"[kaleb] Since we weren't going to hack the shortening services to steal their hashing algorithms, we had to use clever brute force. To minimise the amount of data we were requesting, we used <code>HEAD</code> requests with a ""no redirect"" policy. This meant that in the <code>HEAD</code> response header, we could extract the address the shortened link immediately redirected to. Since making thousands of requests a second looked suspicious, we used an exponential backoff strategy. This worked by waiting a random, exponentially increasing amount of time between failed requests. That way, it would eventually wait long enough to reset any rate limits. We also ran multiple HTTP clients in parallel and tried proxy rotation--"
+section2_chat_26,"[jimmy] Okay I get it, it was a bad time. That was the last hurdle right?"
 section2_chat_27,"[vivian] We wish! Having the full URLs is great, but we don't know which ones are linked to monetisation yet. Think about it, people put all sorts of links in their descriptions: WikiPedia articles, social media profiles, personal websites... The list goes on!"
 section2_chat_28,[jimmy] But then how did you figure it out? There must be millions of links!
 section2_chat_29,[vivian] We tried a bunch of different strategies. The one we ended up going for was to use the GPT-5 nano model with a handful of manual examples to classify the URLs as monetised or not.
 section2_chat_30,[jimmy] Then were you fine?!
-section2_chat_31,"[kaleb] Yes! Checkout the graph below. It's on a separate page because it runs preformance intense <a href=""https://webassembly.org/"" target=""_blank"">WebAssembly</a>."
-section2_text_5,"Let's take channels <i>A</i>, <i>B</i>, and <i>C</i>. Let's say that <i>A</i> is sponsored by sponsors $\alpha$ and $\beta$, <i>B</i> by $\alpha$, $\beta$, and $\gamma$, and <i>C</i> by $\gamma$. Then <i>A</i> and <i>B</i> would have a connection of weight 2 between them and <i>B</i> and <i>C</i> a connection of weight 1. <i>A</i> and <i>C</i> would have no connection. Using this, we can build a graph. <br> Notice you can toggle different colourmaps. <i>Connectivity</i> shows how many neighbours each node has (logarithmic scale), <i>Category</i> shows the channel category, <i>Subscriber</i> and <i>Videos</i> show the number of subscribers and videos (logarithmic scale), and <i>Activity</i> shows channels active in 2025 in blue, others in red. The most interesting colourmap is <i>Leiden</i>, which shows different community assignments by the <a href=""https://en.wikipedia.org/wiki/Leiden_algorithm"" target=""_blank"">Leiden algorithm</a>. In short, it is a community detection algorithm that optimises the modularity of the graph."
+section2_chat_31,"[kaleb] Yes! Check out the graph below. It's on a separate page because it runs preformance intense <a href=""https://webassembly.org/"" target=""_blank"">WebAssembly</a>."
+section2_biggraphintro,"In the below visualization, each dot is a YouTube channel, and each connection between channels is a shared sponsor. Try clicking on a dot! You can also play around with the physics, or change the sections under ""color"" to see different ways of grouping the channels together. The different groupings are as follows: <br><br>- Connectivity shows how many neighbors each node has (logarithmic scale) <br>- Category shows the channel category, Subscriber and Videos show the number of subscribers and videos (logarithmic scale) <br>- Activity shows channel activity, similarly to the above graph. <br>- Leiden (the most interesting!). This shows different community assignments by the Leiden algorithm: it is a community detection algorithm that optimises the modularity of the graph."
+section2_text_5,"How we did it: Let's take channels <i>A</i>, <i>B</i>, and <i>C</i>. Let's say that <i>A</i> is sponsored by sponsors $\alpha$ and $\beta$, <i>B</i> by $\alpha$, $\beta$, and $\gamma$, and <i>C</i> by $\gamma$. Then <i>A</i> and <i>B</i> would have a connection of weight 2 between them and <i>B</i> and <i>C</i> a connection of weight 1. <i>A</i> and <i>C</i> would have no connection. Using this, we can build a graph. <br> Notice you can toggle different colourmaps. <i>Connectivity</i> shows how many neighbours each node has (logarithmic scale), <i>Category</i> shows the channel category, <i>Subscriber</i> and <i>Videos</i> show the number of subscribers and videos (logarithmic scale), and <i>Activity</i> shows channels active in 2025 in blue, others in red. The most interesting colourmap is <i>Leiden</i>, which shows different community assignments by the <a href=""https://en.wikipedia.org/wiki/Leiden_algorithm"" target=""_blank"">Leiden algorithm</a>. In short, it is a community detection algorithm that optimises the modularity of the graph."
 section2_chat_32,[kaleb] Pretty cool right?
 section2_chat_33,[jimmy] Hypnotising 😵‍💫 But <b>what do the Leiden algorithm communities mean?</b> Right now they're just colourful dots for me.
 section2_chat_34,[kaleb] Great question! We can look at the <b>top 5 most connected channels</b> and the <b>top 10 most common URLs</b> to try to gain some insights. Which one do you want to look at?
-section2_text_6,A much more in-depth analysis could be done on these communities and the graph in general. However we can still see the outlines of <b>certain groups of channels that are bound together by their sponsors</b>. Each community seems to tend towards certain <b>global themes</b> or present <b>similarities between channels</b>.
+section2_text_6,The above plot shows the outlines of <b>certain groups of channels that are bound together by their sponsors</b>. Each community seems to tend towards certain <b>global themes</b> or present <b>similarities between channels</b>.
 section2_chat_35,[jimmy] Hey I know some of those guys!
 ,
 ,
@@ -164,11 +165,12 @@ section2_chat_35,[jimmy] Hey I know some of those guys!
 ,═══════════════════════════════════════════════════════════
 ,
 section3_title,How does a focus on professionalism affect engagement?
-section3_chat_1,"[jimmy] Thanks for all these explanations, but can I know <b>what will happen once I get my first sponsor?</b>"
-section3_chat_2,"[daniel] Ok, then <b>let's study the relationship between sponsorship and engagement!</b> I bet you would like to know what to expect after you enter the world of sponsorship 😁"
-section3_chat_3,[jimmy] Sure! Will my YouTube stats skyrocket?!
+section3_chat_1,[jimmy] Thanks for all these explanations. I'm definitely ready to be sponsored now. but can I know <b>what will happen once I get my first sponsor?</b>
+section3_chat_2,[daniel] I like your attitude! 😁 <b>Let's study the relationship between sponsorship and engagement!</b> 
+section3_chat_3,[jimmy] Sure! Will my YouTube stats skyrocket?! Will I become even more famous? 
 section3_chat_4,"[daniel] Take a chill pill! Don't forget that <b>establishing causation is very hard</b>, thus my goal is to analyze and show you the observed patterns and propose plausible interpretations."
 section3_chat_5,"[jimmy] Ok, I'm listening carefully then..."
+section3_dumbbell_intro_0,"Here, we will look at the differences between sponsored and non sponsored videos."
 section3_dumbbell_intro,"First, some characteristics of sponsored vs. non-sponsored videos are compared within channels that have sponsors (restricting to channels with at least 5 sponsored videos in SponsorBlock, so it is representative). In the plot, for each category, video status (sponsored or not), and metric of interest (for example, video duration), <b>the median per channel is first computed</b>. Then, <b>the median of these channel-wise medians is taken</b> to obtain the values displayed. This procedure ensures that each channel has the same weight (even if some channels have many more videos than others) and that the final values can be interpreted as ""typical"" at the channel level."
 section3_dumbbell_analysis,"First of all, the <b>like/dislike ratio</b> is defined as $\frac{\text{like\_count}}{\text{like\_count} + \text{dislike\_count}} \cdot 100$, to get a comprehensive measure of viewer satisfaction (percentage of likes among all feedback). Notice the values for News & Politics compared to the other categories. No surprise: this is a more delicate, polarizing topic... Apart from that, <b>sponsored videos tend to reach a higher percentage of likes in most categories</b>. This is quite interesting: even though the viewer is interrupted in the video (usually considered annoying), the higher budgets of sponsored videos may translate into better production quality, which viewers appreciate. All values in the plot are above 95.5%, meaning that the median viewer satisfaction is very high overall."
 section3_dumbbell_conclusion,"Next, the focus moves to <b>video duration and view counts</b> (the different data is displayed by toggling the buttons above the plot). Without exception, <b>sponsored videos are, on average, longer and more viewed than non-sponsored ones</b>. Again, a plausible explanation is that sponsored videos have higher production means, leading to more polished content that attracts more viewers. Taken together, <b>these results suggest a higher audience engagement for sponsored videos</b>."
@@ -176,9 +178,25 @@ section3_delta_intro,"However, at this stage, <b>jumping to conclusions would be
 section3_delta_analysis,"On these plots (that can be toggled using the buttons), a steady increase in delta_views and delta_subs is visible before the first sponsor, indicating that <b>channels are already in a growth phase before they attract sponsorship</b>. Moreover, the confidence intervals are quite narrow, suggesting stable and reliable mean estimates."
 section3_delta_views,"In the <b>views</b> plot, the week-to-week change in views increases as the first sponsor approaches (we can even see a jump at this first appearance), but a week after that point, the rate of change becomes slower than before (the slope is smaller)."
 section3_delta_subs,"For <b>subscribers</b> (note the change in the y-axis scale!), this pattern is even clearer. Here, the week-to-week gain in subscribers also increases as the first sponsor approaches (same with the observed jump), but then stabilizes to an approximately constant value. This indicates that channels continue to gain subscribers over time, but the rate of increase no longer rises as it did in the weeks leading up to the first sponsor."
-section3_chat_6,"[daniel] Let's summarize the results: Your channel will probably need to <b>already be in a steady growth phase before introducing its first sponsor</b>. Even though sponsored videos are likely to be longer in duration, attract more views, and receive positive audience feedback overall, there will probably be a <b>short period of strong growth in the channel</b> around the time of your first sponsor, but <b>followed by a slowdown in the growth rate</b> (for both views and subscribers). "
-section3_chat_7,"[jimmy] Oh well, not entirely positive then..."
+section3_chat_6,"[daniel] Let's summarize the results: Your channel will probably need to <b>already be in a steady growth phase before introducing its first sponsor</b>. Even though sponsored videos are likely to be longer in duration, attract more views, and receive positive audience feedback overall, there will probably be a <b>short period of strong growth in the channel</b> around the time of your first sponsor, but then the <b>growth rate will slow down</b> (for both views and subscribers). "
+section3_chat_7,"[jimmy] Oh well, getting a sponsor is not entirely positive then..."
 section3_chat_8,"[daniel] Hey, look at the bright side! More money will be flowing in! 🤑💵"
+,
+,═══════════════════════════════════════════════════════════
+,Conclusion
+,═══════════════════════════════════════════════════════════
+,
+,
+,
+,
+,
+,
+interlude_2,Some time later...
+concluding_1,"[jimmy] OMG, I just checked my inbox. I got my very first sponsor! "
+concluding_2,"[kalan] Congratulations, I knew you would be successful!"
+,<Exit video>
+concluding_transcript,"Sup guys, Jimmy here, don't forget to like and subscribe down below!!! Today, we're going to be talking about how the moon landing is fake. But first, a word from our sponsor..."
+concluding_4,"[vivian] Forget it, this guy is hopeless. "
 ,
 ,═══════════════════════════════════════════════════════════
 ,TEAM MEMBERS
@@ -190,7 +208,7 @@ team_subtitle,The people behind this project
 ,
 ,--- Team Member 1 ---
 team_1_name,Ender
-team_1_role,Ecosystem Explorer
+team_1_role,Category Cartographer
 team_1_avatar,ender.gif
 team_1_desc,"aka Eddie, expert on question #1"
 ,
@@ -210,19 +228,19 @@ team_3_desc,"aka Daniel, expert on question #3"
 team_4_name,Veronika
 team_4_role,website wizard
 team_4_avatar,veronika.gif
-team_4_desc,likes to snack
+team_4_desc,"aka Vivian, expert on website and story"
 ,
 ,--- Team Member 5 ---
 team_5_name,Jan
 team_5_role,yappy youtuber
 team_5_avatar,jan.gif
-team_5_desc,our loyal customer
+team_5_desc,"aka our loyal customer Jimmy, expert on website and story"
 ,
 ,--- Team Member 6 ---
 team_6_name,Siba
 team_6_role,Amazing Assistant
 team_6_avatar,siba.gif
-team_6_desc,Thanks for your support!!!! 
+team_6_desc,Thanks for your support!!
 ,
 ,oops
 dialogue_jimmy_hint,Let me pick a category...

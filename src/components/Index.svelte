@@ -658,6 +658,8 @@
 
 	  {@render dialogue(q3Chat0)}
 
+
+		<p class="text-content">{@html copy.section3_dumbbell_intro_0}</p>
 		<p class="text-content">{@html copy.section3_dumbbell_intro}</p>
 
 		<VisualizationDumbbell />
