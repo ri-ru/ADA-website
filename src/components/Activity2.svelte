@@ -717,19 +717,8 @@ function observeCard(node: HTMLElement) {
 
 <div class="activity2-wrap">
   <h2 class="activity2-title">Activity Status of YouTube Channels in 2025</h2>
-  <div class="activity2-subtitle-row">
-    <p class="activity2-subtitle">
-      We sample YouTube videos from ~136K YouTube channels in 2025 to see which channels remain active. Each icon represents about $200$ channels. Blue means active in 2025, red means inactive. 
-      <button class="activity2-subtitle-button" type="button" onclick={() => { showDetails = !showDetails; }}>
-        {showDetails ? 'Read Less' : 'Read More'}
-      </button>
-    </p>
-  </div>
-  {#if showDetails}
-    <p class="activity2-subtitle-detail">
-      This view shows channel activity in November 2025 for ~136K YouTube channels from the YouNiverse dataset. A channel is labeled active if it uploaded at least once in 2025. Since YouNiverse data ends in 2019, recent activity and subscriber counts were collected using the YouTube Data API. Each icon represents roughly 200 channels, making category sizes easier to compare without the largest ones dominating the view. Hovering over an icon reveals whether channels are active or inactive, along with the channel’s join date and subscriber counts in 2019 and 2025. Clicking an icon opens the channel’s YouTube page, allowing direct exploration of individual channels.
-    </p>
-  {/if}
+
+
   <div class="grid">
     {#each cards as card}
         <div class="card" data-card-id={card.id} use:observeCard>
